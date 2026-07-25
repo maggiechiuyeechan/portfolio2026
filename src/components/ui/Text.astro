@@ -9,9 +9,10 @@ interface Props {
   as?: string;
   variant: Variant;
   class?: string;
+  id?: string;
 }
 
-const { as: Tag = "p", variant, class: className } = Astro.props;
+const { as: Tag = "p", variant, class: className, id } = Astro.props;
 ---
 
-<Tag class:list={[`text-${variant}`, className]}><slot /></Tag>
+<Tag class:list={[`text-${variant}`, className]} id={id}><slot /></Tag>

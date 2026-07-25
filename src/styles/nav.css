@@ -1,0 +1,76 @@
+/*
+ * Navigation — desktop sidebar + mobile sticky header with slide-down menu.
+ * Mobile matches Figma nodes 266:211521 (collapsed) and 266:211445 (expanded).
+ */
+
+/* Desktop sidebar */
+.nav-desktop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.nav-logo {
+  display: block;
+  text-decoration: none;
+  width: fit-content;
+  line-height: 0;
+}
+
+.nav-logo img {
+  display: block;
+  width: 1.75rem; /* 28px */
+  height: auto;
+}
+
+/* Mobile sticky header — hidden above single-column break */
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 41.25rem) {
+  .mobile-nav {
+    display: block;
+    width: 100%;
+    background: var(--color-background-main);
+    border-bottom: 1px solid var(--color-border-low-contrast);
+  }
+
+  .mobile-nav-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    padding: 1rem 1rem var(--spacing-3);
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .mobile-nav-toggle img {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .mobile-nav-panel {
+    overflow: hidden;
+  }
+
+  .mobile-nav-panel-inner {
+    padding: 0.125rem 1rem 1rem; /* 2px + bar pb 12px ≈ 14px gap per Figma */
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+}

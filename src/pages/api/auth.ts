@@ -23,7 +23,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     return Response.json({ ok: false, error: "Invalid request." }, { status: 400 });
   }
 
-  if (password !== sitePassword) {
+  if (password.trim() !== sitePassword.trim()) {
     return Response.json({ ok: false, error: "Wrong password." }, { status: 401 });
   }
 

@@ -1,0 +1,70 @@
+/*
+ * Case study layout — global so styles apply through React island wrappers.
+ * Figma: 8-col grid, text spans cols 1–4 (5 at ≤80rem), 12px gutters.
+ */
+
+.study-text {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--grid-gutter);
+}
+
+.study-text-inner {
+  grid-column: 1 / span 4;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-05);
+}
+
+.study-title {
+  scroll-margin-top: var(--nav-inset);
+}
+
+.study-meta {
+  display: inline-block;
+  color: var(--color-typography-content-tertiary);
+  margin-inline-start: var(--spacing-2);
+}
+
+.study-images {
+  margin-top: var(--grid-gutter);
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gutter);
+}
+
+.study-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 80rem) {
+  .study-text-inner {
+    grid-column: 1 / span 5;
+  }
+
+  .study-title {
+    scroll-margin-top: var(--nav-inset-md);
+  }
+}
+
+@media (max-width: 52rem) {
+  .study-title {
+    scroll-margin-top: var(--spacing-5);
+  }
+}
+
+@media (max-width: 41.25rem) {
+  .study-text {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .study-text-inner {
+    grid-column: auto;
+  }
+
+  .study-title {
+    scroll-margin-top: 1.5rem;
+  }
+}

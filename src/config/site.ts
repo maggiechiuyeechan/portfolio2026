@@ -11,8 +11,8 @@ export const site = {
   passwordPlaceholder: "Enter password",
   footerNote: "Want a password? Get in touch",
   socials: [
-    { label: "Linkedin", href: "https://www.linkedin.com/" },
-    { label: "X", href: "https://x.com/" },
+    { label: "Linkedin", href: "https://www.linkedin.com/in/mcychan" },
+    { label: "X", href: "https://x.com/maggiechewychan" },
     { label: "Get in touch", href: "mailto:mach.sq@gmail.com" },
   ],
 } as const;

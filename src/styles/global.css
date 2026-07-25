@@ -2,6 +2,8 @@
 @import "./fonts.css";
 @import "./tokens.css";
 @import "./typography.css";
+@import "./study.css";
+@import "./nav.css";
 
 /*
  * Map design tokens into Tailwind v4 theme so utilities like

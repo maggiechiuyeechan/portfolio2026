@@ -7,14 +7,18 @@
 import { useRef, useState } from "react";
 import { motion, useAnimationControls } from "motion/react";
 
-export default function PasswordForm() {
+interface Props {
+  onSuccess?: () => void;
+}
+
+export default function PasswordForm({ onSuccess }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const controls = useAnimationControls();
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const password = inputRef.current?.value ?? "";
+    const password = inputRef.current?.value.trim() ?? "";
     if (!password || status === "submitting") return;
 
     setStatus("submitting");
@@ -25,7 +29,8 @@ export default function PasswordForm() {
         body: JSON.stringify({ password }),
       });
       if (response.ok) {
-        window.location.assign("/work");
+        if (onSuccess) onSuccess();
+        else window.location.assign("/work");
         return;
       }
     } catch {
@@ -67,7 +72,8 @@ export default function PasswordForm() {
             letterSpacing: "-0.01em",
             color: "var(--color-typography-content-default)",
             textAlign: "center",
-            width: "7.25rem",
+            minWidth: "9rem",
+            width: "100%",
           }}
         />
       </motion.div>
