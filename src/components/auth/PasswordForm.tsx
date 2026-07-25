@@ -46,12 +46,12 @@ export default function PasswordForm({ onSuccess }: Props) {
   return (
     <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
       <motion.div
+        className="password-chip"
         animate={controls}
         style={{
           display: "inline-flex",
           background: "var(--color-background-pressed)",
           borderRadius: "var(--radius-2)",
-          padding: "var(--spacing-1) var(--spacing-2)",
         }}
       >
         <input
