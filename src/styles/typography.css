@@ -1,0 +1,63 @@
+/*
+ * Text styles — 1:1 with the Figma "Typescale" frame (design system, node 3:126).
+ * Consumed via <Text variant="..."> (src/components/ui/Text.astro).
+ * All sizes in rem (root 16px) per responsive-unit convention.
+ */
+
+/* h1 — Bagoss Condensed Thin 88px, line-height 100% */
+.text-display {
+  font-family: "Bagoss", serif;
+  font-weight: 230;
+  font-size: 5.5rem; /* 88px */
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--color-typography-content-default);
+}
+
+/* h2 — Bagoss Standard Light 22px, line-height 145% */
+.text-title {
+  font-family: "Bagoss", serif;
+  font-weight: 320;
+  font-size: 1.375rem; /* 22px */
+  line-height: 1.45;
+  letter-spacing: 0;
+  color: var(--color-typography-content-default);
+}
+
+/* h3 — Inter Medium 17px, line-height 150%, letter-spacing -1% */
+.text-heading {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--color-typography-content-default);
+}
+
+/* Paragraph — Inter Regular 16px, line-height 150%, letter-spacing -1% */
+.text-body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--color-typography-content-secondary);
+}
+
+/* Captions — Atkinson Hyperlegible Mono 8px, line-height 200%, tracking +20%, uppercase */
+.text-caption {
+  font-family: "Atkinson Hyperlegible Mono", monospace;
+  font-weight: 400;
+  font-size: 0.5rem; /* 8px */
+  line-height: 2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-typography-content-secondary);
+}
+
+/* Display scales down on smaller frames (Figma mobile frame keeps hierarchy) */
+@media (max-width: 41.25rem) {
+  .text-display {
+    font-size: 4rem; /* 64px on mobile */
+  }
+}

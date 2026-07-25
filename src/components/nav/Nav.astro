@@ -1,0 +1,38 @@
+---
+/**
+ * Left navigation (Figma "Nav" frame 247:171989):
+ * MC wordmark, "Work" section with divider + project links, socials.
+ * Link data is passed in (built from the work collection) — nothing hardcoded.
+ */
+import { site } from "../../config/site";
+import NavLinks from "./NavLinks";
+
+interface Props {
+  workLinks: { label: string; href: string }[];
+}
+
+const { workLinks } = Astro.props;
+const socials = site.socials.map(({ label, href }) => ({ label, href }));
+---
+
+<nav class="nav" aria-label="Main">
+  <a href="/work" class="nav-logo text-title">{site.initials}</a>
+  <NavLinks client:load workLinks={workLinks} socials={socials} />
+</nav>
+
+<style>
+  .nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .nav-logo {
+    /* Figma: Bagoss 18px, black */
+    font-size: 1.125rem;
+    line-height: 1.45;
+    color: var(--color-typography-content-default);
+    text-decoration: none;
+    width: fit-content;
+  }
+</style>

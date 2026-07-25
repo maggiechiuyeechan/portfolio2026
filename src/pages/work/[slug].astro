@@ -1,0 +1,44 @@
+---
+/**
+ * Deep link to a single case study (scaffold for future detail pages).
+ * Protected by the same middleware gate as /work.
+ */
+import { getCollection } from "astro:content";
+import ContentShell from "../../layouts/ContentShell.astro";
+import Container from "../../components/layout/Container.astro";
+import StudyBlock from "../../components/work/StudyBlock.astro";
+import { site } from "../../config/site";
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+const studies = await getCollection("work");
+const study = studies.find((entry) => entry.id === slug);
+
+if (!study) {
+  return Astro.redirect("/work");
+}
+
+const workLinks = studies
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => ({
+    label: entry.data.navLabel,
+    href: `/work/${entry.id}`,
+  }));
+---
+
+<ContentShell
+  title={`${study.data.title} — ${site.name}`}
+  workLinks={workLinks}
+>
+  <Container>
+    <StudyBlock
+      anchorId={study.data.anchorId}
+      title={study.data.title}
+      meta={study.data.meta}
+      subtitle={study.data.subtitle}
+      images={study.data.images}
+      eager
+    />
+  </Container>
+</ContentShell>

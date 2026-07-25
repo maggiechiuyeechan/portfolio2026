@@ -1,0 +1,14 @@
+# build output
+dist/
+.vercel/
+.astro/
+
+# dependencies
+node_modules/
+
+# environment
+.env
+.env.production
+
+# os / editor
+.DS_Store

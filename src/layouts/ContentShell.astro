@@ -1,0 +1,77 @@
+---
+/**
+ * Protected-content shell: sticky nav column on the left, main body on the
+ * right. Figma: nav positioned 48px top/left and sticky (desktop), 32px on
+ * 13-14" frames, 24px on tablet; stacks to a single column below 660px.
+ * Shared by /work and future /blog + /prototypes pages.
+ */
+import BaseLayout from "./BaseLayout.astro";
+import Nav from "../components/nav/Nav.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  workLinks?: { label: string; href: string }[];
+}
+
+const { title, description, workLinks = [] } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="shell">
+    <header class="shell-nav">
+      <Nav workLinks={workLinks} />
+    </header>
+    <main class="shell-main">
+      <slot />
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .shell {
+    display: grid;
+    grid-template-columns: var(--nav-width, 11.6875rem) minmax(0, 1fr);
+    gap: var(--grid-gutter);
+    align-items: start;
+    padding: var(--nav-inset);
+  }
+
+  .shell-nav {
+    position: sticky;
+    top: var(--nav-inset);
+  }
+
+  /* 13-14" laptops — Figma "smaller desktop" frame: 32px inset, 150px nav */
+  @media (max-width: 80rem) {
+    .shell {
+      --nav-width: 9.375rem;
+      padding: var(--nav-inset-md);
+    }
+    .shell-nav {
+      top: var(--nav-inset-md);
+    }
+  }
+
+  /* Tablet — Figma "tablet" frame: 24px inset, 120px nav */
+  @media (max-width: 52rem) {
+    .shell {
+      --nav-width: 7.5rem;
+      padding: var(--spacing-5);
+    }
+    .shell-nav {
+      top: var(--spacing-5);
+    }
+  }
+
+  /* Below 660px: single column, nav becomes a static block above content */
+  @media (max-width: 41.25rem) {
+    .shell {
+      grid-template-columns: minmax(0, 1fr);
+      padding: 1.5rem 1rem;
+    }
+    .shell-nav {
+      position: static;
+    }
+  }
+</style>

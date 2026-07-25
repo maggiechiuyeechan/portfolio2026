@@ -1,0 +1,17 @@
+---
+/**
+ * Typography primitive. `variant` maps 1:1 to the Figma typescale
+ * (classes defined in src/styles/typography.css).
+ */
+type Variant = "display" | "title" | "heading" | "body" | "caption";
+
+interface Props {
+  as?: string;
+  variant: Variant;
+  class?: string;
+}
+
+const { as: Tag = "p", variant, class: className } = Astro.props;
+---
+
+<Tag class:list={[`text-${variant}`, className]}><slot /></Tag>

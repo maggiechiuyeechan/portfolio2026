@@ -1,0 +1,39 @@
+---
+/**
+ * Protected single-page case study feed (Figma V2 work page).
+ * SSR so the middleware cookie gate runs on every request.
+ */
+import { getCollection } from "astro:content";
+import ContentShell from "../../layouts/ContentShell.astro";
+import Container from "../../components/layout/Container.astro";
+import StudyBlock from "../../components/work/StudyBlock.astro";
+import { site } from "../../config/site";
+
+export const prerender = false;
+
+const studies = (await getCollection("work")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const workLinks = studies.map((study) => ({
+  label: study.data.navLabel,
+  href: `#${study.data.anchorId}`,
+}));
+---
+
+<ContentShell title={`Work — ${site.name}`} workLinks={workLinks}>
+  <Container>
+    {
+      studies.map((study, index) => (
+        <StudyBlock
+          anchorId={study.data.anchorId}
+          title={study.data.title}
+          meta={study.data.meta}
+          subtitle={study.data.subtitle}
+          images={study.data.images}
+          eager={index === 0}
+        />
+      ))
+    }
+  </Container>
+</ContentShell>

@@ -1,0 +1,72 @@
+@import "tailwindcss";
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./typography.css";
+
+/*
+ * Map design tokens into Tailwind v4 theme so utilities like
+ * bg-background-main, text-content-secondary, rounded-radius-2, gap-gutter work.
+ */
+@theme inline {
+  --color-gray-1: var(--color-gray-1);
+  --color-gray-2: var(--color-gray-2);
+  --color-gray-3: var(--color-gray-3);
+  --color-gray-4: var(--color-gray-4);
+  --color-gray-5: var(--color-gray-5);
+  --color-gray-6: var(--color-gray-6);
+  --color-gray-7: var(--color-gray-7);
+  --color-gray-8: var(--color-gray-8);
+  --color-gray-9: var(--color-gray-9);
+  --color-gray-10: var(--color-gray-10);
+  --color-gray-11: var(--color-gray-11);
+  --color-gray-12: var(--color-gray-12);
+
+  --color-background-main: var(--color-background-main);
+  --color-background-hover: var(--color-background-hover);
+  --color-background-pressed: var(--color-background-pressed);
+  --color-background-inverse: var(--color-background-inverse);
+  --color-background-onmain: var(--color-background-onmain-default);
+
+  --color-content-default: var(--color-typography-content-default);
+  --color-content-secondary: var(--color-typography-content-secondary);
+  --color-content-tertiary: var(--color-typography-content-tertiary);
+  --color-content-inverse: var(--color-typography-inverse-default);
+
+  --color-border-default: var(--color-border-default);
+  --color-border-low: var(--color-border-low-contrast);
+
+  --font-display: "Bagoss", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Atkinson Hyperlegible Mono", monospace;
+
+  --radius-1: var(--radius-1);
+  --radius-2: var(--radius-2);
+  --radius-3: var(--radius-3);
+  --radius-4: var(--radius-4);
+  --radius-6: var(--radius-6);
+
+  --spacing-gutter: var(--grid-gutter);
+}
+
+/*
+ * Root sizing: everything downstream is rem-based, so the whole system
+ * scales from this single declaration.
+ */
+html {
+  font-size: 100%; /* 16px — Figma frames use a 16px base at every breakpoint */
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background-main);
+  color: var(--color-typography-content-default);
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-gray-4);
+}

@@ -1,0 +1,28 @@
+---
+/**
+ * 8-column grid with 12px gutters (Figma annotation: "8 column grid, 12px gap").
+ * Collapses to a single column below 660px ("min width - 660 and then break
+ * into single column").
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["grid-8", className]}><slot /></div>
+
+<style>
+  .grid-8 {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+    gap: var(--grid-gutter);
+  }
+
+  @media (max-width: 41.25rem) {
+    .grid-8 {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

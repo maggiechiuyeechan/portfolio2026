@@ -1,0 +1,66 @@
+/*
+ * Design tokens — 1:1 with Figma "2026 Design Portfolio Design System"
+ * https://www.figma.com/design/n6CcU7VyQjOQA8qDXV7Kcn
+ * Names mirror the Figma variable collections exactly.
+ */
+:root {
+  /* ------ Colors / Gray (CU Vars collection) ------ */
+  --color-gray-1: #fcfcfc;
+  --color-gray-2: #f9f9f9;
+  --color-gray-3: #f0f0f0;
+  --color-gray-4: #e8e8e8;
+  --color-gray-5: #e0e0e0;
+  --color-gray-6: #d9d9d9;
+  --color-gray-7: #cecece;
+  --color-gray-8: #bbbbbb;
+  --color-gray-9: #8d8d8d;
+  --color-gray-10: #838383;
+  --color-gray-11: #646464;
+  --color-gray-12: #202020;
+  --color-white: #ffffff;
+
+  /* ------ Semantic / Backgrounds ------ */
+  --color-background-main: var(--color-white);
+  --color-background-hover: var(--color-gray-2);
+  --color-background-pressed: var(--color-gray-3);
+  --color-background-inverse: var(--color-gray-12);
+  --color-background-inverse-hover: var(--color-gray-11);
+  --color-background-inverse-pressed: var(--color-gray-10);
+  --color-background-onmain-default: var(--color-gray-3);
+  --color-background-onmain-hover: var(--color-gray-4);
+
+  /* ------ Semantic / Typography ------ */
+  --color-typography-content-default: var(--color-gray-12);
+  --color-typography-content-secondary: var(--color-gray-10);
+  --color-typography-content-tertiary: var(--color-gray-8);
+  --color-typography-inverse-default: var(--color-gray-1);
+
+  /* ------ Semantic / Borders ------ */
+  --color-border-default: var(--color-gray-3);
+  --color-border-low-contrast: var(--color-gray-2);
+
+  /* ------ Spacing (rem-based; root = 16px) ------ */
+  --spacing-05: 0.125rem; /* 2px */
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px — grid gutter */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-30: 7.5rem;   /* 120px */
+
+  /* ------ Border radius ------ */
+  --radius-none: 0;
+  --radius-1: 0.25rem;  /* 4px */
+  --radius-2: 0.5rem;   /* 8px */
+  --radius-3: 0.75rem;  /* 12px */
+  --radius-4: 1rem;     /* 16px */
+  --radius-6: 1.5rem;   /* 24px */
+  --radius-full: 9999px;
+
+  /* ------ Layout (Figma grid annotations) ------ */
+  --grid-columns: 8;
+  --grid-gutter: var(--spacing-3);         /* 12px gutters */
+  --content-max-width: 60rem;              /* max width 960 */
+  --single-column-break: 41.25rem;         /* 660px — break into single column */
+  --nav-inset: 3rem;                       /* nav positioned 48px top/left, sticky */
+  --nav-inset-md: 2rem;                    /* 32px at 13-14" frame */
+}

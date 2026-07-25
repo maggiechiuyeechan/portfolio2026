@@ -1,0 +1,21 @@
+---
+/**
+ * Content container — fill width up to 960px max (Figma annotation:
+ * "fill width", "max width 960").
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["container-960", className]}><slot /></div>
+
+<style>
+  .container-960 {
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+  }
+</style>

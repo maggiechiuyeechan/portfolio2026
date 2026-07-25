@@ -1,0 +1,20 @@
+---
+/**
+ * Vertical rhythm between case study blocks: each study after the first
+ * gets 120px (spacing/30) of top padding, matching the Figma page.
+ */
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id, class: className } = Astro.props;
+---
+
+<section id={id} class:list={["study-section", className]}><slot /></section>
+
+<style>
+  .study-section + .study-section {
+    padding-top: var(--spacing-30);
+  }
+</style>

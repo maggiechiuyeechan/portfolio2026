@@ -1,0 +1,22 @@
+/*
+ * Bagoss (Displaay Type Foundry) — self-hosted WOFF2.
+ * File naming from the foundry: w<weight>s<slant>w<width>.
+ *   Bagoss-w230s0w60 -> weight 230 ("Condensed Thin" in Figma, used for display)
+ *   Bagoss-w320s0w60 -> weight 320 ("Standard Light" in Figma, used for titles)
+ * Inter and Atkinson Hyperlegible Mono are loaded from Google Fonts (BaseLayout).
+ */
+@font-face {
+  font-family: "Bagoss";
+  src: url("/fonts/bagoss/Bagoss-w230s0w60.woff2") format("woff2");
+  font-weight: 230;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bagoss";
+  src: url("/fonts/bagoss/Bagoss-w320s0w60.woff2") format("woff2");
+  font-weight: 320;
+  font-style: normal;
+  font-display: swap;
+}
