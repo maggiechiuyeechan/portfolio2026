@@ -61,3 +61,21 @@
     font-size: 4rem; /* 64px on mobile */
   }
 }
+
+/* Hero display name — large type sized to ~80vw, box hugs glyphs */
+.hero-name--mega {
+  width: fit-content;
+  max-width: 80vw;
+  font-size: clamp(3.5rem, 14.5vw, 20rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 41.25rem) {
+  .hero-name--mega {
+    font-size: clamp(2.75rem, 17vw, 4.5rem);
+    white-space: normal;
+  }
+}

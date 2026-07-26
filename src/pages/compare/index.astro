@@ -1,18 +1,17 @@
 ---
 /**
- * Public password hero (Figma "larger than 16'" 247:118290 and the smaller
- * desktop / tablet / mobile variants). Prerendered for speed.
+ * Duplicate of the public password hero — edit this route to compare against /.
  */
-import BaseLayout from "../layouts/BaseLayout.astro";
-import FooterLinks from "../components/ui/FooterLinks.astro";
-import HeroEntrance from "../components/auth/HeroEntrance";
-import { site } from "../config/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FooterLinks from "../../components/ui/FooterLinks.astro";
+import HeroEntrance from "../../components/auth/HeroEntrance";
+import { site } from "../../config/site";
 
 export const prerender = true;
 
 const compareLinks = [
-  { label: "Version A", href: "/", current: true },
-  { label: "Version B", href: "/compare" },
+  { label: "Version A", href: "/" },
+  { label: "Version B", href: "/compare", current: true },
   { label: "Version C", href: "/compare-c" },
   { label: "Version D", href: "/compare-d" },
   { label: "Version E", href: "/compare-e" },
@@ -41,8 +40,8 @@ const compareLinks = [
         title={site.title}
         tagline={site.tagline}
         bio={site.bio}
-      avatarSrc="/images/butterfly_slowmo.gif"
-      avatarAlt="White butterflies in motion"
+        showAvatar={false}
+        physicsFullCanvas={true}
       />
     </div>
     <footer class="hero-footer">
@@ -95,6 +94,7 @@ const compareLinks = [
     width: 100%;
     display: flex;
     justify-content: center;
+    position: relative;
   }
 
   .hero-footer {
@@ -106,7 +106,6 @@ const compareLinks = [
     padding-inline: 1rem;
   }
 
-  /* Short viewports: footer scrolls with content instead of pinning to bottom */
   @media (max-height: 40rem) {
     .hero {
       min-height: auto;
@@ -118,37 +117,6 @@ const compareLinks = [
       position: static;
       margin-top: var(--spacing-5);
       width: 100%;
-    }
-  }
-
-  /* Avatar frame — dimensions live in CSS so breakpoints apply */
-  .hero-inner :global(.hero-avatar-frame) {
-    width: 9rem;
-    height: 11.25rem;
-  }
-
-  .hero-inner :global(.hero-avatar-entrance) {
-    margin-bottom: 1rem;
-  }
-
-  @media (max-width: 80rem) {
-    .hero-inner :global(.hero-avatar-frame) {
-      width: 8.1rem;
-      height: 10.125rem;
-    }
-  }
-
-  @media (max-width: 52rem) {
-    .hero-inner :global(.hero-avatar-frame) {
-      width: 7.2rem;
-      height: 9rem;
-    }
-  }
-
-  @media (max-width: 41.25rem) {
-    .hero-inner :global(.hero-avatar-frame) {
-      width: 6.3rem;
-      height: 7.875rem;
     }
   }
 </style>

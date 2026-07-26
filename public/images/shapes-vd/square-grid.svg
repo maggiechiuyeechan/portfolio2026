@@ -1,0 +1,40 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="437" height="437" viewBox="0 0 437 437" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Square Grid" style="mix-blend-mode:multiply" clip-path="url(#clip0_0_4)">
+<rect width="437" height="437" fill="white"/>
+<line id="V-1" x1="32.1333" x2="32.1333" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-2" x1="61.2667" x2="61.2667" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-3" x1="90.4" x2="90.4" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-4" x1="119.533" x2="119.533" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-5" x1="148.667" x2="148.667" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-6" x1="177.8" x2="177.8" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-7" x1="206.933" x2="206.933" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-8" x1="236.067" x2="236.067" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-9" x1="265.2" x2="265.2" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-10" x1="294.333" x2="294.333" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-11" x1="323.467" x2="323.467" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-12" x1="352.6" x2="352.6" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-13" x1="381.733" x2="381.733" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-14" x1="410.867" x2="410.867" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="V-15" x1="440" x2="440" y2="437" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-0" y1="-3" x2="437" y2="-3" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-1" y1="26.1333" x2="437" y2="26.1333" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-2" y1="55.2667" x2="437" y2="55.2667" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-3" y1="84.4" x2="437" y2="84.4" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-4" y1="113.533" x2="437" y2="113.533" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-5" y1="142.667" x2="437" y2="142.667" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-6" y1="171.8" x2="437" y2="171.8" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-7" y1="200.933" x2="437" y2="200.933" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-8" y1="230.067" x2="437" y2="230.067" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-9" y1="259.2" x2="437" y2="259.2" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-10" y1="288.333" x2="437" y2="288.333" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-11" y1="317.467" x2="437" y2="317.467" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-12" y1="346.6" x2="437" y2="346.6" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-13" y1="375.733" x2="437" y2="375.733" stroke="#9F9F00" stroke-width="6"/>
+<line id="H-14" y1="404.867" x2="437" y2="404.867" stroke="#9F9F00" stroke-width="6"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="437" height="437" fill="white"/>
+</clipPath>
+</defs>
+</svg>

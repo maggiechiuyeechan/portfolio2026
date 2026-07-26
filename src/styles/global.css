@@ -4,6 +4,7 @@
 @import "./typography.css";
 @import "./study.css";
 @import "./nav.css";
+@import "./shape-desk.css";
 
 /*
  * Map design tokens into Tailwind v4 theme so utilities like
@@ -36,6 +37,8 @@
 
   --color-border-default: var(--color-border-default);
   --color-border-low: var(--color-border-low-contrast);
+
+  --shadow-elevation: var(--elevation-shadow);
 
   --font-display: "Bagoss", serif;
   --font-sans: "Inter", sans-serif;
