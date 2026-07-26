@@ -9,7 +9,7 @@ interface Props {
   variants?: Record<string, unknown>;
 }
 
-const FRAME_RADIUS = "4.5rem";
+const FRAME_RADIUS = "3.5rem";
 
 const frameStyle: React.CSSProperties = {
   position: "relative",
@@ -27,19 +27,38 @@ const imageStyle: React.CSSProperties = {
   display: "block",
 };
 
+const isVideoSrc = (src: string) => /\.(mp4|webm|mov)(\?|$)/i.test(src);
+
 export default function HeroAvatar({ src, alt, variants }: Props) {
+  const mediaSrc = encodeURI(src);
+
   return (
     <motion.div className="hero-avatar-entrance" variants={variants}>
       <div className="hero-avatar-frame" style={frameStyle}>
-        <img
-          className="hero-avatar"
-          src={src}
-          alt={alt}
-          width={200}
-          height={250}
-          style={imageStyle}
-          draggable={false}
-        />
+        {isVideoSrc(src) ? (
+          <video
+            className="hero-avatar"
+            src={mediaSrc}
+            aria-label={alt}
+            width={720}
+            height={1280}
+            style={imageStyle}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        ) : (
+          <img
+            className="hero-avatar"
+            src={mediaSrc}
+            alt={alt}
+            width={200}
+            height={250}
+            style={imageStyle}
+            draggable={false}
+          />
+        )}
       </div>
     </motion.div>
   );
