@@ -68,6 +68,10 @@
   --radius-6: 1.5rem;   /* 24px */
   --radius-full: 9999px;
 
+  /* ------ Typography weights (Bagoss face files) ------ */
+  --font-weight-bagoss-thin: 230;  /* Condensed Thin */
+  --font-weight-bagoss-light: 320; /* Standard Light — display + title */
+
   /* ------ Layout (Figma grid annotations) ------ */
   --grid-columns: 8;
   --grid-gutter: var(--spacing-3);         /* 12px gutters */

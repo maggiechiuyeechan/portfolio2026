@@ -1,6 +1,17 @@
 import type { ShapeDef, StaticShapePose } from "./physicsShapes";
 
+/**
+ * Figma node 327:60168 — the seven desk shapes for Version F, in the order they
+ * appear in the frame. Aspects come from the Figma export bounds; the rounded
+ * corners on the pills and the yellow square are baked into their SVGs.
+ */
 export const SHAPES_D: ShapeDef[] = [
+  {
+    id: "shape-pink-dots",
+    src: "/images/shapes-vd/pink-dotted-grid.svg",
+    aspect: 1,
+    mixBlendMultiply: true,
+  },
   {
     id: "shape-subtract",
     src: "/images/shapes-vd/subtract.svg",
@@ -14,35 +25,26 @@ export const SHAPES_D: ShapeDef[] = [
     mixBlendMultiply: true,
   },
   {
-    id: "shape-pill-blue",
-    color: "#1d4790",
-    aspect: 105 / 260,
-    borderRadius: "999px",
-    mixBlendMultiply: true,
-  },
-  {
-    id: "shape-pill-orange",
-    color: "#e88e4e",
-    aspect: 105 / 260,
-    borderRadius: "999px",
-    mixBlendMultiply: true,
-  },
-  {
-    id: "shape-square-yellow",
-    color: "#e1d347",
-    aspect: 1,
-    borderRadius: "1.5rem",
-    mixBlendMultiply: true,
-  },
-  {
     id: "shape-square-grid",
     src: "/images/shapes-vd/square-grid.svg",
     aspect: 1,
     mixBlendMultiply: true,
   },
   {
-    id: "shape-pink-dots",
-    src: "/images/shapes-vd/pink-dotted-grid.svg",
+    id: "shape-pill-blue",
+    src: "/images/shapes-vd/pill-blue.svg",
+    aspect: 105 / 260,
+    mixBlendMultiply: true,
+  },
+  {
+    id: "shape-pill-orange",
+    src: "/images/shapes-vd/pill-orange.svg",
+    aspect: 105 / 260,
+    mixBlendMultiply: true,
+  },
+  {
+    id: "shape-square-yellow",
+    src: "/images/shapes-vd/square-yellow.svg",
     aspect: 1,
     mixBlendMultiply: true,
   },
@@ -58,8 +60,8 @@ export const STATIC_SHAPE_POSES_D: StaticShapePose[] = [
   { shapeId: "shape-square-yellow", x: 0.32, y: 0.58, angle: 0.5 },
   { shapeId: "shape-pink-dots", x: 0.52, y: 0.55, angle: -0.1 },
   { shapeId: "shape-square-grid", x: 0.72, y: 0.52, angle: 0.2 },
-  { shapeId: "shape-subtract", x: 0.45, y: 0.35, angle: -0.4 },
-  { shapeId: "shape-ellipse", x: 0.65, y: 0.3, angle: 0.12 },
+  { shapeId: "shape-ellipse", x: 0.45, y: 0.35, angle: -0.4 },
+  { shapeId: "shape-subtract", x: 0.65, y: 0.3, angle: 0.12 },
   { shapeId: "shape-pill-blue", x: 0.25, y: 0.38, angle: -0.55 },
   { shapeId: "shape-square-grid", x: 0.82, y: 0.28, angle: 0.45 },
   { shapeId: "shape-pink-dots", x: 0.55, y: 0.18, angle: -0.08 },

@@ -1,5 +1,6 @@
 /**
- * Physics pile — colored tiles (Version B) or Figma shapes (Versions C/D/E).
+ * Physics pile — colored tiles (Version B) or Figma shapes (Version C).
+ * Cursor contact pops a piece upward (B + C).
  */
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -8,27 +9,36 @@ import Matter from "matter-js";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import PhysicsTileFace from "./PhysicsTileFace";
 import PhysicsShapeFace from "./PhysicsShapeFace";
-import { STATIC_TILE_POSES, TILES, type TileDef } from "./physicsTiles";
+import { STATIC_TILE_POSES, TILES, TILES_SPAWN, type TileDef } from "./physicsTiles";
 import { shapeBodyDimensions, type ShapeDef, type StaticShapePose } from "./physicsShapes";
 import { SHAPES_C, SHAPES_C_SPAWN, STATIC_SHAPE_POSES_C } from "./physicsShapesC";
-import { SHAPES_D, SHAPES_D_SPAWN, STATIC_SHAPE_POSES_D } from "./physicsShapesD";
-import { SHAPES_E, SHAPES_E_SPAWN, STATIC_SHAPE_POSES_E } from "./physicsShapesE";
 
 interface Props {
   variants?: Record<string, unknown>;
   fullCanvas?: boolean;
   obstacleRefs?: React.RefObject<HTMLElement | null>[];
-  variant?: "tiles" | "shapes-c" | "shapes-d" | "shapes-e";
+  variant?: "tiles" | "shapes-c";
 }
 
 const COMPACT_TILE_SIZE = 48;
 const FULL_CANVAS_TILE_SIZE = 240;
-const FULL_CANVAS_TILE_COUNT = 12;
+const TILE_VARIANT_SCALE = 0.5;
+/** Version C shapes sit a touch smaller than the shared full-canvas size. */
+const SHAPES_C_SIZE_SCALE = 0.95;
+/** Floor for full-canvas shapes — low enough that phones can shrink further. */
+const MIN_FULL_CANVAS_SHAPE_SIZE = 64;
+/** Fraction of viewport width used as the shape's long edge. */
+const FULL_CANVAS_SHAPE_WIDTH_RATIO = 0.18;
 const SPAWN_DELAY_MS = 90;
 const OBSTACLE_PAD = 12;
 /** Below this speed/angular velocity, bodies are forced to sleep */
 const REST_SPEED = 0.12;
 const REST_ANGULAR = 0.025;
+/** Upward kick when the cursor touches a tile/shape. */
+const POP_UP_SPEED = 18;
+const POP_LATERAL = 2.5;
+const POP_SPIN = 0.1;
+const POP_COOLDOWN_MS = 480;
 
 interface SpawnedBody {
   bodyId: number;
@@ -38,21 +48,16 @@ interface SpawnedBody {
   shape?: ShapeDef;
 }
 
-function getShapeConfig(variant: Props["variant"]) {
-  if (variant === "shapes-d") {
-    return {
-      shapes: SHAPES_D,
-      spawn: SHAPES_D_SPAWN,
-      staticPoses: STATIC_SHAPE_POSES_D,
-    };
-  }
-  if (variant === "shapes-e") {
-    return {
-      shapes: SHAPES_E,
-      spawn: SHAPES_E_SPAWN,
-      staticPoses: STATIC_SHAPE_POSES_E,
-    };
-  }
+function isInteractiveTarget(target: Element | null) {
+  if (!target) return true;
+  return Boolean(
+    target.closest(
+      "a, button, input, textarea, select, label, nav, [role='button'], .compare-switch",
+    ),
+  );
+}
+
+function getShapeConfig() {
   return {
     shapes: SHAPES_C,
     spawn: SHAPES_C_SPAWN,
@@ -60,9 +65,19 @@ function getShapeConfig(variant: Props["variant"]) {
   };
 }
 
-function baseSize(fullCanvas: boolean, width: number) {
-  if (!fullCanvas) return COMPACT_TILE_SIZE;
-  return Math.max(160, Math.min(FULL_CANVAS_TILE_SIZE, Math.round(width * 0.3)));
+function baseSize(fullCanvas: boolean, width: number, variant: Props["variant"]) {
+  if (!fullCanvas) return Math.round(COMPACT_TILE_SIZE * TILE_VARIANT_SCALE);
+  const shapeSize = Math.max(
+    MIN_FULL_CANVAS_SHAPE_SIZE,
+    Math.min(FULL_CANVAS_TILE_SIZE, Math.round(width * FULL_CANVAS_SHAPE_WIDTH_RATIO)),
+  );
+  if (variant === "tiles") {
+    return Math.round(shapeSize * TILE_VARIANT_SCALE);
+  }
+  if (variant === "shapes-c") {
+    return Math.round(shapeSize * SHAPES_C_SIZE_SCALE);
+  }
+  return shapeSize;
 }
 
 function canvasDimensions(fullCanvas: boolean, container: HTMLElement) {
@@ -99,8 +114,8 @@ export default function PhysicsTileStack({
   obstacleRefs = [],
   variant = "tiles",
 }: Props) {
-  const isShapes = variant === "shapes-c" || variant === "shapes-d" || variant === "shapes-e";
-  const shapeConfig = getShapeConfig(variant);
+  const isShapes = variant === "shapes-c";
+  const shapeConfig = getShapeConfig();
   const reducedMotion = usePrefersReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const tileElementsRef = useRef<Map<number, HTMLDivElement>>(new Map());
@@ -126,7 +141,7 @@ export default function PhysicsTileStack({
 
     const measure = () => {
       const { width, height } = canvasDimensions(fullCanvas, container);
-      const size = baseSize(fullCanvas, width);
+      const size = baseSize(fullCanvas, width, variant);
       baseSizeRef.current = size;
       setContainerSize({ width, height });
       setActiveBaseSize(size);
@@ -147,19 +162,19 @@ export default function PhysicsTileStack({
     const spawnSet = fullCanvas
       ? isShapes
         ? shapeConfig.spawn
-        : TILES.slice(0, FULL_CANVAS_TILE_COUNT)
+        : TILES_SPAWN
       : isShapes
         ? shapeConfig.shapes
         : TILES;
     const spawnStartDelay = fullCanvas ? 500 : 0;
 
-    const { Engine, Runner, Bodies, Composite, Body, Events, Sleeping } = Matter;
+    const { Engine, Runner, Bodies, Composite, Body, Events, Sleeping, Query } = Matter;
     const engine = Engine.create({
       enableSleeping: true,
       positionIterations: 8,
       velocityIterations: 6,
     });
-    engine.gravity.y = 1.2;
+    engine.gravity.y = 2;
     engineRef.current = engine;
 
     const wallThickness = 120;
@@ -217,7 +232,7 @@ export default function PhysicsTileStack({
         chamfer: { radius: chamfer },
         restitution: 0.15,
         friction: 0.85,
-        frictionAir: 0.02,
+        frictionAir: 0.012,
         density: 0.0016,
         sleepThreshold: 25,
         label: item.id,
@@ -280,17 +295,88 @@ export default function PhysicsTileStack({
     });
 
     const obstacleTimer = fullCanvas ? window.setInterval(syncObstacles, 500) : undefined;
+    let measuredWidth = width;
+    let measuredHeight = height;
+    let measuredSize = size;
+
     const onResize = () => {
-      measure();
+      const next = measure();
+      const sizeScale = next.size / measuredSize;
+
+      if (Math.abs(sizeScale - 1) > 0.001) {
+        tileBodiesRef.current.forEach((body) => Body.scale(body, sizeScale, sizeScale));
+
+        spawnedBodiesRef.current.forEach((spawned) => {
+          spawned.bodyWidth *= sizeScale;
+          spawned.bodyHeight *= sizeScale;
+        });
+        setSpawnedBodies([...spawnedBodiesRef.current.values()]);
+      }
+
+      Body.scale(
+        ground,
+        (next.width + wallThickness * 2) / (measuredWidth + wallThickness * 2),
+        1,
+      );
+      Body.setPosition(ground, {
+        x: next.width / 2,
+        y: next.height + wallThickness / 2,
+      });
+      Body.scale(leftWall, 1, next.height / measuredHeight);
+      Body.setPosition(leftWall, { x: -wallThickness / 2, y: next.height / 2 });
+      Body.scale(rightWall, 1, next.height / measuredHeight);
+      Body.setPosition(rightWall, {
+        x: next.width + wallThickness / 2,
+        y: next.height / 2,
+      });
+
+      measuredWidth = next.width;
+      measuredHeight = next.height;
+      measuredSize = next.size;
       syncObstacles();
     };
     window.addEventListener("resize", onResize);
+
+    const lastPopAt = new Map<number, number>();
+    const previousCursor = document.body.style.cursor;
+    document.body.style.cursor = "pointer";
+
+    // Cursor contact wakes a piece and kicks it upward.
+    const onPointerMove = (event: PointerEvent) => {
+      if (isInteractiveTarget(event.target as Element | null)) return;
+
+      const hits = Query.point(tileBodiesRef.current, {
+        x: event.clientX,
+        y: event.clientY,
+      });
+      if (hits.length === 0) return;
+
+      const now = performance.now();
+      for (const body of hits) {
+        const last = lastPopAt.get(body.id) ?? 0;
+        if (now - last < POP_COOLDOWN_MS) continue;
+        lastPopAt.set(body.id, now);
+
+        Sleeping.set(body, false);
+        Body.setVelocity(body, {
+          x: body.velocity.x + (Math.random() - 0.5) * POP_LATERAL * 2,
+          y: -POP_UP_SPEED,
+        });
+        Body.setAngularVelocity(
+          body,
+          body.angularVelocity + (Math.random() - 0.5) * POP_SPIN * 2,
+        );
+      }
+    };
+    window.addEventListener("pointermove", onPointerMove);
 
     return () => {
       spawnTimersRef.current.forEach((timer) => window.clearTimeout(timer));
       spawnTimersRef.current = [];
       if (obstacleTimer) window.clearInterval(obstacleTimer);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("pointermove", onPointerMove);
+      document.body.style.cursor = previousCursor;
       Events.off(engine, "afterUpdate", onAfterUpdate);
       Runner.stop(runner);
       Engine.clear(engine);

@@ -1,6 +1,7 @@
 /**
  * Draggable paper-desk — shapes splayed on a flat surface (no gravity).
  * Drag to move, scroll or use the handle to rotate, click to nudge rotation.
+ * Initial placement keeps clear of the hero text.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -10,12 +11,16 @@ import { SHAPES_D_SPAWN } from "./physicsShapesD";
 
 interface Props {
   shapes?: ShapeDef[];
+  obstacleRefs?: React.RefObject<HTMLElement | null>[];
 }
 
 const ROTATE_HANDLE_OFFSET = 28;
 const WHEEL_ROTATE = 0.004;
 const CLICK_MOVE_THRESHOLD = 5;
 const CLICK_ROTATE_RAD = (15 * Math.PI) / 180;
+/** Clearance around the hero text for initial placement. */
+const TEXT_PADDING = 28;
+const PLACE_ATTEMPTS = 80;
 
 /** Scale shape size from viewport — smaller on phones, larger on desktop. */
 function deskBaseSize(viewportWidth: number, viewportHeight: number) {
@@ -46,6 +51,13 @@ function rotateHandleOffset(baseSize: number) {
   return Math.max(20, Math.round(ROTATE_HANDLE_OFFSET * (baseSize / 360)));
 }
 
+interface Rect {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+}
+
 interface DeskPiece {
   id: string;
   shape: ShapeDef;
@@ -66,6 +78,46 @@ interface ActiveInteraction {
   startClientX: number;
   startClientY: number;
   moved: boolean;
+}
+
+function measureTextZones(refs: React.RefObject<HTMLElement | null>[]): Rect[] {
+  const zones: Rect[] = [];
+
+  for (const ref of refs) {
+    const element = ref.current;
+    if (!element) continue;
+
+    const rect = element.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) continue;
+
+    zones.push({
+      left: rect.left - TEXT_PADDING,
+      top: rect.top - TEXT_PADDING,
+      right: rect.right + TEXT_PADDING,
+      bottom: rect.bottom + TEXT_PADDING,
+    });
+  }
+
+  return zones;
+}
+
+function overlapsZone(
+  x: number,
+  y: number,
+  pieceWidth: number,
+  pieceHeight: number,
+  zones: Rect[],
+) {
+  // Use the diagonal so rotated pieces still clear the text on first paint.
+  const radius = Math.hypot(pieceWidth, pieceHeight) / 2;
+  const left = x - radius;
+  const top = y - radius;
+  const right = x + radius;
+  const bottom = y + radius;
+
+  return zones.some(
+    (zone) => left < zone.right && right > zone.left && top < zone.bottom && bottom > zone.top,
+  );
 }
 
 function randomEdgePosition(width: number, height: number, pieceSize: number) {
@@ -90,11 +142,46 @@ function randomEdgePosition(width: number, height: number, pieceSize: number) {
   }
 }
 
-function createInitialPieces(shapes: ShapeDef[], width: number, height: number, baseSize: number): DeskPiece[] {
+function placeClearOfText(
+  width: number,
+  height: number,
+  pieceWidth: number,
+  pieceHeight: number,
+  zones: Rect[],
+) {
+  const pieceSize = Math.max(pieceWidth, pieceHeight);
+
+  for (let attempt = 0; attempt < PLACE_ATTEMPTS; attempt++) {
+    const { x, y } = randomEdgePosition(width, height, pieceSize);
+    if (!overlapsZone(x, y, pieceWidth, pieceHeight, zones)) {
+      return { x, y };
+    }
+  }
+
+  // Last resort: park in a corner away from the centred copy.
+  const inset = pieceSize * 0.45;
+  const corners = [
+    { x: inset, y: inset },
+    { x: width - inset, y: inset },
+    { x: inset, y: height - inset },
+    { x: width - inset, y: height - inset },
+  ];
+  for (const corner of corners) {
+    if (!overlapsZone(corner.x, corner.y, pieceWidth, pieceHeight, zones)) return corner;
+  }
+  return corners[0]!;
+}
+
+function createInitialPieces(
+  shapes: ShapeDef[],
+  width: number,
+  height: number,
+  baseSize: number,
+  zones: Rect[],
+): DeskPiece[] {
   return shapes.map((shape, index) => {
     const { width: pieceWidth, height: pieceHeight } = shapeBodyDimensions(baseSize, shape);
-    const pieceSize = Math.max(pieceWidth, pieceHeight);
-    const { x, y } = randomEdgePosition(width, height, pieceSize);
+    const { x, y } = placeClearOfText(width, height, pieceWidth, pieceHeight, zones);
 
     return {
       id: `${shape.id}-${index}`,
@@ -115,7 +202,7 @@ function pointerAngle(piece: DeskPiece, clientX: number, clientY: number) {
   return Math.atan2(clientY - piece.y, clientX - piece.x);
 }
 
-export default function ShapeDesk({ shapes = SHAPES_D_SPAWN }: Props) {
+export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }: Props) {
   const [mounted, setMounted] = useState(false);
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
   const [baseSize, setBaseSize] = useState(360);
@@ -123,30 +210,55 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN }: Props) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const interactionRef = useRef<ActiveInteraction | null>(null);
   const topZRef = useRef(0);
+  const placedRef = useRef(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    const measure = () => {
+    if (!mounted) return;
+
+    const tryPlace = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
       const size = deskBaseSize(width, height);
       setViewport({ width, height });
       setBaseSize(size);
-      setPieces((current) => {
-        if (current.length > 0) return current;
-        const initial = createInitialPieces(shapes, width, height, size);
-        topZRef.current = initial.length;
-        return initial;
-      });
+
+      if (placedRef.current) return true;
+
+      const zones = measureTextZones(obstacleRefs);
+      // Wait until hero text has a measurable box before seeding the desk.
+      if (obstacleRefs.length > 0 && zones.length === 0) return false;
+
+      const initial = createInitialPieces(shapes, width, height, size, zones);
+      topZRef.current = initial.length;
+      placedRef.current = true;
+      setPieces(initial);
+      return true;
     };
 
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [shapes]);
+    tryPlace();
+    const retry = window.setInterval(() => {
+      if (tryPlace()) window.clearInterval(retry);
+    }, 100);
+    const stop = window.setTimeout(() => window.clearInterval(retry), 2500);
+
+    const onResize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      setViewport({ width, height });
+      setBaseSize(deskBaseSize(width, height));
+    };
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.clearInterval(retry);
+      window.clearTimeout(stop);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [mounted, shapes, obstacleRefs]);
 
   const bringToFront = useCallback((pieceId: string) => {
     topZRef.current += 1;

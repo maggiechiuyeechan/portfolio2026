@@ -3,29 +3,29 @@
  * Duplicate of the public password hero — edit this route to compare against /.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import FooterLinks from "../../components/ui/FooterLinks.astro";
 import HeroEntrance from "../../components/auth/HeroEntrance";
 import { site } from "../../config/site";
 
 export const prerender = true;
 
 const compareLinks = [
-  { label: "Version A", href: "/" },
   { label: "Version B", href: "/compare", current: true },
   { label: "Version C", href: "/compare-c" },
-  { label: "Version D", href: "/compare-d" },
-  { label: "Version E", href: "/compare-e" },
   { label: "Version F", href: "/compare-f" },
-  { label: "Version G", href: "/compare-g" },
-  { label: "Version H", href: "/compare-h" },
+  { label: "Version I", href: "/compare-i" },
+  { label: "Version J", href: "/compare-j" },
+  { label: "Version L", href: "/compare-l" },
+  { label: "Version M", href: "/compare-m", desktopOnly: true },
+  { label: "Version N", href: "/compare-n" },
+  { label: "Version O", href: "/" },
 ];
 ---
 
 <BaseLayout>
   <nav class="compare-switch" aria-label="Compare hero versions">
     {
-      compareLinks.map(({ label, href, current }) => (
-        <a href={href} class:list={["compare-switch-link", { current }]} aria-current={current ? "page" : undefined}>
+      compareLinks.map(({ label, href, current, desktopOnly }) => (
+        <a href={href} class:list={["compare-switch-link", { current, "desktop-only": desktopOnly }]} aria-current={current ? "page" : undefined}>
           {label}
         </a>
       ))
@@ -39,14 +39,10 @@ const compareLinks = [
         name={site.name}
         title={site.title}
         tagline={site.tagline}
-        bio={site.bio}
         showAvatar={false}
         physicsFullCanvas={true}
       />
     </div>
-    <footer class="hero-footer">
-      <FooterLinks />
-    </footer>
   </div>
 </BaseLayout>
 
@@ -91,32 +87,32 @@ const compareLinks = [
   }
 
   .hero-inner {
-    width: 100%;
+    width: fit-content;
+    max-width: 100%;
     display: flex;
     justify-content: center;
     position: relative;
+    /* Tall viewports: sit slightly below true center */
+    transform: translateY(2rem);
+    z-index: 10;
   }
 
-  .hero-footer {
-    position: fixed;
-    inset-inline: 0;
-    bottom: var(--spacing-5);
-    display: flex;
-    justify-content: center;
-    padding-inline: 1rem;
-  }
-
-  @media (max-height: 40rem) {
+  @media (max-height: 40.625rem) {
     .hero {
-      min-height: auto;
-      justify-content: flex-start;
-      padding-block: var(--spacing-5);
+      min-height: 100dvh;
+      justify-content: flex-end;
+      padding-top: var(--spacing-5);
+      padding-bottom: 4rem; /* 64px */
     }
 
-    .hero-footer {
-      position: static;
-      margin-top: var(--spacing-5);
-      width: 100%;
+    .hero-inner {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .compare-switch-link.desktop-only {
+      display: none;
     }
   }
 </style>
