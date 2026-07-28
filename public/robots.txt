@@ -10,3 +10,5 @@ Disallow: /versions
 Disallow: /work
 Disallow: /blog
 Disallow: /prototypes
+
+Sitemap: https://www.maggiechan.io/sitemap-index.xml
