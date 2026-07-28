@@ -56,7 +56,6 @@ export default function PasswordForm({ onSuccess }: Props) {
           width: "fit-content",
           background: "var(--color-background-inverse)",
           borderRadius: "var(--radius-2)",
-          padding: "var(--spacing-1) var(--spacing-2)",
         }}
       >
         <input
