@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
+import { playHeroSoundOnClick } from "../../lib/heroSounds";
 import {
   BOTANICAL_CIRCLES,
   BOTANICAL_STATIC,
@@ -306,8 +307,10 @@ export default function BotanicalGrowth() {
       if (reducedMotion) return;
 
       if (animating) {
+        playHeroSoundOnClick("ready", "botanical-finish");
         finishNow();
       } else if (complete) {
+        playHeroSoundOnClick("bloom", "botanical-restart");
         startAnim();
       }
     };

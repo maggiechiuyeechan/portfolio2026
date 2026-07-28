@@ -8,6 +8,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
+import { playHeroSoundOnClick } from "../../lib/heroSounds";
 import PhysicsShapeFace from "./PhysicsShapeFace";
 import { shapeBodyDimensions, type ShapeDef } from "./physicsShapes";
 import { SHAPES_D_SPAWN } from "./physicsShapesD";
@@ -471,6 +472,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
 
       if (interaction.mode === "move" && !interaction.moved) {
         const direction = Math.random() < 0.5 ? -1 : 1;
+        playHeroSoundOnClick("toggle", "desk-nudge");
         setPieces((current) =>
           current.map((piece) =>
             piece.id === interaction.pieceId
@@ -478,6 +480,8 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
               : piece,
           ),
         );
+      } else if (interaction.moved || interaction.mode === "rotate") {
+        playHeroSoundOnClick("release", "desk-release");
       }
 
       interactionRef.current = null;
@@ -498,6 +502,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
     if (event.button !== 0) return;
     event.preventDefault();
     noteInteraction();
+    playHeroSoundOnClick("press", "desk-press");
     event.currentTarget.setPointerCapture(event.pointerId);
     bringToFront(piece.id);
     interactionRef.current = {
@@ -518,6 +523,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
     event.preventDefault();
     event.stopPropagation();
     noteInteraction();
+    playHeroSoundOnClick("press", "desk-press");
     event.currentTarget.setPointerCapture(event.pointerId);
     bringToFront(piece.id);
     interactionRef.current = {

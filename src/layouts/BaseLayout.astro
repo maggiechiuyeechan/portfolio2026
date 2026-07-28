@@ -94,5 +94,9 @@ const websiteSchema = {
   </head>
   <body>
     <slot />
+    <script>
+      import { initCuelume } from "../lib/cuelume";
+      initCuelume();
+    </script>
   </body>
 </html>

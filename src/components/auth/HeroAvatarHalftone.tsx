@@ -6,6 +6,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { usePrefersReducedMotion } from "../../lib/motion";
+import { playHeroSoundOnClick } from "../../lib/heroSounds";
 
 interface Props {
   src: string;
@@ -241,6 +242,7 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
       if (isInteractiveTarget(event.target)) return;
       const uv = frameUvFromEvent(event);
       if (!uv) return;
+      playHeroSoundOnClick("droplet", "halftone-splash");
       // Drop a rock at the click, clamped to the frame edge.
       splash.x = uv.x;
       splash.y = uv.y;

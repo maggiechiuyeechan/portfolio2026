@@ -7,6 +7,8 @@ import { createPortal } from "react-dom";
 import { motion } from "motion/react";
 import Matter from "matter-js";
 import { usePrefersReducedMotion } from "../../lib/motion";
+import { playHeroSound } from "../../lib/heroSounds";
+import { unlockCuelume } from "../../lib/cuelume";
 import PhysicsTileFace from "./PhysicsTileFace";
 import PhysicsShapeFace from "./PhysicsShapeFace";
 import { STATIC_TILE_POSES, TILES, TILES_SPAWN, TILES_SPAWN_MOBILE, type TileDef } from "./physicsTiles";
@@ -358,12 +360,10 @@ export default function PhysicsTileStack({
     document.body.style.cursor = "pointer";
 
     // Cursor contact wakes a piece and kicks it upward.
-    const onPointerMove = (event: PointerEvent) => {
-      if (isInteractiveTarget(event.target as Element | null)) return;
-
+    const popAt = (clientX: number, clientY: number, withSound: boolean) => {
       const hits = Query.point(tileBodiesRef.current, {
-        x: event.clientX,
-        y: event.clientY,
+        x: clientX,
+        y: clientY,
       });
       if (hits.length === 0) return;
 
@@ -372,6 +372,8 @@ export default function PhysicsTileStack({
         const last = lastPopAt.get(body.id) ?? 0;
         if (now - last < POP_COOLDOWN_MS) continue;
         lastPopAt.set(body.id, now);
+
+        if (withSound) playHeroSound("whisper", "physics-pop");
 
         Sleeping.set(body, false);
         Body.setVelocity(body, {
@@ -384,7 +386,21 @@ export default function PhysicsTileStack({
         );
       }
     };
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (isInteractiveTarget(event.target as Element | null)) return;
+      popAt(event.clientX, event.clientY, true);
+    };
+
+    // Click/tap unlocks audio and pops with sound in the same gesture.
+    const onPointerDown = (event: PointerEvent) => {
+      if (event.button !== 0) return;
+      if (isInteractiveTarget(event.target as Element | null)) return;
+      unlockCuelume();
+      popAt(event.clientX, event.clientY, true);
+    };
     window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerdown", onPointerDown);
 
     return () => {
       spawnTimersRef.current.forEach((timer) => window.clearTimeout(timer));
@@ -392,6 +408,7 @@ export default function PhysicsTileStack({
       if (obstacleTimer) window.clearInterval(obstacleTimer);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerdown", onPointerDown);
       document.body.style.cursor = previousCursor;
       Events.off(engine, "afterUpdate", onAfterUpdate);
       Runner.stop(runner);

@@ -5,6 +5,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
+import { playHeroSound, playHeroSoundOnClick } from "../../lib/heroSounds";
 import {
   GRID_SPRINKLE_PALETTE_I,
   type GridSprinklePalette,
@@ -447,6 +448,7 @@ export default function GridSprinkle({
       }
 
       if (!hit) return;
+      playHeroSound("sparkle", "grid-burst");
       dotsRef.current = next;
       ensureAnim();
     };
@@ -456,6 +458,7 @@ export default function GridSprinkle({
     const onPointerDown = (event: PointerEvent) => {
       if (event.button !== 0) return;
       if (isInteractiveTarget(event.target as Element | null)) return;
+      playHeroSoundOnClick("page", "grid-resprinkle");
       layout(true);
     };
     window.addEventListener("pointerdown", onPointerDown);

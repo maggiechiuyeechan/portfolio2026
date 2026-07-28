@@ -6,6 +6,7 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "../../lib/motion";
+import { playHeroSoundOnClick } from "../../lib/heroSounds";
 import {
   cloneSubpaths,
   cubicsToPath,
@@ -303,6 +304,7 @@ export default function EditableBlob({
   ) => {
     event.preventDefault();
     event.stopPropagation();
+    playHeroSoundOnClick("press", "blob-press");
     dragIndex.current = index;
     dragKind.current = kind;
     setDragging(true);
@@ -315,6 +317,7 @@ export default function EditableBlob({
   const startShapeDrag = (event: React.PointerEvent) => {
     event.preventDefault();
     event.stopPropagation();
+    playHeroSoundOnClick("press", "blob-press");
     dragKind.current = "shape";
     dragIndex.current = -1;
     shapeDragRef.current = {

@@ -6,6 +6,7 @@
 @import "./hero.css";
 @import "./nav.css";
 @import "./shape-desk.css";
+@import "./password-form.css";
 
 /*
  * Map design tokens into Tailwind v4 theme so utilities like

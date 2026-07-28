@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { easeOut, usePrefersReducedMotion } from "../../lib/motion";
+import AnimatedTextLink from "../ui/AnimatedTextLink";
 
 type Link = { label: string; href: string };
 
@@ -17,18 +18,15 @@ interface Props {
 
 const MOBILE_QUERY = "(max-width: 41.25rem)";
 
-const linkStyle: React.CSSProperties = {
+const linkLabelStyle: React.CSSProperties = {
   display: "block",
   fontFamily: "Inter, sans-serif",
   fontSize: "0.875rem",
   lineHeight: 1.5,
   letterSpacing: "-0.01em",
-  textDecoration: "none",
   width: "fit-content",
+  color: "var(--color-typography-content-secondary)",
 };
-
-const colorDefault = "var(--color-typography-content-default)";
-const colorSecondary = "var(--color-typography-content-secondary)";
 
 function getScrollMarker() {
   const nav = document.querySelector(".shell-nav");
@@ -91,26 +89,10 @@ function AnimatedLink({
   active = false,
   onNavigate,
 }: Link & { active?: boolean; onNavigate?: () => void }) {
-  const openInNewTab = href.startsWith("http");
-
   return (
-    <motion.a
-      href={href}
-      style={{
-        ...linkStyle,
-        color: active ? colorDefault : colorSecondary,
-      }}
-      initial={false}
-      animate={{ color: active ? colorDefault : colorSecondary }}
-      whileHover={{ color: colorDefault }}
-      whileTap={{ color: colorDefault }}
-      transition={{ duration: 0.15 }}
-      aria-current={active ? "true" : undefined}
-      onClick={onNavigate}
-      {...(openInNewTab ? { target: "_blank", rel: "noreferrer" } : {})}
-    >
+    <AnimatedTextLink href={href} active={active} onClick={onNavigate}>
       {label}
-    </motion.a>
+    </AnimatedTextLink>
   );
 }
 
@@ -131,8 +113,7 @@ function NavMenu({
         <div>
           <p
             style={{
-              ...linkStyle,
-              color: colorSecondary,
+              ...linkLabelStyle,
               margin: 0,
               marginBottom: "var(--spacing-2)",
             }}
@@ -210,6 +191,7 @@ export default function Nav({ workLinks, socials, logoSrc, logoAlt }: Props) {
             className="mobile-nav-toggle"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
+            data-cuelume-toggle
             onClick={() => setMenuOpen((open) => !open)}
           >
             <img

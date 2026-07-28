@@ -18,6 +18,7 @@ import { site } from "../../config/site";
 import type { HeroLayout, HeroSceneProps } from "../../config/heroVariants";
 import PasswordForm from "../auth/PasswordForm";
 import HeroNoiseOverlay from "../auth/HeroNoiseOverlay";
+import AnimatedTextLink from "../ui/AnimatedTextLink";
 
 export interface HeroShellProps {
   name: string;
@@ -31,8 +32,6 @@ export interface HeroShellProps {
 }
 
 const [linkedin, x, contact] = site.socials;
-
-const linkStyle: React.CSSProperties = { color: "inherit", textDecoration: "none" };
 
 const container = {
   hidden: {},
@@ -187,17 +186,17 @@ export default function HeroShell({
             className="text-body hero-bio"
             style={{ maxWidth: "100%", pointerEvents: "auto" }}
           >
-            <a href={linkedin.href} target="_blank" rel="noreferrer" style={linkStyle}>
+            <AnimatedTextLink href={linkedin.href} inline>
               {linkedin.label}
-            </a>
+            </AnimatedTextLink>
             <span aria-hidden="true"> · </span>
-            <a href={x.href} target="_blank" rel="noreferrer" style={linkStyle}>
+            <AnimatedTextLink href={x.href} inline>
               {x.label}
-            </a>
+            </AnimatedTextLink>
             <span aria-hidden="true"> · </span>
-            <a href={contact.href} style={linkStyle}>
+            <AnimatedTextLink href={contact.href} inline>
               {contact.label}
-            </a>
+            </AnimatedTextLink>
           </p>
         </div>
 

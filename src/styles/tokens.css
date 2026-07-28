@@ -31,6 +31,8 @@
 
   /* ------ Semantic / Typography ------ */
   --color-typography-content-default: var(--color-gray-12);
+  --color-typography-content-default-hover: var(--color-gray-10);
+  --color-typography-content-default-selected: var(--color-gray-11);
   --color-typography-content-secondary: var(--color-gray-10);
   --color-typography-content-tertiary: var(--color-gray-8);
   --color-typography-inverse-default: var(--color-gray-1);

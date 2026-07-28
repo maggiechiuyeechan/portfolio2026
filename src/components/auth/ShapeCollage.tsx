@@ -8,6 +8,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
+import { playHeroSound, playHeroSoundOnClick } from "../../lib/heroSounds";
 import { COLLAGE_INK_GRID, COLLAGE_SHAPES, type CollageShape } from "./collageShapes";
 
 const SHAPE_COUNT = 4;
@@ -684,6 +685,7 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
       const last = lastSwapAtRef.current.get(outgoing.id) ?? 0;
       if (now - last < SWAP_COOLDOWN_MS) return;
       lastSwapAtRef.current.set(outgoing.id, now);
+      playHeroSound("page", "collage-swap");
 
       const finishSwap = () => {
         const latest = placementsRef.current;
@@ -774,6 +776,7 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
     const onPointerDown = (event: PointerEvent) => {
       if (event.button !== 0) return;
       if (isInteractiveTarget(event.target as Element | null)) return;
+      playHeroSoundOnClick("bloom", "collage-relayout");
       selectionRef.current = null;
       relayout(true);
     };
