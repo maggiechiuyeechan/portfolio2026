@@ -24,13 +24,14 @@ const SPRINKLE_FROM_SCALE = 0.35;
  * Burst when a dot is erased — radial expand from the center, then each spark
  * shrinks to nothing (no opacity fade, no gravity).
  */
-const BURST_MIN = 8;
-const BURST_MAX = 12;
-const BURST_LIFE_MS = 380;
-const BURST_DIST_MIN = 12;
-const BURST_DIST_MAX = 22;
-const SPARK_RADIUS_MIN = 1.1;
-const SPARK_RADIUS_MAX = 2.4;
+const BURST_MIN = 5;
+const BURST_MAX = 8;
+const BURST_LIFE_MIN_MS = 200;
+const BURST_LIFE_MAX_MS = 300;
+const BURST_DIST_MIN = 10;
+const BURST_DIST_MAX = 15;
+const SPARK_RADIUS_MIN = 1;
+const SPARK_RADIUS_MAX = 1.5;
 const TAU = Math.PI * 2;
 
 function remPx(rem: number) {
@@ -93,7 +94,7 @@ function isInteractiveTarget(target: Element | null) {
 }
 
 function dotCount(width: number, height: number) {
-  return Math.min(100, Math.max(52, Math.round((width * height) / 14_000) + 20));
+  return Math.min(120, Math.max(72, Math.round((width * height) / 14_000) + 40));
 }
 
 function measureExclusionZones(refs: React.RefObject<HTMLElement | null>[]): ExclusionZone[] {
@@ -179,7 +180,7 @@ function createBurst(
       r: SPARK_RADIUS_MIN + Math.random() * (SPARK_RADIUS_MAX - SPARK_RADIUS_MIN),
       color: palette[Math.floor(Math.random() * palette.length)]!,
       start: now,
-      life: BURST_LIFE_MS * (0.9 + Math.random() * 0.15),
+      life: BURST_LIFE_MIN_MS + Math.random() * (BURST_LIFE_MAX_MS - BURST_LIFE_MIN_MS),
     });
   }
 
@@ -188,6 +189,11 @@ function createBurst(
 
 function easeOutCubic(t: number) {
   return 1 - (1 - t) ** 3;
+}
+
+/** Stronger ease-out — more slowdown near the end of travel. */
+function easeOutQuint(t: number) {
+  return 1 - (1 - t) ** 5;
 }
 
 /** Slow start, then accelerates — good for shrinking away at the end of travel. */
@@ -234,8 +240,8 @@ function paintScene(
     const elapsed = now - spark.start;
     const t = Math.min(1, Math.max(0, elapsed / spark.life));
     if (t >= 1) continue;
-    // Travel eases out (fast leave, soft settle); size eases in (holds, then collapses).
-    const travel = spark.dist * easeOutCubic(t);
+    // Travel: strong ease-out (slows near the end); size: hold, then collapse.
+    const travel = spark.dist * easeOutQuint(t);
     const r = spark.r * (1 - easeInCubic(t));
     if (r <= 0.15) continue;
     const x = spark.ox + Math.cos(spark.angle) * travel;

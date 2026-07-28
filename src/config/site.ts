@@ -11,6 +11,6 @@ export const site = {
   socials: [
     { label: "Linkedin", href: "https://www.linkedin.com/in/mcychan" },
     { label: "X", href: "https://x.com/maggiechewychan" },
-    { label: 'Ask for a password, or just say "hi"', href: "mailto:mach.sq@gmail.com" },
+    { label: 'Ask for a password or just say "hi"', href: "mailto:mach.sq@gmail.com" },
   ],
 } as const;

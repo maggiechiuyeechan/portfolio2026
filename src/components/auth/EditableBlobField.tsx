@@ -110,7 +110,7 @@ function buildPool(vw: number, vh: number): { def: EditableBlobDef; instanceId: 
     Math.max(
       MIN_PIECES,
       Math.round((TARGET_COVERAGE * vw * vh) / (Math.PI * comfortR * comfortR)),
-    ),
+    ) + 1,
   );
 
   const counts = new Map<string, number>();

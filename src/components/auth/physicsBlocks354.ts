@@ -42,9 +42,11 @@ export const BLOCKS: BlockDef[] = [
   { id: "block-100", color: "#791bc2", src: "/images/blocks/block-100.svg" },
 ];
 
-/** Version B — first 14 blocks, repeated twice. */
+/** Version B — first 14 blocks, repeated twice (desktop). */
 const BLOCKS_SPAWN_BASE = BLOCKS.slice(0, 14);
 export const BLOCKS_SPAWN = [...BLOCKS_SPAWN_BASE, ...BLOCKS_SPAWN_BASE];
+/** Version B — unique set only on mobile. */
+export const BLOCKS_SPAWN_MOBILE = BLOCKS_SPAWN_BASE;
 
 export const STATIC_TILE_POSES: Array<{
   tileId: string;

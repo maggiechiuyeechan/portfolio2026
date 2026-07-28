@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /$
+
+# Hero design explorations — reachable by direct link for review,
+# but not something a search engine should surface.
+Disallow: /compare
+Disallow: /versions
+
+# Password-gated. Middleware redirects these to / anyway.
+Disallow: /work
+Disallow: /blog
+Disallow: /prototypes

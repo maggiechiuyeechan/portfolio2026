@@ -9,7 +9,7 @@ import Matter from "matter-js";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import PhysicsTileFace from "./PhysicsTileFace";
 import PhysicsShapeFace from "./PhysicsShapeFace";
-import { STATIC_TILE_POSES, TILES, TILES_SPAWN, type TileDef } from "./physicsTiles";
+import { STATIC_TILE_POSES, TILES, TILES_SPAWN, TILES_SPAWN_MOBILE, type TileDef } from "./physicsTiles";
 import { shapeBodyDimensions, type ShapeDef, type StaticShapePose } from "./physicsShapes";
 import { SHAPES_C, SHAPES_C_SPAWN, STATIC_SHAPE_POSES_C } from "./physicsShapesC";
 
@@ -24,11 +24,15 @@ const COMPACT_TILE_SIZE = 48;
 const FULL_CANVAS_TILE_SIZE = 240;
 const TILE_VARIANT_SCALE = 0.5;
 /** Version C shapes sit a touch smaller than the shared full-canvas size. */
-const SHAPES_C_SIZE_SCALE = 0.95;
+const SHAPES_C_SIZE_SCALE = 0.9;
 /** Floor for full-canvas shapes — low enough that phones can shrink further. */
 const MIN_FULL_CANVAS_SHAPE_SIZE = 64;
-/** Fraction of viewport width used as the shape's long edge. */
+/** Fraction of viewport width used as the shape's long edge (desktop). */
 const FULL_CANVAS_SHAPE_WIDTH_RATIO = 0.18;
+/** On mobile, Version B / C size from viewport height instead. */
+const FULL_CANVAS_MOBILE_HEIGHT_RATIO = 0.18;
+/** Single-column / mobile breakpoint (matches --single-column-break). */
+const MOBILE_MAX_WIDTH_PX = 660;
 const SPAWN_DELAY_MS = 90;
 const OBSTACLE_PAD = 12;
 /** Below this speed/angular velocity, bodies are forced to sleep */
@@ -65,11 +69,21 @@ function getShapeConfig() {
   };
 }
 
-function baseSize(fullCanvas: boolean, width: number, variant: Props["variant"]) {
+function baseSize(
+  fullCanvas: boolean,
+  width: number,
+  height: number,
+  variant: Props["variant"],
+) {
   if (!fullCanvas) return Math.round(COMPACT_TILE_SIZE * TILE_VARIANT_SCALE);
+  // Version B + C on mobile: size from vh; otherwise from vw.
+  const useVh =
+    (variant === "tiles" || variant === "shapes-c") && width <= MOBILE_MAX_WIDTH_PX;
+  const reference = useVh ? height : width;
+  const ratio = useVh ? FULL_CANVAS_MOBILE_HEIGHT_RATIO : FULL_CANVAS_SHAPE_WIDTH_RATIO;
   const shapeSize = Math.max(
     MIN_FULL_CANVAS_SHAPE_SIZE,
-    Math.min(FULL_CANVAS_TILE_SIZE, Math.round(width * FULL_CANVAS_SHAPE_WIDTH_RATIO)),
+    Math.min(FULL_CANVAS_TILE_SIZE, Math.round(reference * ratio)),
   );
   if (variant === "tiles") {
     return Math.round(shapeSize * TILE_VARIANT_SCALE);
@@ -141,7 +155,7 @@ export default function PhysicsTileStack({
 
     const measure = () => {
       const { width, height } = canvasDimensions(fullCanvas, container);
-      const size = baseSize(fullCanvas, width, variant);
+      const size = baseSize(fullCanvas, width, height, variant);
       baseSizeRef.current = size;
       setContainerSize({ width, height });
       setActiveBaseSize(size);
@@ -162,7 +176,9 @@ export default function PhysicsTileStack({
     const spawnSet = fullCanvas
       ? isShapes
         ? shapeConfig.spawn
-        : TILES_SPAWN
+        : width <= MOBILE_MAX_WIDTH_PX
+          ? TILES_SPAWN_MOBILE
+          : TILES_SPAWN
       : isShapes
         ? shapeConfig.shapes
         : TILES;

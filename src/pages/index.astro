@@ -1,153 +1,30 @@
 ---
 /**
- * Public password hero with meadow video + mouse/click ripple.
- * Prerendered for speed.
+ * Public password hero.
+ *
+ * Prerendered and CDN-cached. The hero variant is chosen client-side at module
+ * scope (see HeroRotator), so this page has no variant knowledge and stays
+ * static — randomising server-side would mean going SSR and trading a ~20ms
+ * cached edge response for a function invocation on every load.
+ *
+ * Layout styles live in src/styles/hero.css, shared with /versions/[id].
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HeroEntrance from "../components/auth/HeroEntrance";
+import HeroRotator from "../components/hero/HeroRotator";
 import { site } from "../config/site";
 
 export const prerender = true;
-
-const compareLinks = [
-  { label: "Version B", href: "/compare" },
-  { label: "Version C", href: "/compare-c" },
-  { label: "Version F", href: "/compare-f" },
-  { label: "Version I", href: "/compare-i" },
-  { label: "Version J", href: "/compare-j" },
-  { label: "Version L", href: "/compare-l" },
-  { label: "Version M", href: "/compare-m", desktopOnly: true },
-  { label: "Version N", href: "/compare-n" },
-  { label: "Version O", href: "/", current: true },
-];
 ---
 
 <BaseLayout>
-  <nav class="compare-switch" aria-label="Compare hero versions">
-    {
-      compareLinks.map(({ label, href, current, desktopOnly }) => (
-        <a href={href} class:list={["compare-switch-link", { current, "desktop-only": desktopOnly }]} aria-current={current ? "page" : undefined}>
-          {label}
-        </a>
-      ))
-    }
-  </nav>
-
   <div class="hero">
     <div class="hero-inner">
-      <HeroEntrance
+      <HeroRotator
         client:load
         name={site.name}
         title={site.title}
         tagline={site.tagline}
-        avatarSrc="/images/agent_generate_video - Golden-green meadow grass swaying in slow_ dreamlike undulat (4).mp4"
-        avatarAlt="Golden-green meadow grass swaying in slow motion"
-        avatarEffect="halftone"
       />
     </div>
   </div>
 </BaseLayout>
-
-<style>
-  .compare-switch {
-    position: fixed;
-    top: var(--spacing-2);
-    left: 50%;
-    z-index: 20;
-    display: flex;
-    gap: 1px;
-    padding: 2px;
-    border-radius: 999px;
-    background: var(--color-background-onmain-default);
-    border: 1px solid var(--color-border-default);
-    transform: translateX(-50%);
-  }
-
-  .compare-switch-link {
-    padding: 0.25rem 0.75rem;
-    border-radius: 999px;
-    font-family: Inter, sans-serif;
-    font-size: 0.75rem;
-    line-height: 1.5;
-    letter-spacing: -0.01em;
-    color: var(--color-typography-content-secondary);
-    text-decoration: none;
-  }
-
-  .compare-switch-link.current {
-    background: var(--color-background-main);
-    color: var(--color-typography-content-default);
-  }
-
-  .hero {
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-5) 1.5rem;
-  }
-
-  .hero-inner {
-    width: fit-content;
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    /* Tall viewports: sit slightly below true center */
-    transform: translateY(2rem);
-    position: relative;
-    z-index: 10;
-  }
-
-  /* Short viewports (≤650px tall): keep content anchored to the bottom */
-  @media (max-height: 40.625rem) {
-    .hero {
-      min-height: 100dvh;
-      justify-content: flex-end;
-      padding-top: var(--spacing-5);
-      padding-bottom: 4rem; /* 64px */
-    }
-
-    .hero-inner {
-      transform: none;
-    }
-  }
-
-  /* Avatar frame — +3.5rem width & height vs base 5:7 sizes */
-  .hero-inner :global(.hero-avatar-frame) {
-    width: 10.75rem;
-    height: 13.65rem; /* 7.25 × 7/5 + 3.5 */
-    aspect-ratio: auto;
-  }
-
-  .hero-inner :global(.hero-avatar-entrance) {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 80rem) {
-    .hero-inner :global(.hero-avatar-frame) {
-      width: 10rem;
-      height: 12.6rem; /* 6.5 × 7/5 + 3.5 */
-    }
-  }
-
-  @media (max-width: 52rem) {
-    .hero-inner :global(.hero-avatar-frame) {
-      width: 9.375rem;
-      height: 11.725rem; /* 5.875 × 7/5 + 3.5 */
-    }
-  }
-
-  @media (max-width: 41.25rem) {
-    .hero-inner :global(.hero-avatar-frame) {
-      width: 8.625rem;
-      height: 10.675rem; /* 5.125 × 7/5 + 3.5 */
-    }
-  }
-
-  @media (max-width: 48rem) {
-    .compare-switch-link.desktop-only {
-      display: none;
-    }
-  }
-</style>

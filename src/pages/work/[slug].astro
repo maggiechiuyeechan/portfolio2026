@@ -19,7 +19,9 @@ if (!study) {
   return Astro.redirect("/work");
 }
 
-const workLinks = studies
+// Copy before sorting — Array.prototype.sort mutates in place, and the array
+// getCollection() hands back can be a shared build-time cache.
+const workLinks = [...studies]
   .sort((a, b) => a.data.order - b.data.order)
   .map((entry) => ({
     label: entry.data.navLabel,

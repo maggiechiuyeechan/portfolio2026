@@ -11,7 +11,9 @@ import { site } from "../../config/site";
 
 export const prerender = false;
 
-const studies = (await getCollection("work")).sort(
+// Spread before sorting: sort mutates, and getCollection() may hand back a
+// shared cached array that other routes read.
+const studies = [...(await getCollection("work"))].sort(
   (a, b) => a.data.order - b.data.order,
 );
 

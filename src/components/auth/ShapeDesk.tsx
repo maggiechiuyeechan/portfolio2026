@@ -1,10 +1,13 @@
 /**
  * Draggable paper-desk — shapes splayed on a flat surface (no gravity).
  * Drag to move, scroll or use the handle to rotate, click to nudge rotation.
- * Initial placement keeps clear of the hero text.
+ * Initial placement keeps clear of the hero text and allows at most pairwise
+ * overlaps (no 3+ stacks). Drag freely afterward.
+ * After 10s idle, one shape pulses to 1.075× every 5s as a gentle invite.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { usePrefersReducedMotion } from "../../lib/motion";
 import PhysicsShapeFace from "./PhysicsShapeFace";
 import { shapeBodyDimensions, type ShapeDef } from "./physicsShapes";
 import { SHAPES_D_SPAWN } from "./physicsShapesD";
@@ -20,7 +23,15 @@ const CLICK_MOVE_THRESHOLD = 5;
 const CLICK_ROTATE_RAD = (15 * Math.PI) / 180;
 /** Clearance around the hero text for initial placement. */
 const TEXT_PADDING = 28;
-const PLACE_ATTEMPTS = 80;
+const PLACE_ATTEMPTS = 120;
+/** Bounding-circle shrink so light grazing doesn’t count as a stack. */
+const OVERLAP_RADIUS_FACTOR = 0.78;
+/** At most this many shapes may share an overlap (pairs only on first paint). */
+const MAX_INITIAL_STACK = 2;
+/** Wait this long with no shape interaction before nudging one piece. */
+const IDLE_NUDGE_MS = 10 * 1000;
+/** Single-column / mobile breakpoint (matches --single-column-break). */
+const MOBILE_MAX_WIDTH_PX = 660;
 
 /** Scale shape size from viewport — smaller on phones, larger on desktop. */
 function deskBaseSize(viewportWidth: number, viewportHeight: number) {
@@ -101,6 +112,23 @@ function measureTextZones(refs: React.RefObject<HTMLElement | null>[]): Rect[] {
   return zones;
 }
 
+function pieceRadius(pieceWidth: number, pieceHeight: number) {
+  return (Math.hypot(pieceWidth, pieceHeight) / 2) * OVERLAP_RADIUS_FACTOR;
+}
+
+function piecesOverlap(
+  ax: number,
+  ay: number,
+  aw: number,
+  ah: number,
+  bx: number,
+  by: number,
+  bw: number,
+  bh: number,
+) {
+  return Math.hypot(ax - bx, ay - by) < pieceRadius(aw, ah) + pieceRadius(bw, bh);
+}
+
 function overlapsZone(
   x: number,
   y: number,
@@ -142,20 +170,60 @@ function randomEdgePosition(width: number, height: number, pieceSize: number) {
   }
 }
 
+function randomScatterPosition(width: number, height: number, pieceSize: number) {
+  const inset = pieceSize * 0.4;
+  return {
+    x: inset + Math.random() * Math.max(1, width - inset * 2),
+    y: inset + Math.random() * Math.max(1, height - inset * 2),
+  };
+}
+
+function randomDeskPosition(width: number, height: number, pieceSize: number) {
+  // Bias toward the open field so the desk reads more spread out.
+  if (Math.random() < 0.55) return randomScatterPosition(width, height, pieceSize);
+  return randomEdgePosition(width, height, pieceSize);
+}
+
+/**
+ * True if placing a new piece here would create a 3+ stack.
+ * Allows pairs only: each piece may overlap at most one other on first paint.
+ */
+function violatesStackLimit(
+  x: number,
+  y: number,
+  pieceWidth: number,
+  pieceHeight: number,
+  placed: Array<{ x: number; y: number; w: number; h: number; overlapCount: number }>,
+) {
+  const hits: number[] = [];
+  for (let i = 0; i < placed.length; i++) {
+    const other = placed[i]!;
+    if (piecesOverlap(x, y, pieceWidth, pieceHeight, other.x, other.y, other.w, other.h)) {
+      hits.push(i);
+    }
+  }
+
+  if (hits.length >= MAX_INITIAL_STACK) return true;
+  // Partner already in a pair — adding this would make a triple.
+  if (hits.some((i) => placed[i]!.overlapCount >= 1)) return true;
+  return false;
+}
+
 function placeClearOfText(
   width: number,
   height: number,
   pieceWidth: number,
   pieceHeight: number,
   zones: Rect[],
+  placed: Array<{ x: number; y: number; w: number; h: number; overlapCount: number }>,
 ) {
   const pieceSize = Math.max(pieceWidth, pieceHeight);
 
   for (let attempt = 0; attempt < PLACE_ATTEMPTS; attempt++) {
-    const { x, y } = randomEdgePosition(width, height, pieceSize);
-    if (!overlapsZone(x, y, pieceWidth, pieceHeight, zones)) {
-      return { x, y };
-    }
+    const { x, y } = randomDeskPosition(width, height, pieceSize);
+    if (overlapsZone(x, y, pieceWidth, pieceHeight, zones)) continue;
+    if (violatesStackLimit(x, y, pieceWidth, pieceHeight, placed)) continue;
+    return { x, y };
   }
 
   // Last resort: park in a corner away from the centred copy.
@@ -167,9 +235,24 @@ function placeClearOfText(
     { x: width - inset, y: height - inset },
   ];
   for (const corner of corners) {
-    if (!overlapsZone(corner.x, corner.y, pieceWidth, pieceHeight, zones)) return corner;
+    if (overlapsZone(corner.x, corner.y, pieceWidth, pieceHeight, zones)) continue;
+    if (violatesStackLimit(corner.x, corner.y, pieceWidth, pieceHeight, placed)) continue;
+    return corner;
   }
   return corners[0]!;
+}
+
+function shapesForViewport(shapes: ShapeDef[], width: number): ShapeDef[] {
+  if (width > MOBILE_MAX_WIDTH_PX) return shapes;
+  // Mobile: one of each shape (drop the doubled spawn set).
+  const seen = new Set<string>();
+  const unique: ShapeDef[] = [];
+  for (const shape of shapes) {
+    if (seen.has(shape.id)) continue;
+    seen.add(shape.id);
+    unique.push(shape);
+  }
+  return unique;
 }
 
 function createInitialPieces(
@@ -179,19 +262,49 @@ function createInitialPieces(
   baseSize: number,
   zones: Rect[],
 ): DeskPiece[] {
-  return shapes.map((shape, index) => {
-    const { width: pieceWidth, height: pieceHeight } = shapeBodyDimensions(baseSize, shape);
-    const { x, y } = placeClearOfText(width, height, pieceWidth, pieceHeight, zones);
+  const placedMeta: Array<{ x: number; y: number; w: number; h: number; overlapCount: number }> =
+    [];
+  const pieces: DeskPiece[] = [];
 
-    return {
+  shapes.forEach((shape, index) => {
+    const { width: pieceWidth, height: pieceHeight } = shapeBodyDimensions(baseSize, shape);
+    const { x, y } = placeClearOfText(
+      width,
+      height,
+      pieceWidth,
+      pieceHeight,
+      zones,
+      placedMeta,
+    );
+
+    // Update overlap counts for the pair graph.
+    const hits: number[] = [];
+    for (let i = 0; i < placedMeta.length; i++) {
+      const other = placedMeta[i]!;
+      if (piecesOverlap(x, y, pieceWidth, pieceHeight, other.x, other.y, other.w, other.h)) {
+        hits.push(i);
+      }
+    }
+    for (const i of hits) placedMeta[i]!.overlapCount += 1;
+    placedMeta.push({
+      x,
+      y,
+      w: pieceWidth,
+      h: pieceHeight,
+      overlapCount: hits.length,
+    });
+
+    pieces.push({
       id: `${shape.id}-${index}`,
       shape,
       x,
       y,
       angle: Math.random() * Math.PI * 2,
       zIndex: index + 1,
-    };
+    });
   });
+
+  return pieces;
 }
 
 function pieceDimensions(piece: DeskPiece, baseSize: number) {
@@ -203,18 +316,53 @@ function pointerAngle(piece: DeskPiece, clientX: number, clientY: number) {
 }
 
 export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }: Props) {
+  const reducedMotion = usePrefersReducedMotion();
   const [mounted, setMounted] = useState(false);
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
   const [baseSize, setBaseSize] = useState(360);
   const [pieces, setPieces] = useState<DeskPiece[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [nudgeId, setNudgeId] = useState<string | null>(null);
   const interactionRef = useRef<ActiveInteraction | null>(null);
   const topZRef = useRef(0);
   const placedRef = useRef(false);
+  const piecesRef = useRef<DeskPiece[]>([]);
+  const idleTimerRef = useRef<number | null>(null);
+
+  piecesRef.current = pieces;
+
+  const clearIdleTimer = useCallback(() => {
+    if (idleTimerRef.current != null) {
+      window.clearTimeout(idleTimerRef.current);
+      idleTimerRef.current = null;
+    }
+  }, []);
+
+  const scheduleIdleNudge = useCallback(() => {
+    clearIdleTimer();
+    if (reducedMotion) return;
+    idleTimerRef.current = window.setTimeout(() => {
+      const list = piecesRef.current;
+      if (list.length === 0) return;
+      const pick = list[Math.floor(Math.random() * list.length)]!;
+      setNudgeId(pick.id);
+    }, IDLE_NUDGE_MS);
+  }, [clearIdleTimer, reducedMotion]);
+
+  const noteInteraction = useCallback(() => {
+    setNudgeId(null);
+    scheduleIdleNudge();
+  }, [scheduleIdleNudge]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted || pieces.length === 0 || reducedMotion) return;
+    scheduleIdleNudge();
+    return clearIdleTimer;
+  }, [mounted, pieces.length, reducedMotion, scheduleIdleNudge, clearIdleTimer]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -232,7 +380,13 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
       // Wait until hero text has a measurable box before seeding the desk.
       if (obstacleRefs.length > 0 && zones.length === 0) return false;
 
-      const initial = createInitialPieces(shapes, width, height, size, zones);
+      const initial = createInitialPieces(
+        shapesForViewport(shapes, width),
+        width,
+        height,
+        size,
+        zones,
+      );
       topZRef.current = initial.length;
       placedRef.current = true;
       setPieces(initial);
@@ -343,6 +497,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
   const startMove = (piece: DeskPiece, event: React.PointerEvent<HTMLDivElement>) => {
     if (event.button !== 0) return;
     event.preventDefault();
+    noteInteraction();
     event.currentTarget.setPointerCapture(event.pointerId);
     bringToFront(piece.id);
     interactionRef.current = {
@@ -362,6 +517,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
   const startRotate = (piece: DeskPiece, event: React.PointerEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation();
+    noteInteraction();
     event.currentTarget.setPointerCapture(event.pointerId);
     bringToFront(piece.id);
     interactionRef.current = {
@@ -380,6 +536,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
 
   const onWheel = (piece: DeskPiece, event: React.WheelEvent<HTMLDivElement>) => {
     event.preventDefault();
+    noteInteraction();
     bringToFront(piece.id);
     updatePiece(piece.id, { angle: piece.angle + event.deltaY * WHEEL_ROTATE });
   };
@@ -403,6 +560,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
       {pieces.map((piece) => {
         const { width, height } = pieceDimensions(piece, baseSize);
         const isSelected = selectedId === piece.id;
+        const isNudged = nudgeId === piece.id;
         const handleX = 0;
         const handleOffset = rotateHandleOffset(baseSize);
         const handleY = -height / 2 - handleOffset;
@@ -410,7 +568,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
         return (
           <div
             key={piece.id}
-            className="shape-desk-piece"
+            className={`shape-desk-piece${isNudged ? " is-idle-nudge" : ""}`}
             onPointerDown={(event) => startMove(piece, event)}
             onWheel={(event) => onWheel(piece, event)}
             style={{

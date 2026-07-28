@@ -18,6 +18,15 @@ const SIZE_BANDS = [
   { min: 0.31, max: 0.38 },
   { min: 0.25, max: 0.31 },
 ];
+/** Mobile: largest shape may span the full viewport width. */
+const SIZE_BANDS_MOBILE = [
+  { min: 0.75, max: 1 },
+  { min: 0.55, max: 0.75 },
+  { min: 0.4, max: 0.55 },
+  { min: 0.25, max: 0.4 },
+];
+/** Single-column / mobile breakpoint (matches --single-column-break). */
+const MOBILE_MAX_WIDTH_PX = 660;
 /** Keeps tall shapes from towering over a short viewport. */
 const MAX_HEIGHT_RATIO = 0.85;
 /** How far a shape may hang off the edge of the viewport. */
@@ -37,7 +46,7 @@ const COVERAGE_ATTEMPTS = 28;
 /** Coarse grid used to estimate union coverage without geometry libraries. */
 const COVERAGE_COLS = 48;
 const COVERAGE_ROWS = 36;
-const DISSOLVE_MS = 560;
+const DISSOLVE_MS = 300;
 /** Don't re-swap the same slot until this long after a replacement starts. */
 const SWAP_COOLDOWN_MS = 700;
 
@@ -191,14 +200,15 @@ function randomBetween(min: number, max: number) {
   return min + Math.random() * (max - min);
 }
 
-function pickShapes() {
+function pickShapes(vw: number) {
   const pool = [...COLLAGE_SHAPES];
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j]!, pool[i]!];
   }
+  const sizeBands = vw <= MOBILE_MAX_WIDTH_PX ? SIZE_BANDS_MOBILE : SIZE_BANDS;
   // Shuffled bands keep the largest shape from always being the same one.
-  const bands = SIZE_BANDS.map((band, index) => ({ band, index }));
+  const bands = sizeBands.map((band, index) => ({ band, index }));
   for (let i = bands.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [bands[i], bands[j]] = [bands[j]!, bands[i]!];
@@ -222,7 +232,8 @@ function placeOneShape(
   placed: Placement[],
 ): Placement {
   const minWidth = 0.25 * vw;
-  const maxWidth = Math.min(0.55 * vw, MAX_HEIGHT_RATIO * vh * shape.aspect);
+  const widthCap = vw <= MOBILE_MAX_WIDTH_PX ? 1 : 0.55;
+  const maxWidth = Math.min(widthCap * vw, MAX_HEIGHT_RATIO * vh * shape.aspect);
   const preferredWidth = Math.max(minWidth, Math.min(widthRatio * vw, maxWidth));
 
   let best: Placement | null = null;
@@ -331,14 +342,14 @@ function viewportCoverage(placements: Placement[], vw: number, vh: number) {
  * Re-picks the shape set halfway through if sizes alone can't reach the floor.
  */
 function layoutWithCoverage(vw: number, vh: number, zones: Rect[], preferred?: Selection | null) {
-  let selection = preferred ?? pickShapes();
+  let selection = preferred ?? pickShapes(vw);
   let best: Placement[] = [];
   let bestSelection = selection;
   let bestCoverage = -1;
 
   for (let attempt = 0; attempt < COVERAGE_ATTEMPTS; attempt++) {
     if (attempt === Math.floor(COVERAGE_ATTEMPTS / 2) && bestCoverage < MIN_COVERAGE) {
-      selection = pickShapes();
+      selection = pickShapes(vw);
     }
 
     const placements = layoutShapes(selection, vw, vh, zones);

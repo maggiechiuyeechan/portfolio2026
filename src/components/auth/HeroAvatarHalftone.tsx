@@ -10,6 +10,8 @@ import { usePrefersReducedMotion } from "../../lib/motion";
 interface Props {
   src: string;
   alt: string;
+  /** Still frame shown until the video has decodable frames. */
+  poster?: string;
   variants?: Record<string, unknown>;
 }
 
@@ -117,7 +119,7 @@ function clamp01(value: number) {
   return Math.min(1, Math.max(0, value));
 }
 
-export default function HeroAvatarHalftone({ src, alt, variants }: Props) {
+export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props) {
   const reducedMotion = usePrefersReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -305,9 +307,10 @@ export default function HeroAvatarHalftone({ src, alt, variants }: Props) {
           ref={videoRef}
           className="hero-avatar"
           src={mediaSrc}
+          poster={poster}
           aria-label={alt}
-          width={720}
-          height={1280}
+          width={400}
+          height={712}
           style={{
             ...fillStyle,
             position: "absolute",

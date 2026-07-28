@@ -4,14 +4,16 @@
  * All sizes in rem (root 16px) per responsive-unit convention.
  */
 
-/* h1 — Bagoss Standard Light 88px, line-height 100% */
-.text-display {
+/* h1 — Bagoss Standard Light 88px, line-height 100% (same weight as h2) */
+.text-display,
+.hero-name {
   font-family: "Bagoss", serif;
   font-weight: var(--font-weight-bagoss-light);
   font-size: 5.5rem; /* 88px */
   line-height: 1;
   letter-spacing: 0;
   color: var(--color-typography-content-default);
+  font-synthesis: none;
 }
 
 /* h2 — Bagoss Standard Light 22px, line-height 145% */
@@ -22,6 +24,7 @@
   line-height: 1.45;
   letter-spacing: 0;
   color: var(--color-typography-content-default);
+  font-synthesis: none;
 }
 
 /* h3 — Inter Medium 17px, line-height 150%, letter-spacing -1% */
@@ -55,9 +58,20 @@
   color: var(--color-typography-content-secondary);
 }
 
-/* Display scales down on smaller frames (Figma mobile frame keeps hierarchy) */
+/* Display / title scale down on smaller frames */
 @media (max-width: 41.25rem) {
-  .text-display {
+  .text-display,
+  .hero-name {
     font-size: 4rem; /* 64px on mobile */
+    font-weight: var(--font-weight-bagoss-light); /* keep h2 weight on mobile */
+  }
+
+  .text-title {
+    font-size: 1.25rem; /* 20px on mobile */
+  }
+
+  .hero-title,
+  .hero-bio {
+    text-wrap: balance;
   }
 }

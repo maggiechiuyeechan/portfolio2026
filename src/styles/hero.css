@@ -1,0 +1,109 @@
+/*
+ * Hero layout — one stylesheet for all variants.
+ *
+ * Previously each compare-* page carried its own <style> block. Now a single
+ * page serves every variant, so the rules that differ are keyed off
+ * [data-hero-layout], which HeroShell sets on its root element.
+ *
+ * Rules that were harmlessly identical across variants (position, z-index,
+ * mobile bottom-anchoring) are unified in the base block so they apply before
+ * the lazy scene chunk lands — no reflow when it does.
+ */
+
+.hero {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-5) 1.5rem;
+}
+
+.hero-inner {
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  /* Tall viewports: sit slightly below true center. */
+  transform: translateY(2rem);
+}
+
+/*
+ * Version J perches artwork on the name and needs a fixed grain overlay to sit
+ * *between* the monsters and the text — a transform would create a containing
+ * block for the fixed layer and break that. Margin achieves the same offset
+ * without establishing one.
+ */
+[data-hero-layout="perched"] .hero-inner,
+.hero-inner:has([data-hero-layout="perched"]) {
+  transform: none;
+  margin-top: 2rem;
+}
+
+/* Short viewports (≤650px tall): keep content anchored to the bottom. */
+@media (max-height: 40.625rem) {
+  .hero {
+    justify-content: flex-end;
+    padding-top: var(--spacing-5);
+    padding-bottom: 4rem;
+  }
+
+  .hero-inner {
+    transform: none;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 41.25rem) {
+  .hero {
+    justify-content: flex-end;
+    padding-top: var(--spacing-5);
+    padding-bottom: 25vh;
+  }
+
+  .hero-inner {
+    transform: none;
+    margin-top: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Avatar frame (Version O only).
+ *
+ * Scoped to the frame element itself rather than the page, so it costs nothing
+ * when another variant is rolled and needs no pre-paint layout attribute.
+ * Base 5:7 sizes + 3.5rem on both axes.
+ * ------------------------------------------------------------------------- */
+
+.hero-avatar-frame {
+  width: 10.75rem;
+  height: 13.65rem; /* 7.25 × 7/5 + 3.5 */
+  aspect-ratio: auto;
+}
+
+.hero-avatar-entrance {
+  margin-bottom: 0;
+}
+
+@media (max-width: 80rem) {
+  .hero-avatar-frame {
+    width: 10rem;
+    height: 12.6rem; /* 6.5 × 7/5 + 3.5 */
+  }
+}
+
+@media (max-width: 52rem) {
+  .hero-avatar-frame {
+    width: 9.375rem;
+    height: 11.725rem; /* 5.875 × 7/5 + 3.5 */
+  }
+}
+
+@media (max-width: 41.25rem) {
+  .hero-avatar-frame {
+    width: 8.625rem;
+    height: 10.675rem; /* 5.125 × 7/5 + 3.5 */
+  }
+}

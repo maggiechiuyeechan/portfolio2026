@@ -32,7 +32,7 @@ export default function HeroNoiseOverlay({ zIndex = 6 }: Props) {
         height: "100dvh",
         zIndex,
         pointerEvents: "none",
-        opacity: 0.22,
+        opacity: 0.18,
         mixBlendMode: "overlay",
         backgroundImage: "url(/images/noise-tile.png)",
         backgroundRepeat: "repeat",
