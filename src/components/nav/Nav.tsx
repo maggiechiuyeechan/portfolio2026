@@ -203,7 +203,7 @@ export default function Nav({ workLinks, socials, logoSrc, logoAlt }: Props) {
       style={{ flex: "1 0 0", minWidth: 0 }}
       data-cuelume-hover="tick"
     >
-      <img src={logoSrc} alt={logoAlt} width={28} height={22} />
+      <img src={logoSrc} alt={logoAlt} width={21} height={17} />
     </a>
   );
 
