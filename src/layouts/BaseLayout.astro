@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import PostHog from "../components/posthog.astro";
 import { site, siteProfileLinks } from "../config/site";
 
 interface Props {
@@ -119,6 +120,7 @@ const websiteSchema = {
       )
     }
     <title>{title}</title>
+    <PostHog />
   </head>
   <body>
     <slot />
