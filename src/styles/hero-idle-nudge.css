@@ -1,0 +1,60 @@
+/**
+ * Gentle idle invite — one hero shape pulses to 1.075× every 5s after 5s idle.
+ * Parent gets .is-idle-nudge; the scaled surface uses .hero-idle-nudge__target.
+ */
+.hero-idle-nudge__target {
+  transform-origin: center center;
+  transition: transform 0.35s ease;
+}
+
+.is-idle-nudge .hero-idle-nudge__target {
+  animation: hero-idle-nudge 5s ease-in-out infinite;
+}
+
+.is-idle-nudge--subtle .hero-idle-nudge__target {
+  animation: hero-idle-nudge-subtle 5s ease-in-out infinite;
+}
+
+@keyframes hero-idle-nudge {
+  0%,
+  12% {
+    transform: scale(1);
+  }
+  18%,
+  28% {
+    transform: scale(1.075);
+  }
+  34%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-idle-nudge-subtle {
+  0%,
+  12% {
+    transform: scale(1);
+  }
+  18%,
+  28% {
+    transform: scale(1.03);
+  }
+  34%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-idle-nudge .hero-idle-nudge__target,
+  .is-idle-nudge--subtle .hero-idle-nudge__target,
+  .editable-blob.is-idle-nudge {
+    animation: none;
+  }
+}
+
+/* Scale the whole SVG — path-only transform is easy to miss and clips oddly. */
+.editable-blob.is-idle-nudge {
+  transform-origin: center center;
+  animation: hero-idle-nudge 5s ease-in-out infinite;
+}

@@ -10,6 +10,7 @@ import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import { playHeroSound, playHeroSoundOnClick } from "../../lib/heroSounds";
 import { acquireBodyFlag } from "../../lib/bodyFlag";
+import { useIdleNudge } from "../../lib/useIdleNudge";
 import { COLLAGE_INK_GRID, COLLAGE_SHAPES, type CollageShape } from "./collageShapes";
 
 const SHAPE_COUNT = 4;
@@ -597,6 +598,13 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
   const lastSwapAtRef = useRef<Map<number, number>>(new Map());
   obstacleRefsRef.current = obstacleRefs;
 
+  const { nudgeId, noteInteraction } = useIdleNudge(
+    (placements ?? []).map((placement) => String(placement.id)),
+    placements != null && placements.length > 0,
+  );
+  const noteInteractionRef = useRef(noteInteraction);
+  noteInteractionRef.current = noteInteraction;
+
   useEffect(() => {
     let settled = false;
 
@@ -782,6 +790,7 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
             event.clientY,
           )
         ) {
+          noteInteractionRef.current();
           swapAtIndex(i);
           return;
         }
@@ -793,6 +802,7 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
     const onPointerDown = (event: PointerEvent) => {
       if (event.button !== 0) return;
       if (isInteractiveTarget(event.target as Element | null)) return;
+      noteInteractionRef.current();
       playHeroSoundOnClick("bloom", "collage-relayout");
       selectionRef.current = null;
       relayout(true);
@@ -826,6 +836,8 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
       }}
     >
       {placements.map((placement) => {
+        const isNudged =
+          nudgeId === String(placement.id) && placement.phase === "idle";
         const box = {
           position: "absolute" as const,
           left: `${Math.round(placement.left)}px`,
@@ -834,10 +846,11 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
           height: `${Math.round(placement.height)}px`,
           mixBlendMode: "multiply" as const,
         };
+        const nudgeClass = isNudged ? " is-idle-nudge is-idle-nudge--subtle" : "";
 
         if (!reducedMotion && placement.phase === "exit") {
           return (
-            <div key={placement.id} style={box}>
+            <div key={placement.id} className={nudgeClass.trim()} style={box}>
               <PixelDissolve
                 src={placement.src}
                 width={placement.width}
@@ -851,7 +864,7 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
 
         if (!reducedMotion && placement.phase === "enter") {
           return (
-            <div key={placement.id} style={box}>
+            <div key={placement.id} className={nudgeClass.trim()} style={box}>
               <PixelDissolve
                 src={placement.src}
                 width={placement.width}
@@ -865,13 +878,14 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
         }
 
         return (
-          <img
-            key={placement.id}
-            className="shape-collage__shape"
-            src={placement.src}
-            alt=""
-            style={box}
-          />
+          <div key={placement.id} className={nudgeClass.trim()} style={box}>
+            <img
+              className="shape-collage__shape hero-idle-nudge__target"
+              src={placement.src}
+              alt=""
+              style={{ width: "100%", height: "100%", display: "block" }}
+            />
+          </div>
         );
       })}
     </div>,

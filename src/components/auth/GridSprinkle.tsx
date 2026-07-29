@@ -7,6 +7,9 @@ import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import { playHeroSound, playHeroSoundOnClick } from "../../lib/heroSounds";
 import { acquireBodyFlag } from "../../lib/bodyFlag";
+import { idleNudgeScale } from "../../lib/idleNudgeScale";
+import { getSceneFrameBounds } from "../../lib/sceneFrame";
+import { useIdleNudge } from "../../lib/useIdleNudge";
 import {
   GRID_SPRINKLE_PALETTE_I,
   type GridSprinklePalette,
@@ -22,6 +25,8 @@ const SPRINKLE_IN_MS = 380;
 /** Max random delay before a dot starts fading/scaling in. */
 const SPRINKLE_STAGGER_MS = 160;
 const SPRINKLE_FROM_SCALE = 0.35;
+/** Grid sprinkle idle nudge — one dot pulses to 1.75× (other variants use 1.075×). */
+const SPRINKLE_IDLE_NUDGE_SCALE = 1.75;
 /**
  * Burst when a dot is erased — radial expand from the center, then each spark
  * shrinks to nothing (no opacity fade, no gravity).
@@ -55,6 +60,7 @@ function eraseRadiusPx() {
 }
 
 interface Dot {
+  id: string;
   nx: number;
   ny: number;
   color: string;
@@ -131,6 +137,24 @@ function cullDots(dots: Dot[], width: number, height: number, zones: ExclusionZo
   return dots.filter((dot) => !dotInExclusion(dot.nx * width, dot.ny * height, zones));
 }
 
+/** Dots inside the clipped scene frame — nudge targets outside the inset are invisible. */
+function nudgeableDotIds(dots: Dot[], width: number, height: number) {
+  if (dots.length === 0) return [];
+  const frame = getSceneFrameBounds(width, height);
+  const margin = dotRadiusPx() * SPRINKLE_IDLE_NUDGE_SCALE + 2;
+  const visible = dots.filter((dot) => {
+    const x = dot.nx * width;
+    const y = dot.ny * height;
+    return (
+      x >= frame.left + margin &&
+      x <= frame.right - margin &&
+      y >= frame.top + margin &&
+      y <= frame.bottom - margin
+    );
+  });
+  return (visible.length > 0 ? visible : dots).map((dot) => dot.id);
+}
+
 function createDots(
   count: number,
   width: number,
@@ -141,6 +165,7 @@ function createDots(
   const dots: Dot[] = [];
   const maxAttempts = count * 50;
   let attempts = 0;
+  let nextId = 0;
 
   while (dots.length < count && attempts < maxAttempts) {
     attempts += 1;
@@ -151,6 +176,7 @@ function createDots(
     if (dotInExclusion(x, y, zones)) continue;
 
     dots.push({
+      id: `dot-${nextId++}`,
       nx: x / width,
       ny: y / height,
       color: dotColors[Math.floor(Math.random() * dotColors.length)]!,
@@ -208,7 +234,7 @@ function paintScene(
   dots: Dot[],
   sparks: Spark[],
   now: number,
-  paintDot?: (dot: Dot) => { alpha: number; scale: number },
+  paintDot?: (dot: Dot, index: number) => { alpha: number; scale: number },
 ) {
   const rect = canvas.getBoundingClientRect();
   const width = rect.width;
@@ -227,8 +253,9 @@ function paintScene(
   ctx.globalCompositeOperation = "multiply";
 
   const radius = dotRadiusPx();
-  for (const dot of dots) {
-    const { alpha, scale } = paintDot?.(dot) ?? { alpha: 1, scale: 1 };
+  for (let index = 0; index < dots.length; index++) {
+    const dot = dots[index]!;
+    const { alpha, scale } = paintDot?.(dot, index) ?? { alpha: 1, scale: 1 };
     if (alpha <= 0.001) continue;
     ctx.globalAlpha = alpha;
     ctx.fillStyle = dot.color;
@@ -260,7 +287,19 @@ export default function GridSprinkle({
   dotColors = GRID_SPRINKLE_PALETTE_I,
 }: Props) {
   const [mounted, setMounted] = useState(false);
+  const [dotIds, setDotIds] = useState<string[]>([]);
   const reducedMotion = usePrefersReducedMotion();
+  const { nudgeId, nudgeStartMs, noteInteraction } = useIdleNudge(
+    dotIds,
+    mounted && dotIds.length > 0,
+  );
+  const noteInteractionRef = useRef(noteInteraction);
+  noteInteractionRef.current = noteInteraction;
+  const nudgeIdRef = useRef(nudgeId);
+  const nudgeStartMsRef = useRef(nudgeStartMs);
+  nudgeIdRef.current = nudgeId;
+  nudgeStartMsRef.current = nudgeStartMs;
+  const kickAnimRef = useRef<(() => void) | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dotsRef = useRef<Dot[]>([]);
   const sparksRef = useRef<Spark[]>([]);
@@ -280,6 +319,10 @@ export default function GridSprinkle({
   }, []);
 
   useEffect(() => {
+    if (nudgeId) kickAnimRef.current?.();
+  }, [nudgeId, nudgeStartMs]);
+
+  useEffect(() => {
     if (!mounted) return;
 
     const canvas = canvasRef.current;
@@ -292,11 +335,13 @@ export default function GridSprinkle({
       }
     };
 
-    const paintFrame = (now: number) => {
-      const dots = dotsRef.current;
+    const paintDots = (now: number) => {
       const sprinkle = sprinkleInRef.current;
+      const nudgeKey = nudgeIdRef.current;
+      const nudgeStart = nudgeStartMsRef.current;
+      const dots = dotsRef.current;
 
-      paintScene(canvas, dots, sparksRef.current, now, (dot) => {
+      return (dot: Dot, _index: number) => {
         if (sprinkle) {
           const t = Math.min(
             1,
@@ -308,22 +353,35 @@ export default function GridSprinkle({
             scale: SPRINKLE_FROM_SCALE + (1 - SPRINKLE_FROM_SCALE) * e,
           };
         }
-        return { alpha: 1, scale: 1 };
-      });
+        let scale = 1;
+        if (nudgeKey && dot.id === nudgeKey && nudgeStart > 0) {
+          scale = idleNudgeScale(now, nudgeStart, SPRINKLE_IDLE_NUDGE_SCALE);
+        }
+        return { alpha: 1, scale };
+      };
+    };
+
+    const paintFrame = (now: number) => {
+      const dots = dotsRef.current;
+      const sprinkle = sprinkleInRef.current;
+      const nudgeKey = nudgeIdRef.current;
+
+      paintScene(canvas, dots, sparksRef.current, now, paintDots(now));
 
       sparksRef.current = sparksRef.current.filter((spark) => now - spark.start < spark.life);
 
       const bursting = sparksRef.current.length > 0;
       const sprinkleDone =
         !sprinkle || now >= sprinkle.start + SPRINKLE_IN_MS + SPRINKLE_STAGGER_MS;
+      const nudging = nudgeKey != null;
 
       if (sprinkleDone) sprinkleInRef.current = null;
 
-      if (bursting || !sprinkleDone) {
+      if (bursting || !sprinkleDone || nudging) {
         animFrameRef.current = requestAnimationFrame(paintFrame);
       } else {
         animFrameRef.current = null;
-        paintScene(canvas, dotsRef.current, [], now);
+        paintScene(canvas, dotsRef.current, [], now, paintDots(now));
       }
     };
 
@@ -331,6 +389,7 @@ export default function GridSprinkle({
       if (animFrameRef.current != null) return;
       animFrameRef.current = requestAnimationFrame(paintFrame);
     };
+    kickAnimRef.current = ensureAnim;
 
     const animateSprinkleIn = () => {
       cancelAnim();
@@ -338,7 +397,7 @@ export default function GridSprinkle({
       const dots = dotsRef.current;
       if (dots.length === 0 || reducedMotionRef.current) {
         sprinkleInRef.current = null;
-        paintScene(canvas, dots, [], performance.now());
+        paintScene(canvas, dots, [], performance.now(), paintDots(performance.now()));
         return;
       }
 
@@ -347,6 +406,12 @@ export default function GridSprinkle({
       }
       sprinkleInRef.current = { start: performance.now() };
       ensureAnim();
+    };
+
+    const syncDotIds = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      setDotIds(nudgeableDotIds(dotsRef.current, width, height));
     };
 
     const layout = (forceReseed = false) => {
@@ -375,6 +440,7 @@ export default function GridSprinkle({
         sparksRef.current = [];
         dotsPlacedRef.current = true;
         viewportRef.current = { width, height };
+        syncDotIds();
         if (forceReseed) {
           animateSprinkleIn();
           return;
@@ -391,14 +457,22 @@ export default function GridSprinkle({
           dotColorsRef.current,
         );
         viewportRef.current = { width, height };
+        syncDotIds();
       } else {
         // Don't interrupt a resprinkle entrance for exclusion sync.
         if (animFrameRef.current != null && sprinkleInRef.current) return;
         dotsRef.current = cullDots(dotsRef.current, width, height, zones);
+        syncDotIds();
       }
 
       if (animFrameRef.current == null) {
-        paintScene(canvas, dotsRef.current, sparksRef.current, performance.now());
+        paintScene(
+          canvas,
+          dotsRef.current,
+          sparksRef.current,
+          performance.now(),
+          paintDots(performance.now()),
+        );
       }
     };
 
@@ -448,6 +522,8 @@ export default function GridSprinkle({
       }
       if (hitIndex === -1) return;
 
+      noteInteractionRef.current();
+
       const now = performance.now();
       const colorsOnCanvas = [...new Set(dots.map((dot) => dot.color))];
       const next: Dot[] = [];
@@ -468,6 +544,7 @@ export default function GridSprinkle({
 
       playHeroSound("sparkle", "grid-burst");
       dotsRef.current = next;
+      syncDotIds();
       ensureAnim();
     };
     window.addEventListener("pointermove", onPointerMove);
@@ -476,12 +553,14 @@ export default function GridSprinkle({
     const onPointerDown = (event: PointerEvent) => {
       if (event.button !== 0) return;
       if (isInteractiveTarget(event.target as Element | null)) return;
+      noteInteractionRef.current();
       playHeroSoundOnClick("page", "grid-resprinkle");
       layout(true);
     };
     window.addEventListener("pointerdown", onPointerDown);
 
     return () => {
+      kickAnimRef.current = null;
       cancelAnim();
       sprinkleInRef.current = null;
       sparksRef.current = [];

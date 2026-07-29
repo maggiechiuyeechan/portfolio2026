@@ -1,37 +1,9 @@
 .shape-desk-piece__face {
   width: 100%;
   height: 100%;
-  transform-origin: center center;
-  transition: transform 0.35s ease;
 }
 
-.shape-desk-piece:hover .shape-desk-piece__face {
+.shape-desk-piece:hover .hero-idle-nudge__target {
   transform: scale(1.03);
   animation: none;
-}
-
-/* After idle: same piece pulses larger every 5s. */
-.shape-desk-piece.is-idle-nudge .shape-desk-piece__face {
-  animation: shape-desk-idle-nudge 5s ease-in-out infinite;
-}
-
-@keyframes shape-desk-idle-nudge {
-  0%,
-  12% {
-    transform: scale(1);
-  }
-  18%,
-  28% {
-    transform: scale(1.075);
-  }
-  34%,
-  100% {
-    transform: scale(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .shape-desk-piece.is-idle-nudge .shape-desk-piece__face {
-    animation: none;
-  }
 }

@@ -11,6 +11,7 @@ import { usePrefersReducedMotion } from "../../lib/motion";
 import { getSceneFrameBounds, type SceneFrameBounds } from "../../lib/sceneFrame";
 import { playHeroSound } from "../../lib/heroSounds";
 import { acquireBodyFlag } from "../../lib/bodyFlag";
+import { useIdleNudge } from "../../lib/useIdleNudge";
 import PhysicsTileFace from "./PhysicsTileFace";
 import PhysicsShapeFace from "./PhysicsShapeFace";
 import { STATIC_TILE_POSES, TILES, TILES_SPAWN, TILES_SPAWN_MOBILE, type TileDef } from "./physicsTiles";
@@ -177,6 +178,18 @@ export default function PhysicsTileStack({
   const [containerSize, setContainerSize] = useState({ width: 288, height: 180 });
   const [activeBaseSize, setActiveBaseSize] = useState(COMPACT_TILE_SIZE);
   const [mounted, setMounted] = useState(false);
+
+  const idleItemIds = reducedMotion
+    ? isShapes
+      ? shapeConfig.staticPoses.map(({ shapeId, x, y }) => `${shapeId}-${x}-${y}`)
+      : STATIC_TILE_POSES.map(({ tileId, x, y }) => `${tileId}-${x}-${y}`)
+    : spawnedBodies.map((spawned) => String(spawned.bodyId));
+  const { nudgeId, noteInteraction } = useIdleNudge(
+    idleItemIds,
+    mounted && idleItemIds.length > 0,
+  );
+  const noteInteractionRef = useRef(noteInteraction);
+  noteInteractionRef.current = noteInteraction;
 
   useEffect(() => {
     setMounted(true);
@@ -411,6 +424,7 @@ export default function PhysicsTileStack({
         y: clientY,
       });
       if (hits.length === 0) return;
+      noteInteractionRef.current();
 
       const now = performance.now();
       for (const body of hits) {
@@ -488,9 +502,11 @@ export default function PhysicsTileStack({
         const shape = shapes.find((entry) => entry.id === shapeId);
         if (!shape) return null;
         const { width: bodyWidth, height: bodyHeight } = shapeBodyDimensions(activeBaseSize, shape);
+        const itemId = `${shapeId}-${x}-${y}`;
         return (
           <div
-            key={`${shapeId}-${x}-${y}`}
+            key={itemId}
+            className={nudgeId === itemId ? "is-idle-nudge" : undefined}
             style={{
               position: "absolute",
               left: 0,
@@ -500,7 +516,9 @@ export default function PhysicsTileStack({
               transform: `translate(${x * containerSize.width - bodyWidth / 2}px, ${y * containerSize.height - bodyHeight / 2}px) rotate(${angle}rad)`,
             }}
           >
-            <PhysicsShapeFace shape={shape} baseSize={activeBaseSize} />
+            <div className="hero-idle-nudge__target" style={{ width: "100%", height: "100%" }}>
+              <PhysicsShapeFace shape={shape} baseSize={activeBaseSize} />
+            </div>
           </div>
         );
       });
@@ -509,9 +527,11 @@ export default function PhysicsTileStack({
     return STATIC_TILE_POSES.map(({ tileId, x, y, angle }) => {
       const tile = TILES.find((entry) => entry.id === tileId);
       if (!tile) return null;
+      const itemId = `${tileId}-${x}-${y}`;
       return (
         <div
-          key={tileId}
+          key={itemId}
+          className={nudgeId === itemId ? "is-idle-nudge" : undefined}
           style={{
             position: "absolute",
             left: 0,
@@ -521,7 +541,9 @@ export default function PhysicsTileStack({
             transform: `translate(${x * containerSize.width - activeBaseSize / 2}px, ${y * containerSize.height - activeBaseSize / 2}px) rotate(${angle}rad)`,
           }}
         >
-          <PhysicsTileFace tile={tile} size={activeBaseSize} />
+          <div className="hero-idle-nudge__target" style={{ width: "100%", height: "100%" }}>
+            <PhysicsTileFace tile={tile} size={activeBaseSize} />
+          </div>
         </div>
       );
     });
@@ -534,6 +556,7 @@ export default function PhysicsTileStack({
         : spawnedBodies.map((spawned) => (
             <div
               key={spawned.bodyId}
+              className={nudgeId === String(spawned.bodyId) ? "is-idle-nudge" : undefined}
               ref={(el) => {
                 if (el) {
                   tileElementsRef.current.set(spawned.bodyId, el);
@@ -557,11 +580,13 @@ export default function PhysicsTileStack({
                 pointerEvents: "none",
               }}
             >
-              {spawned.shape ? (
-                <PhysicsShapeFace shape={spawned.shape} baseSize={activeBaseSize} />
-              ) : spawned.tile ? (
-                <PhysicsTileFace tile={spawned.tile} size={activeBaseSize} />
-              ) : null}
+              <div className="hero-idle-nudge__target" style={{ width: "100%", height: "100%" }}>
+                {spawned.shape ? (
+                  <PhysicsShapeFace shape={spawned.shape} baseSize={activeBaseSize} />
+                ) : spawned.tile ? (
+                  <PhysicsTileFace tile={spawned.tile} size={activeBaseSize} />
+                ) : null}
+              </div>
             </div>
           ))}
     </div>

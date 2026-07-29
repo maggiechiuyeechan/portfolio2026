@@ -15,6 +15,8 @@ import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import { playHeroSoundOnClick } from "../../lib/heroSounds";
 import { acquireBodyFlag } from "../../lib/bodyFlag";
+import { idleNudgeScale } from "../../lib/idleNudgeScale";
+import { useIdleNudge } from "../../lib/useIdleNudge";
 import {
   BOTANICAL_CIRCLES,
   BOTANICAL_STATIC,
@@ -29,6 +31,12 @@ const MAX_FADING = 3;
 /** Match the compare-nav breakpoint that hides Version M. */
 const DESKTOP_MIN_WIDTH = 768;
 const TAU = Math.PI * 2;
+
+const BOTANICAL_DOT_TOTAL = BOTANICAL_CIRCLES.reduce(
+  (sum, group) => sum + group.points.length / 2,
+  0,
+);
+const BOTANICAL_DOT_IDS = Array.from({ length: BOTANICAL_DOT_TOTAL }, (_, i) => String(i));
 
 interface Dots {
   x: Float32Array;
@@ -110,6 +118,21 @@ export default function BotanicalGrowth() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [mounted, setMounted] = useState(false);
   const [desktop, setDesktop] = useState(true);
+  const { nudgeId, nudgeStartMs, noteInteraction } = useIdleNudge(
+    BOTANICAL_DOT_IDS,
+    mounted && desktop,
+  );
+  const noteInteractionRef = useRef(noteInteraction);
+  noteInteractionRef.current = noteInteraction;
+  const nudgeIdRef = useRef(nudgeId);
+  const nudgeStartMsRef = useRef(nudgeStartMs);
+  nudgeIdRef.current = nudgeId;
+  nudgeStartMsRef.current = nudgeStartMs;
+  const restartFrameRef = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    if (nudgeId) restartFrameRef.current?.();
+  }, [nudgeId, nudgeStartMs]);
 
   useEffect(() => {
     setMounted(true);
@@ -141,12 +164,17 @@ export default function BotanicalGrowth() {
     let animStart = 0;
     let last = 0;
 
-    const paintDot = (index: number, alpha: number) => {
+    const paintDot = (index: number, alpha: number, scale = 1) => {
       ctx.globalAlpha = alpha;
       ctx.fillStyle = dots.palette[dots.colorIndex[index]!]!;
       ctx.beginPath();
-      ctx.arc(dots.x[index]!, dots.y[index]!, dots.r[index]!, 0, TAU);
+      ctx.arc(dots.x[index]!, dots.y[index]!, dots.r[index]! * scale, 0, TAU);
       ctx.fill();
+    };
+
+    const nudgeScaleFor = (index: number, now: number) => {
+      if (nudgeIdRef.current !== String(index) || nudgeStartMsRef.current <= 0) return 1;
+      return idleNudgeScale(now, nudgeStartMsRef.current);
     };
 
     const paintSkeleton = () => {
@@ -174,13 +202,16 @@ export default function BotanicalGrowth() {
       }
     };
 
-    const repaint = () => {
+    const repaint = (now = performance.now()) => {
       ctx.save();
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.restore();
       paintSkeleton();
-      for (let k = 0; k < revealed; k++) paintDot(order[k]!, 1);
+      for (let k = 0; k < revealed; k++) {
+        const index = order[k]!;
+        paintDot(index, 1, nudgeScaleFor(index, now));
+      }
       ctx.globalAlpha = 1;
       fading = [];
     };
@@ -233,7 +264,7 @@ export default function BotanicalGrowth() {
         } else {
           // Behind schedule (tab background, etc.) — snap the rest of this tick.
           while (revealed < target) {
-            paintDot(order[revealed]!, 1);
+            paintDot(order[revealed]!, 1, nudgeScaleFor(order[revealed]!, now));
             revealed += 1;
           }
           break;
@@ -245,15 +276,17 @@ export default function BotanicalGrowth() {
         fading = fading.filter((dot) => {
           const next = Math.min(1, dot.opacity + step);
           const alpha = next >= 1 ? 1 : (next - dot.opacity) / (1 - dot.opacity);
-          paintDot(dot.index, alpha);
+          paintDot(dot.index, alpha, nudgeScaleFor(dot.index, now));
           dot.opacity = next;
           return next < 1;
         });
       }
 
-      ctx.globalAlpha = 1;
+      if (complete && nudgeIdRef.current) {
+        repaint(now);
+      }
 
-      if (revealed < total || fading.length > 0) {
+      if (revealed < total || fading.length > 0 || nudgeIdRef.current) {
         frameId = requestAnimationFrame(frame);
       } else {
         frameId = 0;
@@ -279,6 +312,11 @@ export default function BotanicalGrowth() {
       ctx.restore();
       paintSkeleton();
 
+      frameId = requestAnimationFrame(frame);
+    };
+
+    restartFrameRef.current = () => {
+      if (frameId !== 0) return;
       frameId = requestAnimationFrame(frame);
     };
 
@@ -309,6 +347,8 @@ export default function BotanicalGrowth() {
       if (isInteractiveTarget(event.target as Element | null)) return;
       if (reducedMotion) return;
 
+      noteInteractionRef.current();
+
       if (animating) {
         playHeroSoundOnClick("ready", "botanical-finish");
         finishNow();
@@ -320,6 +360,7 @@ export default function BotanicalGrowth() {
     window.addEventListener("pointerdown", onPointerDown);
 
     return () => {
+      restartFrameRef.current = null;
       cancelAnimationFrame(frameId);
       window.clearTimeout(resizeTimer);
       window.removeEventListener("resize", onResize);

@@ -5,13 +5,16 @@
  * never overlaps — the user can create overlaps only by editing. Placement is
  * computed once on mount / resize.
  */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "motion/react";
 import type { Variants } from "motion/react";
 import EditableBlob from "./EditableBlob";
 import { EDITABLE_BLOBS, type EditableBlobDef } from "./editableBlobs";
 import { cloneSubpaths } from "./blobPath";
+import { IDLE_NUDGE_SCALE } from "../../lib/idleNudgeScale";
+import { getSceneFrameBounds } from "../../lib/sceneFrame";
+import { useIdleNudge } from "../../lib/useIdleNudge";
 
 const TEXT_PAD = 18;
 /**
@@ -387,10 +390,34 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
   return placed;
 }
 
+/** Blob centers inside the clipped scene frame — nudges in the mat inset are invisible. */
+function nudgeablePlacementIds(placements: Placement[], vw: number, vh: number) {
+  if (placements.length === 0) return [];
+  const frame = getSceneFrameBounds(vw, vh);
+  const visible = placements.filter((placement) => {
+    const margin = placement.radius * IDLE_NUDGE_SCALE;
+    return (
+      placement.cx >= frame.left + margin &&
+      placement.cx <= frame.right - margin &&
+      placement.cy >= frame.top + margin &&
+      placement.cy <= frame.bottom - margin
+    );
+  });
+  return (visible.length > 0 ? visible : placements).map((p) => p.instanceId);
+}
+
 export default function EditableBlobField({ obstacleRefs = [], variants }: Props) {
   const [mounted, setMounted] = useState(false);
   const [placements, setPlacements] = useState<Placement[]>([]);
   const layoutKey = useRef(0);
+  const nudgeIds = useMemo(() => {
+    if (typeof window === "undefined" || placements.length === 0) return [];
+    return nudgeablePlacementIds(placements, window.innerWidth, window.innerHeight);
+  }, [placements]);
+  const { nudgeId, noteInteraction } = useIdleNudge(
+    nudgeIds,
+    mounted && nudgeIds.length > 0,
+  );
 
   useEffect(() => setMounted(true), []);
 
@@ -456,6 +483,8 @@ export default function EditableBlobField({ obstacleRefs = [], variants }: Props
             scale={placement.scale}
             appearDelayMs={variants ? 0 : Math.min(index * 28, 700)}
             skipAppear={!!variants}
+            nudged={nudgeId === placement.instanceId}
+            onInteract={noteInteraction}
           />
         ))}
       </div>

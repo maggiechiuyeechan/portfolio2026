@@ -42,6 +42,9 @@ interface Props {
   appearDelayMs?: number;
   /** Parent scene handles entrance — skip per-blob fade. */
   skipAppear?: boolean;
+  /** Idle invite pulse when the user hasn't interacted yet. */
+  nudged?: boolean;
+  onInteract?: () => void;
   onChange?: (subpaths: BlobSubpath[]) => void;
 }
 
@@ -55,6 +58,8 @@ export default function EditableBlob({
   scale,
   appearDelayMs = 0,
   skipAppear = false,
+  nudged = false,
+  onInteract,
   onChange,
 }: Props) {
   const reducedMotion = usePrefersReducedMotion();
@@ -316,6 +321,7 @@ export default function EditableBlob({
   ) => {
     event.preventDefault();
     event.stopPropagation();
+    onInteract?.();
     playHeroSoundOnClick("press", "blob-press");
     dragIndex.current = index;
     dragKind.current = kind;
@@ -329,6 +335,7 @@ export default function EditableBlob({
   const startShapeDrag = (event: React.PointerEvent) => {
     event.preventDefault();
     event.stopPropagation();
+    onInteract?.();
     playHeroSoundOnClick("press", "blob-press");
     dragKind.current = "shape";
     dragIndex.current = -1;
@@ -371,7 +378,7 @@ export default function EditableBlob({
     <svg
       ref={svgRef}
       data-blob-id={id}
-      className="editable-blob"
+      className={`editable-blob${nudged ? " is-idle-nudge" : ""}`}
       aria-hidden="true"
       width={svgWidth}
       height={svgHeight}

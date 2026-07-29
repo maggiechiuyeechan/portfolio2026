@@ -3,12 +3,13 @@
  * Drag to move, scroll or use the handle to rotate, click to nudge rotation.
  * Initial placement keeps clear of the hero text and allows at most pairwise
  * overlaps (no 3+ stacks). Drag freely afterward.
- * After 10s idle, one shape pulses to 1.075× every 5s as a gentle invite.
+ * After 5s idle, one shape pulses to 1.075× every 5s as a gentle invite.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import { playHeroSoundOnClick } from "../../lib/heroSounds";
+import { useIdleNudge } from "../../lib/useIdleNudge";
 import PhysicsShapeFace from "./PhysicsShapeFace";
 import { shapeBodyDimensions, type ShapeDef } from "./physicsShapes";
 import { SHAPES_D_SPAWN } from "./physicsShapesD";
@@ -29,8 +30,6 @@ const PLACE_ATTEMPTS = 120;
 const OVERLAP_RADIUS_FACTOR = 0.78;
 /** At most this many shapes may share an overlap (pairs only on first paint). */
 const MAX_INITIAL_STACK = 2;
-/** Wait this long with no shape interaction before nudging one piece. */
-const IDLE_NUDGE_MS = 10 * 1000;
 /** Single-column / mobile breakpoint (matches --single-column-break). */
 const MOBILE_MAX_WIDTH_PX = 660;
 
@@ -323,47 +322,20 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
   const [baseSize, setBaseSize] = useState(360);
   const [pieces, setPieces] = useState<DeskPiece[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [nudgeId, setNudgeId] = useState<string | null>(null);
+  const { nudgeId, noteInteraction } = useIdleNudge(
+    pieces.map((piece) => piece.id),
+    mounted && pieces.length > 0,
+  );
   const interactionRef = useRef<ActiveInteraction | null>(null);
   const topZRef = useRef(0);
   const placedRef = useRef(false);
   const piecesRef = useRef<DeskPiece[]>([]);
-  const idleTimerRef = useRef<number | null>(null);
 
   piecesRef.current = pieces;
-
-  const clearIdleTimer = useCallback(() => {
-    if (idleTimerRef.current != null) {
-      window.clearTimeout(idleTimerRef.current);
-      idleTimerRef.current = null;
-    }
-  }, []);
-
-  const scheduleIdleNudge = useCallback(() => {
-    clearIdleTimer();
-    if (reducedMotion) return;
-    idleTimerRef.current = window.setTimeout(() => {
-      const list = piecesRef.current;
-      if (list.length === 0) return;
-      const pick = list[Math.floor(Math.random() * list.length)]!;
-      setNudgeId(pick.id);
-    }, IDLE_NUDGE_MS);
-  }, [clearIdleTimer, reducedMotion]);
-
-  const noteInteraction = useCallback(() => {
-    setNudgeId(null);
-    scheduleIdleNudge();
-  }, [scheduleIdleNudge]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  useEffect(() => {
-    if (!mounted || pieces.length === 0 || reducedMotion) return;
-    scheduleIdleNudge();
-    return clearIdleTimer;
-  }, [mounted, pieces.length, reducedMotion, scheduleIdleNudge, clearIdleTimer]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -592,7 +564,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
               transformOrigin: "center center",
             }}
           >
-            <div className="shape-desk-piece__face">
+            <div className="shape-desk-piece__face hero-idle-nudge__target">
               <PhysicsShapeFace shape={piece.shape} baseSize={baseSize} applyBlend={false} />
             </div>
             {isSelected ? (
