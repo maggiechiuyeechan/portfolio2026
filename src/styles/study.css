@@ -23,7 +23,7 @@
 .study-meta {
   display: inline-block;
   color: var(--color-typography-content-tertiary);
-  margin-inline-start: var(--spacing-2);
+  margin-inline-start: var(--spacing-3);
 }
 
 .study-images {

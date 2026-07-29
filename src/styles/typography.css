@@ -4,32 +4,33 @@
  * All sizes in rem (root 16px) per responsive-unit convention.
  */
 
-/* h1 — Bagoss Standard Light 88px, line-height 100% (same weight as h2) */
+/* h1 — Aguzzo VF Trial 230, 88px, line-height 100% */
 .text-display,
 .hero-name {
-  font-family: "Bagoss", serif;
-  font-weight: var(--font-weight-bagoss-light);
+  font-family: "Aguzzo VF Trial", "Bagoss", serif;
+  font-weight: var(--font-weight-aguzzo-display);
+  font-variation-settings: "wght" var(--font-weight-aguzzo-display);
   font-size: 5.5rem; /* 88px */
   line-height: 1;
   letter-spacing: 0;
+  text-transform: capitalize;
   color: var(--color-typography-content-default);
   font-synthesis: none;
 }
 
-/* h2 — Bagoss Standard Light 22px, line-height 145% */
+/* h2 — Geist Regular 18px, line-height 145% */
 .text-title {
-  font-family: "Bagoss", serif;
-  font-weight: var(--font-weight-bagoss-light);
-  font-size: 1.375rem; /* 22px */
+  font-family: "Geist", sans-serif;
+  font-weight: 400;
+  font-size: 1.125rem; /* 18px */
   line-height: 1.45;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
   color: var(--color-typography-content-default);
-  font-synthesis: none;
 }
 
-/* h3 — Inter Medium 17px, line-height 150%, letter-spacing -1% */
+/* h3 — Geist Medium 17px, line-height 150%, letter-spacing -1% */
 .text-heading {
-  font-family: "Inter", sans-serif;
+  font-family: "Geist", sans-serif;
   font-weight: 500;
   font-size: 1.0625rem; /* 17px */
   line-height: 1.5;
@@ -37,9 +38,9 @@
   color: var(--color-typography-content-default);
 }
 
-/* Paragraph — Inter Regular 16px, line-height 150%, letter-spacing -1% */
+/* Paragraph — Geist Regular 16px, line-height 150%, letter-spacing -1% */
 .text-body {
-  font-family: "Inter", sans-serif;
+  font-family: "Geist", sans-serif;
   font-weight: 400;
   font-size: 1rem; /* 16px */
   line-height: 1.5;
@@ -63,11 +64,12 @@
   .text-display,
   .hero-name {
     font-size: 4rem; /* 64px on mobile */
-    font-weight: var(--font-weight-bagoss-light); /* keep h2 weight on mobile */
+    font-weight: var(--font-weight-aguzzo-display);
+    font-variation-settings: "wght" var(--font-weight-aguzzo-display);
   }
 
   .text-title {
-    font-size: 1.25rem; /* 20px on mobile */
+    font-size: 1.125rem; /* 18px on mobile */
   }
 
   .hero-title,

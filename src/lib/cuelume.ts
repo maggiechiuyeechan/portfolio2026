@@ -1,17 +1,19 @@
 /**
  * Boot Cuelume as early as possible (before React islands hydrate).
- * Browsers block Web Audio until a user gesture — unlock on first tap/key.
+ *
+ * Browsers block Web Audio until a user gesture (click / tap / key).
+ * Unlock happens on pointerdown / keydown only — not on background hover.
  */
 import { bind, play, setEnabled, setVolume } from "cuelume";
 
-const UI_VOLUME = 1;
-let unlocked = false;
+const UI_VOLUME = 0.75;
+
+let gestureUnlocked = false;
 
 /** Resume the shared AudioContext during a user gesture (click / tap / key). */
 export function unlockCuelume() {
-  if (unlocked || typeof document === "undefined") return;
-  unlocked = true;
-  // Warm the shared AudioContext during the gesture so later cues work.
+  if (gestureUnlocked || typeof document === "undefined") return;
+  gestureUnlocked = true;
   play("tick", { volume: 0.12 });
 }
 
@@ -22,8 +24,8 @@ export function initCuelume() {
   setVolume(UI_VOLUME);
   bind();
 
-  const unlock = () => unlockCuelume();
+  const unlockFromGesture = () => unlockCuelume();
 
-  document.addEventListener("pointerdown", unlock, { once: true, capture: true });
-  document.addEventListener("keydown", unlock, { once: true, capture: true });
+  document.addEventListener("pointerdown", unlockFromGesture, { capture: true });
+  document.addEventListener("keydown", unlockFromGesture, { capture: true });
 }

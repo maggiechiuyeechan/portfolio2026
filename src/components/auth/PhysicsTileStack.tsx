@@ -7,8 +7,8 @@ import { createPortal } from "react-dom";
 import { motion } from "motion/react";
 import Matter from "matter-js";
 import { usePrefersReducedMotion } from "../../lib/motion";
+import { getSceneFrameBounds, type SceneFrameBounds } from "../../lib/sceneFrame";
 import { playHeroSound } from "../../lib/heroSounds";
-import { unlockCuelume } from "../../lib/cuelume";
 import PhysicsTileFace from "./PhysicsTileFace";
 import PhysicsShapeFace from "./PhysicsShapeFace";
 import { STATIC_TILE_POSES, TILES, TILES_SPAWN, TILES_SPAWN_MOBILE, type TileDef } from "./physicsTiles";
@@ -124,6 +124,35 @@ function measureObstacles(refs: React.RefObject<HTMLElement | null>[]) {
   return obstacles;
 }
 
+function applyPlayAreaWalls(
+  ground: Matter.Body,
+  leftWall: Matter.Body,
+  rightWall: Matter.Body,
+  bounds: SceneFrameBounds,
+  wallThickness: number,
+  prev?: SceneFrameBounds,
+) {
+  const { Body } = Matter;
+  const playW = bounds.width;
+  const playH = bounds.bottom - bounds.top;
+  const cx = bounds.left + playW / 2;
+  const cy = bounds.top + playH / 2;
+  const groundW = playW + wallThickness * 2;
+  const wallH = playH + wallThickness * 2;
+
+  if (prev) {
+    const prevGroundW = prev.width + wallThickness * 2;
+    Body.scale(ground, groundW / prevGroundW, 1);
+    const prevWallH = prev.bottom - prev.top + wallThickness * 2;
+    Body.scale(leftWall, 1, wallH / prevWallH);
+    Body.scale(rightWall, 1, wallH / prevWallH);
+  }
+
+  Body.setPosition(ground, { x: cx, y: bounds.bottom + wallThickness / 2 });
+  Body.setPosition(leftWall, { x: bounds.left - wallThickness / 2, y: cy });
+  Body.setPosition(rightWall, { x: bounds.right + wallThickness / 2, y: cy });
+}
+
 export default function PhysicsTileStack({
   variants,
   fullCanvas = false,
@@ -184,7 +213,7 @@ export default function PhysicsTileStack({
       : isShapes
         ? shapeConfig.shapes
         : TILES;
-    const spawnStartDelay = fullCanvas ? 500 : 0;
+    const spawnStartDelay = fullCanvas ? 150 : 0;
 
     const { Engine, Runner, Bodies, Composite, Body, Events, Sleeping, Query } = Matter;
     const engine = Engine.create({
@@ -196,12 +225,36 @@ export default function PhysicsTileStack({
     engineRef.current = engine;
 
     const wallThickness = 120;
-    const ground = Bodies.rectangle(width / 2, height + wallThickness / 2, width + wallThickness * 2, wallThickness, {
-      isStatic: true,
-      friction: 0.95,
-    });
-    const leftWall = Bodies.rectangle(-wallThickness / 2, height / 2, wallThickness, height * 3, { isStatic: true });
-    const rightWall = Bodies.rectangle(width + wallThickness / 2, height / 2, wallThickness, height * 3, { isStatic: true });
+    const bounds = getSceneFrameBounds(width, height);
+    const playW = bounds.width;
+    const playH = bounds.bottom - bounds.top;
+    const cx = bounds.left + playW / 2;
+    const cy = bounds.top + playH / 2;
+
+    const ground = Bodies.rectangle(
+      cx,
+      bounds.bottom + wallThickness / 2,
+      playW + wallThickness * 2,
+      wallThickness,
+      {
+        isStatic: true,
+        friction: 0.95,
+      },
+    );
+    const leftWall = Bodies.rectangle(
+      bounds.left - wallThickness / 2,
+      cy,
+      wallThickness,
+      playH + wallThickness * 2,
+      { isStatic: true },
+    );
+    const rightWall = Bodies.rectangle(
+      bounds.right + wallThickness / 2,
+      cy,
+      wallThickness,
+      playH + wallThickness * 2,
+      { isStatic: true },
+    );
 
     Composite.add(engine.world, [ground, leftWall, rightWall]);
 
@@ -241,7 +294,11 @@ export default function PhysicsTileStack({
       const { width: bodyWidth, height: bodyHeight } = bodyDims;
       const spawnWidth = Math.max(bodyWidth, bodyHeight);
 
-      const x = spawnWidth * 0.6 + Math.random() * Math.max(spawnWidth, width - spawnWidth * 1.2);
+      const spawnBounds = getSceneFrameBounds(window.innerWidth, window.innerHeight);
+      const x =
+        spawnBounds.left +
+        spawnWidth * 0.6 +
+        Math.random() * Math.max(spawnWidth, spawnBounds.width - spawnWidth * 1.2);
       const y = -spawnWidth * 2 - Math.random() * 120 - index * (spawnWidth * 0.12);
 
       const chamfer = Math.min(bodyWidth, bodyHeight) * (isShapes ? 0.08 : 0.17);
@@ -316,6 +373,7 @@ export default function PhysicsTileStack({
     let measuredWidth = width;
     let measuredHeight = height;
     let measuredSize = size;
+    let wallBounds = bounds;
 
     const onResize = () => {
       const next = measure();
@@ -331,22 +389,9 @@ export default function PhysicsTileStack({
         setSpawnedBodies([...spawnedBodiesRef.current.values()]);
       }
 
-      Body.scale(
-        ground,
-        (next.width + wallThickness * 2) / (measuredWidth + wallThickness * 2),
-        1,
-      );
-      Body.setPosition(ground, {
-        x: next.width / 2,
-        y: next.height + wallThickness / 2,
-      });
-      Body.scale(leftWall, 1, next.height / measuredHeight);
-      Body.setPosition(leftWall, { x: -wallThickness / 2, y: next.height / 2 });
-      Body.scale(rightWall, 1, next.height / measuredHeight);
-      Body.setPosition(rightWall, {
-        x: next.width + wallThickness / 2,
-        y: next.height / 2,
-      });
+      const nextBounds = getSceneFrameBounds(next.width, next.height);
+      applyPlayAreaWalls(ground, leftWall, rightWall, nextBounds, wallThickness, wallBounds);
+      wallBounds = nextBounds;
 
       measuredWidth = next.width;
       measuredHeight = next.height;
@@ -392,11 +437,9 @@ export default function PhysicsTileStack({
       popAt(event.clientX, event.clientY, true);
     };
 
-    // Click/tap unlocks audio and pops with sound in the same gesture.
     const onPointerDown = (event: PointerEvent) => {
       if (event.button !== 0) return;
       if (isInteractiveTarget(event.target as Element | null)) return;
-      unlockCuelume();
       popAt(event.clientX, event.clientY, true);
     };
     window.addEventListener("pointermove", onPointerMove);

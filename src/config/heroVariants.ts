@@ -29,7 +29,7 @@ export type HeroVariantId =
 
 /** How the shell arranges itself around the scene. */
 export type HeroLayout =
-  /** Scene is an inline element stacked above the name (meadow video). */
+  /** Scene stacked above the name inside the copy column (reserved). */
   | "inline-avatar"
   /** Scene is a full-viewport canvas behind the copy. */
   | "full-canvas"
@@ -55,6 +55,8 @@ export interface HeroVariant {
    * for the NEXT variant in the bag, so the following visit is warm.
    */
   assets?: string[];
+  /** 2rem background-main inset frame around the full-canvas scene. */
+  sceneFrame?: boolean;
   /** Lazily-loaded scene component. Must be a static import specifier. */
   load: () => Promise<{ default: ComponentType<HeroSceneProps> }>;
 }
@@ -73,7 +75,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     id: "meadow",
     label: "Meadow ripple",
     note: "Version O — halftone WebGL ripple over the grass video.",
-    layout: "inline-avatar",
+    layout: "full-canvas",
     assets: ["/images/meadow.mp4", "/images/meadow-poster.webp"],
     load: () => import("../components/hero/scenes/MeadowScene"),
   },
@@ -82,6 +84,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     label: "Tile stack",
     note: "Version B — falling tile physics, full canvas.",
     layout: "full-canvas",
+    sceneFrame: true,
     load: () => import("../components/hero/scenes/TilesScene"),
   },
   {
@@ -89,6 +92,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     label: "Organic shapes",
     note: "Version C — full-canvas physics with organic Figma shapes.",
     layout: "full-canvas",
+    sceneFrame: true,
     load: () => import("../components/hero/scenes/ShapesCScene"),
   },
   {
@@ -96,6 +100,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     label: "Paper desk",
     note: "Version F — draggable paper desk, multiply blend (node 327:60168).",
     layout: "full-canvas",
+    sceneFrame: true,
     load: () => import("../components/hero/scenes/ShapeDeskScene"),
   },
   {
@@ -103,6 +108,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     label: "Grid sprinkle",
     note: "Version I — 28px grid, sprinkled multiply dots (node 354:82).",
     layout: "full-canvas",
+    sceneFrame: true,
     load: () => import("../components/hero/scenes/GridSprinkleScene"),
   },
   {
@@ -110,6 +116,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     label: "Collage",
     note: "Version L — four randomly placed multiply collage shapes (node 354:60407).",
     layout: "full-canvas",
+    sceneFrame: true,
     load: () => import("../components/hero/scenes/ShapeCollageScene"),
   },
   {
@@ -125,13 +132,14 @@ export const HERO_VARIANTS: HeroVariant[] = [
     label: "Editable blobs",
     note: "Version N — non-overlapping organic shapes, editable nodes on hover.",
     layout: "full-canvas",
+    sceneFrame: true,
     load: () => import("../components/hero/scenes/EditableBlobsScene"),
   },
   {
     id: "monsters",
     label: "Monsters",
     note: "Version J — monster illustration perched on the name, pupils track cursor.",
-    layout: "perched",
+    layout: "full-canvas",
     noise: true,
     load: () => import("../components/hero/scenes/MonstersScene"),
   },

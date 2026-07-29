@@ -7,6 +7,7 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { motion } from "motion/react";
 import EditableBlob from "./EditableBlob";
 import { EDITABLE_BLOBS, type EditableBlobDef } from "./editableBlobs";
 import { cloneSubpaths } from "./blobPath";
@@ -16,6 +17,7 @@ const TEXT_PAD = 18;
  * Target fraction of the viewport covered by non-overlapping packing circles.
  * Kept moderate — circle packing without overlap can't fill the screen solid.
  */
+/** Baseline coverage at ~1280×800; large viewports scale up via viewportPackTargets. */
 const TARGET_COVERAGE = 0.58;
 const MIN_SCALE = 0.8;
 const MAX_SCALE = 2.9;
@@ -32,7 +34,30 @@ const RADIUS_FACTOR = 1.02;
 /** Minimum gap between packing circles on the initial layout. */
 const GAP = 3;
 const MIN_PIECES = 10;
-const MAX_PIECES = 22;
+/** Piece budget at the reference viewport (~1280×800). */
+const BASE_MAX_PIECES = 22;
+/** Hard cap so very wide monitors stay performant. */
+const ABSOLUTE_MAX_PIECES = 48;
+const REF_VIEWPORT_AREA = 1280 * 800;
+
+interface PackTargets {
+  maxPieces: number;
+  targetCoverage: number;
+}
+
+/** Larger screens get more shapes and slightly higher coverage. */
+function viewportPackTargets(vw: number, vh: number): PackTargets {
+  const areaRatio = (vw * vh) / REF_VIEWPORT_AREA;
+  const maxPieces = Math.min(
+    ABSOLUTE_MAX_PIECES,
+    Math.max(MIN_PIECES, Math.round(BASE_MAX_PIECES * Math.sqrt(areaRatio))),
+  );
+  const targetCoverage = Math.min(
+    0.68,
+    TARGET_COVERAGE + 0.1 * Math.min(1, (areaRatio - 1) / 1.5),
+  );
+  return { maxPieces, targetCoverage };
+}
 
 interface Rect {
   left: number;
@@ -52,6 +77,7 @@ interface Placement {
 
 interface Props {
   obstacleRefs?: React.RefObject<HTMLElement | null>[];
+  variants?: Record<string, unknown>;
 }
 
 function measureZones(refs: React.RefObject<HTMLElement | null>[]): Rect[] {
@@ -101,15 +127,19 @@ function shuffle<T>(items: T[]): T[] {
 }
 
 /** One of each shape, then random repeats until the viewport needs that many pieces. */
-function buildPool(vw: number, vh: number): { def: EditableBlobDef; instanceId: string }[] {
+function buildPool(
+  vw: number,
+  vh: number,
+  targets: PackTargets,
+): { def: EditableBlobDef; instanceId: string }[] {
   const avgR2 =
     EDITABLE_BLOBS.reduce((s, b) => s + b.radius * b.radius, 0) / EDITABLE_BLOBS.length;
   const comfortR = Math.sqrt(avgR2) * COMFORT_SCALE * SIZE_MULTIPLIER * RADIUS_FACTOR;
   const targetCount = Math.min(
-    MAX_PIECES,
+    targets.maxPieces,
     Math.max(
       MIN_PIECES,
-      Math.round((TARGET_COVERAGE * vw * vh) / (Math.PI * comfortR * comfortR)),
+      Math.round((targets.targetCoverage * vw * vh) / (Math.PI * comfortR * comfortR)),
     ) + 1,
   );
 
@@ -136,12 +166,13 @@ function buildPool(vw: number, vh: number): { def: EditableBlobDef; instanceId: 
 
 function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
   const area = vw * vh;
-  const pool = buildPool(vw, vh);
+  const targets = viewportPackTargets(vw, vh);
+  const pool = buildPool(vw, vh, targets);
   const sumR2 = pool.reduce((s, p) => s + p.def.radius * p.def.radius, 0);
   // Packing uses artRadius × scale × RADIUS_FACTOR; solve scale so circle coverage ≈ target.
   // Pool size already accounts for SIZE_MULTIPLIER, so shapes land at the boosted size.
   let globalScale =
-    Math.sqrt((TARGET_COVERAGE * area) / (Math.PI * sumR2)) / RADIUS_FACTOR;
+    Math.sqrt((targets.targetCoverage * area) / (Math.PI * sumR2)) / RADIUS_FACTOR;
   globalScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, globalScale));
 
   const tryPlace = (
@@ -241,7 +272,7 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
       : globalScale * 0.7;
   const used = new Set(best.map((p) => p.instanceId));
   let fillGuard = 0;
-  while (best.length < MAX_PIECES && fillGuard < MAX_PIECES * 8) {
+  while (best.length < targets.maxPieces && fillGuard < targets.maxPieces * 8) {
     fillGuard += 1;
     const def = EDITABLE_BLOBS[Math.floor(Math.random() * EDITABLE_BLOBS.length)]!;
     let n = 0;
@@ -355,7 +386,7 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
   return placed;
 }
 
-export default function EditableBlobField({ obstacleRefs = [] }: Props) {
+export default function EditableBlobField({ obstacleRefs = [], variants }: Props) {
   const [mounted, setMounted] = useState(false);
   const [placements, setPlacements] = useState<Placement[]>([]);
   const layoutKey = useRef(0);
@@ -396,9 +427,12 @@ export default function EditableBlobField({ obstacleRefs = [] }: Props) {
   if (!mounted) return null;
 
   return createPortal(
-    <div
+    <motion.div
       className="editable-blob-field"
       aria-hidden="true"
+      variants={variants}
+      initial={variants ? "hidden" : false}
+      animate={variants ? "visible" : undefined}
       style={{
         position: "fixed",
         inset: 0,
@@ -418,11 +452,12 @@ export default function EditableBlobField({ obstacleRefs = [] }: Props) {
             cx={placement.cx}
             cy={placement.cy}
             scale={placement.scale}
-            appearDelayMs={Math.min(index * 28, 700)}
+            appearDelayMs={variants ? 0 : Math.min(index * 28, 700)}
+            skipAppear={!!variants}
           />
         ))}
       </div>
-    </div>,
+    </motion.div>,
     document.body,
   );
 }

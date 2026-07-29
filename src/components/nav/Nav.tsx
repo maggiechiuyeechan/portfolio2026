@@ -20,7 +20,7 @@ const MOBILE_QUERY = "(max-width: 41.25rem)";
 
 const linkLabelStyle: React.CSSProperties = {
   display: "block",
-  fontFamily: "Inter, sans-serif",
+  fontFamily: "Geist, sans-serif",
   fontSize: "0.875rem",
   lineHeight: 1.5,
   letterSpacing: "-0.01em",

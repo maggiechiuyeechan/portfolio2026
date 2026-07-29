@@ -5,8 +5,8 @@
 export const site = {
   /** Canonical origin — no trailing slash. Used for SEO tags and sitemap. */
   url: "https://www.maggiechan.io",
-  name: "maggie",
-  /** Full name for search / structured data; display name stays lowercase. */
+  name: "Maggie",
+  /** Full name for search / structured data. */
   fullName: "Maggie Chan",
   initials: "MC",
   title: "VP of Design & Research @ ClickUp",
@@ -20,7 +20,7 @@ export const site = {
   socials: [
     { label: "Linkedin", href: "https://www.linkedin.com/in/mcychan" },
     { label: "X", href: "https://x.com/maggiechewychan" },
-    { label: 'Ask for a password or just say "hi"', href: "mailto:mach.sq@gmail.com" },
+    { label: "Email", href: "mailto:mach.sq@gmail.com" },
   ],
 } as const;
 

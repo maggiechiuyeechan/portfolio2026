@@ -30,19 +30,21 @@
   transform: translateY(2rem);
 }
 
-/*
- * Version J perches artwork on the name and needs a fixed grain overlay to sit
- * *between* the monsters and the text — a transform would create a containing
- * block for the fixed layer and break that. Margin achieves the same offset
- * without establishing one.
- */
-[data-hero-layout="perched"] .hero-inner,
-.hero-inner:has([data-hero-layout="perched"]) {
-  transform: none;
-  margin-top: 2rem;
+.hero-name {
+  margin-top: var(--spacing-2); /* 8px */
 }
 
-/* Short viewports (≤650px tall): keep content anchored to the bottom. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-inner {
+    transition:
+      transform 0.55s cubic-bezier(0.25, 0.1, 0.25, 1),
+      margin-top 0.55s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+}
+
+/*
+ * Short viewports (≤650px tall): keep content anchored to the bottom.
+ */
 @media (max-height: 40.625rem) {
   .hero {
     justify-content: flex-end;
@@ -105,5 +107,78 @@
   .hero-avatar-frame {
     width: 9.3rem;
     height: 10.875rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Scene frame (Versions B, C, I, F, L, N).
+ * Solid background-main mat + scene clip + border-default on inner edge.
+ * ------------------------------------------------------------------------- */
+
+body[data-hero-scene-frame] {
+  --hero-scene-frame-inset: 3rem;
+  --hero-scene-frame-radius: 3rem;
+  --hero-scene-frame-mat-overlap: 2px;
+}
+
+/* Clip portaled scenes so shapes never paint into the mat zone (fixes corner bleed). */
+body[data-hero-scene-frame] .grid-sprinkle,
+body[data-hero-scene-frame] .shape-collage,
+body[data-hero-scene-frame] .shape-desk,
+body[data-hero-scene-frame] .editable-blob-field,
+body[data-hero-scene-frame] .physics-tiles,
+body[data-hero-scene-frame] .hero-grid-backdrop {
+  clip-path: inset(
+    var(--hero-scene-frame-inset) round var(--hero-scene-frame-radius)
+  );
+}
+
+.hero-scene-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+}
+
+.hero-scene-frame__mat {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  padding: calc(var(--hero-scene-frame-inset) - var(--hero-scene-frame-mat-overlap));
+  border-radius: calc(
+    var(--hero-scene-frame-inset) + var(--hero-scene-frame-radius) -
+      var(--hero-scene-frame-mat-overlap)
+  );
+  background: var(--color-background-main);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.hero-scene-frame__border {
+  position: absolute;
+  inset: var(--hero-scene-frame-inset);
+  border-radius: var(--hero-scene-frame-radius);
+  border: 1px solid var(--color-border-default);
+  box-sizing: border-box;
+}
+
+@media (max-width: 41.25rem) {
+  .hero-scene-frame {
+    display: none;
+  }
+
+  body[data-hero-scene-frame] .grid-sprinkle,
+  body[data-hero-scene-frame] .shape-collage,
+  body[data-hero-scene-frame] .shape-desk,
+  body[data-hero-scene-frame] .editable-blob-field,
+  body[data-hero-scene-frame] .physics-tiles,
+  body[data-hero-scene-frame] .hero-grid-backdrop {
+    clip-path: none;
   }
 }

@@ -1,9 +1,6 @@
 /**
  * Throttled, quieter Cuelume cues for hero background interactions.
- *
- * Browsers (and Cuelume) block audio until the visitor has clicked, tapped,
- * or typed once. Hover-only scenes cannot be the first sound — use click or
- * call unlockCuelume() from a pointerdown handler first.
+ * Sounds play only from scene handlers when the cursor hits a dot, shape, tile, etc.
  */
 import { play, type SoundName } from "cuelume";
 import { unlockCuelume } from "./cuelume";
@@ -27,6 +24,7 @@ export function playHeroSound(sound: SoundName, key = sound) {
   const last = lastPlayed.get(key) ?? -Infinity;
   if (now - last < THROTTLE_MS) return;
   lastPlayed.set(key, now);
+
   play(sound, { volume: BG_VOLUME });
 }
 

@@ -39,6 +39,8 @@ interface Props {
   cy: number;
   scale: number;
   appearDelayMs?: number;
+  /** Parent scene handles entrance — skip per-blob fade. */
+  skipAppear?: boolean;
   onChange?: (subpaths: BlobSubpath[]) => void;
 }
 
@@ -51,6 +53,7 @@ export default function EditableBlob({
   cy,
   scale,
   appearDelayMs = 0,
+  skipAppear = false,
   onChange,
 }: Props) {
   const reducedMotion = usePrefersReducedMotion();
@@ -65,7 +68,7 @@ export default function EditableBlob({
   const [dragging, setDragging] = useState(false);
   const [draggingShape, setDraggingShape] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [appeared, setAppeared] = useState(reducedMotion);
+  const [appeared, setAppeared] = useState(reducedMotion || skipAppear);
   const [boundsVersion, setBoundsVersion] = useState(0);
   // Fixed local-space anchor so reshaping expands the SVG without recentering
   // the whole blob (which looked like it was being pushed away from neighbours).
@@ -93,13 +96,13 @@ export default function EditableBlob({
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    if (reducedMotion) {
+    if (reducedMotion || skipAppear) {
       setAppeared(true);
       return;
     }
     const timer = window.setTimeout(() => setAppeared(true), appearDelayMs);
     return () => window.clearTimeout(timer);
-  }, [appearDelayMs, reducedMotion]);
+  }, [appearDelayMs, reducedMotion, skipAppear]);
 
   const bounds = pointsBounds(subpathsRef.current, PAD / scale);
   if (!anchorRef.current) {
@@ -370,10 +373,9 @@ export default function EditableBlob({
         top,
         overflow: "visible",
         opacity: appeared ? 1 : 0,
-        transform: appeared ? "none" : "scale(0.92)",
         transition: reducedMotion
           ? undefined
-          : `opacity 420ms ease-out ${appearDelayMs}ms, transform 420ms ease-out ${appearDelayMs}ms`,
+          : `opacity 420ms ease-out ${appearDelayMs}ms`,
         pointerEvents: "none",
         mixBlendMode: "multiply",
         zIndex: dragging || activeNode != null ? 5 : 1,

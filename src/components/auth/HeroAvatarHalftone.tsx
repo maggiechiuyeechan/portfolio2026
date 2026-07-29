@@ -303,7 +303,12 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
   }, [reducedMotion, mediaSrc]);
 
   return (
-    <motion.div className="hero-avatar-entrance" variants={variants}>
+    <motion.div
+      className="hero-avatar-entrance"
+      variants={variants}
+      initial={variants ? "hidden" : false}
+      animate={variants ? "visible" : undefined}
+    >
       <div ref={frameRef} className="hero-avatar-frame" style={frameStyle}>
         <video
           ref={videoRef}

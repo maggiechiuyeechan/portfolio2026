@@ -40,10 +40,21 @@
   --color-border-default: var(--color-border-default);
   --color-border-low: var(--color-border-low-contrast);
 
-  --shadow-elevation: var(--elevation-shadow);
+  --shadow-elevation-1: var(--elevation-1);
+  --shadow-elevation-2: var(--elevation-2);
+  --shadow-elevation-3: var(--elevation-3);
+  --shadow-elevation-4: var(--elevation-4);
+  --shadow-elevation-5: var(--elevation-5);
+  --shadow-elevation-border-1: var(--elevation-border-1);
+  --shadow-elevation-border-2: var(--elevation-border-2);
+  --shadow-elevation-border-3: var(--elevation-border-3);
+  --shadow-elevation-border-4: var(--elevation-border-4);
+  --shadow-elevation-border-5: var(--elevation-border-5);
+  /** @deprecated Use --shadow-elevation-2 */
+  --shadow-elevation: var(--elevation-2);
 
   --font-display: "Bagoss", serif;
-  --font-sans: "Inter", sans-serif;
+  --font-sans: "Geist", sans-serif;
   --font-mono: "Atkinson Hyperlegible Mono", monospace;
 
   --radius-1: var(--radius-1);
@@ -69,7 +80,7 @@ body {
   margin: 0;
   background: var(--color-background-main);
   color: var(--color-typography-content-default);
-  font-family: "Inter", sans-serif;
+  font-family: "Geist", sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

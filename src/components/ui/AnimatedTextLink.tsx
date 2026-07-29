@@ -10,7 +10,7 @@ const colorSecondary = "var(--color-typography-content-secondary)";
 
 const blockStyle: React.CSSProperties = {
   display: "block",
-  fontFamily: "Inter, sans-serif",
+  fontFamily: "Geist, sans-serif",
   fontSize: "0.875rem",
   lineHeight: 1.5,
   letterSpacing: "-0.01em",

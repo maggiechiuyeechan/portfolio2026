@@ -6,7 +6,7 @@
  * in an effect would flash the wrong layout; doing it in the component body
  * would re-roll (and burn a bag entry) on every re-render.
  */
-import { lazy, useEffect, type ComponentType } from "react";
+import { lazy, useCallback, useEffect, useState, type ComponentType } from "react";
 import HeroShell from "./HeroShell";
 import {
   getVariant,
@@ -39,15 +39,23 @@ const LAZY_SCENES: Record<string, ComponentType<HeroSceneProps>> =
 const rolledId: HeroVariantId = forcedVariant() ?? takeVariant();
 
 export default function HeroRotator({ name, title, tagline, variantId }: Props) {
-  const activeId = variantId ?? rolledId;
+  const [activeId, setActiveId] = useState<HeroVariantId>(variantId ?? rolledId);
+  const [playEntrance, setPlayEntrance] = useState(true);
   const variant = getVariant(activeId) ?? HERO_VARIANTS[0]!;
   const Scene = LAZY_SCENES[variant.id]!;
+
+  const handleSurprise = useCallback(() => {
+    setPlayEntrance(false);
+    if (window.location.pathname !== "/" || window.location.search) {
+      window.history.replaceState(null, "", "/");
+    }
+    setActiveId(takeVariant());
+  }, []);
 
   // Warm the NEXT visit's chunk once this page is idle. Speculative, so
   // prefetch (idle priority) — never preload, which would compete with the
   // scene we actually need right now.
   useEffect(() => {
-    if (variantId) return; // deep link: the bag didn't move, nothing to warm
     const nextId = peekNextVariant();
     const next = nextId ? getVariant(nextId) : undefined;
     if (!next) return;
@@ -74,15 +82,18 @@ export default function HeroRotator({ name, title, tagline, variantId }: Props) 
         window.clearTimeout(handle as number);
       }
     };
-  }, [variantId]);
+  }, [activeId]);
 
   return (
     <HeroShell
       name={name}
       title={title}
       tagline={tagline}
+      variantId={variant.id}
       layout={variant.layout}
       noise={variant.noise}
+      playEntrance={playEntrance}
+      onSurprise={handleSurprise}
       renderScene={(sceneProps) => <Scene {...sceneProps} />}
     />
   );

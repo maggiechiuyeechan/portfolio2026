@@ -3,7 +3,7 @@
  * File naming from the foundry: w<weight>s<slant>w<width>.
  *   Bagoss-w230s0w60 -> weight 230 ("Condensed Thin")
  *   Bagoss-w320s0w60 -> weight 320 ("Standard Light" — display/h1 + title/h2)
- * Inter and Atkinson Hyperlegible Mono are loaded from Google Fonts (BaseLayout).
+ * Geist Sans (Vercel) and Atkinson Hyperlegible Mono — self-hosted / Google Fonts.
  */
 @font-face {
   font-family: "Bagoss";
@@ -17,6 +17,28 @@
   font-family: "Bagoss";
   src: url("/fonts/bagoss/Bagoss-w320s0w60.woff2") format("woff2");
   font-weight: 320;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Aguzzo VF Trial — variable weight axis (hero h1 test). */
+@font-face {
+  font-family: "Aguzzo VF Trial";
+  src:
+    url("/fonts/aguzzo/AguzzoVF-TRIAL.woff2") format("woff2-variations"),
+    url("/fonts/aguzzo/AguzzoVF-TRIAL.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Sans — variable weight axis (body, h2, h3). */
+@font-face {
+  font-family: "Geist";
+  src:
+    url("/fonts/geist/Geist-Variable.woff2") format("woff2-variations"),
+    url("/fonts/geist/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }

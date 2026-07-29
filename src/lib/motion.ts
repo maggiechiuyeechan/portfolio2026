@@ -2,6 +2,15 @@ import { useEffect, useRef, useState } from "react";
 
 export const easeOut = [0.25, 0.1, 0.25, 1] as const;
 
+/** Shared layout shift when hero variants swap copy position. */
+export const layoutShift = { duration: 0.55, ease: easeOut } as const;
+
+/** Scene entrance — opacity only (meadow, editable blobs). */
+export const sceneFade = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.55, ease: easeOut } },
+};
+
 /** Media queries that drive hero/layout responsive changes across versions. */
 const HERO_BREAKPOINT_QUERIES = [
   "(max-width: 80rem)",
