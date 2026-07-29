@@ -17,6 +17,7 @@
 }
 
 .study-title {
+  margin: 0;
   scroll-margin-top: var(--nav-inset);
 }
 
