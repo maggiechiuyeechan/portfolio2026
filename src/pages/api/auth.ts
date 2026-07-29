@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { AUTH_COOKIE, SESSION_MAX_AGE_SECONDS } from "../../config/auth";
 import { createSessionToken } from "../../lib/auth";
+import { getPostHogServer } from "../../lib/posthog-server";
 
 export const prerender = false;
 
@@ -23,7 +24,21 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     return Response.json({ ok: false, error: "Invalid request." }, { status: 400 });
   }
 
+  const sessionId = request.headers.get("X-PostHog-Session-Id") ?? undefined;
+  const distinctId = request.headers.get("X-PostHog-Distinct-Id") ?? "anonymous";
+
   if (password.trim() !== sitePassword.trim()) {
+    const posthog = getPostHogServer();
+    if (posthog) {
+      posthog.capture({
+        distinctId,
+        event: "auth_failed",
+        properties: {
+          $session_id: sessionId,
+        },
+      });
+      await posthog.flush();
+    }
     return Response.json({ ok: false, error: "Wrong password." }, { status: 401 });
   }
 
@@ -35,6 +50,18 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     path: "/",
     maxAge: SESSION_MAX_AGE_SECONDS,
   });
+
+  const posthog = getPostHogServer();
+  if (posthog) {
+    posthog.capture({
+      distinctId,
+      event: "auth_succeeded",
+      properties: {
+        $session_id: sessionId,
+      },
+    });
+    await posthog.flush();
+  }
 
   return Response.json({ ok: true });
 };

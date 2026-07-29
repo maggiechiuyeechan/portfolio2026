@@ -105,7 +105,15 @@ function AnimatedLink({
   onNavigate,
 }: Link & { active?: boolean; onNavigate?: () => void }) {
   return (
-    <AnimatedTextLink href={href} active={active} onClick={onNavigate} hoverSound="tick">
+    <AnimatedTextLink
+      href={href}
+      active={active}
+      onClick={() => {
+        window.posthog?.capture("nav_work_link_clicked", { label, href });
+        onNavigate?.();
+      }}
+      hoverSound="tick"
+    >
       {label}
     </AnimatedTextLink>
   );

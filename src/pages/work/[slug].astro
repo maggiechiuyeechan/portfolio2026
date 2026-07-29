@@ -44,3 +44,10 @@ const workLinks = [...studies]
     />
   </Container>
 </ContentShell>
+
+<script is:inline define:vars={{ caseStudySlug: slug, caseStudyTitle: study.data.title }}>
+  window.posthog?.capture('work_case_study_viewed', {
+    case_study_slug: caseStudySlug,
+    case_study_title: caseStudyTitle,
+  });
+</script>
