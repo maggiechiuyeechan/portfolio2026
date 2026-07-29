@@ -134,6 +134,7 @@ export default function PasswordForm({ onSuccess }: Props) {
         className={chipClass}
         data-cuelume-press
         data-cuelume-release
+        data-cuelume-hover="tick"
         onPointerDown={handleChipPointerDown}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}

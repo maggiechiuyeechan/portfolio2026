@@ -9,6 +9,12 @@ interface Props {
   noindex?: boolean;
   /** Override canonical path (defaults to current pathname). */
   canonicalPath?: string;
+  /**
+   * Preload the display face used by the hero h1. Only the hero routes render
+   * an h1 in that face — /work leads with h2s — so preloading it everywhere
+   * cost ~130KB of high-priority bandwidth on a page that never uses it.
+   */
+  preloadDisplayFont?: boolean;
 }
 
 const {
@@ -16,6 +22,7 @@ const {
   description = site.seoDescription,
   noindex = false,
   canonicalPath,
+  preloadDisplayFont = false,
 } = Astro.props;
 
 const canonical = new URL(canonicalPath ?? Astro.url.pathname, site.url).href;
@@ -83,6 +90,7 @@ const websiteSchema = {
       href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono&display=swap"
       rel="stylesheet"
     />
+    {/* Body face — used on every route, so always worth preloading. */}
     <link
       rel="preload"
       href="/fonts/geist/Geist-Variable.woff2"
@@ -90,20 +98,26 @@ const websiteSchema = {
       type="font/woff2"
       crossorigin
     />
-    <link
-      rel="preload"
-      href="/fonts/aguzzo/AguzzoVF-TRIAL.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/bagoss/Bagoss-w320s0w60.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    {
+      preloadDisplayFont && (
+        <>
+          <link
+            rel="preload"
+            href="/fonts/aguzzo/AguzzoVF-TRIAL.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+          />
+          <link
+            rel="preload"
+            href="/fonts/bagoss/Bagoss-w320s0w60.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+          />
+        </>
+      )
+    }
     <title>{title}</title>
   </head>
   <body>

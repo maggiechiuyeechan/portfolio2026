@@ -9,25 +9,37 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import { playHeroSound, playHeroSoundOnClick } from "../../lib/heroSounds";
+import { acquireBodyFlag } from "../../lib/bodyFlag";
 import { COLLAGE_INK_GRID, COLLAGE_SHAPES, type CollageShape } from "./collageShapes";
 
 const SHAPE_COUNT = 4;
-/** Width bands as a share of the viewport, spanning the 25%–55% range. */
-const SIZE_BANDS = [
+
+interface SizeBand {
+  min: number;
+  max: number;
+}
+
+/** Size ladder — large, medium, small (desktop). */
+const SIZE_BAND_LADDER: SizeBand[] = [
   { min: 0.45, max: 0.55 },
   { min: 0.38, max: 0.45 },
-  { min: 0.31, max: 0.38 },
   { min: 0.25, max: 0.31 },
 ];
-/** Mobile: largest shape may span the full viewport width. */
-const SIZE_BANDS_MOBILE = [
+/** Mobile: same three tiers with wider bands. */
+const SIZE_BAND_LADDER_MOBILE: SizeBand[] = [
   { min: 0.75, max: 1 },
   { min: 0.55, max: 0.75 },
-  { min: 0.4, max: 0.55 },
   { min: 0.25, max: 0.4 },
 ];
+/** Always 2 large, 1 medium, 1 small — which shape is shuffled, not the mix. */
+const SIZE_TIER_ORDER = [0, 0, 1, 2] as const;
 /** Single-column / mobile breakpoint (matches --single-column-break). */
 const MOBILE_MAX_WIDTH_PX = 660;
+
+function sizeBandsForViewport(vw: number) {
+  return vw <= MOBILE_MAX_WIDTH_PX ? SIZE_BAND_LADDER_MOBILE : SIZE_BAND_LADDER;
+}
+
 /** Keeps tall shapes from towering over a short viewport. */
 const MAX_HEIGHT_RATIO = 0.85;
 /** How far a shape may hang off the edge of the viewport. */
@@ -71,6 +83,7 @@ type Phase = "enter" | "idle" | "exit";
 interface LivePlacement extends Placement {
   id: number;
   shape: CollageShape;
+  tierIndex: number;
   widthRatio: number;
   phase: Phase;
   enterDelayMs: number;
@@ -202,24 +215,23 @@ function randomBetween(min: number, max: number) {
 }
 
 function pickShapes(vw: number) {
+  const tiers = sizeBandsForViewport(vw);
   const pool = [...COLLAGE_SHAPES];
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j]!, pool[i]!];
   }
-  const sizeBands = vw <= MOBILE_MAX_WIDTH_PX ? SIZE_BANDS_MOBILE : SIZE_BANDS;
-  // Shuffled bands keep the largest shape from always being the same one.
-  const bands = sizeBands.map((band, index) => ({ band, index }));
-  for (let i = bands.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [bands[i], bands[j]] = [bands[j]!, bands[i]!];
-  }
 
-  return pool.slice(0, SHAPE_COUNT).map((shape, index) => ({
-    shape,
-    band: bands[index]!.band,
-    widthRatio: randomBetween(bands[index]!.band.min, bands[index]!.band.max),
-  }));
+  return pool.slice(0, SHAPE_COUNT).map((shape, slotIndex) => {
+    const tierIndex = SIZE_TIER_ORDER[slotIndex]!;
+    const band = tiers[tierIndex]!;
+    return {
+      shape,
+      band,
+      tierIndex,
+      widthRatio: randomBetween(band.min, band.max),
+    };
+  });
 }
 
 type Selection = ReturnType<typeof pickShapes>;
@@ -390,6 +402,7 @@ function toLive(
       width: placement.width,
       height: placement.height,
       shape: selected.shape,
+      tierIndex: selected.tierIndex,
       widthRatio: selected.widthRatio,
       phase,
       enterDelayMs: stagger ? index * 90 : 0,
@@ -673,8 +686,10 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
     };
     window.addEventListener("resize", onResize);
 
-    const previousCursor = document.body.style.cursor;
-    document.body.style.cursor = "pointer";
+    // Scene is hover-interactive: flag <body> so hero.css can set the cursor,
+    // leaving the password input and links to override it. (Was an inline
+    // body.style.cursor write, which no element could opt out of.)
+    const releaseCursor = acquireBodyFlag("heroInteractive");
 
     const swapAtIndex = (index: number) => {
       const current = placementsRef.current;
@@ -697,7 +712,7 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
         const zones = measureTextZones(obstacleRefsRef.current);
         const others = latest.filter((_, i) => i !== slot);
         const shape = pickReplacementShape(others);
-        const band = SIZE_BANDS[Math.floor(Math.random() * SIZE_BANDS.length)]!;
+        const band = sizeBandsForViewport(vw)[outgoing.tierIndex] ?? sizeBandsForViewport(vw)[0]!;
         const widthRatio = randomBetween(band.min, band.max);
         const placed = placeOneShape(shape, widthRatio, vw, vh, zones, others);
         const id = nextIdRef.current++;
@@ -705,6 +720,7 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
           id,
           ...placed,
           shape,
+          tierIndex: outgoing.tierIndex,
           widthRatio,
           phase: reducedMotionRef.current ? "idle" : "enter",
           enterDelayMs: 0,
@@ -715,7 +731,8 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
         if (selectionRef.current) {
           selectionRef.current = next.map((entry) => ({
             shape: entry.shape,
-            band: SIZE_BANDS[0]!,
+            band: sizeBandsForViewport(vw)[entry.tierIndex]!,
+            tierIndex: entry.tierIndex,
             widthRatio: entry.widthRatio,
           }));
         }
@@ -790,7 +807,7 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerdown", onPointerDown);
-      document.body.style.cursor = previousCursor;
+      releaseCursor();
     };
   }, [reducedMotion]);
 

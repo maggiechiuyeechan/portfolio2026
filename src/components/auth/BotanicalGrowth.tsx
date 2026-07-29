@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import { playHeroSoundOnClick } from "../../lib/heroSounds";
+import { acquireBodyFlag } from "../../lib/bodyFlag";
 import {
   BOTANICAL_CIRCLES,
   BOTANICAL_STATIC,
@@ -289,8 +290,10 @@ export default function BotanicalGrowth() {
     };
     window.addEventListener("resize", onResize);
 
-    const previousCursor = document.body.style.cursor;
-    document.body.style.cursor = "pointer";
+    // Scene is hover-interactive: flag <body> so hero.css can set the cursor,
+    // leaving the password input and links to override it. (Was an inline
+    // body.style.cursor write, which no element could opt out of.)
+    const releaseCursor = acquireBodyFlag("heroInteractive");
 
     if (reducedMotion) {
       revealed = total;
@@ -321,7 +324,7 @@ export default function BotanicalGrowth() {
       window.clearTimeout(resizeTimer);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointerdown", onPointerDown);
-      document.body.style.cursor = previousCursor;
+      releaseCursor();
     };
   }, [reducedMotion, mounted, desktop]);
 

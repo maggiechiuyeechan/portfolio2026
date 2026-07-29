@@ -146,12 +146,14 @@ export function peekNextVariant(): HeroVariantId | null {
 export function bagProgress(): { seen: number; total: number } {
   const isNarrow =
     typeof window !== "undefined" && window.matchMedia(NARROW_QUERY).matches;
-  const total = eligibleVariantIds(isNarrow).length;
+  // Compute the pool ONCE — this used to call eligibleVariantIds() inside the
+  // filter predicate, rebuilding the whole array for every remaining entry.
+  const pool = eligibleVariantIds(isNarrow);
   const state = readState();
   const remaining = state
-    ? state.remaining.filter((id) => eligibleVariantIds(isNarrow).includes(id)).length
-    : total;
-  return { seen: total - remaining, total };
+    ? state.remaining.filter((id) => pool.includes(id)).length
+    : pool.length;
+  return { seen: pool.length - remaining, total: pool.length };
 }
 
 /** Clear rotation history. Wire this to a dev-only keyboard shortcut. */

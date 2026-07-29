@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "motion/react";
 import MonsterEyes from "../../auth/MonsterEyes";
+import { useSceneAnchor } from "../../../lib/useSceneAnchor";
 import type { HeroSceneProps } from "../../../config/heroVariants";
 
 const monsterArt: React.CSSProperties = {
@@ -23,38 +24,10 @@ function monsterNameGapPx(): number {
 
 export default function MonstersScene({ obstacleRefs, variants }: HeroSceneProps) {
   const nameRef = obstacleRefs?.[0];
-  const [anchor, setAnchor] = useState<{ x: number; y: number } | null>(null);
   const [mounted, setMounted] = useState(false);
+  const anchor = useSceneAnchor(nameRef, monsterNameGapPx);
 
   useEffect(() => setMounted(true), []);
-
-  useEffect(() => {
-    if (!mounted || !nameRef) return;
-
-    const measure = () => {
-      const el = nameRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      if (rect.width === 0 && rect.height === 0) return;
-      setAnchor({
-        x: rect.left + rect.width / 2,
-        y: rect.top - monsterNameGapPx(),
-      });
-    };
-
-    measure();
-    const boot = window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(measure);
-    });
-    window.addEventListener("resize", measure);
-    const sync = window.setInterval(measure, 200);
-
-    return () => {
-      cancelAnimationFrame(boot);
-      window.removeEventListener("resize", measure);
-      window.clearInterval(sync);
-    };
-  }, [mounted, nameRef]);
 
   if (!mounted) return null;
 

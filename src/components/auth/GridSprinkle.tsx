@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import { playHeroSound, playHeroSoundOnClick } from "../../lib/heroSounds";
+import { acquireBodyFlag } from "../../lib/bodyFlag";
 import {
   GRID_SPRINKLE_PALETTE_I,
   type GridSprinklePalette,
@@ -411,8 +412,10 @@ export default function GridSprinkle({
     const onResize = () => layout();
     window.addEventListener("resize", onResize);
 
-    const previousCursor = document.body.style.cursor;
-    document.body.style.cursor = "pointer";
+    // Scene is hover-interactive: flag <body> so hero.css can set the cursor,
+    // leaving the password input and links to override it. (Was an inline
+    // body.style.cursor write, which no element could opt out of.)
+    const releaseCursor = acquireBodyFlag("heroInteractive");
 
     // Hover to burst a dot into tiny firework circles.
     const onPointerMove = (event: PointerEvent) => {
@@ -426,20 +429,36 @@ export default function GridSprinkle({
       const my = event.clientY;
       const hitR = eraseRadiusPx();
       const hitR2 = hitR * hitR;
-      const now = performance.now();
-      const colorsOnCanvas = [...new Set(dotsRef.current.map((dot) => dot.color))];
-      const next: Dot[] = [];
-      let hit = false;
+      const dots = dotsRef.current;
 
-      for (const dot of dotsRef.current) {
+      // Cheap scan first. The previous version built a Set of every colour on
+      // the canvas AND a full copy of the dot array on EVERY pointermove, then
+      // discarded both when the cursor hadn't touched anything — two throwaway
+      // allocations per event, at up to 120Hz, purely from moving the mouse.
+      // Nothing below runs unless the cursor is actually over a dot.
+      let hitIndex = -1;
+      for (let i = 0; i < dots.length; i++) {
+        const dot = dots[i]!;
+        const dx = dot.nx * width - mx;
+        const dy = dot.ny * height - my;
+        if (dx * dx + dy * dy <= hitR2) {
+          hitIndex = i;
+          break;
+        }
+      }
+      if (hitIndex === -1) return;
+
+      const now = performance.now();
+      const colorsOnCanvas = [...new Set(dots.map((dot) => dot.color))];
+      const next: Dot[] = [];
+
+      for (const dot of dots) {
         const dx = dot.nx * width - mx;
         const dy = dot.ny * height - my;
         if (dx * dx + dy * dy > hitR2) {
           next.push(dot);
           continue;
         }
-
-        hit = true;
         if (!reducedMotionRef.current) {
           sparksRef.current.push(
             ...createBurst(dot.nx * width, dot.ny * height, colorsOnCanvas, now),
@@ -447,7 +466,6 @@ export default function GridSprinkle({
         }
       }
 
-      if (!hit) return;
       playHeroSound("sparkle", "grid-burst");
       dotsRef.current = next;
       ensureAnim();
@@ -470,7 +488,7 @@ export default function GridSprinkle({
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerdown", onPointerDown);
-      document.body.style.cursor = previousCursor;
+      releaseCursor();
       if (syncTimer) window.clearInterval(syncTimer);
       window.clearTimeout(stopSync);
     };
@@ -497,10 +515,18 @@ export default function GridSprinkle({
         style={{
           position: "absolute",
           inset: 0,
-          backgroundColor: "var(--color-background-main)",
+          backgroundColor: "var(--color-gray-1)",
+        }}
+      />
+      <div
+        className="grid-sprinkle__grid-lines"
+        style={{
+          position: "absolute",
+          inset: 0,
+          mixBlendMode: "multiply",
           backgroundImage: `
-            linear-gradient(var(--color-border-low-contrast) 1px, transparent 1px),
-            linear-gradient(90deg, var(--color-border-low-contrast) 1px, transparent 1px)
+            linear-gradient(#f7f7f7 1px, transparent 1px),
+            linear-gradient(90deg, #f7f7f7 1px, transparent 1px)
           `,
           backgroundSize: `${GRID_CELL}px ${GRID_CELL}px`,
         }}
@@ -514,6 +540,7 @@ export default function GridSprinkle({
           width: "100%",
           height: "100%",
           display: "block",
+          mixBlendMode: "multiply",
         }}
       />
     </div>,

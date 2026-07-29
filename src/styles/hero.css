@@ -62,7 +62,8 @@
   .hero {
     justify-content: flex-end;
     padding-top: var(--spacing-5);
-    padding-bottom: 25vh;
+    /* Room for bottom collage shapes without a huge dead zone above them. */
+    padding-bottom: max(4rem, 12vh);
   }
 
   .hero-inner {
@@ -111,6 +112,30 @@
 }
 
 /* ---------------------------------------------------------------------------
+ * Interactive scenes (B, C, I, L, M) — hovering the background does something,
+ * so the whole page reads as pointer.
+ *
+ * Set by acquireBodyFlag("heroInteractive") from the scene effect. Previously
+ * each scene wrote document.body.style.cursor directly, which nothing could
+ * override — including the password input, which showed a pointer instead of
+ * an I-beam on the one control the entire site is gated behind.
+ *
+ * Note the hero copy (name, tagline) is NOT corrected here and still shows the
+ * pointer. Those elements are `pointer-events: none` so the scene underneath
+ * stays hoverable, which means they never win the cursor hit-test. Changing
+ * that would mean restructuring the pointer-events layering — out of scope.
+ * ------------------------------------------------------------------------- */
+
+body[data-hero-interactive] {
+  cursor: pointer;
+}
+
+body[data-hero-interactive] input,
+body[data-hero-interactive] textarea {
+  cursor: text;
+}
+
+/* ---------------------------------------------------------------------------
  * Scene frame (Versions B, C, I, F, L, N).
  * Solid background-main mat + scene clip + border-default on inner edge.
  * ------------------------------------------------------------------------- */
@@ -127,7 +152,8 @@ body[data-hero-scene-frame] .shape-collage,
 body[data-hero-scene-frame] .shape-desk,
 body[data-hero-scene-frame] .editable-blob-field,
 body[data-hero-scene-frame] .physics-tiles,
-body[data-hero-scene-frame] .hero-grid-backdrop {
+body[data-hero-scene-frame] .hero-grid-backdrop,
+body[data-hero-scene-frame] .hero-grid-backdrop__lines {
   clip-path: inset(
     var(--hero-scene-frame-inset) round var(--hero-scene-frame-radius)
   );
@@ -178,7 +204,108 @@ body[data-hero-scene-frame] .hero-grid-backdrop {
   body[data-hero-scene-frame] .shape-desk,
   body[data-hero-scene-frame] .editable-blob-field,
   body[data-hero-scene-frame] .physics-tiles,
-  body[data-hero-scene-frame] .hero-grid-backdrop {
+  body[data-hero-scene-frame] .hero-grid-backdrop,
+  body[data-hero-scene-frame] .hero-grid-backdrop__lines {
     clip-path: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Grid line fade around hero copy (Versions I & L) — keeps lines off the text.
+ * ------------------------------------------------------------------------- */
+
+.hero-grid-backdrop__lines,
+.grid-sprinkle__grid-lines {
+  --hero-grid-text-mask-x: 50%;
+  --hero-grid-text-mask-y: 46%;
+  --hero-grid-text-mask-rx: 21rem;
+  --hero-grid-text-mask-ry: 17rem;
+  --hero-grid-text-mask-opacity: 0.6;
+  --hero-grid-text-mask-floor: calc(1 - var(--hero-grid-text-mask-opacity));
+  -webkit-mask-image: radial-gradient(
+    ellipse var(--hero-grid-text-mask-rx) var(--hero-grid-text-mask-ry) at
+      var(--hero-grid-text-mask-x) var(--hero-grid-text-mask-y),
+    rgba(0, 0, 0, var(--hero-grid-text-mask-floor)) 0%,
+    rgba(0, 0, 0, var(--hero-grid-text-mask-floor)) 38%,
+    rgba(0, 0, 0, calc(var(--hero-grid-text-mask-floor) + 0.18 * var(--hero-grid-text-mask-opacity))) 52%,
+    rgba(0, 0, 0, calc(var(--hero-grid-text-mask-floor) + 0.55 * var(--hero-grid-text-mask-opacity))) 68%,
+    black 88%
+  );
+  mask-image: radial-gradient(
+    ellipse var(--hero-grid-text-mask-rx) var(--hero-grid-text-mask-ry) at
+      var(--hero-grid-text-mask-x) var(--hero-grid-text-mask-y),
+    rgba(0, 0, 0, var(--hero-grid-text-mask-floor)) 0%,
+    rgba(0, 0, 0, var(--hero-grid-text-mask-floor)) 38%,
+    rgba(0, 0, 0, calc(var(--hero-grid-text-mask-floor) + 0.18 * var(--hero-grid-text-mask-opacity))) 52%,
+    rgba(0, 0, 0, calc(var(--hero-grid-text-mask-floor) + 0.55 * var(--hero-grid-text-mask-opacity))) 68%,
+    black 88%
+  );
+}
+
+@media (max-width: 41.25rem), (max-height: 40.625rem) {
+  .hero-grid-backdrop__lines,
+  .grid-sprinkle__grid-lines {
+    --hero-grid-text-mask-y: 70%;
+    --hero-grid-text-mask-rx: 19rem;
+    --hero-grid-text-mask-ry: 15rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * "Surprise me" — gray shimmer after ~5s idle, ~6.2s sweep (same pace as before).
+ * Base: --color-typography-content-secondary; peak: --color-gray-6.
+ * ------------------------------------------------------------------------- */
+
+.hero-surprise-link {
+  background: linear-gradient(
+    90deg,
+    var(--color-typography-content-secondary) 0%,
+    var(--color-typography-content-secondary) 38%,
+    var(--color-gray-6) 50%,
+    var(--color-typography-content-secondary) 62%,
+    var(--color-typography-content-secondary) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 150% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hero-surprise-shimmer 11.2s ease-in-out infinite;
+}
+
+.hero-surprise-link:hover,
+.hero-surprise-link:focus-visible {
+  animation-play-state: paused;
+  background: none;
+  color: var(--color-typography-content-default);
+  -webkit-background-clip: unset;
+  background-clip: unset;
+}
+
+@keyframes hero-surprise-shimmer {
+  /* 5s rest, then ~6.2s sweep — matches the old 20s-loop timing. */
+  0%,
+  44.64%,
+  100% {
+    background-position: 150% center;
+  }
+
+  99.64% {
+    background-position: -50% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-surprise-link {
+    animation: none;
+    background: none;
+    color: var(--color-typography-content-secondary);
+    -webkit-background-clip: unset;
+    background-clip: unset;
+  }
+
+  .hero-surprise-link:hover,
+  .hero-surprise-link:focus-visible {
+    color: var(--color-typography-content-default);
   }
 }

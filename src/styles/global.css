@@ -76,6 +76,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+ * Smooth scrolling is motion, and the nav's anchor links trigger it on every
+ * jump. Honour the OS setting — this was the one global animation with no
+ * reduced-motion escape.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   margin: 0;
   background: var(--color-background-main);

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "headers": [
+    {
+      "comment": "Collage SVGs, tiles, shapes, noise tile, meadow.mp4 and the logos. These are referenced by literal /images/... URLs from /public, so Astro never content-hashes them and they inherited no cache rule at all — only /_astro/* gets one, from the adapter. Every visit was re-validating ~3MB of art. Filenames here are stable (collage-001.svg etc), so a year is safe. IF YOU RE-EXPORT A SHAPE, GIVE IT A NEW FILENAME — immutable means returning visitors will not re-fetch a changed file.",
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "comment": "Deliberately 7 days, not a year, because the h1 face is being swapped and these filenames are not content-hashed — a year of immutable would strand returning visitors on the old font. Once the font files carry a version in the name (Geist-Variable-v2.woff2), raise this to 31536000 + immutable to match /images.",
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
+  ]
+}

@@ -32,14 +32,31 @@ const LAZY_SCENES: Record<string, ComponentType<HeroSceneProps>> =
   Object.fromEntries(HERO_VARIANTS.map((v) => [v.id, lazy(v.load)]));
 
 /**
- * Resolved once per page load. Order matters: a forced variant must be
- * checked BEFORE takeVariant(), or a deep link would consume a bag slot and
- * shorten the visitor's rotation.
+ * Resolved at most once per page load, and ONLY when this page actually needs
+ * a roll.
+ *
+ * This used to be a module-scope `const rolledId = forcedVariant() ??
+ * takeVariant()`, which ran unconditionally — before the `variantId` prop was
+ * ever read. /versions/<id> passes an explicit variantId and carries no `?v=`
+ * param, so forcedVariant() returned null, takeVariant() ran anyway, and its
+ * result was thrown away. Every visit to a versions page silently consumed a
+ * bag slot and shortened the real rotation on /, directly contradicting the
+ * doc comment on that route.
+ *
+ * Memoised so React StrictMode's double-invoke can't burn two slots either.
  */
-const rolledId: HeroVariantId = forcedVariant() ?? takeVariant();
+let memoisedRoll: HeroVariantId | null = null;
+
+function getRolledId(): HeroVariantId {
+  if (memoisedRoll === null) memoisedRoll = forcedVariant() ?? takeVariant();
+  return memoisedRoll;
+}
 
 export default function HeroRotator({ name, title, tagline, variantId }: Props) {
-  const [activeId, setActiveId] = useState<HeroVariantId>(variantId ?? rolledId);
+  // Lazy initialiser: getRolledId() is not called at all when variantId is set.
+  const [activeId, setActiveId] = useState<HeroVariantId>(
+    () => variantId ?? getRolledId(),
+  );
   const [playEntrance, setPlayEntrance] = useState(true);
   const variant = getVariant(activeId) ?? HERO_VARIANTS[0]!;
   const Scene = LAZY_SCENES[variant.id]!;

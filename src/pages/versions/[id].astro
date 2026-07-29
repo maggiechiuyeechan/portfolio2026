@@ -26,7 +26,7 @@ export function getStaticPaths() {
 const { variant } = Astro.props;
 ---
 
-<BaseLayout title={`${variant.label} — ${site.name}`} noindex>
+<BaseLayout title={`${variant.label} — ${site.name}`} noindex preloadDisplayFont>
   <div class="hero">
     <div class="hero-inner">
       <HeroRotator

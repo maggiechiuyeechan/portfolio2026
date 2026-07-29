@@ -5,10 +5,12 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "motion/react";
+import type { Variants } from "motion/react";
 import Matter from "matter-js";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import { getSceneFrameBounds, type SceneFrameBounds } from "../../lib/sceneFrame";
 import { playHeroSound } from "../../lib/heroSounds";
+import { acquireBodyFlag } from "../../lib/bodyFlag";
 import PhysicsTileFace from "./PhysicsTileFace";
 import PhysicsShapeFace from "./PhysicsShapeFace";
 import { STATIC_TILE_POSES, TILES, TILES_SPAWN, TILES_SPAWN_MOBILE, type TileDef } from "./physicsTiles";
@@ -16,7 +18,7 @@ import { shapeBodyDimensions, type ShapeDef, type StaticShapePose } from "./phys
 import { SHAPES_C, SHAPES_C_SPAWN, STATIC_SHAPE_POSES_C } from "./physicsShapesC";
 
 interface Props {
-  variants?: Record<string, unknown>;
+  variants?: Variants;
   fullCanvas?: boolean;
   obstacleRefs?: React.RefObject<HTMLElement | null>[];
   variant?: "tiles" | "shapes-c";
@@ -370,8 +372,6 @@ export default function PhysicsTileStack({
     });
 
     const obstacleTimer = fullCanvas ? window.setInterval(syncObstacles, 500) : undefined;
-    let measuredWidth = width;
-    let measuredHeight = height;
     let measuredSize = size;
     let wallBounds = bounds;
 
@@ -393,16 +393,16 @@ export default function PhysicsTileStack({
       applyPlayAreaWalls(ground, leftWall, rightWall, nextBounds, wallThickness, wallBounds);
       wallBounds = nextBounds;
 
-      measuredWidth = next.width;
-      measuredHeight = next.height;
       measuredSize = next.size;
       syncObstacles();
     };
     window.addEventListener("resize", onResize);
 
     const lastPopAt = new Map<number, number>();
-    const previousCursor = document.body.style.cursor;
-    document.body.style.cursor = "pointer";
+    // Scene is hover-interactive: flag <body> so hero.css can set the cursor,
+    // leaving the password input and links to override it. (Was an inline
+    // body.style.cursor write, which no element could opt out of.)
+    const releaseCursor = acquireBodyFlag("heroInteractive");
 
     // Cursor contact wakes a piece and kicks it upward.
     const popAt = (clientX: number, clientY: number, withSound: boolean) => {
@@ -452,7 +452,7 @@ export default function PhysicsTileStack({
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerdown", onPointerDown);
-      document.body.style.cursor = previousCursor;
+      releaseCursor();
       Events.off(engine, "afterUpdate", onAfterUpdate);
       Runner.stop(runner);
       Engine.clear(engine);

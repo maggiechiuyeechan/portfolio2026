@@ -15,6 +15,7 @@
  * whole registry back into one chunk.
  */
 import type { ComponentType } from "react";
+import type { Variants } from "motion/react";
 
 export type HeroVariantId =
   | "meadow"
@@ -65,8 +66,12 @@ export interface HeroVariant {
 export interface HeroSceneProps {
   /** Refs to the copy blocks, so physics scenes can treat them as obstacles. */
   obstacleRefs?: React.RefObject<HTMLElement | null>[];
-  /** Motion variants from the shell's stagger container. Undefined = reduced motion. */
-  variants?: Record<string, unknown>;
+  /**
+   * Motion variants from the shell's stagger container. Undefined = reduced
+   * motion. Typed as motion's own `Variants` so scenes can spread it straight
+   * onto a `motion.*` element without a cast.
+   */
+  variants?: Variants;
   reducedMotion?: boolean;
 }
 

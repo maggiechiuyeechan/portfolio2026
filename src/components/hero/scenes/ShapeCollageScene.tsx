@@ -4,7 +4,7 @@
  * than being a shell concern.
  */
 import ShapeCollage from "../../auth/ShapeCollage";
-import HeroGridBackdrop from "../../auth/HeroGridBackdrop";
+import HeroGridBackdrop, { HeroGridLines } from "../../auth/HeroGridBackdrop";
 import type { HeroSceneProps } from "../../../config/heroVariants";
 
 export default function ShapeCollageScene({ obstacleRefs }: HeroSceneProps) {
@@ -12,6 +12,7 @@ export default function ShapeCollageScene({ obstacleRefs }: HeroSceneProps) {
     <>
       <HeroGridBackdrop />
       <ShapeCollage obstacleRefs={obstacleRefs} />
+      <HeroGridLines />
     </>
   );
 }

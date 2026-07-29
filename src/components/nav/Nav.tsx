@@ -28,42 +28,57 @@ const linkLabelStyle: React.CSSProperties = {
   color: "var(--color-typography-content-secondary)",
 };
 
-function getScrollMarker() {
-  const nav = document.querySelector(".shell-nav");
-  if (nav) return nav.getBoundingClientRect().bottom + 4;
-  return 48;
-}
-
+/**
+ * Scroll spy via IntersectionObserver.
+ *
+ * The previous implementation ran on every scroll event and called
+ * getBoundingClientRect() once for the nav plus once per work link — six
+ * forced layouts per scroll tick with five studies, unthrottled.
+ *
+ * IntersectionObserver does the same job off the main thread. The rootMargin
+ * reproduces the old marker: a section becomes active once its title crosses
+ * just below the nav. Top inset is negative down to the nav's bottom edge;
+ * bottom is -100% so only titles above the line are ever "intersecting".
+ */
 function useActiveWorkLink(workLinks: Link[]) {
   const [activeHref, setActiveHref] = useState(() => workLinks[0]?.href ?? "");
 
   useEffect(() => {
     if (workLinks.length === 0) return;
 
-    const updateActive = () => {
-      const marker = getScrollMarker();
-      let current = workLinks[0].href;
+    const nav = document.querySelector(".shell-nav");
+    // One read at setup, not one per scroll tick.
+    const marker = nav ? Math.round(nav.getBoundingClientRect().bottom + 4) : 48;
 
-      for (const link of workLinks) {
-        const title = document.getElementById(link.href.slice(1));
-        if (title && title.getBoundingClientRect().top <= marker) {
-          current = link.href;
+    const targets = workLinks
+      .map((link) => ({ link, el: document.getElementById(link.href.slice(1)) }))
+      .filter((entry): entry is { link: Link; el: HTMLElement } => !!entry.el);
+
+    if (targets.length === 0) return;
+
+    // Which titles are currently above the marker line.
+    const above = new Set<string>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const href = `#${entry.target.id}`;
+          if (entry.isIntersecting) above.add(href);
+          else above.delete(href);
         }
-      }
+        // Last one in document order that's above the line wins — same
+        // resolution rule as the old loop.
+        let current = workLinks[0]!.href;
+        for (const { link } of targets) {
+          if (above.has(link.href)) current = link.href;
+        }
+        setActiveHref(current);
+      },
+      { rootMargin: `-${marker}px 0px -100% 0px`, threshold: 0 },
+    );
 
-      setActiveHref(current);
-    };
-
-    updateActive();
-    window.addEventListener("scroll", updateActive, { passive: true });
-    window.addEventListener("resize", updateActive);
-    window.addEventListener("hashchange", updateActive);
-
-    return () => {
-      window.removeEventListener("scroll", updateActive);
-      window.removeEventListener("resize", updateActive);
-      window.removeEventListener("hashchange", updateActive);
-    };
+    for (const { el } of targets) observer.observe(el);
+    return () => observer.disconnect();
   }, [workLinks]);
 
   return activeHref;
@@ -90,7 +105,7 @@ function AnimatedLink({
   onNavigate,
 }: Link & { active?: boolean; onNavigate?: () => void }) {
   return (
-    <AnimatedTextLink href={href} active={active} onClick={onNavigate}>
+    <AnimatedTextLink href={href} active={active} onClick={onNavigate} hoverSound="tick">
       {label}
     </AnimatedTextLink>
   );
@@ -176,13 +191,23 @@ export default function Nav({ workLinks, socials, logoSrc, logoAlt }: Props) {
   ];
 
   const logo = (
-    <a href="/work" className="nav-logo" style={{ flex: "1 0 0", minWidth: 0 }}>
+    <a
+      href="/work"
+      className="nav-logo"
+      style={{ flex: "1 0 0", minWidth: 0 }}
+      data-cuelume-hover="tick"
+    >
       <img src={logoSrc} alt={logoAlt} width={28} height={14} />
     </a>
   );
 
-  if (isMobile) {
-    return (
+  // Both navs render; nav.css decides which is visible at 41.25rem. Gating on
+  // isMobile in JS meant the server always emitted the desktop sidebar, so
+  // phones painted the wrong nav and swapped it after hydration — a visible
+  // flash plus a layout shift. useIsMobile now only closes the menu when the
+  // viewport grows past the breakpoint with the panel still open.
+  return (
+    <>
       <div className="mobile-nav">
         <div className="mobile-nav-bar">
           {logo}
@@ -224,17 +249,15 @@ export default function Nav({ workLinks, socials, logoSrc, logoAlt }: Props) {
           )}
         </AnimatePresence>
       </div>
-    );
-  }
 
-  return (
-    <nav className="nav-desktop" aria-label="Main">
-      {logo}
-      <NavMenu
-        workLinks={workLinks}
-        socials={navSocials}
-        activeHref={activeHref}
-      />
-    </nav>
+      <nav className="nav-desktop" aria-label="Main">
+        {logo}
+        <NavMenu
+          workLinks={workLinks}
+          socials={navSocials}
+          activeHref={activeHref}
+        />
+      </nav>
+    </>
   );
 }

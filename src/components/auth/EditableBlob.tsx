@@ -16,6 +16,7 @@ import {
   nodesFromSubpaths,
   pointsBounds,
 } from "./blobPath";
+import type { LiveBlobNode } from "./blobPath";
 import type { BlobNode, BlobSubpath } from "./editableBlobs";
 
 const NODE_RADIUS = 2.5;
@@ -59,8 +60,16 @@ export default function EditableBlob({
   const reducedMotion = usePrefersReducedMotion();
   const subpathsRef = useRef(cloneSubpaths(initialSubpaths));
   const [pathD, setPathD] = useState(() => cubicsToPath(initialSubpaths));
-  const [nodes, setNodes] = useState(() =>
-    initialNodes.map((n) => ({ ...n })),
+  // Narrow to BlobNode at the boundary. The authored nodes carry `ringLength`,
+  // which nothing here reads and which nodesFromSubpaths() cannot reproduce —
+  // keeping it in the state type made every post-drag update a type error.
+  const [nodes, setNodes] = useState<LiveBlobNode[]>(() =>
+    initialNodes.map(({ x, y, subIndex, anchorIndex }) => ({
+      x,
+      y,
+      subIndex,
+      anchorIndex,
+    })),
   );
   const [revealed, setRevealed] = useState(false);
   const [activeNode, setActiveNode] = useState<number | null>(null);

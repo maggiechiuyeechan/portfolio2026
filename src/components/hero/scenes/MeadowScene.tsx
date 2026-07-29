@@ -6,6 +6,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import HeroAvatarHalftone from "../../auth/HeroAvatarHalftone";
+import { useSceneAnchor } from "../../../lib/useSceneAnchor";
 import type { HeroSceneProps } from "../../../config/heroVariants";
 
 const SRC = "/images/meadow.mp4";
@@ -16,38 +17,10 @@ const NAME_GAP_PX = 24;
 
 export default function MeadowScene({ obstacleRefs, variants }: HeroSceneProps) {
   const nameRef = obstacleRefs?.[0];
-  const [anchor, setAnchor] = useState<{ x: number; y: number } | null>(null);
   const [mounted, setMounted] = useState(false);
+  const anchor = useSceneAnchor(nameRef, NAME_GAP_PX);
 
   useEffect(() => setMounted(true), []);
-
-  useEffect(() => {
-    if (!mounted || !nameRef) return;
-
-    const measure = () => {
-      const el = nameRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      if (rect.width === 0 && rect.height === 0) return;
-      setAnchor({
-        x: rect.left + rect.width / 2,
-        y: rect.top - NAME_GAP_PX,
-      });
-    };
-
-    measure();
-    const boot = window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(measure);
-    });
-    window.addEventListener("resize", measure);
-    const sync = window.setInterval(measure, 200);
-
-    return () => {
-      cancelAnimationFrame(boot);
-      window.removeEventListener("resize", measure);
-      window.clearInterval(sync);
-    };
-  }, [mounted, nameRef]);
 
   if (!mounted) return null;
 

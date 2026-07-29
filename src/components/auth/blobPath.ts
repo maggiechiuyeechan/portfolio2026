@@ -129,10 +129,22 @@ export function cloneSubpaths(subpaths: BlobSubpath[]): BlobSubpath[] {
   }));
 }
 
-export function nodesFromSubpaths(
-  subpaths: BlobSubpath[],
-): { x: number; y: number; subIndex: number; anchorIndex: number }[] {
-  const nodes: { x: number; y: number; subIndex: number; anchorIndex: number }[] = [];
+/**
+ * An on-curve anchor as the editor tracks it while dragging. Deliberately
+ * narrower than the authored `BlobNode` in `editableBlobs.ts`, which also
+ * carries `ringLength` — that field describes the source ring and cannot be
+ * recovered from live subpaths, so it is dropped at this boundary rather
+ * than faked.
+ */
+export interface LiveBlobNode {
+  x: number;
+  y: number;
+  subIndex: number;
+  anchorIndex: number;
+}
+
+export function nodesFromSubpaths(subpaths: BlobSubpath[]): LiveBlobNode[] {
+  const nodes: LiveBlobNode[] = [];
   subpaths.forEach((sp, subIndex) => {
     sp.segments.forEach((seg, anchorIndex) => {
       nodes.push({ x: seg.x0, y: seg.y0, subIndex, anchorIndex });

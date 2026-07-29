@@ -2,11 +2,12 @@
  * Hero avatar in a rounded frame.
  */
 import { motion } from "motion/react";
+import type { Variants } from "motion/react";
 
 interface Props {
   src: string;
   alt: string;
-  variants?: Record<string, unknown>;
+  variants?: Variants;
 }
 
 const FRAME_RADIUS = "3.5rem";

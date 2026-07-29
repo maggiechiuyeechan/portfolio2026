@@ -5,6 +5,7 @@
  */
 import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
+import type { Variants } from "motion/react";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import { playHeroSoundOnClick } from "../../lib/heroSounds";
 
@@ -13,7 +14,7 @@ interface Props {
   alt: string;
   /** Still frame shown until the video has decodable frames. */
   poster?: string;
-  variants?: Record<string, unknown>;
+  variants?: Variants;
 }
 
 const FRAME_RADIUS = "6.5rem";

@@ -8,6 +8,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "motion/react";
+import type { Variants } from "motion/react";
 import EditableBlob from "./EditableBlob";
 import { EDITABLE_BLOBS, type EditableBlobDef } from "./editableBlobs";
 import { cloneSubpaths } from "./blobPath";
@@ -77,7 +78,7 @@ interface Placement {
 
 interface Props {
   obstacleRefs?: React.RefObject<HTMLElement | null>[];
-  variants?: Record<string, unknown>;
+  variants?: Variants;
 }
 
 function measureZones(refs: React.RefObject<HTMLElement | null>[]): Rect[] {
@@ -439,6 +440,7 @@ export default function EditableBlobField({ obstacleRefs = [], variants }: Props
         zIndex: 1,
         pointerEvents: "none",
         overflow: "hidden",
+        backgroundColor: "var(--color-gray-1)",
       }}
     >
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>

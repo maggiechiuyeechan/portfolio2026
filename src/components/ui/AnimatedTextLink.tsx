@@ -30,7 +30,16 @@ interface Props {
   active?: boolean;
   /** Hero bio links sit inline with · separators. */
   inline?: boolean;
-  onClick?: () => void;
+  /** Cursor-style gray shimmer — ~5s idle, ~6.2s sweep (Surprise me). */
+  shimmer?: boolean;
+  /** Cuelume pointerenter cue (nav uses tick). */
+  hoverSound?: string;
+  /**
+   * Receives the click event — "Surprise me" is an <a href="/"> that calls
+   * preventDefault() rather than navigating. Typed as the full handler so
+   * that stays checked; a bare `() => void` silently made `event` an `any`.
+   */
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 export default function AnimatedTextLink({
@@ -38,10 +47,28 @@ export default function AnimatedTextLink({
   children,
   active = false,
   inline = false,
+  shimmer = false,
+  hoverSound,
   onClick,
 }: Props) {
   const openInNewTab = href.startsWith("http");
   const restColor = active ? colorDefault : colorSecondary;
+  const hoverSoundAttr = hoverSound ? ({ "data-cuelume-hover": hoverSound } as const) : {};
+
+  if (shimmer) {
+    return (
+      <a
+        href={href}
+        className={`hero-surprise-link${inline ? " hero-surprise-link--inline" : ""}`}
+        style={inline ? inlineStyle : blockStyle}
+        onClick={onClick}
+        {...hoverSoundAttr}
+        {...(openInNewTab ? { target: "_blank", rel: "noreferrer" } : {})}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
     <motion.a
@@ -54,6 +81,7 @@ export default function AnimatedTextLink({
       transition={{ duration: 0.15, ease: easeOut }}
       aria-current={active ? "true" : undefined}
       onClick={onClick}
+      {...hoverSoundAttr}
       {...(openInNewTab ? { target: "_blank", rel: "noreferrer" } : {})}
     >
       {children}

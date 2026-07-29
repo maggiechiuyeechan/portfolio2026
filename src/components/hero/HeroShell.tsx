@@ -191,6 +191,7 @@ export default function HeroShell({
           <AnimatedTextLink
             href="/"
             inline
+            shimmer={!reducedMotion}
             onClick={(event) => {
               event.preventDefault();
               onSurprise?.();
