@@ -58,6 +58,10 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog
           api_host: posthogHost,
           defaults: "2026-05-30",
           person_profiles: "identified_only",
+          session_recording: {
+            maskAllInputs: true,
+          },
+          disable_session_recording: window.location.hostname === "localhost",
         });
       }
     </script>
