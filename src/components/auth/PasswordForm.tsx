@@ -72,6 +72,7 @@ export default function PasswordForm({ onSuccess }: Props) {
 
     setStatus("submitting");
     play("loading");
+    window.posthog?.capture("password_submitted");
     try {
       const response = await fetch("/api/auth", {
         method: "POST",

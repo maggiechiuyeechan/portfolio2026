@@ -39,3 +39,7 @@ const workLinks = studies.map((study) => ({
     }
   </Container>
 </ContentShell>
+
+<script is:inline>
+  window.posthog?.capture('work_section_viewed');
+</script>

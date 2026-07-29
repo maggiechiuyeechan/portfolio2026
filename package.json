@@ -22,6 +22,8 @@
     "geist": "^1.7.2",
     "matter-js": "^0.20.0",
     "motion": "^12.42.2",
+    "posthog-js": "^1.407.8",
+    "posthog-node": "^5.46.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwindcss": "^4.3.3"

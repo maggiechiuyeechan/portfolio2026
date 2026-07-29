@@ -176,15 +176,15 @@ export default function HeroShell({
           className="text-body hero-bio"
           style={{ maxWidth: "100%", pointerEvents: "auto" }}
         >
-          <AnimatedTextLink href={linkedin.href} inline>
+          <AnimatedTextLink href={linkedin.href} inline onClick={() => window.posthog?.capture("social_link_clicked", { platform: "linkedin" })}>
             {linkedin.label}
           </AnimatedTextLink>
           <span aria-hidden="true"> · </span>
-          <AnimatedTextLink href={x.href} inline>
+          <AnimatedTextLink href={x.href} inline onClick={() => window.posthog?.capture("social_link_clicked", { platform: "x" })}>
             {x.label}
           </AnimatedTextLink>
           <span aria-hidden="true"> · </span>
-          <AnimatedTextLink href={contact.href} inline>
+          <AnimatedTextLink href={contact.href} inline onClick={() => window.posthog?.capture("social_link_clicked", { platform: "email" })}>
             {contact.label}
           </AnimatedTextLink>
           <span aria-hidden="true"> · </span>
@@ -194,6 +194,7 @@ export default function HeroShell({
             shimmer={!reducedMotion}
             onClick={(event) => {
               event.preventDefault();
+              window.posthog?.capture("hero_surprise_clicked", { from_variant: variantId });
               onSurprise?.();
             }}
           >
