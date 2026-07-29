@@ -34,6 +34,8 @@ interface Props {
   shimmer?: boolean;
   /** Cuelume pointerenter cue (nav uses tick). */
   hoverSound?: string;
+  /** Cuelume pointerdown/up cues (nav uses default press + release). */
+  pressReleaseSound?: boolean;
   /**
    * Receives the click event — "Surprise me" is an <a href="/"> that calls
    * preventDefault() rather than navigating. Typed as the full handler so
@@ -49,11 +51,15 @@ export default function AnimatedTextLink({
   inline = false,
   shimmer = false,
   hoverSound,
+  pressReleaseSound = false,
   onClick,
 }: Props) {
   const openInNewTab = href.startsWith("http");
   const restColor = active ? colorDefault : colorSecondary;
   const hoverSoundAttr = hoverSound ? ({ "data-cuelume-hover": hoverSound } as const) : {};
+  const pressReleaseSoundAttr = pressReleaseSound
+    ? ({ "data-cuelume-press": true, "data-cuelume-release": true } as const)
+    : {};
 
   if (shimmer) {
     return (
@@ -63,6 +69,7 @@ export default function AnimatedTextLink({
         style={inline ? inlineStyle : blockStyle}
         onClick={onClick}
         {...hoverSoundAttr}
+        {...pressReleaseSoundAttr}
         {...(openInNewTab ? { target: "_blank", rel: "noreferrer" } : {})}
       >
         {children}
@@ -82,6 +89,7 @@ export default function AnimatedTextLink({
       aria-current={active ? "true" : undefined}
       onClick={onClick}
       {...hoverSoundAttr}
+      {...pressReleaseSoundAttr}
       {...(openInNewTab ? { target: "_blank", rel: "noreferrer" } : {})}
     >
       {children}

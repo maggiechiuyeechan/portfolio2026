@@ -105,7 +105,13 @@ function AnimatedLink({
   onNavigate,
 }: Link & { active?: boolean; onNavigate?: () => void }) {
   return (
-    <AnimatedTextLink href={href} active={active} onClick={onNavigate} hoverSound="tick">
+    <AnimatedTextLink
+      href={href}
+      active={active}
+      onClick={onNavigate}
+      hoverSound="tick"
+      pressReleaseSound
+    >
       {label}
     </AnimatedTextLink>
   );
