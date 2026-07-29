@@ -100,7 +100,7 @@
   /* ------ Typography weights (Bagoss face files) ------ */
   --font-weight-bagoss-thin: 230;  /* Condensed Thin */
   --font-weight-bagoss-light: 320; /* Standard Light — display + title */
-  --font-weight-aguzzo-display: 230; /* Aguzzo VF Trial — hero h1 */
+  --font-weight-aguzzo-display: 300; /* Aguzzo VF Trial — hero h1 */
 
   /* ------ Layout (Figma grid annotations) ------ */
   --grid-columns: 8;
