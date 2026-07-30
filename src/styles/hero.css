@@ -153,7 +153,8 @@ body[data-hero-scene-frame] .shape-desk,
 body[data-hero-scene-frame] .editable-blob-field,
 body[data-hero-scene-frame] .physics-tiles,
 body[data-hero-scene-frame] .hero-grid-backdrop,
-body[data-hero-scene-frame] .hero-grid-backdrop__lines {
+body[data-hero-scene-frame] .hero-grid-backdrop__lines,
+body[data-hero-scene-frame] .hero-early-backdrop {
   clip-path: inset(
     var(--hero-scene-frame-inset) round var(--hero-scene-frame-radius)
   );
@@ -205,7 +206,8 @@ body[data-hero-scene-frame] .hero-grid-backdrop__lines {
   body[data-hero-scene-frame] .editable-blob-field,
   body[data-hero-scene-frame] .physics-tiles,
   body[data-hero-scene-frame] .hero-grid-backdrop,
-  body[data-hero-scene-frame] .hero-grid-backdrop__lines {
+  body[data-hero-scene-frame] .hero-grid-backdrop__lines,
+  body[data-hero-scene-frame] .hero-early-backdrop {
     clip-path: none;
   }
 }

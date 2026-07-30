@@ -1,6 +1,9 @@
 /**
  * Fixed inset frame for framed hero variants (B, C, I, F, L, N).
  * Sits above the scene and noise, below the copy.
+ *
+ * Body `data-hero-scene-frame` is owned by HeroShell so early backdrops can
+ * clip in the same paint as the shell, before this portal mounts.
  */
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -11,14 +14,6 @@ export default function HeroSceneFrame() {
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-    document.body.dataset.heroSceneFrame = "";
-    return () => {
-      delete document.body.dataset.heroSceneFrame;
-    };
-  }, [mounted]);
 
   if (!mounted) return null;
 

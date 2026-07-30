@@ -11,7 +11,7 @@
  *   perched       → above the name, inside the copy stack
  *   full-canvas   → behind everything, outside the stagger container
  */
-import { Suspense, useMemo, useRef, useState, Fragment, type ReactNode } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState, Fragment, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { easeOut, layoutShift, sceneFade, useBreakpointReplayKey, usePrefersReducedMotion } from "../../lib/motion";
 import { site } from "../../config/site";
@@ -19,6 +19,7 @@ import type { HeroLayout, HeroSceneProps, HeroVariantId } from "../../config/her
 import PasswordForm from "../auth/PasswordForm";
 import HeroNoiseOverlay from "../auth/HeroNoiseOverlay";
 import HeroSceneFrame from "../auth/HeroSceneFrame";
+import HeroEarlyBackdrop from "./HeroEarlyBackdrop";
 import { getVariant } from "../../config/heroVariants";
 import AnimatedTextLink from "../ui/AnimatedTextLink";
 
@@ -123,9 +124,21 @@ export default function HeroShell({
           ? item
           : undefined;
   const showNoise = noise || fullCanvas;
-  const showSceneFrame = getVariant(variantId)?.sceneFrame ?? false;
+  const variantMeta = getVariant(variantId);
+  const showSceneFrame = variantMeta?.sceneFrame ?? false;
+  const showEarlyBackdrop = variantMeta?.earlyBackdrop === "grid";
   const settled = !animateEntrance;
   const animateLayout = settled && !reducedMotion;
+
+  // Own the frame flag here so early backdrops clip on the first paint,
+  // instead of waiting for the frame portal's mounted effect.
+  useEffect(() => {
+    if (!showSceneFrame) return;
+    document.body.dataset.heroSceneFrame = "";
+    return () => {
+      delete document.body.dataset.heroSceneFrame;
+    };
+  }, [showSceneFrame]);
 
   const scene = (
     <Fragment key={`scene-${variantId}-${sceneReplayKey}`}>
@@ -258,6 +271,7 @@ export default function HeroShell({
 
   return (
     <div className="hero-entrance-replay" data-hero-background data-hero-layout={layout}>
+      {showEarlyBackdrop ? <HeroEarlyBackdrop /> : null}
       {fullCanvas ? scene : null}
       {showNoise ? <HeroNoiseOverlay /> : null}
       {showSceneFrame ? <HeroSceneFrame /> : null}

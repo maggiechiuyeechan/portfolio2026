@@ -48,7 +48,6 @@ export default function MonstersScene({ obstacleRefs, variants }: HeroSceneProps
           left: anchor?.x ?? "50%",
           top: anchor?.y ?? "50%",
           transform: "translate(-50%, -100%)",
-          visibility: anchor ? "visible" : "hidden",
           width: "min(34rem, 100vw)",
           paddingInline: "1.5rem",
           boxSizing: "border-box",

@@ -58,6 +58,12 @@ export interface HeroVariant {
   assets?: string[];
   /** 2rem background-main inset frame around the full-canvas scene. */
   sceneFrame?: boolean;
+  /**
+   * Paint a gray grid from the shell before the lazy scene chunk arrives.
+   * Needed on mobile where the scene-frame mat is hidden and the real
+   * backdrop lives inside the scene bundle.
+   */
+  earlyBackdrop?: "grid";
   /** Lazily-loaded scene component. Must be a static import specifier. */
   load: () => Promise<{ default: ComponentType<HeroSceneProps> }>;
 }
@@ -114,6 +120,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version I — 28px grid, sprinkled multiply dots (node 354:82).",
     layout: "full-canvas",
     sceneFrame: true,
+    earlyBackdrop: "grid",
     load: () => import("../components/hero/scenes/GridSprinkleScene"),
   },
   {
@@ -122,6 +129,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version L — four randomly placed multiply collage shapes (node 354:60407).",
     layout: "full-canvas",
     sceneFrame: true,
+    earlyBackdrop: "grid",
     load: () => import("../components/hero/scenes/ShapeCollageScene"),
   },
   {

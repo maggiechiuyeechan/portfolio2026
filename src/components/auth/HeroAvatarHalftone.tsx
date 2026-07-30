@@ -3,7 +3,7 @@
  * Starts as a normal video; ripples follow the cursor (active anywhere on screen).
  * Click empty background to drop a pond splash from that point.
  */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import type { Variants } from "motion/react";
 import { usePrefersReducedMotion } from "../../lib/motion";
@@ -127,6 +127,8 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
   const mediaSrc = encodeURI(src);
+  /** WebGL path starts blank — keep the poster visible until the first video frame uploads. */
+  const [hasVideoFrame, setHasVideoFrame] = useState(false);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -135,6 +137,8 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
     const canvas = canvasRef.current;
     const frame = frameRef.current;
     if (!video || !canvas || !frame) return;
+
+    setHasVideoFrame(false);
 
     const gl = canvas.getContext("webgl", {
       alpha: false,
@@ -203,6 +207,7 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
     let intensity = 0;
     let raf = 0;
     let running = true;
+    let paintedFrame = false;
 
     const frameUvFromEvent = (event: { clientX: number; clientY: number }) => {
       const rect = frame.getBoundingClientRect();
@@ -269,6 +274,10 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
       if (video.readyState >= 2) {
         gl.bindTexture(gl.TEXTURE_2D, texture);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+        if (!paintedFrame) {
+          paintedFrame = true;
+          setHasVideoFrame(true);
+        }
       }
 
       gl.uniform2f(uMouse, smooth.x, smooth.y);
@@ -311,6 +320,21 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
       animate={variants ? "visible" : undefined}
     >
       <div ref={frameRef} className="hero-avatar-frame" style={frameStyle}>
+        {poster && !reducedMotion && !hasVideoFrame ? (
+          <img
+            src={poster}
+            alt=""
+            aria-hidden="true"
+            width={400}
+            height={712}
+            style={{
+              ...fillStyle,
+              position: "absolute",
+              inset: 0,
+              pointerEvents: "none",
+            }}
+          />
+        ) : null}
         <video
           ref={videoRef}
           className="hero-avatar"
@@ -330,6 +354,7 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
           loop
           muted
           playsInline
+          preload="auto"
           crossOrigin="anonymous"
         />
         {!reducedMotion ? (
@@ -337,7 +362,11 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
             ref={canvasRef}
             className="hero-avatar-halftone"
             aria-hidden="true"
-            style={{ ...fillStyle, position: "relative" }}
+            style={{
+              ...fillStyle,
+              position: "relative",
+              opacity: hasVideoFrame ? 1 : 0,
+            }}
           />
         ) : null}
       </div>

@@ -52,11 +52,30 @@ function getRolledId(): HeroVariantId {
   return memoisedRoll;
 }
 
+/** Kick the scene chunk + current assets ASAP — don't wait for Suspense / idle. */
+function warmVariant(id: HeroVariantId) {
+  const variant = getVariant(id);
+  if (!variant) return;
+  void variant.load();
+  if (typeof document === "undefined") return;
+  for (const href of variant.assets ?? []) {
+    if (document.head.querySelector(`link[data-hero-preload="${href}"]`)) continue;
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.href = href;
+    link.as = href.endsWith(".mp4") || href.endsWith(".webm") ? "video" : "image";
+    link.dataset.heroPreload = href;
+    document.head.appendChild(link);
+  }
+}
+
 export default function HeroRotator({ name, title, tagline, variantId }: Props) {
   // Lazy initialiser: getRolledId() is not called at all when variantId is set.
-  const [activeId, setActiveId] = useState<HeroVariantId>(
-    () => variantId ?? getRolledId(),
-  );
+  const [activeId, setActiveId] = useState<HeroVariantId>(() => {
+    const id = variantId ?? getRolledId();
+    warmVariant(id);
+    return id;
+  });
   const [playEntrance, setPlayEntrance] = useState(true);
   const variant = getVariant(activeId) ?? HERO_VARIANTS[0]!;
   const Scene = LAZY_SCENES[variant.id]!;
@@ -66,7 +85,9 @@ export default function HeroRotator({ name, title, tagline, variantId }: Props) 
     if (window.location.pathname !== "/" || window.location.search) {
       window.history.replaceState(null, "", "/");
     }
-    setActiveId(takeVariant());
+    const nextId = takeVariant();
+    warmVariant(nextId);
+    setActiveId(nextId);
   }, []);
 
   // Warm the NEXT visit's chunk once this page is idle. Speculative, so
