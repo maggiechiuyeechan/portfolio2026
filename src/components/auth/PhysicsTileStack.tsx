@@ -41,8 +41,8 @@ const MOBILE_MAX_WIDTH_PX = 660;
 const SPAWN_DELAY_MS = 90;
 const OBSTACLE_PAD = 12;
 /** Below this speed/angular velocity, bodies are forced to sleep */
-const REST_SPEED = 0.12;
-const REST_ANGULAR = 0.025;
+const REST_SPEED = 0.08;
+const REST_ANGULAR = 0.018;
 /** Upward kick when the cursor touches a tile/shape. */
 const POP_UP_SPEED = 18;
 const POP_LATERAL = 2.5;
@@ -55,6 +55,28 @@ interface SpawnedBody {
   bodyHeight: number;
   tile?: TileDef;
   shape?: ShapeDef;
+}
+
+function bodyTopLeft(body: Matter.Body, spawned: SpawnedBody) {
+  return {
+    x: body.position.x - spawned.bodyWidth / 2,
+    y: body.position.y - spawned.bodyHeight / 2,
+  };
+}
+
+function formatBodyTransform(x: number, y: number, angle: number, snap: boolean) {
+  const px = snap ? Math.round(x) : x;
+  const py = snap ? Math.round(y) : y;
+  const a = snap ? Math.round(angle * 1000) / 1000 : angle;
+  return `translate3d(${px}px, ${py}px, 0) rotate(${a}rad)`;
+}
+
+function isBodyAtRest(body: Matter.Body) {
+  return (
+    !body.isStatic &&
+    body.speed < REST_SPEED &&
+    Math.abs(body.angularVelocity) < REST_ANGULAR
+  );
 }
 
 function isInteractiveTarget(target: Element | null) {
@@ -320,11 +342,11 @@ export default function PhysicsTileStack({
 
       const body = Bodies.rectangle(x, y, bodyWidth, bodyHeight, {
         chamfer: { radius: chamfer },
-        restitution: 0.15,
+        restitution: 0.08,
         friction: 0.85,
-        frictionAir: 0.012,
+        frictionAir: 0.022,
         density: 0.0016,
-        sleepThreshold: 25,
+        sleepThreshold: 20,
         label: item.id,
       });
 
@@ -344,20 +366,31 @@ export default function PhysicsTileStack({
       setSpawnedBodies((current) => [...current, spawned]);
     };
 
+    const snappedTransforms = new Map<number, string>();
+
     const updateElementTransform = (body: Matter.Body, spawned: SpawnedBody, el: HTMLDivElement) => {
-      if (
-        !body.isStatic &&
-        body.speed < REST_SPEED &&
-        Math.abs(body.angularVelocity) < REST_ANGULAR
-      ) {
+      const snapped = snappedTransforms.get(body.id);
+      if (body.isSleeping && snapped) {
+        if (el.style.transform !== snapped) el.style.transform = snapped;
+        return;
+      }
+
+      if (isBodyAtRest(body)) {
         Body.setVelocity(body, { x: 0, y: 0 });
         Body.setAngularVelocity(body, 0);
         Sleeping.set(body, true);
+
+        const { x, y } = bodyTopLeft(body, spawned);
+        const transform = formatBodyTransform(x, y, body.angle, true);
+        snappedTransforms.set(body.id, transform);
+        if (el.style.transform !== transform) el.style.transform = transform;
+        return;
       }
 
-      const x = Math.round(body.position.x - spawned.bodyWidth / 2);
-      const y = Math.round(body.position.y - spawned.bodyHeight / 2);
-      el.style.transform = `translate(${x}px, ${y}px) rotate(${body.angle}rad)`;
+      snappedTransforms.delete(body.id);
+      const { x, y } = bodyTopLeft(body, spawned);
+      const transform = formatBodyTransform(x, y, body.angle, false);
+      if (el.style.transform !== transform) el.style.transform = transform;
     };
 
     const onAfterUpdate = () => {
@@ -399,6 +432,7 @@ export default function PhysicsTileStack({
           spawned.bodyWidth *= sizeScale;
           spawned.bodyHeight *= sizeScale;
         });
+        snappedTransforms.clear();
         setSpawnedBodies([...spawnedBodiesRef.current.values()]);
       }
 
@@ -434,6 +468,7 @@ export default function PhysicsTileStack({
 
         if (withSound) playHeroSound("whisper", "physics-pop");
 
+        snappedTransforms.delete(body.id);
         Sleeping.set(body, false);
         Body.setVelocity(body, {
           x: body.velocity.x + (Math.random() - 0.5) * POP_LATERAL * 2,
@@ -562,9 +597,8 @@ export default function PhysicsTileStack({
                   tileElementsRef.current.set(spawned.bodyId, el);
                   const body = tileBodiesRef.current.find((entry) => entry.id === spawned.bodyId);
                   if (body) {
-                    const x = Math.round(body.position.x - spawned.bodyWidth / 2);
-                    const y = Math.round(body.position.y - spawned.bodyHeight / 2);
-                    el.style.transform = `translate(${x}px, ${y}px) rotate(${body.angle}rad)`;
+                    const { x, y } = bodyTopLeft(body, spawned);
+                    el.style.transform = formatBodyTransform(x, y, body.angle, body.isSleeping);
                   }
                 } else {
                   tileElementsRef.current.delete(spawned.bodyId);
