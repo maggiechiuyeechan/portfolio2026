@@ -16,9 +16,14 @@
   gap: var(--spacing-05);
 }
 
+.study-scroll-target {
+  height: 0;
+  overflow: hidden;
+  scroll-margin-top: var(--scroll-anchor-top);
+}
+
 .study-title {
   margin: 0;
-  scroll-margin-top: var(--nav-inset);
 }
 
 .study-meta {
@@ -44,16 +49,6 @@
   .study-text-inner {
     grid-column: 1 / span 5;
   }
-
-  .study-title {
-    scroll-margin-top: var(--nav-inset-md);
-  }
-}
-
-@media (max-width: 52rem) {
-  .study-title {
-    scroll-margin-top: var(--spacing-5);
-  }
 }
 
 @media (max-width: 41.25rem) {
@@ -63,9 +58,5 @@
 
   .study-text-inner {
     grid-column: auto;
-  }
-
-  .study-title {
-    scroll-margin-top: 1.5rem;
   }
 }

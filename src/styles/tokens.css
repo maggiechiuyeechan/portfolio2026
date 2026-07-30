@@ -109,4 +109,26 @@
   --single-column-break: 41.25rem;         /* 660px — break into single column */
   --nav-inset: 3rem;                       /* nav positioned 48px top/left, sticky */
   --nav-inset-md: 2rem;                    /* 32px at 13-14" frame */
+  --nav-logo-offset: 6px;                  /* .nav-desktop margin-top */
+  /* Align in-page anchor scroll with sticky nav logo top */
+  --scroll-anchor-top: calc(var(--nav-inset) + var(--nav-logo-offset));
+}
+
+@media (max-width: 80rem) {
+  :root {
+    --scroll-anchor-top: calc(var(--nav-inset-md) + var(--nav-logo-offset));
+  }
+}
+
+@media (max-width: 52rem) {
+  :root {
+    --scroll-anchor-top: calc(var(--spacing-5) + var(--nav-logo-offset));
+  }
+}
+
+@media (max-width: 41.25rem) {
+  :root {
+    /* mobile-nav-bar: 1rem pt + 17px logo + 12px pb */
+    --scroll-anchor-top: calc(1rem + 17px + var(--spacing-3));
+  }
 }

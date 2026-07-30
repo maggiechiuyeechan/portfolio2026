@@ -24,10 +24,15 @@ const { anchorId, title, meta, subtitle, images, eager = false } = Astro.props;
 ---
 
 <Section class="study">
+  {/*
+    Anchor sits outside FadeInView so scroll-to isn't measured against a
+    mid-animation translateY (which overshoots once the reveal settles).
+  */}
+  <div id={anchorId} class="study-scroll-target" tabindex="-1"></div>
   <FadeInView client:visible eager={eager}>
     <div class="study-text">
       <div class="study-text-inner">
-        <Text as="h2" variant="heading" id={anchorId} class="study-title">
+        <Text as="h2" variant="heading" class="study-title">
           {title}
           {meta && <span class="study-meta">{meta}</span>}
         </Text>

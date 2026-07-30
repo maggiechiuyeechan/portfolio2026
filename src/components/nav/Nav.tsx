@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { easeOut, usePrefersReducedMotion } from "../../lib/motion";
+import { getStudyScrollAlignTop, scrollToStudyAnchor } from "../../lib/scrollToStudyAnchor";
 import AnimatedTextLink from "../ui/AnimatedTextLink";
 
 type Link = { label: string; href: string };
@@ -46,9 +47,8 @@ function useActiveWorkLink(workLinks: Link[]) {
   useEffect(() => {
     if (workLinks.length === 0) return;
 
-    const nav = document.querySelector(".shell-nav");
-    // One read at setup, not one per scroll tick.
-    const marker = nav ? Math.round(nav.getBoundingClientRect().bottom + 4) : 48;
+    // Visible logo only — hidden mobile/desktop twin reports a zero rect.
+    const marker = Math.round(getStudyScrollAlignTop());
 
     const targets = workLinks
       .map((link) => ({ link, el: document.getElementById(link.href.slice(1)) }))
@@ -103,12 +103,25 @@ function AnimatedLink({
   href,
   active = false,
   onNavigate,
-}: Link & { active?: boolean; onNavigate?: () => void }) {
+  onWorkLinkClick,
+}: Link & {
+  active?: boolean;
+  onNavigate?: () => void;
+  onWorkLinkClick?: (href: string) => void;
+}) {
+  const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (event) => {
+    if (href.startsWith("#") && onWorkLinkClick) {
+      event.preventDefault();
+      onWorkLinkClick(href);
+    }
+    onNavigate?.();
+  };
+
   return (
     <AnimatedTextLink
       href={href}
       active={active}
-      onClick={onNavigate}
+      onClick={handleClick}
       hoverSound="tick"
       pressReleaseSound
     >
@@ -122,11 +135,13 @@ function NavMenu({
   socials,
   activeHref,
   onNavigate,
+  onWorkLinkClick,
 }: {
   workLinks: Link[];
   socials: Link[];
   activeHref: string;
   onNavigate?: () => void;
+  onWorkLinkClick?: (href: string) => void;
 }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-2)" }}>
@@ -163,6 +178,7 @@ function NavMenu({
                   {...link}
                   active={link.href === activeHref}
                   onNavigate={onNavigate}
+                  onWorkLinkClick={onWorkLinkClick}
                 />
               ))}
             </div>
@@ -185,6 +201,36 @@ export default function Nav({ workLinks, socials, logoSrc, logoAlt }: Props) {
   const activeHref = useActiveWorkLink(workLinks);
 
   const closeMenu = () => setMenuOpen(false);
+
+  const navigateToWork = (href: string) => {
+    const run = () =>
+      scrollToStudyAnchor(href.slice(1), {
+        behavior: reducedMotion ? "auto" : "smooth",
+      });
+
+    if (menuOpen) {
+      closeMenu();
+      window.setTimeout(run, reducedMotion ? 0 : 320);
+    } else {
+      run();
+    }
+  };
+
+  // Native hash scroll ignores our logo alignment — fix on load and back/forward.
+  useEffect(() => {
+    const syncHash = () => {
+      const anchorId = window.location.hash.slice(1);
+      if (!anchorId || !workLinks.some((link) => link.href === `#${anchorId}`)) return;
+      scrollToStudyAnchor(anchorId, { behavior: "auto", updateHash: false });
+    };
+
+    const id = requestAnimationFrame(() => requestAnimationFrame(syncHash));
+    window.addEventListener("hashchange", syncHash);
+    return () => {
+      cancelAnimationFrame(id);
+      window.removeEventListener("hashchange", syncHash);
+    };
+  }, [workLinks]);
 
   // Close menu when switching to desktop
   useEffect(() => {
@@ -249,6 +295,7 @@ export default function Nav({ workLinks, socials, logoSrc, logoAlt }: Props) {
                   socials={navSocials}
                   activeHref={activeHref}
                   onNavigate={closeMenu}
+                  onWorkLinkClick={navigateToWork}
                 />
               </div>
             </motion.div>
@@ -262,6 +309,7 @@ export default function Nav({ workLinks, socials, logoSrc, logoAlt }: Props) {
           workLinks={workLinks}
           socials={navSocials}
           activeHref={activeHref}
+          onWorkLinkClick={navigateToWork}
         />
       </nav>
     </>
