@@ -151,6 +151,7 @@ export default function HeroShell({
   useEffect(() => {
     updateCursorLabel(variantMeta?.cursorLabel ?? null, {
       forceReveal: variantLabelMounted.current,
+      variantId,
     });
     variantLabelMounted.current = true;
   }, [variantId, variantMeta?.cursorLabel]);

@@ -11,6 +11,8 @@
  * - After Surprise me (`forceReveal`): stay visible even over controls until
  *   the user interacts with the scene (`dismissCursorLabel`)
  * - Hide while the pointer leaves the window / the window blurs; restore on return
+ * - Once dismissed for a variant, remember in localStorage so it stays hidden
+ *   on later visits (per browser)
  *
  * Visual styles: `src/styles/cursor-label.css`
  */
@@ -39,6 +41,8 @@ const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 /** Shared across bundles — React islands may import a separate module copy. */
 const DISMISSED_ATTR = "data-cursor-label-dismissed";
 const DISMISS_EVENT = "cursor-label:dismiss";
+/** localStorage — list of variant ids whose label the user has already dismissed. */
+const SEEN_STORAGE_KEY = "cursor-label:seen";
 
 let pointerX = 0;
 let pointerY = 0;
@@ -47,11 +51,14 @@ let labelY = 0;
 
 let rafId: number | null = null;
 let scrollRafId: number | null = null;
+/** Coalesces pointer hit-testing to one resolve per frame — see onPointerMove. */
+let resolveRafId: number | null = null;
 
 let mounted = false;
 let active = false;
 let currentLabel: string | null = null;
 let pageLabel: string | null = null;
+let pageVariantId: string | null = null;
 let reducedMotion = false;
 
 let rootEl: HTMLDivElement | null = null;
@@ -97,6 +104,35 @@ function setDismissed(dismissed: boolean) {
 
 function syncDismissedFromDom() {
   return isDismissed();
+}
+
+function readSeenVariants(): Set<string> {
+  if (typeof localStorage === "undefined") return new Set();
+  try {
+    const raw = localStorage.getItem(SEEN_STORAGE_KEY);
+    if (!raw) return new Set();
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return new Set();
+    return new Set(parsed.filter((id): id is string => typeof id === "string"));
+  } catch {
+    return new Set();
+  }
+}
+
+function hasSeenVariant(variantId: string) {
+  return readSeenVariants().has(variantId);
+}
+
+function markSeenVariant(variantId: string) {
+  if (typeof localStorage === "undefined") return;
+  try {
+    const seen = readSeenVariants();
+    if (seen.has(variantId)) return;
+    seen.add(variantId);
+    localStorage.setItem(SEEN_STORAGE_KEY, JSON.stringify([...seen]));
+  } catch {
+    // Private mode / blocked storage — keep session-only dismiss.
+  }
 }
 
 function onDismissEvent() {
@@ -291,6 +327,30 @@ function resolvePointerTarget(el: Element | null) {
   activate(pageLabel);
 }
 
+/**
+ * Resolve the element under the pointer, at most once per frame.
+ *
+ * document.elementFromPoint() is a synchronous hit test that flushes pending
+ * layout. Calling it straight from pointermove ran it on every event, on every
+ * route — and a high-polling-rate mouse fires several events per frame, so most
+ * of that work was thrown away before anything could paint.
+ *
+ * On `/` it was worse than it looks: the active hero scene installs its own
+ * uncapped pointermove handler (Matter Query.point, or a linear distance scan
+ * over every dot), so one mouse move paid for both in the same task.
+ *
+ * Coalescing to one resolve per frame costs at most a frame of latency when the
+ * pointer crosses onto a link — the pill's own follow animation already lerps at
+ * 0.16, so this is well inside what the label does anyway.
+ */
+function scheduleResolve() {
+  if (resolveRafId != null) return;
+  resolveRafId = requestAnimationFrame(() => {
+    resolveRafId = null;
+    resolvePointerTarget(document.elementFromPoint(pointerX, pointerY));
+  });
+}
+
 function onPointerMove(event: PointerEvent) {
   pointerX = event.clientX;
   pointerY = event.clientY;
@@ -301,7 +361,7 @@ function onPointerMove(event: PointerEvent) {
 
   // Always re-resolve so moving onto/off links updates correctly.
   // While stayVisibleUntilDismiss, resolve keeps the label up without replaying enter.
-  resolvePointerTarget(document.elementFromPoint(pointerX, pointerY));
+  scheduleResolve();
 }
 
 function onPointerOver(event: PointerEvent) {
@@ -386,6 +446,10 @@ function teardownDom() {
     cancelAnimationFrame(scrollRafId);
     scrollRafId = null;
   }
+  if (resolveRafId != null) {
+    cancelAnimationFrame(resolveRafId);
+    resolveRafId = null;
+  }
   rootEl?.remove();
   rootEl = null;
   pillEl = null;
@@ -412,11 +476,12 @@ function onReducedMotionChange() {
   if (!active && pillVizEl) setVizHidden();
 }
 
-/** Hide the label for the rest of this hero visit (until the variant changes). */
+/** Hide the label for this variant; remembered in localStorage across visits. */
 export function dismissCursorLabel() {
   if (typeof document === "undefined") return;
   if (isDismissed()) return;
   stayVisibleUntilDismiss = false;
+  if (pageVariantId) markSeenVariant(pageVariantId);
   setDismissed(true);
   window.dispatchEvent(new CustomEvent(DISMISS_EVENT));
 }
@@ -424,15 +489,26 @@ export function dismissCursorLabel() {
 /** Set the label copy for the current page (hero variants). Pass null to hide. */
 export function updateCursorLabel(
   label: string | null,
-  options?: { forceReveal?: boolean },
+  options?: { forceReveal?: boolean; variantId?: string },
 ) {
+  pageVariantId = options?.variantId ?? null;
   pageLabel = label?.trim() || null;
-  setDismissed(false);
-  if (!pageLabel) {
+
+  if (!pageLabel || !pageVariantId) {
     stayVisibleUntilDismiss = false;
+    setDismissed(false);
     deactivate();
     return;
   }
+
+  if (hasSeenVariant(pageVariantId)) {
+    stayVisibleUntilDismiss = false;
+    setDismissed(true);
+    deactivate();
+    return;
+  }
+
+  setDismissed(false);
 
   if (options?.forceReveal) {
     stayVisibleUntilDismiss = true;
