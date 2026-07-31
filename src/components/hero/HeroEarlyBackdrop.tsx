@@ -13,7 +13,7 @@
  */
 import { createPortal } from "react-dom";
 
-/** Cell size matches HeroGridBackdrop / GridSprinkle (28px). */
+/** Cell size matches HeroGridSurface / GridSprinkle (28px). */
 const HERO_GRID_CELL = 28;
 
 const fillStyle: React.CSSProperties = {

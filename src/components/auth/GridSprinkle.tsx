@@ -14,7 +14,7 @@ import {
   GRID_SPRINKLE_PALETTE_I,
   type GridSprinklePalette,
 } from "./gridSprinklePalettes";
-import { HERO_GRID_CELL } from "./HeroGridBackdrop";
+import HeroGridSurface, { HERO_GRID_CELL } from "./HeroGridBackdrop";
 
 const GRID_CELL = HERO_GRID_CELL;
 /** Dot diameter in rem (canvas draws in CSS px via root font-size). */
@@ -585,27 +585,7 @@ export default function GridSprinkle({
         overflow: "hidden",
       }}
     >
-      <div
-        className="grid-sprinkle__grid"
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundColor: "var(--color-gray-1)",
-        }}
-      />
-      <div
-        className="grid-sprinkle__grid-lines"
-        style={{
-          position: "absolute",
-          inset: 0,
-          mixBlendMode: "multiply",
-          backgroundImage: `
-            linear-gradient(#f7f7f7 1px, transparent 1px),
-            linear-gradient(90deg, #f7f7f7 1px, transparent 1px)
-          `,
-          backgroundSize: `${GRID_CELL}px ${GRID_CELL}px`,
-        }}
-      />
+      <HeroGridSurface />
       <canvas
         ref={canvasRef}
         className="grid-sprinkle__dots"

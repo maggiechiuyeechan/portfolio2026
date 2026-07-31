@@ -152,8 +152,6 @@ body[data-hero-scene-frame] .shape-collage,
 body[data-hero-scene-frame] .shape-desk,
 body[data-hero-scene-frame] .editable-blob-field,
 body[data-hero-scene-frame] .physics-tiles,
-body[data-hero-scene-frame] .hero-grid-backdrop,
-body[data-hero-scene-frame] .hero-grid-backdrop__lines,
 body[data-hero-scene-frame] .hero-early-backdrop {
   clip-path: inset(
     var(--hero-scene-frame-inset) round var(--hero-scene-frame-radius)
@@ -205,8 +203,6 @@ body[data-hero-scene-frame] .hero-early-backdrop {
   body[data-hero-scene-frame] .shape-desk,
   body[data-hero-scene-frame] .editable-blob-field,
   body[data-hero-scene-frame] .physics-tiles,
-  body[data-hero-scene-frame] .hero-grid-backdrop,
-  body[data-hero-scene-frame] .hero-grid-backdrop__lines,
   body[data-hero-scene-frame] .hero-early-backdrop {
     clip-path: none;
   }
@@ -216,7 +212,6 @@ body[data-hero-scene-frame] .hero-early-backdrop {
  * Grid line fade around hero copy (Versions I & L) — keeps lines off the text.
  * ------------------------------------------------------------------------- */
 
-.hero-grid-backdrop__lines,
 .hero-early-backdrop__lines,
 .grid-sprinkle__grid-lines {
   --hero-grid-text-mask-x: 50%;
@@ -246,7 +241,6 @@ body[data-hero-scene-frame] .hero-early-backdrop {
 }
 
 @media (max-width: 41.25rem), (max-height: 40.625rem) {
-  .hero-grid-backdrop__lines,
   .hero-early-backdrop__lines,
   .grid-sprinkle__grid-lines {
     --hero-grid-text-mask-y: 70%;

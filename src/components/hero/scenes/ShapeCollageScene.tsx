@@ -1,18 +1,10 @@
 /**
  * Version L — four randomly placed multiply collage shapes (Figma node 354:60407).
- * The grid backdrop is collage-specific, so it travels in this chunk rather
- * than being a shell concern.
+ * Uses the same grid fill + text-masked lines as Version I (sprinkles).
  */
 import ShapeCollage from "../../auth/ShapeCollage";
-import HeroGridBackdrop, { HeroGridLines } from "../../auth/HeroGridBackdrop";
 import type { HeroSceneProps } from "../../../config/heroVariants";
 
 export default function ShapeCollageScene({ obstacleRefs }: HeroSceneProps) {
-  return (
-    <>
-      <HeroGridBackdrop />
-      <ShapeCollage obstacleRefs={obstacleRefs} />
-      <HeroGridLines />
-    </>
-  );
+  return <ShapeCollage obstacleRefs={obstacleRefs} />;
 }

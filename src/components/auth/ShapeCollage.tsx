@@ -11,6 +11,7 @@ import { usePrefersReducedMotion } from "../../lib/motion";
 import { playHeroSound, playHeroSoundOnClick } from "../../lib/heroSounds";
 import { acquireBodyFlag } from "../../lib/bodyFlag";
 import { useIdleNudge } from "../../lib/useIdleNudge";
+import HeroGridSurface from "./HeroGridBackdrop";
 import { COLLAGE_INK_GRID, COLLAGE_SHAPES, type CollageShape } from "./collageShapes";
 
 const SHAPE_COUNT = 4;
@@ -835,6 +836,7 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
         overflow: "hidden",
       }}
     >
+      <HeroGridSurface />
       {placements.map((placement) => {
         const isNudged =
           nudgeId === String(placement.id) && placement.phase === "idle";
