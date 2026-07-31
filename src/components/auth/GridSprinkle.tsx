@@ -543,7 +543,7 @@ export default function GridSprinkle({
       if (isInteractiveTarget(event.target as Element | null)) return;
       burstAt(event.clientX, event.clientY);
     };
-    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
 
     // Click empty background (not nav / form / links) to re-roll the sprinkle.
     const onPointerDown = (event: PointerEvent) => {

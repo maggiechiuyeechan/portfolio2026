@@ -1,13 +1,23 @@
 /*
- * Bagoss (Displaay Type Foundry) — self-hosted WOFF2.
- * File naming from the foundry: w<weight>s<slant>w<width>.
+ * Self-hosted WOFF2, subset to basic Latin by scripts/subset-fonts.sh.
+ *
+ * The `-subset` suffix is load-bearing: vercel.json caches /fonts/* as
+ * immutable for a year, so changing a face means changing its filename.
+ * Full originals live in fonts-src/ (not served) — re-run the script after
+ * swapping one.
+ *
+ * Every face keeps its variable weight axis, so the --font-weight-* tokens in
+ * tokens.css stay live.
+ *
+ * Bagoss (Displaay Type Foundry). File naming from the foundry:
+ * w<weight>s<slant>w<width>.
  *   Bagoss-w230s0w60 -> weight 230 ("Condensed Thin")
- *   Bagoss-w320s0w60 -> weight 320 ("Standard Light" — display/h1 + title/h2)
- * Geist Sans + Geist Mono (Vercel, self-hosted).
+ *   Bagoss-w320s0w60 -> weight 320 ("Standard Light")
+ * Geist Sans + Geist Mono (Vercel).
  */
 @font-face {
   font-family: "Bagoss";
-  src: url("/fonts/bagoss/Bagoss-w230s0w60.woff2") format("woff2");
+  src: url("/fonts/bagoss/Bagoss-w230s0w60-subset.woff2") format("woff2");
   font-weight: 230;
   font-style: normal;
   font-display: swap;
@@ -15,18 +25,28 @@
 
 @font-face {
   font-family: "Bagoss";
-  src: url("/fonts/bagoss/Bagoss-w320s0w60.woff2") format("woff2");
+  src: url("/fonts/bagoss/Bagoss-w320s0w60-subset.woff2") format("woff2");
   font-weight: 320;
   font-style: normal;
   font-display: swap;
 }
 
-/* Aguzzo VF Trial — variable weight axis (hero h1 test). */
+/*
+ * Aguzzo VF Trial — variable weight axis (hero h1).
+ *
+ * NOTE: this is a TRIAL licence file, self-hosted and publicly served from
+ * maggiechan.io. License it or replace it before this is more than a personal
+ * site.
+ *
+ * Single src entry: the previous rule listed the same URL twice, once as
+ * `woff2-variations` and once as `woff2`. `woff2-variations` was a pre-spec
+ * format string that no shipping browser recognises, so every engine fell
+ * through to the second entry anyway — it only made the rule look like it
+ * handled two cases when it handled one.
+ */
 @font-face {
   font-family: "Aguzzo VF Trial";
-  src:
-    url("/fonts/aguzzo/AguzzoVF-TRIAL.woff2") format("woff2-variations"),
-    url("/fonts/aguzzo/AguzzoVF-TRIAL.woff2") format("woff2");
+  src: url("/fonts/aguzzo/AguzzoVF-TRIAL-subset.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -35,20 +55,24 @@
 /* Geist Sans — variable weight axis (body, h2, h3). */
 @font-face {
   font-family: "Geist";
-  src:
-    url("/fonts/geist/Geist-Variable.woff2") format("woff2-variations"),
-    url("/fonts/geist/Geist-Variable.woff2") format("woff2");
+  src: url("/fonts/geist/Geist-Variable-subset.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
-/* Geist Mono — variable weight axis (captions). */
+/*
+ * Geist Mono — variable weight axis (captions, cursor-label pill).
+ *
+ * Kept in the preload set despite having a single consumer: cursor-label.ts
+ * awaits document.fonts.load() for this face before playing the pill's enter
+ * animation, so dropping the preload would stall the first hover behind a
+ * cold-cache download. At 12KB subset that is cheap insurance; at the original
+ * 70KB it was not.
+ */
 @font-face {
   font-family: "Geist Mono";
-  src:
-    url("/fonts/geist/GeistMono-Variable.woff2") format("woff2-variations"),
-    url("/fonts/geist/GeistMono-Variable.woff2") format("woff2");
+  src: url("/fonts/geist/GeistMono-Variable-subset.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;

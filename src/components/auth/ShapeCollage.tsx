@@ -33,8 +33,18 @@ const SIZE_BAND_LADDER_MOBILE: SizeBand[] = [
   { min: 0.55, max: 0.75 },
   { min: 0.25, max: 0.4 },
 ];
+/**
+ * Index into the three-entry size ladder above.
+ *
+ * Declared explicitly because `SIZE_TIER_ORDER as const` infers `0 | 1 | 2`,
+ * and LivePlacement used to widen the same field to `number` — so rebuilding a
+ * Selection from live placements (see the swap handler) failed to typecheck.
+ * Naming the type once keeps both sides honest and keeps the narrowing useful.
+ */
+type SizeTierIndex = 0 | 1 | 2;
+
 /** Always 2 large, 1 medium, 1 small — which shape is shuffled, not the mix. */
-const SIZE_TIER_ORDER = [0, 0, 1, 2] as const;
+const SIZE_TIER_ORDER: readonly SizeTierIndex[] = [0, 0, 1, 2];
 /** Single-column / mobile breakpoint (matches --single-column-break). */
 const MOBILE_MAX_WIDTH_PX = 660;
 
@@ -85,7 +95,7 @@ type Phase = "enter" | "idle" | "exit";
 interface LivePlacement extends Placement {
   id: number;
   shape: CollageShape;
-  tierIndex: number;
+  tierIndex: SizeTierIndex;
   widthRatio: number;
   phase: Phase;
   enterDelayMs: number;
@@ -797,7 +807,7 @@ export default function ShapeCollage({ obstacleRefs = [] }: Props) {
         }
       }
     };
-    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
 
     // Click empty background (not nav / form / links) to re-roll the collage.
     const onPointerDown = (event: PointerEvent) => {

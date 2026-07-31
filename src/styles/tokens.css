@@ -85,6 +85,7 @@
   --spacing-1: 0.25rem;   /* 4px */
   --spacing-2: 0.5rem;    /* 8px */
   --spacing-3: 0.75rem;   /* 12px — grid gutter */
+  --spacing-4: 1rem;      /* 16px */
   --spacing-5: 1.5rem;    /* 24px */
   --spacing-30: 7.5rem;   /* 120px */
 
@@ -97,9 +98,17 @@
   --radius-6: 1.5rem;   /* 24px */
   --radius-full: 9999px;
 
-  /* ------ Typography weights (Bagoss face files) ------ */
-  --font-weight-bagoss-thin: 230;  /* Condensed Thin */
-  --font-weight-bagoss-light: 320; /* Standard Light — display + title */
+  /*
+   * ------ Typography weights ------
+   *
+   * Only the Aguzzo token is applied (.text-display / .hero-name). The two
+   * Bagoss values are kept as a reference table for the weights the face files
+   * in fonts.css actually expose — Bagoss is a fallback in the display stack,
+   * so nothing selects a weight from it directly. Deleting them would just mean
+   * re-deriving them from the foundry filenames next time.
+   */
+  --font-weight-bagoss-thin: 230;  /* Condensed Thin — reference only */
+  --font-weight-bagoss-light: 320; /* Standard Light — reference only */
   --font-weight-aguzzo-display: 300; /* Aguzzo VF Trial — hero h1 */
 
   /* ------ Layout (Figma grid annotations) ------ */

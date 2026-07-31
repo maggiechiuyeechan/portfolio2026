@@ -42,11 +42,45 @@ function EnterArrow() {
 /** Match Cuelume hover throttle — keeps fast typing from stacking cues. */
 const TYPE_SOUND_GAP_MS = 150;
 
+const WRONG_PASSWORD = "That’s not it, try again.";
+const SERVER_ERROR = "Something went wrong on our end. Try again shortly.";
+const OFFLINE = "Couldn’t reach the server. Check your connection.";
+
+/** Turn a failed /api/auth response into copy the visitor can act on. */
+async function messageForResponse(response: Response): Promise<string> {
+  if (response.status === 401) {
+    // The endpoint reports its backoff once a visitor has burned the free
+    // attempts, so a typo streak explains itself instead of looking broken.
+    const retryAfter = await response
+      .json()
+      .then((body: unknown) =>
+        typeof body === "object" && body !== null && "retryAfterSeconds" in body
+          ? Number((body as { retryAfterSeconds: unknown }).retryAfterSeconds)
+          : 0,
+      )
+      .catch(() => 0);
+
+    return Number.isFinite(retryAfter) && retryAfter > 0
+      ? `${WRONG_PASSWORD} Wait ${retryAfter}s before the next try.`
+      : WRONG_PASSWORD;
+  }
+
+  if (response.status === 429) return "Too many attempts. Give it a minute.";
+  return SERVER_ERROR;
+}
+
 export default function PasswordForm({ onSuccess }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const lastTypeSoundRef = useRef(-Infinity);
   const controls = useAnimationControls();
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
+  /**
+   * What actually went wrong. Every non-ok response used to render "That's not
+   * it, try again." — so a 500 from a missing SITE_PASSWORD told the visitor
+   * they'd typed the wrong password, which is precisely the indistinguishable
+   * failure the middleware comment set out to eliminate.
+   */
+  const [errorMessage, setErrorMessage] = useState(WRONG_PASSWORD);
   const [focused, setFocused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [submitHovered, setSubmitHovered] = useState(false);
@@ -72,6 +106,8 @@ export default function PasswordForm({ onSuccess }: Props) {
 
     setStatus("submitting");
     play("loading");
+
+    let message = SERVER_ERROR;
     try {
       const response = await fetch("/api/auth", {
         method: "POST",
@@ -84,9 +120,13 @@ export default function PasswordForm({ onSuccess }: Props) {
         else window.location.assign("/work");
         return;
       }
+      message = await messageForResponse(response);
     } catch {
-      // fall through to error state
+      // fetch itself rejected — DNS, offline, request blocked. Not a 500.
+      message = OFFLINE;
     }
+
+    setErrorMessage(message);
     setStatus("error");
     play("error");
     controls.start({
@@ -184,8 +224,9 @@ export default function PasswordForm({ onSuccess }: Props) {
           className="password-form-error"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          role="alert"
         >
-          That&rsquo;s not it, try again.
+          {errorMessage}
         </motion.p>
       )}
     </form>

@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { AUTH_COOKIE, SESSION_MAX_AGE_SECONDS } from "../../config/auth";
-import { createSessionToken } from "../../lib/auth";
+import { createSessionToken, timingSafeEqual } from "../../lib/auth";
+import { clientKey, noteFailure, noteSuccess, retryAfterMs } from "../../lib/loginThrottle";
 
 export const prerender = false;
 
@@ -15,6 +16,18 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     );
   }
 
+  // Throttle before reading the body — a blocked caller shouldn't get to spend
+  // our CPU on JSON parsing or an HMAC.
+  const key = clientKey(request);
+  const waitMs = retryAfterMs(key);
+  if (waitMs > 0) {
+    const seconds = Math.ceil(waitMs / 1000);
+    return Response.json(
+      { ok: false, error: "Too many attempts.", retryAfterSeconds: seconds },
+      { status: 429, headers: { "Retry-After": String(seconds) } },
+    );
+  }
+
   let password = "";
   try {
     const body = await request.json();
@@ -23,9 +36,19 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     return Response.json({ ok: false, error: "Invalid request." }, { status: 400 });
   }
 
-  if (password.trim() !== sitePassword.trim()) {
-    return Response.json({ ok: false, error: "Wrong password." }, { status: 401 });
+  if (!timingSafeEqual(password.trim(), sitePassword.trim())) {
+    const delay = noteFailure(key);
+    return Response.json(
+      {
+        ok: false,
+        error: "Wrong password.",
+        ...(delay > 0 ? { retryAfterSeconds: Math.ceil(delay / 1000) } : null),
+      },
+      { status: 401 },
+    );
   }
+
+  noteSuccess(key);
 
   const token = await createSessionToken(authSecret, SESSION_MAX_AGE_SECONDS);
   cookies.set(AUTH_COOKIE, token, {

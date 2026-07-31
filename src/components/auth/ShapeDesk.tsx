@@ -459,7 +459,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
       interactionRef.current = null;
     };
 
-    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("pointerup", endInteraction);
     window.addEventListener("pointercancel", endInteraction);
 

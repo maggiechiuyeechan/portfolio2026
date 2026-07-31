@@ -10,10 +10,6 @@ const colorSecondary = "var(--color-typography-content-secondary)";
 
 const blockStyle: React.CSSProperties = {
   display: "block",
-  fontFamily: "Geist, sans-serif",
-  fontSize: "0.875rem",
-  lineHeight: 1.5,
-  letterSpacing: "-0.01em",
   textDecoration: "none",
   width: "fit-content",
 };
@@ -69,7 +65,11 @@ export default function AnimatedTextLink({
     : {};
   const isSurprise = Boolean(className?.includes("hero-surprise-link"));
   const resolvedInline = isSurprise ? surpriseInlineStyle : inlineStyle;
-  const resolvedClassName = [className, isSurprise && inline ? "hero-surprise-link--inline" : null]
+  const resolvedClassName = [
+    className,
+    !inline ? "text-body" : null,
+    isSurprise && inline ? "hero-surprise-link--inline" : null,
+  ]
     .filter(Boolean)
     .join(" ");
 

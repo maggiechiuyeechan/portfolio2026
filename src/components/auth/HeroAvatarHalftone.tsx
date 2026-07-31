@@ -257,7 +257,7 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
       splash.t0 = performance.now();
     };
 
-    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("pointerdown", onPointerDown);
 
     const draw = () => {

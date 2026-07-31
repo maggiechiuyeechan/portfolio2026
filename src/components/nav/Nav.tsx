@@ -21,12 +21,8 @@ const MOBILE_QUERY = "(max-width: 41.25rem)";
 
 const linkLabelStyle: React.CSSProperties = {
   display: "block",
-  fontFamily: "Geist, sans-serif",
-  fontSize: "0.875rem",
-  lineHeight: 1.5,
-  letterSpacing: "-0.01em",
   width: "fit-content",
-  color: "var(--color-typography-content-secondary)",
+  margin: 0,
 };
 
 /**
@@ -148,10 +144,10 @@ function NavMenu({
       {workLinks.length > 0 && (
         <div>
           <p
+            className="text-body"
             style={{
               ...linkLabelStyle,
-              margin: 0,
-              marginBottom: "var(--spacing-2)",
+              marginBottom: "var(--spacing-1)",
             }}
           >
             Work
@@ -169,6 +165,10 @@ function NavMenu({
                 width: "1px",
                 background: "var(--color-border-default)",
                 flexShrink: 0,
+                // Inset by .text-body half-leading so the rule meets the
+                // first/last link glyphs instead of the line-box edges.
+                fontSize: "1rem",
+                marginBlock: "calc((1.5em - 1em) / 2)",
               }}
             />
             <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>

@@ -421,7 +421,28 @@ export default function PhysicsTileStack({
       spawnTimersRef.current.push(timer);
     });
 
+    /**
+     * Track the hero copy while it is still settling, then stop.
+     *
+     * This used to be an unbounded setInterval, so measureObstacles() —
+     * getBoundingClientRect() on four elements, i.e. a forced layout — ran twice
+     * a second for the entire life of the scene, on a page whose copy stops
+     * moving after about a second. ShapeDesk, ShapeCollage and GridSprinkle all
+     * bound their equivalent poll at 2.5s; this one never did.
+     *
+     * Everything that moves the copy *after* settle is already observed
+     * directly: onResize below calls syncObstacles(), and document.fonts.ready
+     * covers the display-face swap that shifts the h1's box.
+     */
     const obstacleTimer = fullCanvas ? window.setInterval(syncObstacles, 500) : undefined;
+    const stopObstacleSync = window.setTimeout(() => {
+      if (obstacleTimer) window.clearInterval(obstacleTimer);
+    }, 2500);
+
+    let fontsSyncCancelled = false;
+    void document.fonts?.ready.then(() => {
+      if (!fontsSyncCancelled) syncObstacles();
+    });
     let measuredSize = size;
     let wallBounds = bounds;
 
@@ -498,13 +519,15 @@ export default function PhysicsTileStack({
       if (isInteractiveTarget(event.target as Element | null)) return;
       popAt(event.clientX, event.clientY, true);
     };
-    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("pointerdown", onPointerDown);
 
     return () => {
       spawnTimersRef.current.forEach((timer) => window.clearTimeout(timer));
       spawnTimersRef.current = [];
       if (obstacleTimer) window.clearInterval(obstacleTimer);
+      window.clearTimeout(stopObstacleSync);
+      fontsSyncCancelled = true;
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerdown", onPointerDown);

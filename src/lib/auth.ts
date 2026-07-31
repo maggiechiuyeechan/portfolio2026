@@ -30,6 +30,29 @@ function fromHex(hex: string): Uint8Array | null {
   return bytes;
 }
 
+/**
+ * Constant-time string comparison.
+ *
+ * `a !== b` bails at the first differing byte, so how long it takes leaks how
+ * many leading characters were correct. Over the public internet that signal is
+ * buried in network jitter and this is close to theatre — but it's five lines,
+ * and "close to" is doing real work in that sentence.
+ *
+ * Compares UTF-8 bytes, and always walks the full length of the longer input so
+ * that a length mismatch costs the same as a content mismatch.
+ */
+export function timingSafeEqual(a: string, b: string): boolean {
+  const left = encoder.encode(a);
+  const right = encoder.encode(b);
+  const length = Math.max(left.length, right.length);
+
+  let diff = left.length ^ right.length;
+  for (let i = 0; i < length; i++) {
+    diff |= (left[i] ?? 0) ^ (right[i] ?? 0);
+  }
+  return diff === 0;
+}
+
 export async function createSessionToken(
   secret: string,
   maxAgeSeconds: number,
