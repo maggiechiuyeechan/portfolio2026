@@ -278,7 +278,7 @@ export default function EditableBlob({
       endNodeDrag();
     };
 
-    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerup", onUp);
     window.addEventListener("pointercancel", onUp);
     return () => {
@@ -305,7 +305,10 @@ export default function EditableBlob({
     return () => window.removeEventListener("pointerdown", onOutside);
   }, [revealed, dragging, id]);
 
-  const onPathEnter = () => setRevealed(true);
+  const onPathEnter = () => {
+    setRevealed(true);
+    onInteract?.();
+  };
   const onPathLeave = (event: React.PointerEvent) => {
     if (dragging) return;
     const related = event.relatedTarget as Element | null;

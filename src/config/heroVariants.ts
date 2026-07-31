@@ -146,10 +146,10 @@ export const HERO_VARIANTS: HeroVariant[] = [
   {
     id: "botanical",
     label: "Botanical stipple",
-    note: "Version M — botanical dot illustration, 25s stipple-in (node 354:79447).",
+    note: "Version M — botanical dot illustration, 50s stipple-in (node 354:79447).",
     layout: "full-canvas",
     desktopOnly: true,
-    cursorLabel: "click to animate",
+    cursorLabel: "Click to reveal",
     load: () => import("../components/hero/scenes/BotanicalScene"),
   },
   {

@@ -20,6 +20,7 @@ import PasswordForm from "../auth/PasswordForm";
 import HeroNoiseOverlay from "../auth/HeroNoiseOverlay";
 import HeroSceneFrame from "../auth/HeroSceneFrame";
 import HeroEarlyBackdrop from "./HeroEarlyBackdrop";
+import SceneBoundary from "./SceneBoundary";
 import { getVariant } from "../../config/heroVariants";
 import AnimatedTextLink from "../ui/AnimatedTextLink";
 import { updateCursorLabel } from "../../scripts/cursor-label";
@@ -154,15 +155,19 @@ export default function HeroShell({
     variantLabelMounted.current = true;
   }, [variantId, variantMeta?.cursorLabel]);
 
+  // The key remounts on variant swap / breakpoint replay, which also resets
+  // SceneBoundary — see the note in that file.
   const scene = (
     <Fragment key={`scene-${variantId}-${sceneReplayKey}`}>
-      <Suspense fallback={null}>
-        {renderScene({
-          obstacleRefs,
-          variants: sceneVariants,
-          reducedMotion,
-        })}
-      </Suspense>
+      <SceneBoundary label={variantId}>
+        <Suspense fallback={null}>
+          {renderScene({
+            obstacleRefs,
+            variants: sceneVariants,
+            reducedMotion,
+          })}
+        </Suspense>
+      </SceneBoundary>
     </Fragment>
   );
 
@@ -218,13 +223,24 @@ export default function HeroShell({
           <AnimatedTextLink
             href="/"
             inline
-            shimmer={!reducedMotion}
+            className="hero-surprise-link"
             onClick={(event) => {
               event.preventDefault();
               onSurprise?.();
             }}
           >
             Surprise me
+            <span className="hero-surprise-link__icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+              </svg>
+            </span>
           </AnimatedTextLink>
         </p>
       </div>

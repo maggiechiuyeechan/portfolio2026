@@ -18,11 +18,11 @@
   font-synthesis: none;
 }
 
-/* h2 — Geist Regular 18px, line-height 145% */
+/* h2 — Geist Regular 22px, line-height 145% */
 .text-title {
   font-family: "Geist", sans-serif;
   font-weight: 400;
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.375rem; /* 22px */
   line-height: 1.45;
   letter-spacing: -0.01em;
   color: var(--color-typography-content-default);
@@ -69,7 +69,7 @@
   }
 
   .text-title {
-    font-size: 1.125rem; /* 18px on mobile */
+    font-size: 1.375rem; /* 22px on mobile */
   }
 
   .hero-title,
@@ -78,7 +78,8 @@
   }
 }
 
-/* Hero link row — title scale (18px), secondary color for · separators */
+/* Hero link row — 18px, secondary color for · separators */
 .hero-bio {
+  font-size: 1.125rem; /* 18px */
   color: var(--color-typography-content-secondary);
 }

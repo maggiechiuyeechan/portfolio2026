@@ -23,7 +23,7 @@ import {
   BOTANICAL_VIEWBOX,
 } from "./botanicalCircles";
 
-const DRAW_DURATION_MS = 25_000;
+const DRAW_DURATION_MS = 50_000;
 /** How long one dot takes to reach full strength. */
 const DOT_FADE_MS = 40;
 /** Cap concurrent fades so the stipple stays light; overflow snaps in. */

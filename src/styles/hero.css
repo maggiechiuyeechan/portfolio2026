@@ -250,60 +250,29 @@ body[data-hero-scene-frame] .hero-early-backdrop {
 }
 
 /* ---------------------------------------------------------------------------
- * "Surprise me" — gray shimmer after ~5s idle, ~6.2s sweep (same pace as before).
- * Base: --color-typography-content-secondary; peak: --color-gray-6.
+ * "Surprise me" — text + sparkle icon; icon inherits the link text color.
  * ------------------------------------------------------------------------- */
 
 .hero-surprise-link {
-  background: linear-gradient(
-    90deg,
-    var(--color-typography-content-secondary) 0%,
-    var(--color-typography-content-secondary) 38%,
-    var(--color-gray-6) 50%,
-    var(--color-typography-content-secondary) 62%,
-    var(--color-typography-content-secondary) 100%
-  );
-  background-size: 250% 100%;
-  background-position: 150% center;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: hero-surprise-shimmer 11.2s ease-in-out infinite;
+  color: var(--color-typography-content-secondary);
+}
+
+.hero-surprise-link__icon {
+  display: inline-flex;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.hero-surprise-link__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
 }
 
 .hero-surprise-link:hover,
 .hero-surprise-link:focus-visible {
-  animation-play-state: paused;
-  background: none;
   color: var(--color-typography-content-default);
-  -webkit-background-clip: unset;
-  background-clip: unset;
-}
-
-@keyframes hero-surprise-shimmer {
-  /* 5s rest, then ~6.2s sweep — matches the old 20s-loop timing. */
-  0%,
-  44.64%,
-  100% {
-    background-position: 150% center;
-  }
-
-  99.64% {
-    background-position: -50% center;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-surprise-link {
-    animation: none;
-    background: none;
-    color: var(--color-typography-content-secondary);
-    -webkit-background-clip: unset;
-    background-clip: unset;
-  }
-
-  .hero-surprise-link:hover,
-  .hero-surprise-link:focus-visible {
-    color: var(--color-typography-content-default);
-  }
 }

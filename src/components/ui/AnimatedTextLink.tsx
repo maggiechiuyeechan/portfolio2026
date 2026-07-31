@@ -23,6 +23,13 @@ const inlineStyle: React.CSSProperties = {
   textDecoration: "none",
 };
 
+const surpriseInlineStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "0.2em",
+  textDecoration: "none",
+};
+
 interface Props {
   href: string;
   children: React.ReactNode;
@@ -30,8 +37,8 @@ interface Props {
   active?: boolean;
   /** Hero bio links sit inline with · separators. */
   inline?: boolean;
-  /** Cursor-style gray shimmer — ~5s idle, ~6.2s sweep (Surprise me). */
-  shimmer?: boolean;
+  /** Extra classes (e.g. hero-surprise-link layout). */
+  className?: string;
   /** Cuelume pointerenter cue (nav uses tick). */
   hoverSound?: string;
   /** Cuelume pointerdown/up cues (nav uses default press + release). */
@@ -49,7 +56,7 @@ export default function AnimatedTextLink({
   children,
   active = false,
   inline = false,
-  shimmer = false,
+  className,
   hoverSound,
   pressReleaseSound = false,
   onClick,
@@ -60,27 +67,17 @@ export default function AnimatedTextLink({
   const pressReleaseSoundAttr = pressReleaseSound
     ? ({ "data-cuelume-press": true, "data-cuelume-release": true } as const)
     : {};
-
-  if (shimmer) {
-    return (
-      <a
-        href={href}
-        className={`hero-surprise-link${inline ? " hero-surprise-link--inline" : ""}`}
-        style={inline ? inlineStyle : blockStyle}
-        onClick={onClick}
-        {...hoverSoundAttr}
-        {...pressReleaseSoundAttr}
-        {...(openInNewTab ? { target: "_blank", rel: "noreferrer" } : {})}
-      >
-        {children}
-      </a>
-    );
-  }
+  const isSurprise = Boolean(className?.includes("hero-surprise-link"));
+  const resolvedInline = isSurprise ? surpriseInlineStyle : inlineStyle;
+  const resolvedClassName = [className, isSurprise && inline ? "hero-surprise-link--inline" : null]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <motion.a
       href={href}
-      style={inline ? inlineStyle : blockStyle}
+      className={resolvedClassName || undefined}
+      style={inline ? resolvedInline : blockStyle}
       initial={false}
       animate={{ color: restColor }}
       whileHover={{ color: colorDefault }}
