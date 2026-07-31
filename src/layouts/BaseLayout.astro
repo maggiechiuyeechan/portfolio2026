@@ -85,16 +85,17 @@ const websiteSchema = {
       <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     )}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono&display=swap"
-      rel="stylesheet"
-    />
     {/* Body face — used on every route, so always worth preloading. */}
     <link
       rel="preload"
       href="/fonts/geist/Geist-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/geist/GeistMono-Variable.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -126,7 +127,9 @@ const websiteSchema = {
     <slot />
     <script>
       import { initCuelume } from "../lib/cuelume";
+      import { initCursorLabel } from "../scripts/cursor-label";
       initCuelume();
+      initCursorLabel();
     </script>
   </body>
 </html>

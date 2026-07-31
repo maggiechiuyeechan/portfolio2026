@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import { motion } from "motion/react";
 import MonsterEyes from "../../auth/MonsterEyes";
 import { useSceneAnchor } from "../../../lib/useSceneAnchor";
+import { dismissCursorLabel } from "../../../scripts/cursor-label";
 import type { HeroSceneProps } from "../../../config/heroVariants";
 
 const monsterArt: React.CSSProperties = {
@@ -15,6 +16,9 @@ const monsterArt: React.CSSProperties = {
   zIndex: 2,
   pointerEvents: "none",
 };
+
+/** How far the pointer must travel before the "move around" label dismisses. */
+const LABEL_DISMISS_TRAVEL_PX = 160;
 
 /** Clear gap between monster art and Maggie — matches --spacing-3 (12px). */
 function monsterNameGapPx(): number {
@@ -28,6 +32,35 @@ export default function MonstersScene({ obstacleRefs, variants }: HeroSceneProps
   const anchor = useSceneAnchor(nameRef, monsterNameGapPx);
 
   useEffect(() => setMounted(true), []);
+
+  // Dismiss the cursor label once the user has moved around a bit.
+  useEffect(() => {
+    let travelled = 0;
+    let lastX = 0;
+    let lastY = 0;
+    let seen = false;
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (!seen) {
+        lastX = event.clientX;
+        lastY = event.clientY;
+        seen = true;
+        return;
+      }
+
+      travelled += Math.hypot(event.clientX - lastX, event.clientY - lastY);
+      lastX = event.clientX;
+      lastY = event.clientY;
+
+      if (travelled < LABEL_DISMISS_TRAVEL_PX) return;
+
+      dismissCursorLabel();
+      window.removeEventListener("pointermove", onPointerMove);
+    };
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onPointerMove);
+  }, []);
 
   if (!mounted) return null;
 

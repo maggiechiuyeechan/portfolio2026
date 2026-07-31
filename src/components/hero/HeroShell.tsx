@@ -22,6 +22,7 @@ import HeroSceneFrame from "../auth/HeroSceneFrame";
 import HeroEarlyBackdrop from "./HeroEarlyBackdrop";
 import { getVariant } from "../../config/heroVariants";
 import AnimatedTextLink from "../ui/AnimatedTextLink";
+import { updateCursorLabel } from "../../scripts/cursor-label";
 
 export interface HeroShellProps {
   name: string;
@@ -140,6 +141,19 @@ export default function HeroShell({
     };
   }, [showSceneFrame]);
 
+  const variantLabelMounted = useRef(false);
+
+  useEffect(() => {
+    return () => updateCursorLabel(null);
+  }, []);
+
+  useEffect(() => {
+    updateCursorLabel(variantMeta?.cursorLabel ?? null, {
+      forceReveal: variantLabelMounted.current,
+    });
+    variantLabelMounted.current = true;
+  }, [variantId, variantMeta?.cursorLabel]);
+
   const scene = (
     <Fragment key={`scene-${variantId}-${sceneReplayKey}`}>
       <Suspense fallback={null}>
@@ -186,7 +200,7 @@ export default function HeroShell({
         </div>
         <p
           ref={linksRef}
-          className="text-body hero-bio"
+          className="text-title hero-bio"
           style={{ maxWidth: "100%", pointerEvents: "auto" }}
         >
           <AnimatedTextLink href={linkedin.href} inline>

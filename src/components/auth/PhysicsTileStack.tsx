@@ -48,6 +48,10 @@ const POP_UP_SPEED = 18;
 const POP_LATERAL = 2.5;
 const POP_SPIN = 0.1;
 const POP_COOLDOWN_MS = 480;
+/** Version C — stronger bounce so organic shapes jump a bit higher. */
+const SHAPES_C_POP_UP_SPEED = 28;
+const SHAPES_C_POP_LATERAL = 3.5;
+const SHAPES_C_POP_SPIN = 0.14;
 
 interface SpawnedBody {
   bodyId: number;
@@ -452,6 +456,9 @@ export default function PhysicsTileStack({
     const releaseCursor = acquireBodyFlag("heroInteractive");
 
     // Cursor contact wakes a piece and kicks it upward.
+    const popUp = isShapes ? SHAPES_C_POP_UP_SPEED : POP_UP_SPEED;
+    const popLateral = isShapes ? SHAPES_C_POP_LATERAL : POP_LATERAL;
+    const popSpin = isShapes ? SHAPES_C_POP_SPIN : POP_SPIN;
     const popAt = (clientX: number, clientY: number, withSound: boolean) => {
       const hits = Query.point(tileBodiesRef.current, {
         x: clientX,
@@ -471,12 +478,12 @@ export default function PhysicsTileStack({
         snappedTransforms.delete(body.id);
         Sleeping.set(body, false);
         Body.setVelocity(body, {
-          x: body.velocity.x + (Math.random() - 0.5) * POP_LATERAL * 2,
-          y: -POP_UP_SPEED,
+          x: body.velocity.x + (Math.random() - 0.5) * popLateral * 2,
+          y: -popUp,
         });
         Body.setAngularVelocity(
           body,
-          body.angularVelocity + (Math.random() - 0.5) * POP_SPIN * 2,
+          body.angularVelocity + (Math.random() - 0.5) * popSpin * 2,
         );
       }
     };

@@ -217,6 +217,7 @@ body[data-hero-scene-frame] .hero-early-backdrop {
  * ------------------------------------------------------------------------- */
 
 .hero-grid-backdrop__lines,
+.hero-early-backdrop__lines,
 .grid-sprinkle__grid-lines {
   --hero-grid-text-mask-x: 50%;
   --hero-grid-text-mask-y: 46%;
@@ -246,6 +247,7 @@ body[data-hero-scene-frame] .hero-early-backdrop {
 
 @media (max-width: 41.25rem), (max-height: 40.625rem) {
   .hero-grid-backdrop__lines,
+  .hero-early-backdrop__lines,
   .grid-sprinkle__grid-lines {
     --hero-grid-text-mask-y: 70%;
     --hero-grid-text-mask-rx: 19rem;

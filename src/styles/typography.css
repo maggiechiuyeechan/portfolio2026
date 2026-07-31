@@ -48,13 +48,13 @@
   color: var(--color-typography-content-secondary);
 }
 
-/* Captions — Atkinson Hyperlegible Mono 8px, line-height 200%, tracking +20%, uppercase */
+/* Captions — Geist Mono 10px, line-height 200%, tracking +15%, uppercase */
 .text-caption {
-  font-family: "Atkinson Hyperlegible Mono", monospace;
+  font-family: var(--font-mono);
   font-weight: 400;
-  font-size: 0.5rem; /* 8px */
+  font-size: 0.625rem; /* 10px */
   line-height: 2;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-typography-content-secondary);
 }
@@ -76,4 +76,9 @@
   .hero-bio {
     text-wrap: balance;
   }
+}
+
+/* Hero link row — title scale (18px), secondary color for · separators */
+.hero-bio {
+  color: var(--color-typography-content-secondary);
 }

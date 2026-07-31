@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { dismissCursorLabel } from "../scripts/cursor-label";
 import { usePrefersReducedMotion } from "./motion";
-import { IDLE_NUDGE_MS } from "./idleNudgeScale";
+import { IDLE_NUDGE_ENABLED, IDLE_NUDGE_MS } from "./idleNudgeScale";
 
 /**
  * After a short idle period, pick one item id and pulse it (see hero-idle-nudge.css
@@ -9,6 +10,7 @@ import { IDLE_NUDGE_MS } from "./idleNudgeScale";
  */
 export function useIdleNudge(itemIds: string[], enabled = true) {
   const reducedMotion = usePrefersReducedMotion();
+  const active = enabled && IDLE_NUDGE_ENABLED;
   const [nudgeId, setNudgeId] = useState<string | null>(null);
   const [nudgeStartMs, setNudgeStartMs] = useState(0);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -25,7 +27,7 @@ export function useIdleNudge(itemIds: string[], enabled = true) {
 
   const scheduleIdleNudge = useCallback(() => {
     clearIdleTimer();
-    if (reducedMotion || !enabled || hasInteracted) return;
+    if (reducedMotion || !active || hasInteracted) return;
     idleTimerRef.current = window.setTimeout(() => {
       const list = idsRef.current;
       if (list.length === 0) return;
@@ -33,7 +35,7 @@ export function useIdleNudge(itemIds: string[], enabled = true) {
       setNudgeId(pick);
       setNudgeStartMs(performance.now());
     }, IDLE_NUDGE_MS);
-  }, [clearIdleTimer, enabled, hasInteracted, reducedMotion]);
+  }, [clearIdleTimer, active, hasInteracted, reducedMotion]);
 
   const noteInteraction = useCallback(() => {
     if (hasInteracted) return;
@@ -41,10 +43,11 @@ export function useIdleNudge(itemIds: string[], enabled = true) {
     setNudgeId(null);
     setNudgeStartMs(0);
     clearIdleTimer();
+    dismissCursorLabel();
   }, [clearIdleTimer, hasInteracted]);
 
   useEffect(() => {
-    if (!enabled || itemIds.length === 0 || reducedMotion || hasInteracted) {
+    if (!active || itemIds.length === 0 || reducedMotion || hasInteracted) {
       clearIdleTimer();
       setNudgeId(null);
       setNudgeStartMs(0);
@@ -52,7 +55,7 @@ export function useIdleNudge(itemIds: string[], enabled = true) {
     }
     scheduleIdleNudge();
     return clearIdleTimer;
-  }, [enabled, itemIds.length, reducedMotion, hasInteracted, scheduleIdleNudge, clearIdleTimer]);
+  }, [active, itemIds.length, reducedMotion, hasInteracted, scheduleIdleNudge, clearIdleTimer]);
 
   // Stale target (e.g. dot culled) — re-pick without counting as user interaction.
   useEffect(() => {

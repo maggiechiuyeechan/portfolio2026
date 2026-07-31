@@ -418,7 +418,6 @@ export default function EditableBlobField({ obstacleRefs = [], variants }: Props
     nudgeIds,
     mounted && nudgeIds.length > 0,
   );
-
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {

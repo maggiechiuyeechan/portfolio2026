@@ -3,7 +3,7 @@
  * File naming from the foundry: w<weight>s<slant>w<width>.
  *   Bagoss-w230s0w60 -> weight 230 ("Condensed Thin")
  *   Bagoss-w320s0w60 -> weight 320 ("Standard Light" — display/h1 + title/h2)
- * Geist Sans (Vercel) and Atkinson Hyperlegible Mono — self-hosted / Google Fonts.
+ * Geist Sans + Geist Mono (Vercel, self-hosted).
  */
 @font-face {
   font-family: "Bagoss";
@@ -38,6 +38,17 @@
   src:
     url("/fonts/geist/Geist-Variable.woff2") format("woff2-variations"),
     url("/fonts/geist/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Mono — variable weight axis (captions). */
+@font-face {
+  font-family: "Geist Mono";
+  src:
+    url("/fonts/geist/GeistMono-Variable.woff2") format("woff2-variations"),
+    url("/fonts/geist/GeistMono-Variable.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;

@@ -28,6 +28,9 @@ export type HeroVariantId =
   | "editable-blobs"
   | "monsters";
 
+/** Cursor-label copy shown by the global cursor pill (lowercase in source; caption styles uppercase it). */
+export type HeroCursorLabel = string;
+
 /** How the shell arranges itself around the scene. */
 export type HeroLayout =
   /** Scene stacked above the name inside the copy column (reserved). */
@@ -64,6 +67,8 @@ export interface HeroVariant {
    * backdrop lives inside the scene bundle.
    */
   earlyBackdrop?: "grid";
+  /** Affordance verb shown by the global cursor-label pill. Omit when none. */
+  cursorLabel?: HeroCursorLabel;
   /** Lazily-loaded scene component. Must be a static import specifier. */
   load: () => Promise<{ default: ComponentType<HeroSceneProps> }>;
 }
@@ -87,6 +92,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     label: "Meadow ripple",
     note: "Version O — halftone WebGL ripple over the grass video.",
     layout: "full-canvas",
+    cursorLabel: "click on image",
     assets: ["/images/meadow.mp4", "/images/meadow-poster.webp"],
     load: () => import("../components/hero/scenes/MeadowScene"),
   },
@@ -96,6 +102,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version B — falling tile physics, full canvas.",
     layout: "full-canvas",
     sceneFrame: true,
+    cursorLabel: "hover on tiles",
     load: () => import("../components/hero/scenes/TilesScene"),
   },
   {
@@ -104,6 +111,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version C — full-canvas physics with organic Figma shapes.",
     layout: "full-canvas",
     sceneFrame: true,
+    cursorLabel: "hover on shapes",
     load: () => import("../components/hero/scenes/ShapesCScene"),
   },
   {
@@ -112,6 +120,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version F — draggable paper desk, multiply blend (node 327:60168).",
     layout: "full-canvas",
     sceneFrame: true,
+    cursorLabel: "Drag & click on shapes",
     load: () => import("../components/hero/scenes/ShapeDeskScene"),
   },
   {
@@ -121,6 +130,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     layout: "full-canvas",
     sceneFrame: true,
     earlyBackdrop: "grid",
+    cursorLabel: "hover on dots, click to reload",
     load: () => import("../components/hero/scenes/GridSprinkleScene"),
   },
   {
@@ -130,6 +140,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     layout: "full-canvas",
     sceneFrame: true,
     earlyBackdrop: "grid",
+    cursorLabel: "hover on shapes, click to reload",
     load: () => import("../components/hero/scenes/ShapeCollageScene"),
   },
   {
@@ -138,6 +149,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version M — botanical dot illustration, 25s stipple-in (node 354:79447).",
     layout: "full-canvas",
     desktopOnly: true,
+    cursorLabel: "click to animate",
     load: () => import("../components/hero/scenes/BotanicalScene"),
   },
   {
@@ -146,6 +158,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version N — non-overlapping organic shapes, editable nodes on hover.",
     layout: "full-canvas",
     sceneFrame: true,
+    cursorLabel: "hover on shapes",
     load: () => import("../components/hero/scenes/EditableBlobsScene"),
   },
   {
@@ -154,6 +167,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version J — monster illustration perched on the name, pupils track cursor.",
     layout: "full-canvas",
     noise: true,
+    cursorLabel: "move around",
     load: () => import("../components/hero/scenes/MonstersScene"),
   },
 ];

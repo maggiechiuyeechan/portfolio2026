@@ -492,24 +492,15 @@ export default function GridSprinkle({
     const releaseCursor = acquireBodyFlag("heroInteractive");
 
     // Hover to burst a dot into tiny firework circles.
-    const onPointerMove = (event: PointerEvent) => {
-      if (isInteractiveTarget(event.target as Element | null)) return;
-
+    const burstAt = (mx: number, my: number) => {
       const width = window.innerWidth;
       const height = window.innerHeight;
       if (width <= 0 || height <= 0) return;
 
-      const mx = event.clientX;
-      const my = event.clientY;
       const hitR = eraseRadiusPx();
       const hitR2 = hitR * hitR;
       const dots = dotsRef.current;
 
-      // Cheap scan first. The previous version built a Set of every colour on
-      // the canvas AND a full copy of the dot array on EVERY pointermove, then
-      // discarded both when the cursor hadn't touched anything — two throwaway
-      // allocations per event, at up to 120Hz, purely from moving the mouse.
-      // Nothing below runs unless the cursor is actually over a dot.
       let hitIndex = -1;
       for (let i = 0; i < dots.length; i++) {
         const dot = dots[i]!;
@@ -546,6 +537,11 @@ export default function GridSprinkle({
       dotsRef.current = next;
       syncDotIds();
       ensureAnim();
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (isInteractiveTarget(event.target as Element | null)) return;
+      burstAt(event.clientX, event.clientY);
     };
     window.addEventListener("pointermove", onPointerMove);
 

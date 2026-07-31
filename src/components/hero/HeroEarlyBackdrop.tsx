@@ -45,7 +45,11 @@ export default function HeroEarlyBackdrop() {
   return createPortal(
     <>
       <div className="hero-early-backdrop" aria-hidden="true" style={fillStyle} />
-      <div className="hero-early-backdrop" aria-hidden="true" style={linesStyle} />
+      <div
+        className="hero-early-backdrop hero-early-backdrop__lines"
+        aria-hidden="true"
+        style={linesStyle}
+      />
     </>,
     document.body,
   );

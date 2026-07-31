@@ -1,0 +1,57 @@
+/*
+ * Cursor label — trails the native pointer. The system cursor stays visible;
+ * only the pill is drawn here.
+ */
+
+.cursor-label-root {
+  --cursor-label-offset-x: 12px;
+  --cursor-label-offset-y: 12px;
+  --cursor-label-z: 9999;
+
+  position: fixed;
+  inset: 0;
+  width: 0;
+  height: 0;
+  z-index: var(--cursor-label-z);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.cursor-label-pill {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cursor-label-pill__viz {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 9rem; /* 144px */
+  padding: 1px var(--spacing-05);
+  border-radius: var(--radius-1);
+  white-space: normal;
+  filter: none;
+  opacity: 0;
+  transform: scale(0.88);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+/*
+ * Typescale token: same values as .text-caption in typography.css.
+ */
+.cursor-label-pill__text {
+  display: block;
+  text-align: left;
+  text-wrap: balance;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.625rem; /* 10px */
+  line-height: 1.5;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-typography-content-default);
+}

@@ -1,3 +1,6 @@
+/** Toggle idle invite pulse across hero scenes. */
+export const IDLE_NUDGE_ENABLED = false;
+
 /** Shared idle invite pulse — matches hero-idle-nudge.css keyframes. */
 export const IDLE_NUDGE_MS = 5 * 1000;
 export const IDLE_NUDGE_PULSE_MS = 5000;
