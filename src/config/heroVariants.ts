@@ -158,7 +158,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version N — non-overlapping organic shapes, editable nodes on hover.",
     layout: "full-canvas",
     sceneFrame: true,
-    cursorLabel: "hover on shapes",
+    cursorLabel: "Drag and edit shapes",
     load: () => import("../components/hero/scenes/EditableBlobsScene"),
   },
   {
