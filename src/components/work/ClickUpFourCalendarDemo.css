@@ -1,0 +1,811 @@
+@import "../../styles/sf-pro-demo.css";
+
+/*
+ * ClickUp 4.0 Calendar demo (Figma node 68:28067, 871x530).
+ * All geometry is raw px at the Figma frame size; the composition is scaled
+ * by .cu4-demo-frame.
+ */
+.cu4cal-root {
+  --cu4cal-font:
+    "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", system-ui,
+    Arial, sans-serif;
+
+  position: relative;
+  width: 871px;
+  height: 530px;
+  overflow: hidden;
+  border-top-left-radius: 10.2px;
+  background: #000;
+  font-family: var(--cu4cal-font);
+  font-optical-sizing: auto;
+  font-synthesis: none;
+}
+
+.cu4cal-root * {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.cu4cal-root img {
+  display: block;
+}
+
+/* App surface */
+.cu4cal-surface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 871.25px;
+  height: 510px;
+  overflow: hidden;
+  border-radius: 10.2px 10.2px 0 0;
+  background: #fcfcfc;
+  box-shadow:
+    0px 2px 4px -2px rgba(0, 0, 0, 0.11),
+    0px 4px 6px -1px rgba(0, 0, 0, 0.11);
+}
+
+/* Main app window ("middle", 68:28075) */
+.cu4cal-app {
+  position: absolute;
+  top: 34px;
+  left: 52.7px;
+  width: 996.2px;
+  height: 503.2px;
+  overflow: hidden;
+  border-radius: 6.8px;
+  background: #fff;
+  filter: drop-shadow(0px 0px 0.425px rgba(0, 0, 0, 0.27)) drop-shadow(0px 0.85px 0.85px rgba(0, 0, 0, 0.05));
+}
+
+/* Header (68:28123) */
+.cu4cal-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 941.8px;
+  height: 40.8px;
+  background: #fff;
+}
+
+/* Left-column labels (month, timezone, All day, hours) share a 16.15px text edge. */
+.cu4cal-month-btn {
+  position: absolute;
+  top: 8.5px;
+  left: 9.35px;
+  display: flex;
+  align-items: center;
+  height: 23.8px;
+  padding: 0 6.8px;
+  font-size: 11.56px;
+  font-weight: 510;
+  line-height: 14.45px;
+  letter-spacing: -0.272px;
+  color: #202020;
+  white-space: nowrap;
+}
+
+/* AI Notetaker button (68:28131) — sits at x 833.4, clipped by the 818.55px
+   visible width of the app window; rendered anyway for fidelity. */
+.cu4cal-ai-btn {
+  position: absolute;
+  top: 8.3px;
+  left: 833.4px;
+  display: flex;
+  align-items: center;
+  gap: 5.1px;
+  height: 24.2px;
+  padding: 0 10.2px;
+  border: 0.85px solid #e8e8e8;
+  border-radius: 12.1px;
+  background: #fff;
+  font-size: 11.9px;
+  font-weight: 510;
+  line-height: 13.6px;
+  letter-spacing: -0.15px;
+  color: #646464;
+  white-space: nowrap;
+}
+
+/* Sub-header (68:28147) */
+.cu4cal-subheader {
+  position: absolute;
+  top: 40.8px;
+  left: 0;
+  width: 996.2px;
+  height: 23.8px;
+  border-bottom: 0.85px solid #f0f0f0;
+  background: #fff;
+}
+
+.cu4cal-tz {
+  position: absolute;
+  top: 4.9px;
+  left: 16.15px;
+  font-size: 9.35px;
+  font-weight: 590;
+  line-height: 13.6px;
+  letter-spacing: 0.0595px;
+  color: #838383;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cu4cal-daycell {
+  position: absolute;
+  top: 0;
+  height: 23.8px;
+}
+
+.cu4cal-dayname {
+  position: absolute;
+  top: 4.9px;
+  font-size: 11.9px;
+  font-weight: 510;
+  line-height: 13.6px;
+  letter-spacing: -0.1275px;
+  color: #838383;
+  white-space: nowrap;
+}
+
+.cu4cal-daynum {
+  position: absolute;
+  top: 2.55px;
+  width: 18.7px;
+  height: 18.7px;
+  border-radius: 99px;
+}
+
+.cu4cal-daynum p {
+  position: absolute;
+  top: 2.35px;
+  left: 0;
+  width: 100%;
+  font-size: 11.9px;
+  font-weight: 510;
+  line-height: 13.6px;
+  letter-spacing: -0.1275px;
+  color: #838383;
+  text-align: center;
+}
+
+.cu4cal-daynum.is-today {
+  top: 1.7px;
+  width: 20.4px;
+  height: 20.4px;
+  background: #e5484d;
+}
+
+.cu4cal-daynum.is-today p {
+  top: 3.2px;
+  color: #fff;
+}
+
+/* Week grid (68:28183) */
+.cu4cal-week {
+  position: absolute;
+  top: 64.6px;
+  left: 0;
+  width: 996.2px;
+  height: 438.6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* Line under the all-day row + time/day separator */
+.cu4cal-allday-border {
+  position: absolute;
+  top: 28.6px;
+  left: 0;
+  width: 100%;
+  height: 0.894px;
+  background: #f0f0f0;
+}
+
+.cu4cal-time-border {
+  position: absolute;
+  top: 0;
+  left: 64.36px;
+  width: 0.894px;
+  height: 100%;
+  background: #f0f0f0;
+}
+
+.cu4cal-allday-label {
+  position: absolute;
+  top: 6.8px;
+  left: 16.15px;
+  font-size: 9.833px;
+  font-weight: 590;
+  line-height: 14.303px;
+  letter-spacing: 0.1073px;
+  color: #838383;
+  white-space: nowrap;
+}
+
+.cu4cal-hour-label {
+  position: absolute;
+  left: 16.15px;
+  width: 37.49px;
+  font-size: 10.727px;
+  font-weight: 510;
+  line-height: 14.303px;
+  color: #838383;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.cu4cal-hour-label.is-past {
+  color: #bbb;
+}
+
+/* Day columns exported from Figma (pills baked in) */
+.cu4cal-col {
+  position: absolute;
+  top: 0;
+  width: 140.476px;
+  height: 411.4px;
+}
+
+/* CSS gridlines for the partially visible Saturday column (68:28592) */
+.cu4cal-col-line {
+  position: absolute;
+  width: 140.476px;
+  height: 0.894px;
+  background: #f0f0f0;
+}
+
+/* Now indicator (68:28196): red badge + segmented line asset */
+.cu4cal-now {
+  position: absolute;
+  left: 21.45px;
+  top: 0;
+  width: 964.56px;
+  height: 14.58px;
+  will-change: transform;
+}
+
+.cu4cal-now-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35.76px;
+  height: 14.58px;
+  border-radius: 595px;
+  background: #e5484d;
+}
+
+.cu4cal-now-badge p {
+  position: absolute;
+  top: 1.79px;
+  left: 0;
+  width: 100%;
+  font-size: 9.833px;
+  font-weight: 510;
+  line-height: 10.727px;
+  color: #fff;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.cu4cal-now-line {
+  position: absolute;
+  top: 3.71px;
+  left: 35.76px;
+  width: 932.376px;
+  height: 7.151px;
+}
+
+/* Focused event card (68:28236) */
+.cu4cal-event {
+  position: absolute;
+  left: 255.85px;
+  top: 161.4px;
+  width: 319.6px;
+  height: 215.05px;
+  border-radius: 10.2px;
+  background: #fff;
+  filter:
+    drop-shadow(0 0 0.38px rgba(0, 0, 0, 0.27)) drop-shadow(0 7.598px 5.699px rgba(0, 0, 0, 0.1))
+    drop-shadow(0 3.039px 2.28px rgba(0, 0, 0, 0.1));
+}
+
+.cu4cal-event-top {
+  position: absolute;
+  top: 5.927px;
+  left: 6.079px;
+  right: 6.079px;
+  display: flex;
+  align-items: center;
+  gap: 6.08px;
+  box-sizing: border-box;
+  height: 27.35px;
+  padding: 3.04px;
+}
+
+.cu4cal-event-gcal {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 21.28px;
+  height: 21.28px;
+  padding: 3.04px;
+  border: 0.76px solid #e8e8e8;
+  border-radius: 4.56px;
+  background: #fff;
+}
+
+.cu4cal-event-gcal-icon {
+  position: relative;
+  flex: none;
+  width: 15.2px;
+  height: 15.2px;
+}
+
+.cu4cal-event-gcal-icon img {
+  position: absolute;
+  left: 1.9px;
+  top: 1.9px;
+  display: block;
+  width: 11.398px;
+  height: 11.398px;
+  max-width: none;
+}
+
+.cu4cal-event-kind {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 9.118px;
+  line-height: 12.158px;
+  font-weight: 400;
+  color: #838383;
+  white-space: nowrap;
+}
+
+.cu4cal-event-close {
+  position: relative;
+  flex: none;
+  width: 15.2px;
+  height: 15.2px;
+}
+
+/* button 68:28247 — 2.28 padding around a 10.637 close-small frame */
+.cu4cal-event-close-btn {
+  position: absolute;
+  top: -4.86px;
+  left: 1.36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15.197px;
+  height: 15.197px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.cu4cal-event-close-btn img {
+  display: block;
+  width: 5.318px;
+  height: 5.318px;
+}
+
+.cu4cal-event-title {
+  position: absolute;
+  top: 38.221px;
+  left: 12.158px;
+  margin: 0;
+  font-size: 13.68px;
+  font-weight: 590;
+  line-height: 20.516px;
+  letter-spacing: -0.45px;
+  color: #202020;
+  white-space: nowrap;
+}
+
+.cu4cal-event-dates {
+  position: absolute;
+  top: 60.636px;
+  left: 6.079px;
+  width: 307.442px;
+  height: 25.158px;
+}
+
+.cu4cal-event-dates p {
+  position: absolute;
+  top: 6.5px;
+  margin: 0;
+  font-size: 10.64px;
+  font-weight: 400;
+  line-height: 12.158px;
+  letter-spacing: -0.15px;
+  color: #202020;
+  white-space: nowrap;
+}
+
+/* arrow-right 68:28257 — 9.118 frame, glyph inset 16.67%/8.33% */
+.cu4cal-event-dates-arrow {
+  position: absolute;
+  top: 8.02px;
+  width: 9.118px;
+  height: 9.118px;
+}
+
+.cu4cal-event-dates-arrow img {
+  position: absolute;
+  left: 0.76px;
+  top: 1.52px;
+  display: block;
+  width: 7.598px;
+  height: 6.079px;
+  max-width: none;
+}
+
+.cu4cal-event-join {
+  position: absolute;
+  top: 88.833px;
+  left: 6.079px;
+  box-sizing: border-box;
+  width: 307.442px;
+  height: 31.236px;
+  padding: 4.559px 3.039px;
+}
+
+.cu4cal-event-join-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.04px;
+  width: 100%;
+  height: 22.12px;
+  padding: 4.56px 6.08px 4.56px 4.56px;
+  border: 0.76px solid #e8e8e8;
+  border-radius: 6.8px;
+  background: #fff;
+  box-shadow: 0px 0.85px 1.7px 0px rgba(0, 0, 0, 0.05);
+}
+
+.cu4cal-event-join p {
+  margin: 0;
+  font-size: 10.638px;
+  font-weight: 510;
+  line-height: 12.158px;
+  letter-spacing: -0.114px;
+  color: #646464;
+  white-space: nowrap;
+}
+
+.cu4cal-zoom-wrap {
+  position: relative;
+  flex: none;
+  width: 11.56px;
+  height: 11.56px;
+}
+
+.cu4cal-zoom-wrap img {
+  position: absolute;
+  left: 0.963px;
+  top: 0.963px;
+  display: block;
+  width: 9.633px;
+  height: 9.633px;
+  max-width: none;
+}
+
+.cu4cal-zoom {
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.cu4cal-zoom.is-shaking {
+  animation: cu4cal-shake 1s ease-in-out 1;
+}
+
+.cu4cal-root.is-paused .cu4cal-zoom.is-shaking {
+  animation-play-state: paused;
+}
+
+/* Ringing-phone shake: pop 10% larger, then swing +/-15deg a few times. */
+@keyframes cu4cal-shake {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  8% {
+    transform: scale(1.1) rotate(15deg);
+  }
+  20% {
+    transform: scale(1.1) rotate(-15deg);
+  }
+  32% {
+    transform: scale(1.1) rotate(15deg);
+  }
+  44% {
+    transform: scale(1.1) rotate(-15deg);
+  }
+  56% {
+    transform: scale(1.1) rotate(15deg);
+  }
+  68% {
+    transform: scale(1.1) rotate(-15deg);
+  }
+  80% {
+    transform: scale(1.1) rotate(8deg);
+  }
+  90% {
+    transform: scale(1.05) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* users glyph 68:28288 — 12.158 frame at 12.158/132.227, fill inset 12.5%/4.17% */
+.cu4cal-event-users-icon {
+  position: absolute;
+  left: 12.665px;
+  top: 133.747px;
+  display: block;
+  max-width: none;
+}
+
+/* leading-icon 68:28290 — avatars and counter each overlap the previous by 3.039 */
+.cu4cal-event-attendees {
+  position: absolute;
+  top: 128.767px;
+  left: 36.473px;
+  display: flex;
+  align-items: center;
+  height: 19.079px;
+}
+
+/* The 1.52 white ring sits outside the 18.236 avatar, so it never shrinks the photo. */
+.cu4cal-avatar {
+  position: relative;
+  width: 18.236px;
+  height: 18.236px;
+  margin-right: -3.039px;
+  border-radius: 99px;
+  box-shadow: 0 0 0 1.52px #fff;
+  flex-shrink: 0;
+}
+
+.cu4cal-avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 99px;
+}
+
+/* indicator 68:28291 — 5.319 dot pinned to the padding box, halo bleeds 1.33 past it */
+.cu4cal-avatar-status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 5.319px;
+  height: 5.319px;
+  pointer-events: none;
+}
+
+.cu4cal-avatar-status-bg,
+.cu4cal-avatar-status-dot {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+.cu4cal-avatar-status-bg {
+  left: -1.33px;
+  top: -1.33px;
+  width: 7.978px;
+  height: 7.978px;
+}
+
+.cu4cal-avatar-status-dot {
+  left: 0;
+  top: 0;
+  width: 5.319px;
+  height: 5.319px;
+}
+
+/* Matches the avatar disc rather than its 21.276 ringed footprint: the ring is
+   white on a white card, so sizing to it made the counter read as the odd one out. */
+.cu4cal-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18.236px;
+  height: 18.236px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.05);
+  font-size: 9.12px;
+  font-weight: 510;
+  line-height: 12.158px;
+  color: #646464;
+  flex-shrink: 0;
+}
+
+/* Frame 1618871452 (68:28310) */
+.cu4cal-event-links {
+  position: absolute;
+  top: 153.503px;
+  left: 6.079px;
+  width: 307.442px;
+}
+
+/* relationship 68:28312 — 13.6 frame at 11.436/162.660, fill inset 12.5% */
+.cu4cal-event-links-icon {
+  position: absolute;
+  left: 7.057px;
+  top: 10.857px;
+  display: block;
+  max-width: none;
+}
+
+/* mention rows: 3.039 row padding + 1.52 text-layout padding before the glyph */
+.cu4cal-link-row {
+  position: absolute;
+  left: 24.315px;
+  display: flex;
+  align-items: center;
+  gap: 3.039px;
+  height: 21.276px;
+  padding-left: 4.559px;
+}
+
+.cu4cal-link-icon {
+  position: relative;
+  flex: none;
+  width: 12.158px;
+  height: 12.158px;
+  overflow: hidden;
+}
+
+.cu4cal-link-icon img {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+.cu4cal-link-status {
+  left: 1.013px;
+  top: 1.013px;
+  width: 10.131px;
+  height: 10.131px;
+}
+
+.cu4cal-link-progress {
+  left: 6.079px;
+  top: 3.039px;
+  width: 3.039px;
+  height: 5.778px;
+}
+
+.cu4cal-link-doc {
+  left: 1.889px;
+  top: 1.013px;
+  width: 8.378px;
+  height: 10.132px;
+}
+
+.cu4cal-link-row p {
+  margin: 0;
+  font-size: 10.64px;
+  font-weight: 510;
+  line-height: 12.158px;
+  letter-spacing: -0.15px;
+  color: #202020;
+  white-space: nowrap;
+  border-bottom: 0.76px solid #ebebeb;
+}
+
+/* Black left rail (same chrome as the other slides) */
+.cu4cal-rail {
+  position: absolute;
+  top: 34px;
+  left: 5.1px;
+  width: 40.8px;
+  height: 861.9px;
+  overflow: hidden;
+  border-radius: 6.8px;
+  background: #000;
+}
+
+.cu4cal-rail-items {
+  position: absolute;
+  top: 6.8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6.8px;
+  align-items: center;
+}
+
+.cu4cal-rail-nav {
+  position: relative;
+  flex-shrink: 0;
+  width: 27.2px;
+}
+
+.cu4cal-rail-nav.is-dim,
+.cu4cal-rail-icon.is-dim {
+  opacity: 0.8;
+}
+
+.cu4cal-rail-icon {
+  position: relative;
+  width: 27.2px;
+  height: 27.2px;
+  border-radius: 8px;
+}
+
+.cu4cal-rail-icon > img {
+  position: absolute;
+  top: 5.1px;
+  left: 5.1px;
+  display: block;
+  width: 17px;
+  height: 17px;
+}
+
+.cu4cal-rail-icon--brain > img {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cu4cal-rail-nav--calendar .cu4cal-rail-icon {
+  border-radius: 100px;
+}
+
+.cu4cal-rail-glow {
+  position: absolute;
+  top: 0;
+  left: -0.04px;
+  width: 27.276px;
+  height: 27.276px;
+  border-radius: 100px;
+  filter: blur(4.973px);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%),
+    linear-gradient(90deg, rgb(198, 42, 47) 0%, rgb(198, 42, 47) 100%);
+  transform: rotate(89.84deg);
+  pointer-events: none;
+}
+
+.cu4cal-rail-calendar-view {
+  position: absolute;
+  top: 5.1px;
+  left: 5.1px;
+  overflow: hidden;
+  width: 17px;
+  height: 17px;
+}
+
+.cu4cal-rail-calendar-view img {
+  position: absolute;
+  inset: 9.04%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.cu4cal-rail-dots-fill {
+  position: absolute;
+  top: 5.1px;
+  left: 5.1px;
+  width: 17px;
+  height: 17px;
+}
+
+.cu4cal-rail-dots-fill img {
+  position: absolute;
+  inset: 12.5%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}

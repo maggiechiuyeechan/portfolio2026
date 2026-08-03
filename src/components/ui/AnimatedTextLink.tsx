@@ -1,12 +1,16 @@
 /**
  * Text link with Default → hover color transition (Figma node 247:171960).
- * Default: content-secondary · hover/press: content-default.
+ * Default: content-secondary · hover/press: content-default, and presses
+ * travel 1px down to match the ClickUp 4.0 carousel tabs.
  */
 import { motion } from "motion/react";
 import { easeOut } from "../../lib/motion";
 
 const colorDefault = "var(--color-typography-content-default)";
 const colorSecondary = "var(--color-typography-content-secondary)";
+
+/** Press travel shared with the ClickUp 4.0 carousel tabs. */
+const pressTransition = { duration: 0.1, ease: [0.16, 1, 0.3, 1] } as const;
 
 const blockStyle: React.CSSProperties = {
   display: "block",
@@ -15,7 +19,8 @@ const blockStyle: React.CSSProperties = {
 };
 
 const inlineStyle: React.CSSProperties = {
-  display: "inline",
+  // inline-block rather than inline so the press travel can transform it.
+  display: "inline-block",
   textDecoration: "none",
 };
 
@@ -79,10 +84,10 @@ export default function AnimatedTextLink({
       className={resolvedClassName || undefined}
       style={inline ? resolvedInline : blockStyle}
       initial={false}
-      animate={{ color: restColor }}
+      animate={{ color: restColor, y: 0 }}
       whileHover={{ color: colorDefault }}
-      whileTap={{ color: colorDefault }}
-      transition={{ duration: 0.15, ease: easeOut }}
+      whileTap={{ color: colorDefault, y: 1 }}
+      transition={{ duration: 0.15, ease: easeOut, y: pressTransition }}
       aria-current={active ? "true" : undefined}
       onClick={onClick}
       {...hoverSoundAttr}

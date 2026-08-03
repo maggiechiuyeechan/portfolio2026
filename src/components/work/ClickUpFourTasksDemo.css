@@ -1,0 +1,1057 @@
+@import "../../styles/sf-pro-demo.css";
+
+/*
+ * ClickUp 4.0 — Tasks slide (Figma frame 68:26758 "list", visible layer 68:27304 "Chats").
+ * Built at exact 871x530; scaled by .cu4-demo-frame. All px values are Figma-exact.
+ */
+.cu4t {
+  --cu4t-font:
+    "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "Segoe UI", Arial, sans-serif;
+  position: relative;
+  width: 871px;
+  height: 530px;
+  font-family: var(--cu4t-font);
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.cu4t * {
+  box-sizing: border-box;
+}
+
+.cu4t img {
+  display: block;
+}
+
+.cu4t p {
+  margin: 0;
+}
+
+/* 871.25x510 illustration surface (node 68:26760). Bottom 20px of the frame is empty. */
+.cu4t-surface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 871px;
+  height: 510px;
+  overflow: hidden;
+  background: #fcfcfc;
+  border-radius: 10.2px 10.2px 0 0;
+  box-shadow:
+    0 2px 4px -2px rgba(0, 0, 0, 0.11),
+    0 4px 6px -1px rgba(0, 0, 0, 0.11);
+}
+
+/* ---- black left rail (68:27977) ---- */
+.cu4t-rail {
+  position: absolute;
+  left: 5.1px;
+  top: 34px;
+  bottom: -385.9px;
+  width: 40.8px;
+  background: #000;
+  border-radius: 6.8px;
+  overflow: hidden;
+}
+
+.cu4t-rail-stack {
+  position: absolute;
+  top: 6.8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6.8px;
+  align-items: center;
+}
+
+.cu4t-rail-item {
+  position: relative;
+  width: 27.2px;
+  height: 27.2px;
+  border-radius: 8px;
+  opacity: 0.8;
+}
+
+.cu4t-rail-item.is-active {
+  opacity: 1;
+}
+
+/* I68:27989;2:29407 — conic sweep blurred behind the active tile. */
+.cu4t-rail-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  filter: blur(4.973px);
+  background-image: conic-gradient(
+    from 45deg at 50% 50%,
+    #0091ff 0%,
+    #ff02f0 37.409%,
+    #ed5f00 52%,
+    #b38cff 74.724%,
+    #0091ff 100%
+  );
+}
+
+/* 17px glyph frame; each asset is exported at its Figma fill size and centred. */
+.cu4t-rail-glyph {
+  position: absolute;
+  left: 5.1px;
+  top: 5.1px;
+  width: 17px;
+  height: 17px;
+}
+
+.cu4t-rail-glyph img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+}
+
+/* home-filled is exported with its drop-shadow bleed (48.17x49.69), so it is
+ * pinned rather than centred — Figma inset [0 -93.33% -192.27% -90%]. */
+.cu4t-rail-glyph img.cu4t-rail-home {
+  left: -15.3px;
+  top: 0;
+  width: 48.1667px;
+  height: 49.686px;
+  transform: none;
+}
+
+/* ---- black left rail (68:27977) ---- */
+.cu4t-container {
+  position: absolute;
+  left: 51px;
+  top: 34px;
+  width: 1167.9px;
+  height: 861.9px;
+  border-radius: 6.8px;
+  background: #f9f9f9;
+  overflow: hidden;
+  filter: drop-shadow(0 0 0.425px rgba(0, 0, 0, 0.27)) drop-shadow(0 0.85px 0.85px rgba(0, 0, 0, 0.05));
+}
+
+/* ---- sidebar (68:27766) ---- */
+.cu4t-sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 197.2px;
+  background: #f9f9f9;
+  border-right: 0.85px solid #e8e8e8;
+  overflow: hidden;
+}
+
+.cu4t-side-title {
+  position: absolute;
+  left: 10.2px;
+  top: 9.35px;
+  font-size: 13.6px;
+  line-height: 18.7px;
+  font-weight: 590;
+  letter-spacing: -0.1275px;
+  color: #202020;
+}
+
+.cu4t-side-add {
+  position: absolute;
+  right: 6.8px;
+  top: 6.8px;
+  display: flex;
+  align-items: center;
+  gap: 3.4px;
+  padding: 5.1px 3.4px 5.1px 5.1px;
+  border-radius: 5.95px;
+  background: #fff;
+  box-shadow:
+    0 0 0.85px 0 rgba(0, 0, 0, 0.27),
+    0 0.85px 2.55px 0 rgba(0, 0, 0, 0.1),
+    0 0.85px 1.7px -1px rgba(0, 0, 0, 0.1);
+}
+
+.cu4t-side-row {
+  position: absolute;
+  left: 6.8px;
+  right: 6.8px;
+  height: 24.2px;
+  display: flex;
+  align-items: center;
+  gap: 8.5px;
+  padding: 5.1px 6.8px;
+  border-radius: 5.1px;
+  font-size: 11.9px;
+  line-height: 13.6px;
+  font-weight: 400;
+  letter-spacing: -0.1275px;
+  color: #646464;
+  white-space: nowrap;
+}
+
+.cu4t-side-row.is-small {
+  font-size: 11.9px;
+  line-height: 13.6px;
+}
+
+.cu4t-side-row.is-strong {
+  font-weight: 590;
+  color: #202020;
+}
+
+.cu4t-side-row.is-selected {
+  background: rgba(0, 0, 0, 0.06);
+  color: #202020;
+}
+
+.cu4t-side-row.is-indent {
+  padding-left: 25.585px;
+}
+
+.cu4t-side-icon {
+  position: relative;
+  width: 13.6px;
+  height: 13.6px;
+  flex: none;
+}
+
+.cu4t-side-header {
+  position: absolute;
+  left: 11.9px;
+  font-size: 10.2px;
+  line-height: 13.6px;
+  font-weight: 510;
+  color: #646464;
+  white-space: nowrap;
+}
+
+.cu4t-side-divider {
+  position: absolute;
+  left: 10.2px;
+  right: 10.2px;
+  height: 0.85px;
+  background: #e8e8e8;
+}
+
+.cu4t-badge {
+  position: absolute;
+  right: 12.75px;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 13.6px;
+  padding: 0 5.1px;
+  border-radius: 100px;
+  background: #e93d82;
+  font-size: 10.2px;
+  line-height: 13.6px;
+  font-weight: 590;
+  color: #fff;
+  text-align: center;
+}
+
+.cu4t-avatar {
+  position: relative;
+  width: 15.6px;
+  height: 15.6px;
+  flex: none;
+  border-radius: 99px;
+  border: 0.85px solid #fff;
+}
+
+.cu4t-avatar > img,
+.cu4t-avatar .cu4t-avatar-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 99px;
+  object-fit: cover;
+}
+
+.cu4t-avatar-fill {
+  background: #e3e3e3;
+}
+
+.cu4t-avatar-dot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 6.375px;
+  height: 6.375px;
+}
+
+.cu4t-avatar-dot img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+}
+
+.cu4t-team-tile {
+  position: relative;
+  width: 13.6px;
+  height: 13.6px;
+  flex: none;
+}
+
+.cu4t-team-tile > span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 17px;
+  height: 17px;
+  transform: translate(-50%, -50%);
+  border-radius: 4.25px;
+  overflow: hidden;
+  display: block;
+}
+
+.cu4t-team-tile img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+}
+
+.cu4t-side-thread {
+  position: absolute;
+  left: 19.55px;
+  width: 0.85px;
+  border-radius: 850px;
+  background: #e8e8e8;
+}
+
+/* ---- breadcrumb header (68:27723) ---- */
+.cu4t-crumb {
+  position: absolute;
+  left: 197.2px;
+  top: 0;
+  right: 0;
+  height: 32.3px;
+  z-index: 1;
+}
+
+.cu4t-crumb-inner {
+  position: absolute;
+  left: 6.8px;
+  top: 8.5px;
+  display: flex;
+  align-items: center;
+  gap: 3.4px;
+}
+
+.cu4t-crumb-loc {
+  display: flex;
+  align-items: center;
+  gap: 3.4px;
+  padding: 3.4px;
+  border-radius: 5.1px;
+  font-family: var(--cu4t-font);
+  font-size: 11.9px;
+  line-height: 13.6px;
+  font-weight: 590;
+  letter-spacing: -0.1275px;
+  color: #202020;
+  white-space: nowrap;
+}
+
+.cu4t-crumb-team {
+  position: relative;
+  width: 13.6px;
+  height: 13.6px;
+}
+
+.cu4t-crumb-team > span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 11.9px;
+  height: 11.9px;
+  transform: translate(-50%, -50%);
+  border-radius: 3.245px;
+  background: #e5484d;
+  display: block;
+}
+
+.cu4t-crumb-team img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+}
+
+/* favorite button 68:27737 — 20.4 tall, 3.4/5.1 padding, 13.599 glyph frame */
+.cu4t-crumb-fav-btn {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  height: 20.4px;
+  padding: 5.1px 3.4px;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.cu4t-crumb-fav {
+  position: relative;
+  display: block;
+  width: 13.599px;
+  height: 13.599px;
+  flex: none;
+}
+
+/* ---- main window (68:27309) ---- */
+/* Extends up behind the breadcrumb, so it also stands in for the Container (68:27308):
+   square top-left against the sidebar, and the Container's own top hairline. */
+.cu4t-main {
+  position: absolute;
+  left: 197.2px;
+  top: 0;
+  width: 942.65px;
+  height: 619.65px;
+  background: #fff;
+  border-radius: 0 3.4px 0 0;
+  overflow: hidden;
+  box-shadow: inset 0 0.85px 0 0 #e8e8e8;
+  filter: drop-shadow(0 0.85px 0.85px rgba(0, 0, 0, 0.05));
+}
+
+/* view tabs (68:27311) */
+.cu4t-views {
+  position: absolute;
+  left: 0;
+  top: 32.3px;
+  width: 996.2px;
+  height: 30.6px;
+  background: #fff;
+  border-bottom: 0.85px solid #e8e8e8;
+}
+
+.cu4t-views-tabs {
+  position: absolute;
+  left: 6.8px;
+  top: 3.4px;
+  height: 23.8px;
+  display: flex;
+  align-items: center;
+  gap: 1.7px;
+}
+
+.cu4t-view-tab {
+  display: flex;
+  align-items: center;
+  gap: 3.4px;
+  padding: 3.4px;
+  border-radius: 4.25px;
+  font-family: var(--cu4t-font);
+  font-size: 10.2px;
+  line-height: 13.6px;
+  font-weight: 590;
+  color: #646464;
+  white-space: nowrap;
+}
+
+.cu4t-view-tab.is-active {
+  color: #202020;
+}
+
+.cu4t-view-tab.is-add {
+  padding-left: 3.4px;
+  border-radius: 5.1px;
+  font-size: 10.2px;
+  line-height: 13.6px;
+  font-weight: 590;
+  color: #838383;
+}
+
+.cu4t-view-divider {
+  width: 0.85px;
+  height: 13.6px;
+  margin: 0 3.4px;
+  flex: none;
+  background: #e8e8e8;
+}
+
+.cu4t-view-icon {
+  position: relative;
+  width: 13.6px;
+  height: 13.6px;
+  flex: none;
+}
+
+.cu4t-views-underline {
+  position: absolute;
+  left: 60.35px;
+  top: 28.9px;
+  width: 45.05px;
+  height: 1.7px;
+  background: #202020;
+}
+
+/* column header (68:27446) — x positions match row data columns at 294.1 / 379.1 / 483.65 */
+.cu4t-colheader {
+  position: absolute;
+  left: 8.5px;
+  top: 79.9px;
+  width: 927.35px;
+  height: 27.2px;
+  background: #fff;
+  border-bottom: 0.85px solid #f0f0f0;
+}
+
+.cu4t-col {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  height: 27.2px;
+  padding: 0 6.8px;
+  font-size: 10.2px;
+  line-height: 13.6px;
+  font-weight: 400;
+  color: #838383;
+  white-space: nowrap;
+}
+
+/* Figma 68:27447 column x positions (relative to the 8.5px-inset header). */
+.cu4t-col--name {
+  left: 0;
+  width: 284.75px;
+  padding-left: 32.3px;
+}
+
+.cu4t-col--assignee {
+  left: 284.75px;
+  width: 88.4px;
+}
+
+.cu4t-col--priority {
+  left: 373.15px;
+  width: 104.55px;
+}
+
+.cu4t-col--team {
+  left: 477.7px;
+  width: 106.25px;
+}
+
+.cu4t-ai-pill {
+  position: absolute;
+  left: 417.35px;
+  top: 6.8px;
+  padding: 0 3.4px;
+  border-radius: 3.4px;
+  background: #fceffc;
+  opacity: 0.85;
+  font-size: 9.35px;
+  line-height: 13.6px;
+  font-weight: 590;
+  letter-spacing: 0.0595px;
+  text-transform: uppercase;
+  color: #9c2bad;
+}
+
+/* content groups */
+.cu4t-content {
+  position: absolute;
+  left: 0;
+  top: 107.1px;
+  width: 935.85px;
+  height: 512.55px;
+}
+
+.cu4t-group-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 34px;
+}
+
+.cu4t-group-caret {
+  position: absolute;
+  left: 18.7px;
+  top: 6.8px;
+  width: 20.4px;
+  height: 20.4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.4px;
+  box-sizing: border-box;
+}
+
+.cu4t-status-chip {
+  position: absolute;
+  left: 40.8px;
+  top: 6.6px;
+  height: 20.8px;
+  display: flex;
+  align-items: center;
+  gap: 3.4px;
+  padding: 3.4px 6.8px 3.4px 3.4px;
+  border-radius: 5.1px;
+  font-size: 10.2px;
+  line-height: 13.6px;
+  font-weight: 510;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.cu4t-status-icon {
+  position: relative;
+  width: 11.9px;
+  height: 11.9px;
+  margin: 0.85px;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.cu4t-status-icon img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+}
+
+/* IN PROGRESS needle (I68:27597;207:893) sits at 50%/25% of the 11.9 circle. */
+.cu4t-status-icon img.cu4t-status-progress {
+  left: 5.95px;
+  top: 2.975px;
+  transform: none;
+}
+
+.cu4t-group-count {
+  position: absolute;
+  top: 9.99px;
+  font-size: 11.9px;
+  line-height: 13.6px;
+  font-weight: 510;
+  letter-spacing: -0.1275px;
+  color: #838383;
+}
+
+/* table rows */
+.cu4t-table {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.cu4t-row {
+  --cu4t-row-inset: 40.8px;
+  --cu4t-col-assignee: 294.1px;
+  --cu4t-col-priority: 379.1px;
+  --cu4t-col-team: 483.65px;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 30.6px;
+  display: flex;
+  align-items: center;
+  border-bottom: 0.85px solid #f0f0f0;
+}
+
+.cu4t-row.is-inset-612 {
+  --cu4t-row-inset: 61.2px;
+}
+
+.cu4t-row-lead {
+  flex: none;
+  height: 30.6px;
+}
+
+.cu4t-row-body {
+  position: relative;
+  flex: 1;
+  height: 30.6px;
+  min-width: 0;
+}
+
+.cu4t-row-body.has-status .cu4t-task-cell {
+  left: 20.4px;
+  width: calc(var(--cu4t-col-assignee) - var(--cu4t-row-inset) - 20.4px);
+}
+
+.cu4t-row-body.has-dashboard .cu4t-task-cell {
+  left: 17px;
+  width: calc(var(--cu4t-col-assignee) - var(--cu4t-row-inset) - 17px);
+}
+
+/* Sub-rows wrap the dashboard glyph in a 21.25px button-layout (68:27623). */
+.cu4t-row-body.has-dashboard.is-wide .cu4t-task-cell {
+  left: 21.25px;
+  width: calc(var(--cu4t-col-assignee) - var(--cu4t-row-inset) - 21.25px);
+}
+
+.cu4t-row-body:not(.has-status):not(.has-dashboard) .cu4t-task-cell {
+  left: 0;
+  width: calc(var(--cu4t-col-assignee) - var(--cu4t-row-inset));
+}
+
+.cu4t-row-prefix-slot {
+  position: absolute;
+  top: 5.1px;
+  left: 0;
+  width: 20.4px;
+  height: 20.4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cu4t-row-prefix-slot.is-dashboard {
+  top: 6.8px;
+  width: 17px;
+  height: 17px;
+}
+
+.cu4t-icon-btn {
+  flex: none;
+  width: 20.4px;
+  height: 20.4px;
+  padding: 3.4px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cu4t-icon-glyph {
+  position: relative;
+  width: 13.599px;
+  height: 13.599px;
+  flex: none;
+}
+
+.cu4t-task-cell {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 30.6px;
+  padding: 5.1px 57.8px 5.1px 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.cu4t-task-name {
+  display: flex;
+  align-items: center;
+  gap: 5.1px;
+  min-width: 0;
+}
+
+.cu4t-task-text {
+  font-size: 11.9px;
+  line-height: 13.6px;
+  font-weight: 400;
+  letter-spacing: -0.1275px;
+  color: #202020;
+  white-space: nowrap;
+}
+
+.cu4t-prop {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 1.7px;
+  padding: 2.55px;
+  border-radius: 4.25px;
+  font-size: 11.9px;
+  line-height: 13.6px;
+  font-weight: 400;
+  letter-spacing: -0.1275px;
+  color: #838383;
+  white-space: nowrap;
+}
+
+/* Figma nests the name + lock in one box and the property chips in another,
+ * with a single 5.1px gap between the two groups (68:27664). */
+.cu4t-prop:not(.is-lock) {
+  margin-left: 5.1px;
+}
+
+.cu4t-prop:not(.is-lock) + .cu4t-prop {
+  margin-left: 0;
+}
+
+.cu4t-prop.is-danger {
+  padding: 1.7px 2.55px;
+  color: #c62a2f;
+}
+
+.cu4t-prop-icon {
+  position: relative;
+  width: 11.9px;
+  height: 11.9px;
+}
+
+.cu4t-cell-assignee {
+  position: absolute;
+  top: 0;
+  left: calc(var(--cu4t-col-assignee) - var(--cu4t-row-inset));
+  width: 85px;
+  height: 30.6px;
+  display: flex;
+  align-items: center;
+  padding: 0 10.2px 0 6.8px;
+}
+
+.cu4t-row-avatar {
+  position: relative;
+  width: 19px;
+  height: 19px;
+  border-radius: 99px;
+  border: 1.7px solid #fff;
+  flex: none;
+}
+
+.cu4t-row-avatar > img,
+.cu4t-row-avatar > .cu4t-avatar-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 99px;
+  object-fit: cover;
+}
+
+.cu4t-cell-priority {
+  position: absolute;
+  top: 0;
+  left: calc(var(--cu4t-col-priority) - var(--cu4t-row-inset));
+  width: 104.55px;
+  height: 30.6px;
+  display: flex;
+  align-items: center;
+  gap: 6.8px;
+  padding: 0 10.2px;
+  min-width: 0;
+}
+
+.cu4t-flag {
+  position: relative;
+  width: 13.6px;
+  height: 13.6px;
+  flex: none;
+}
+
+.cu4t-status-round {
+  position: relative;
+  width: 13.599px;
+  height: 13.599px;
+  border-radius: 99px;
+  overflow: hidden;
+  flex: none;
+}
+
+.cu4t-status-round img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+}
+
+.cu4t-priority-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11.9px;
+  line-height: 13.6px;
+  font-weight: 400;
+  letter-spacing: -0.15px;
+  color: #646464;
+  white-space: nowrap;
+}
+
+.cu4t-cell-tag {
+  position: absolute;
+  top: 0;
+  left: calc(var(--cu4t-col-team) - var(--cu4t-row-inset));
+  width: 104.55px;
+  height: 30.6px;
+  display: flex;
+  align-items: center;
+  gap: 3.4px;
+  padding: 0 10.2px;
+}
+
+.cu4t-tag {
+  padding: 1.7px 5.1px;
+  border-radius: 4.335px;
+  font-size: 11.9px;
+  line-height: 13.6px;
+  font-weight: 510;
+  letter-spacing: -0.1275px;
+  white-space: nowrap;
+}
+
+.cu4t-tag-gradient {
+  background-image: linear-gradient(to right, #7a28e2, #c100b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cu4t-dashboard {
+  position: relative;
+  width: 17px;
+  height: 17px;
+  flex: none;
+  overflow: hidden;
+}
+
+.cu4t-dashboard-rect {
+  position: absolute;
+  left: 50%;
+  top: 13.02%;
+  width: 12.5729px;
+  height: 12.5729px;
+  max-width: none;
+  transform: translateX(-50%);
+}
+
+.cu4t-dashboard-vector {
+  position: absolute;
+  left: 25%;
+  top: 50%;
+  width: 8.5px;
+  height: 4.25px;
+  max-width: none;
+}
+
+.cu4t-dashboard-notch {
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  right: 41.67%;
+  bottom: 66.67%;
+  border-radius: 2px;
+  background: #fff;
+}
+
+/*
+ * Animated priority cell.
+ * Figma only contains the static "Prioritizing..." gradient text and the
+ * final Urgent chips (DONE rows); the shimmer sweep + resolve transition are
+ * inferred and reported as such.
+ */
+.cu4t-prioritizing {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11.9px;
+  line-height: 13.6px;
+  font-weight: 400;
+  letter-spacing: -0.15px;
+  background-image: linear-gradient(to right, #7a28e2, #121212);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cu4t-prioritizing.is-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    #7a28e2 0%,
+    #4d3670 32%,
+    #c9a6ff 48%,
+    #35204f 64%,
+    #121212 100%
+  );
+  background-size: 250% 100%;
+  animation: cu4t-shimmer 1400ms linear infinite;
+}
+
+.cu4t-prioritizing.is-paused {
+  animation-play-state: paused;
+}
+
+@keyframes cu4t-shimmer {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+.cu4t-priority-anim {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 30.6px;
+}
+
+.cu4t-priority-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 6.8px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cu4t-priority-state.is-visible {
+  opacity: 1;
+}
+
+.cu4t-priority-anim.is-animating .cu4t-priority-state {
+  transition: opacity 300ms ease;
+}
+
+.cu4t-priority-anim.is-animating .cu4t-priority-state.is-resolved.is-visible {
+  animation: cu4t-resolve 300ms ease;
+}
+
+@keyframes cu4t-resolve {
+  from {
+    transform: translateY(2px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cu4t-prioritizing.is-shimmer {
+    animation: none;
+    background-image: linear-gradient(to right, #7a28e2, #121212);
+  }
+
+  .cu4t-priority-anim.is-animating .cu4t-priority-state {
+    transition: none;
+    animation: none;
+  }
+}

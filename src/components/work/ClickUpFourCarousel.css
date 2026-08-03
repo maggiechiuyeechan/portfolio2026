@@ -1,0 +1,338 @@
+@import "../../styles/sf-pro-demo.css";
+
+.cu4-carousel {
+  --cu4-cycle-duration: 6s;
+
+  width: 100%;
+}
+
+.cu4-carousel-text {
+  align-items: end;
+}
+
+.cu4-carousel-tabs {
+  grid-column: 5 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+  min-width: 0;
+}
+
+.cu4-carousel-tabs button {
+  position: relative;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: var(--color-typography-content-secondary);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition:
+    color 150ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 100ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cu4-carousel-tabs button:not([aria-selected="true"]):hover,
+.cu4-carousel-tabs button:not([aria-selected="true"]):focus-visible {
+  color: var(--color-typography-content-default);
+}
+
+.cu4-tab-label {
+  display: block;
+}
+
+.cu4-tab-progress {
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: var(--color-typography-content-default);
+  clip-path: inset(0 100% 0 0);
+  animation: cu4-tab-countdown var(--cu4-cycle-duration) linear forwards;
+  pointer-events: none;
+}
+
+.cu4-carousel.is-cycle-paused .cu4-tab-progress {
+  animation-play-state: paused;
+}
+
+@keyframes cu4-tab-countdown {
+  to {
+    clip-path: inset(0);
+  }
+}
+
+.cu4-carousel-tabs button:active {
+  transform: translateY(1px);
+}
+
+.cu4-carousel-tabs button:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+.cu4-carousel-images {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2613 / 1590;
+  margin-top: var(--spacing-3);
+  overflow: hidden;
+  border-radius: var(--radius-2);
+  background: #cbc2c0;
+  box-shadow: var(--shadow-elevation-border-1);
+}
+
+.cu4-carousel-images::before {
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/noise-tile.png");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  content: "";
+  mix-blend-mode: overlay;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.cu4-panel {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  display: block;
+  width: 100%;
+  /* 871/530 === 2613/1590 (both 1.6434:1), so the stage layout is unchanged. */
+  aspect-ratio: 871 / 530;
+  /* Without this the 530px demo stage acts as an automatic minimum height, so
+     below a 871px panel the box stays 530 tall and the percentage radius below
+     stops resolving against the ratio. Clips nothing: the scaled stage is
+     exactly the panel's box. */
+  overflow: hidden;
+  /* Matches the 10.2px the demo roots round their top-left by, which the stage
+     scales by panel width / 871. Expressed as separate horizontal and vertical
+     percentages of the panel's own box, both work out to 0.011711 x width, so
+     the corner stays circular and in step with the demo at every size. */
+  border-top-left-radius: 1.17107% 1.92453%;
+  box-shadow: var(--shadow-elevation-border-3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 900ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+  /* Container units drive the demo-frame scale below. */
+  container-type: inline-size;
+}
+
+.cu4-panel.is-active {
+  z-index: 1;
+  opacity: 1;
+}
+
+/*
+ * Fixed 871x530 composition scaled proportionally into the panel, with no
+ * internal reflow. Scale factor = panel width / 871px, computed in pure CSS:
+ * tan(atan2(100cqw, 871px)) divides the two lengths without JS/ResizeObserver.
+ */
+.cu4-demo-frame {
+  width: 871px;
+  height: 530px;
+  transform: scale(tan(atan2(100cqw, 871px)));
+  transform-origin: 0 0;
+}
+
+.cu4-demo-placeholder {
+  display: block;
+  width: 871px;
+  height: 530px;
+}
+
+.cu4-demo-placeholder img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ---- Whiteboards demo (Figma 68:28756) ---------------------------------- */
+
+.cu4-wb {
+  --cu4-wb-font:
+    "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system, system-ui, "Helvetica Neue", Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  /* The other three demos round their root's top-left by the same 10.2; the
+     remaining corners fall outside the carousel frame's crop. */
+  border-top-left-radius: 10.2px;
+  background: #f9f9f9;
+  font-family: var(--cu4-wb-font);
+  font-optical-sizing: auto;
+  font-synthesis: none;
+}
+
+.cu4-wb-base {
+  display: block;
+  width: 871.25px;
+  height: 510px;
+}
+
+/* Board cards are baked into wb-board-base.png, so each one is re-rendered as a
+   window onto an enlarged copy of that image, clipped to the card's bounds. */
+.cu4-wb-card {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.cu4-wb-card img {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+.cu4-wb-grid-patch {
+  position: absolute;
+  background-color: #f9f9f9;
+  pointer-events: none;
+}
+
+.cu4-wb-sticky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #c6d4f9;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.cu4-wb-sticky-text {
+  margin: 10px 0 0 9px;
+  width: 76px;
+  font-family: var(--cu4-wb-font);
+  font-size: 10.2px;
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: -0.09px;
+  color: #000;
+  word-break: break-word;
+}
+
+.cu4-wb-caret {
+  display: inline-block;
+  width: 1px;
+  height: 11px;
+  margin-left: 1px;
+  vertical-align: -2px;
+  background: #1f6dde;
+  animation: cu4-wb-caret-blink 1s step-end infinite;
+}
+
+@keyframes cu4-wb-caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.cu4-wb-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.cu4-wb-cursor img {
+  display: block;
+  width: 19.55px;
+  height: 20.58px;
+}
+
+.cu4-wb-cursor-chip {
+  position: absolute;
+  top: 17.3px;
+  left: 20.5px;
+  display: block;
+  height: 20.4px;
+  padding: 0 5.1px;
+  border: 0.85px solid rgba(0, 0, 0, 0.19);
+  border-radius: 1.7px 6.8px 6.8px 6.8px;
+  font-family: var(--cu4-wb-font);
+  font-size: 10.2px;
+  font-weight: 500;
+  line-height: 18.7px;
+  color: #fff;
+  white-space: nowrap;
+  box-shadow:
+    0 3.4px 5.1px -0.85px rgba(0, 0, 0, 0.1),
+    0 1.7px 3.4px -1.7px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 80rem) {
+  .cu4-carousel-tabs {
+    grid-column: 6 / -1;
+  }
+
+  .cu4-panel {
+    width: 110%;
+  }
+}
+
+@media (max-width: 41.25rem) {
+  .cu4-carousel-text {
+    align-items: start;
+  }
+
+  .cu4-carousel-tabs {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-2);
+  }
+
+  .cu4-carousel-images {
+    margin-top: var(--spacing-2);
+    border-radius: var(--radius-2);
+  }
+
+  .cu4-panel {
+    width: 125%;
+  }
+}
+
+/*
+ * At a 448px frame the 1.643 landscape box only reaches stage y=374 of 530, so
+ * the app is a thin letterboxed strip. Squaring the frame to 5:4 takes that to
+ * y=477 — nearly the whole composition — at the cost of the far right column,
+ * which the wider panel then trims from stage x=646 to x=608. That still clears
+ * the Tasks assignee avatars (570) and the Docs collaborator cursor (597), the
+ * rightmost animated elements in the four demos.
+ *
+ * The panel has to grow with the frame or its bottom edge would rise into view.
+ * 133% keeps the scaled composition 36px past the frame's bottom at 448 and
+ * 35px past it at 288, the narrowest width worth supporting, so the background
+ * only ever shows as the 2rem inset along the top and left.
+ */
+@media (max-width: 30rem) {
+  .cu4-carousel-images {
+    aspect-ratio: 5 / 4;
+  }
+
+  .cu4-panel {
+    width: 133%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cu4-carousel-tabs button,
+  .cu4-panel {
+    transition: none;
+  }
+
+  .cu4-tab-progress {
+    animation: none;
+    clip-path: inset(0);
+  }
+}

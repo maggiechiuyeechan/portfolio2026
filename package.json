@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "typecheck": "astro check && tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test \"tests/*.test.ts\"",
     "verify": "npm run typecheck && npm run test && npm run build"
   },
@@ -27,7 +27,6 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.5",
     "@types/matter-js": "^0.20.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",

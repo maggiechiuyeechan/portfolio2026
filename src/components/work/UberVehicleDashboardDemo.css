@@ -1,0 +1,92 @@
+/* Size container for the frame below; an element cannot query its own size. */
+.uber-dashboard-container {
+  container-type: inline-size;
+}
+
+.uber-dashboard-demo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 936.667 / 536;
+  overflow: hidden;
+  border-radius: var(--radius-2);
+  background: #f0f0f0;
+  box-shadow: var(--shadow-elevation-border-1);
+  user-select: none;
+}
+
+.uber-dashboard-demo::before {
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/noise-tile.png");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  content: "";
+  mix-blend-mode: overlay;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.uber-dashboard-demo picture {
+  position: absolute;
+  z-index: 1;
+  top: 28.638%;
+  left: 13.132%;
+  display: block;
+  width: 68%;
+}
+
+.uber-dashboard-demo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.uber-dashboard-caption {
+  position: absolute;
+  bottom: var(--spacing-3);
+  left: 0;
+  width: 94.269%;
+  margin: 0;
+  color: var(--color-typography-content-default);
+  text-align: center;
+}
+
+/*
+ * Below a 496px frame the percentage insets leave far too much air around the
+ * HUD, so the frame stops being a fixed-ratio box with absolutely positioned
+ * children and becomes a padded column: an even 2rem of space on all four sides
+ * and between the two elements, with the height following the content.
+ *
+ * The caption is 413px on one line and would otherwise sit within 5px of both
+ * edges before it wrapped. The max-width holds it to the same two balanced
+ * lines across the whole range; left to find its own wrap, the narrowest frames
+ * would go to three.
+ *
+ * Keyed to the frame rather than the viewport because the two do not track each
+ * other: the frame is 628px wide at a 660px viewport but only 520px at a 700px
+ * one, where the layout is still two columns.
+ */
+@container (max-width: 31rem) {
+  .uber-dashboard-demo {
+    display: flex;
+    aspect-ratio: auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .uber-dashboard-demo picture {
+    position: static;
+    width: 100%;
+  }
+
+  /* The 2rem inset is for the HUD; the caption reclaims 1rem of it each side,
+     which is what keeps the narrowest frames at two lines instead of three. */
+  .uber-dashboard-caption {
+    position: static;
+    width: calc(100% + 2rem);
+    max-width: 25rem;
+    text-wrap: balance;
+  }
+}

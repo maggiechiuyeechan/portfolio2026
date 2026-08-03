@@ -1,0 +1,31 @@
+/*
+ * SF Pro variable font — self-hosted subset for work-study animated demos.
+ * Source: fonts-src/sf-pro/SF-Pro.ttf (opsz 17–28, wght 1–1000). Regenerate
+ * with scripts/subset-fonts.sh.
+ *
+ * One file replaces separate Text/Display static faces: font-optical-sizing:auto
+ * picks the Text vs Display masters from the used font size, matching Figma.
+ */
+@font-face {
+  font-family: "SF Pro";
+  src: url("/fonts/sf-pro/SF-Pro-subset.woff2") format("woff2");
+  font-weight: 1 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("/fonts/sf-pro/SF-Pro-subset.woff2") format("woff2");
+  font-weight: 1 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/sf-pro/SF-Pro-subset.woff2") format("woff2");
+  font-weight: 1 1000;
+  font-style: normal;
+  font-display: swap;
+}

@@ -10,6 +10,14 @@ import Text from "../ui/Text.astro";
 import Section from "../layout/Section.astro";
 import StudyImage from "./StudyImage.astro";
 import FadeInView from "./FadeInView";
+import ClickUpAIChatDemo from "./ClickUpAIChatDemo";
+import ClickUpAIAgentsDemo from "./ClickUpAIAgentsDemo";
+import ClickUpAICreditsDemo from "./ClickUpAICreditsDemo";
+import ClickUpFourCarousel from "./ClickUpFourCarousel";
+import UberVehicleDashboardDemo from "./UberVehicleDashboardDemo";
+import UberEPaletteDemo from "./UberEPaletteDemo";
+import BlueDotHeroDemo from "./BlueDotHeroDemo";
+import HeadspaceHeroDemo from "./HeadspaceHeroDemo";
 
 interface Props {
   anchorId: string;
@@ -30,27 +38,69 @@ const { anchorId, title, meta, subtitle, images, eager = false } = Astro.props;
   */}
   <div id={anchorId} class="study-scroll-target" tabindex="-1"></div>
   <FadeInView client:visible eager={eager}>
-    <div class="study-text">
-      <div class="study-text-inner">
-        <Text as="h2" variant="heading" class="study-title">
-          {title}
-          {meta && <span class="study-meta">{meta}</span>}
-        </Text>
-        <Text as="p" variant="body">{subtitle}</Text>
-      </div>
-    </div>
+    {
+      anchorId === "clickup-4-0" ? (
+        <ClickUpFourCarousel client:visible title={title} meta={meta} subtitle={subtitle} />
+      ) : (
+        <div class="study-text">
+          <div class="study-text-inner">
+            <Text as="h2" variant="heading" class="study-title">
+              {title}
+              {meta && <span class="study-meta">{meta}</span>}
+            </Text>
+            <Text as="p" variant="body">{subtitle}</Text>
+          </div>
+        </div>
+      )
+    }
   </FadeInView>
-  <FadeInView client:visible eager={eager} delay={eager ? 0.1 : 0}>
-    <div class="study-images">
-      {
-        images.map((image, index) => (
-          <StudyImage
-            src={image.src}
-            alt={image.alt}
-            loading={eager && index === 0 ? "eager" : "lazy"}
-          />
-        ))
-      }
-    </div>
-  </FadeInView>
+  {
+    anchorId !== "clickup-4-0" && (
+      <FadeInView client:visible eager={eager} delay={eager ? 0.1 : 0}>
+        <div class="study-images">
+          {
+            anchorId === "clickup-ai" ? (
+              <div class="cua-demo-grid">
+                <ClickUpAIChatDemo client:visible />
+                <div class="cua-demo-grid-bottom">
+                  <ClickUpAIAgentsDemo />
+                  <ClickUpAICreditsDemo client:visible />
+                </div>
+              </div>
+            ) : anchorId === "uber" ? (
+              <>
+                <UberVehicleDashboardDemo />
+                <UberEPaletteDemo client:visible />
+                {images.slice(2).map((image) => (
+                  <StudyImage src={image.src} alt={image.alt} loading="lazy" />
+                ))}
+              </>
+            ) : anchorId === "bluedot" ? (
+              <>
+                <BlueDotHeroDemo client:visible />
+                {images.slice(1).map((image) => (
+                  <StudyImage src={image.src} alt={image.alt} loading="lazy" />
+                ))}
+              </>
+            ) : anchorId === "headspace" ? (
+              <>
+                <HeadspaceHeroDemo client:visible />
+                {images.slice(1).map((image) => (
+                  <StudyImage src={image.src} alt={image.alt} loading="lazy" />
+                ))}
+              </>
+            ) : (
+              images.map((image, index) => (
+                <StudyImage
+                  src={image.src}
+                  alt={image.alt}
+                  loading={eager && index === 0 ? "eager" : "lazy"}
+                />
+              ))
+            )
+          }
+        </div>
+      </FadeInView>
+    )
+  }
 </Section>

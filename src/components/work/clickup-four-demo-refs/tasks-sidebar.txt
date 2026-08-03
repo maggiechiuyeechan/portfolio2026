@@ -1,0 +1,628 @@
+const imgSteph = "https://www.figma.com/api/mcp/asset/1fefa0f0-f30f-4889-8192-16ad9bb6cb8a";
+const imgAgent7 = "https://www.figma.com/api/mcp/asset/580b198f-5a74-4be7-b669-11b2c3228828";
+const imgIgor = "https://www.figma.com/api/mcp/asset/fb4d6a66-73af-467d-8437-07821ec983c2";
+const imgFill = "https://www.figma.com/api/mcp/asset/305baab3-08f1-42e3-90e9-beda2ce86583";
+const imgFill1 = "https://www.figma.com/api/mcp/asset/7251bb71-e466-47a8-b04e-1c78c8487894";
+const imgFill2 = "https://www.figma.com/api/mcp/asset/bc598b3e-68f7-4590-a667-ae08c4e4baf6";
+const imgFill3 = "https://www.figma.com/api/mcp/asset/7da0b249-11f3-48ea-a88b-e6b90abccff9";
+const imgFill4 = "https://www.figma.com/api/mcp/asset/73399225-31df-4119-a4d2-708c0ea661a1";
+const imgFill5 = "https://www.figma.com/api/mcp/asset/b776932f-9f34-4098-b84f-1f7c9512f5c6";
+const imgFill6 = "https://www.figma.com/api/mcp/asset/feede5c8-1dce-4f01-86a0-1c1475c91190";
+const imgFill7 = "https://www.figma.com/api/mcp/asset/534c5daa-b4ee-42fb-a480-4580ceec8683";
+const imgStrokeStroke = "https://www.figma.com/api/mcp/asset/47c86034-5cad-4362-b65b-464ae61349dc";
+const imgVector = "https://www.figma.com/api/mcp/asset/426a24eb-c116-4756-abe5-c914c703a9ea";
+const imgBg = "https://www.figma.com/api/mcp/asset/b7c9b7f2-baaf-4a86-ac1e-b07ae2c2b862";
+const imgIndicator = "https://www.figma.com/api/mcp/asset/f7c708ed-5e78-4699-a828-17b44345bf58";
+const imgFill8 = "https://www.figma.com/api/mcp/asset/5c2be214-bb52-4ced-8f2d-4234ed4ffc71";
+const imgPaintbrush = "https://www.figma.com/api/mcp/asset/12c6841c-bd83-45b9-a96a-204b0eb57939";
+const imgStrokeStroke1 = "https://www.figma.com/api/mcp/asset/1c742974-9181-4b33-aeb9-829dc3cd8317";
+const imgFill9 = "https://www.figma.com/api/mcp/asset/469c5ed4-3712-4368-9ffa-57ef5e7fc2f1";
+const imgFill10 = "https://www.figma.com/api/mcp/asset/de301f27-e5c4-45d8-ab1c-5606b2fc38dc";
+const imgFill11 = "https://www.figma.com/api/mcp/asset/56ec259a-65a3-4d7f-beb4-8afca02afbb8";
+const imgTeamIcons = "https://www.figma.com/api/mcp/asset/fa8bb09d-edc0-4241-8219-8209d5f989e6";
+const imgArea = "https://www.figma.com/api/mcp/asset/39077bc0-d782-47ff-afbb-99b64ab6f1dd";
+const imgFill12 = "https://www.figma.com/api/mcp/asset/09c140c4-fd52-470a-a6bb-8f5874c3596c";
+const imgTeamIcons1 = "https://www.figma.com/api/mcp/asset/48ad811c-027a-4f19-b3ec-449adaad4d5a";
+const imgDollar = "https://www.figma.com/api/mcp/asset/5f9b6867-1145-4078-b4ff-cd1d58d554e8";
+
+export default function Sidebar() {
+  return (
+    <div className="bg-[var(--cu\/grey\/100,#f9f9f9)] border-[var(--cu\/border\/default,#e8e8e8)] border-r-[0.85px] border-solid content-stretch flex flex-col items-start relative size-full" data-node-id="68:27766" data-name="Sidebar">
+      <div className="h-[37.4px] relative shrink-0 w-full" data-node-id="68:27767" data-name="header">
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['SF_Pro_Text:Semibold'] justify-center leading-[0] left-[10.2px] not-italic text-[13.6px] text-[color:var(--cu\/content\/default,#202020)] top-[18.85px] tracking-[-0.1275px] whitespace-nowrap" data-node-id="68:27768">
+          <p className="leading-[18.7px]">Home</p>
+        </div>
+        <div className="absolute content-stretch flex items-center right-[6.8px] top-[6.8px]" data-node-id="68:27769">
+          <div className="content-stretch flex items-center opacity-0 relative shrink-0" data-node-id="68:27770">
+            <div className="content-stretch flex gap-[var(--cu-size-1,3.4px)] items-center justify-center overflow-clip p-[5.1px] relative rounded-[5.95px] shrink-0" data-node-id="68:27771" data-name="button">
+              <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27771;404:26610" data-name="search">
+                <div className="absolute inset-[8.33%_8.43%_8.45%_8.33%]" data-node-id="I68:27771;404:26610;3:9400" data-name="fill">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill} />
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[5.1px] relative rounded-[var(--radius-3-5,7px)] shrink-0" data-node-id="68:27772" data-name="button">
+              <div className="flex items-center justify-center relative shrink-0" data-node-id="I68:27772;7:23567">
+                <div className="flex-none rotate-180">
+                  <div className="relative size-[13.6px]" data-name="close-right">
+                    <div className="absolute flex inset-[20.83%] items-center justify-center" data-node-id="I68:27772;7:23567;3:8053" style={{ containerType: "size" }}>
+                      <div className="flex-none h-[100cqh] rotate-180 w-[100cqw]">
+                        <div className="relative size-full" data-name="fill">
+                          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill1} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex items-center relative shrink-0" data-node-id="68:27773">
+            <div className="bg-[var(--cu\/background\/main,white)] content-stretch flex gap-[var(--cu-size-1,3.4px)] items-center justify-center overflow-clip pl-[5.1px] pr-[3.4px] py-[5.1px] relative rounded-[var(--radius-3-5,5.95px)] shadow-[0px_0px_0.85px_0px_var(--cu\/alpha-grey\/700,rgba(0,0,0,0.27)),0px_0.85px_2.55px_0px_var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1)),0px_0.85px_1.7px_-1px_var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1))] shrink-0" data-node-id="I68:27773;331:87312" data-name="button">
+              <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27773;331:87313" data-name="add">
+                <div className="absolute inset-[16.67%_16.69%_16.69%_16.67%]" data-node-id="I68:27773;331:87313;3:8134" data-name="fill">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill2} />
+                </div>
+              </div>
+              <div className="relative shrink-0 size-[11.9px]" data-node-id="I68:27773;331:87314" data-name="chevron-down">
+                <div className="absolute inset-[37.5%_20.83%_29.17%_20.83%]" data-node-id="I68:27773;331:87314;3:8023" data-name="fill">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill3} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex items-center relative shrink-0 w-full" data-node-id="68:27774">
+        <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-w-px relative" data-node-id="68:27775">
+          <div className="content-stretch flex flex-col gap-[1.7px] items-start relative shrink-0 w-full" data-node-id="68:27776" data-name="Personal Section">
+            <div className="h-[23.8px] relative shrink-0 w-full" data-node-id="68:27783">
+              <div className="-translate-y-1/2 absolute bg-[var(--cu\/background\/notification,#e93d82)] content-stretch flex flex-col items-center justify-center min-w-[13.600000381469727px] px-[5.1px] right-[12.75px] rounded-[100px] top-1/2 w-[13.6px]" data-node-id="68:27784" data-name="badge">
+                <div className="[word-break:break-word] flex flex-col font-['SF_Pro_Text:Semibold'] justify-center leading-[0] not-italic relative shrink-0 text-[10.2px] text-[color:var(--cu\/content\/on-dark,white)] text-center whitespace-nowrap" data-node-id="I68:27784;103:35">
+                  <p className="leading-[13.6px]">3</p>
+                </div>
+              </div>
+              <div className="absolute content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center left-0 px-[var(--cu-size-2,6.8px)] top-0 w-[221px]" data-node-id="68:27785" data-name="menu-item">
+                <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[4.335px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27785;1:2862" data-name="elements">
+                  <div className="content-stretch flex gap-[7.225px] items-start relative shrink-0 w-full" data-node-id="I68:27785;1:2863" data-name="title">
+                    <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27785;1:2865" data-name="inbox-filled">
+                      <div className="absolute inset-[8.33%_10.04%]" data-node-id="I68:27785;1:2865;837:5592" data-name="fill">
+                        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill4} />
+                      </div>
+                    </div>
+                    <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Semibold'] leading-[11.56px] min-w-px not-italic overflow-hidden relative self-stretch text-[10.12px] text-[color:var(--cu\/content\/default,#202020)] text-ellipsis tracking-[-0.1275px] whitespace-nowrap" data-node-id="I68:27785;1:2866">
+                      Inbox
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center px-[var(--cu-size-2,6.8px)] relative shrink-0 w-[197.2px]" data-node-id="68:27786" data-name="menu-item">
+              <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[4.335px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27786;1:2862" data-name="elements">
+                <div className="content-stretch flex gap-[7.225px] items-start relative shrink-0 w-full" data-node-id="I68:27786;1:2863" data-name="title">
+                  <div className="overflow-clip relative shrink-0 size-[13.6px]" data-node-id="I68:27786;1:2865" data-name="my-tasks">
+                    <div className="absolute inset-[8.33%_8.33%_8.36%_12.49%]" data-node-id="I68:27786;1:2865;7564:6824" data-name="fill">
+                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill5} />
+                    </div>
+                  </div>
+                  <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[11.56px] min-w-px not-italic overflow-hidden relative self-stretch text-[10.12px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.1275px] whitespace-nowrap" data-node-id="I68:27786;1:2866">
+                    My Tasks
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="68:27787">
+            <div className="content-stretch flex h-[21.25px] items-center p-[10.2px] relative shrink-0 w-[197.2px]" data-node-id="68:27788" data-name="divider">
+              <div className="bg-[var(--cu\/border\/default,#e8e8e8)] flex-[1_0_0] h-[0.85px] min-w-px relative" data-node-id="I68:27788;1:3399" data-name="separator" />
+            </div>
+            <div className="content-stretch flex flex-col items-start relative shrink-0 w-[221px]" data-node-id="68:27789" data-name="Section Header">
+              <div className="content-stretch flex flex-col gap-[var(----cu-size-3,10.200000286102295px)] items-center px-[6.8px] relative shrink-0 w-[221px]" data-node-id="I68:27789;19972:162288" data-name="chat-section-header">
+                <div className="content-stretch flex flex-col items-start pl-[5.78px] pr-[6.8px] py-[2.89px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27789;19972:162289" data-name="elements">
+                  <div className="content-stretch flex gap-[8.5px] h-[13.6px] items-center pt-[2.89px] relative shrink-0 w-full" data-node-id="I68:27789;19972:162290" data-name="title">
+                    <div className="absolute content-stretch flex items-center justify-center left-[-6.8px] overflow-clip pl-[5.1px] pr-[var(--spacing-xs,3.4px)] py-[var(--spacing-xs,3.4px)] rounded-[var(--radius-2-5,4.25px)] top-[-3.4px]" data-node-id="I68:27789;19972:162291" data-name="default-button">
+                      <p className="[word-break:break-word] font-['SF_Pro_Text:Medium'] leading-[13.6px] not-italic relative shrink-0 text-[10.2px] text-[color:var(--cu\/content\/secondary,#646464)] whitespace-nowrap" data-node-id="I68:27789;19972:162291;202:10954">
+                        Creative Team
+                      </p>
+                    </div>
+                    <div className="absolute content-stretch flex gap-[1.7px] items-center left-[151.3px] opacity-0 top-[-3.4px]" data-node-id="I68:27789;19972:162292">
+                      <div className="content-stretch flex gap-[var(--spacing-xs,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--spacing-xs,3.4px)] relative rounded-[var(--radius-2-5,4.25px)] shrink-0" data-node-id="I68:27789;19972:162293" data-name="default-button">
+                        <div className="overflow-clip relative shrink-0 size-[13.599px]" data-node-id="I68:27789;19972:162293;203:8756" data-name="ellipsis-regular">
+                          <div className="absolute inset-[41.67%_12.5%_43.33%_12.5%]" data-node-id="I68:27789;19972:162293;203:8756;6104:439" data-name="fill">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill6} />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="content-stretch flex gap-[var(--spacing-xs,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--spacing-xs,3.4px)] relative rounded-[var(--radius-2-5,4.25px)] shrink-0" data-node-id="I68:27789;19972:162294" data-name="default-button">
+                        <div className="overflow-clip relative shrink-0 size-[13.599px]" data-node-id="I68:27789;19972:162294;203:8756" data-name="add-small">
+                          <div className="absolute inset-[16.67%_16.69%_16.69%_16.67%]" data-node-id="I68:27789;19972:162294;203:8756;6050:475" data-name="fill">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill7} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col gap-[1.7px] items-start relative shrink-0 w-full" data-node-id="68:27790">
+              <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-full" data-node-id="68:27791">
+                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="68:27792" data-name="menu-item">
+                  <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[5.1px] shrink-0 w-full" data-node-id="68:27793" data-name="elements">
+                    <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="68:27794" data-name="title">
+                      <div className="relative shrink-0 size-[13.6px]" data-node-id="68:27796" data-name="list v2">
+                        <div className="absolute inset-[13.54%_6.25%_14.75%_6.25%]" data-node-id="I68:27796;4875:137" data-name="stroke (Stroke)">
+                          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStrokeStroke} />
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.1275px] whitespace-nowrap" data-node-id="68:27797">
+                        Product Backlog
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-[197.2px]" data-node-id="68:27803">
+                <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center relative shrink-0 w-full" data-node-id="I68:27803;24500:103938" data-name="menu-item">
+                  <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27803;24500:103939" data-name="elements">
+                    <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27803;24500:103940" data-name="title">
+                      <div className="overflow-clip relative shrink-0 size-[13.6px]" data-node-id="I68:27803;24500:103942" data-name="view-chat">
+                        <div className="absolute inset-[12.5%]" data-node-id="I68:27803;24500:103942;18919:513" data-name="Vector">
+                          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27803;24500:103943">
+                        Creative
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="h-[23.8px] relative shrink-0 w-full" data-node-id="68:27804">
+                <div className="absolute content-stretch flex flex-col items-center left-0 px-[6.8px] top-0 w-[221px]" data-node-id="68:27805" data-name="menu-item">
+                  <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[5.1px] shrink-0 w-full" data-node-id="68:27806" data-name="elements">
+                    <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="68:27807" data-name="title">
+                      <div className="border-[0.85px] border-[var(--cu-background\/main,white)] border-solid relative rounded-[99px] shrink-0 size-[13.6px]" data-node-id="68:27809" data-name="avatar">
+                        <div className="absolute inset-0 overflow-clip rounded-[var(--radius-round,566.1px)]" data-node-id="I68:27809;301:2316" data-name="steph">
+                          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgSteph} />
+                        </div>
+                        <div className="absolute bottom-0 right-0 size-[4.25px]" data-node-id="I68:27809;301:2317" data-name="indicator">
+                          <div className="absolute inset-[-25%]" data-node-id="I68:27809;301:2317;301:3140" data-name="bg">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgBg} />
+                          </div>
+                          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIndicator} />
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Semibold'] leading-[13.6px] min-w-px not-italic overflow-hidden relative self-stretch text-[11.9px] text-[color:var(--cu\/content\/default,#202020)] text-ellipsis tracking-[-0.1275px] whitespace-nowrap" data-node-id="68:27810">
+                        Steph
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="-translate-y-1/2 absolute bg-[var(--cu\/background\/notification,#e93d82)] content-stretch flex flex-col items-center justify-center min-w-[13.600000381469727px] px-[5.1px] right-[12.75px] rounded-[100px] top-1/2 w-[13.6px]" data-node-id="68:27816" data-name="badge">
+                  <div className="[word-break:break-word] flex flex-col font-['SF_Pro_Text:Semibold'] justify-center leading-[0] not-italic relative shrink-0 text-[10.2px] text-[color:var(--cu\/content\/on-dark,white)] text-center whitespace-nowrap" data-node-id="I68:27816;103:35">
+                    <p className="leading-[13.6px]">1</p>
+                  </div>
+                </div>
+              </div>
+              <div className="h-[23.8px] relative shrink-0 w-full" data-node-id="68:27817">
+                <div className="absolute content-stretch flex flex-col items-center left-0 px-[6.8px] top-0 w-[221px]" data-node-id="68:27818" data-name="menu-item">
+                  <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[5.1px] shrink-0 w-full" data-node-id="68:27819" data-name="elements">
+                    <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="68:27820" data-name="title">
+                      <div className="border-[0.85px] border-[var(--cu-background\/main,white)] border-solid relative rounded-[99px] shrink-0 size-[13.6px]" data-node-id="68:27822" data-name="avatar">
+                        <div className="absolute inset-0 rounded-[var(--radius-round,566.1px)]" data-node-id="I68:27822;301:2316" data-name="agent-7">
+                          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[var(--radius-round,566.1px)] size-full" src={imgAgent7} />
+                        </div>
+                        <div className="absolute bottom-0 right-0 size-[4.25px]" data-node-id="I68:27822;301:2317" data-name="indicator">
+                          <div className="absolute inset-[-25%]" data-node-id="I68:27822;301:2317;301:3140" data-name="bg">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgBg} />
+                          </div>
+                          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIndicator} />
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Semibold'] leading-[13.6px] min-w-px not-italic overflow-hidden relative self-stretch text-[11.9px] text-[color:var(--cu\/content\/default,#202020)] text-ellipsis tracking-[-0.1275px] whitespace-nowrap" data-node-id="68:27823">
+                        Campaign Agent
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="-translate-y-1/2 absolute bg-[var(--cu\/background\/notification,#e93d82)] content-stretch flex flex-col items-center justify-center min-w-[13.600000381469727px] px-[5.1px] right-[12.75px] rounded-[100px] top-1/2 w-[13.6px]" data-node-id="68:27829" data-name="badge">
+                  <div className="[word-break:break-word] flex flex-col font-['SF_Pro_Text:Semibold'] justify-center leading-[0] not-italic relative shrink-0 text-[10.2px] text-[color:var(--cu\/content\/on-dark,white)] text-center whitespace-nowrap" data-node-id="I68:27829;103:35">
+                    <p className="leading-[13.6px]">3</p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col items-center px-[6.8px] relative shrink-0 w-full" data-node-id="68:27830" data-name="menu-item">
+                <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[5.1px] shrink-0 w-full" data-node-id="68:27831" data-name="elements">
+                  <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="68:27832" data-name="title">
+                    <div className="border-[0.85px] border-[var(--cu-background\/main,white)] border-solid relative rounded-[99px] shrink-0 size-[13.6px]" data-node-id="68:27834" data-name="avatar">
+                      <div className="absolute inset-0 overflow-clip rounded-[var(--radius-round,566.1px)]" data-node-id="I68:27834;301:2316" data-name="igor">
+                        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgIgor} />
+                      </div>
+                      <div className="absolute bottom-0 right-0 size-[4.25px]" data-node-id="I68:27834;301:2317" data-name="indicator">
+                        <div className="absolute inset-[-25%]" data-node-id="I68:27834;301:2317;301:3140" data-name="bg">
+                          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgBg} />
+                        </div>
+                        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIndicator} />
+                      </div>
+                    </div>
+                    <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative self-stretch text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.1275px] whitespace-nowrap" data-node-id="68:27835">
+                      Igor
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-[197.2px]" data-node-id="68:27841">
+                <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center relative shrink-0 w-full" data-node-id="I68:27841;24500:103938" data-name="menu-item">
+                  <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27841;24500:103939" data-name="elements">
+                    <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27841;24500:103940" data-name="title">
+                      <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27841;24500:103942" data-name="view-doc-filled">
+                        <div className="absolute inset-[8.44%_13.29%_8.44%_13.3%]" data-node-id="I68:27841;24500:103942;3:8829" data-name="fill">
+                          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill8} />
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27841;24500:103943">{`Vision & Strategy`}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col gap-[1.7px] items-start relative shrink-0 w-full" data-node-id="68:27842">
+              <div className="content-stretch flex flex-col items-center justify-end pt-[20.4px] px-[6.8px] relative shrink-0 w-full" data-node-id="68:27843" data-name="chat-section-header">
+                <div className="content-stretch flex flex-col items-start px-[6.8px] py-[3.4px] relative rounded-[5.1px] shrink-0 w-full" data-node-id="68:27844" data-name="elements">
+                  <div className="h-[13.6px] relative shrink-0 w-full" data-node-id="68:27845" data-name="title">
+                    <div className="absolute content-stretch flex items-center justify-center left-[-6.8px] overflow-clip pl-[5.1px] pr-[var(--spacing-xs,3.4px)] py-[var(--spacing-xs,3.4px)] rounded-[var(--radius-2-5,4.25px)] top-[-3.4px]" data-node-id="68:27846" data-name="default-button">
+                      <p className="[word-break:break-word] font-['SF_Pro_Text:Medium'] leading-[13.6px] not-italic relative shrink-0 text-[10.2px] text-[color:var(--cu\/content\/secondary,#646464)] whitespace-nowrap" data-node-id="I68:27846;202:10954">
+                        Spaces
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col gap-[1.7px] items-start relative shrink-0 w-full" data-node-id="68:27847">
+                <div className="content-stretch flex flex-col items-center px-[6.8px] relative shrink-0 w-full" data-node-id="68:27848" data-name="menu-item">
+                  <div className="bg-[rgba(0,0,0,0.06)] content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[5.1px] shrink-0 w-full" data-node-id="68:27849" data-name="elements">
+                    <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="68:27850" data-name="title">
+                      <div className="relative shrink-0 size-[13.6px]" data-node-id="68:27852">
+                        <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip rounded-[4.25px] size-[17px] top-1/2" data-node-id="68:27853" data-name="team">
+                          <div className="absolute bg-[var(--cu\/red\/800,#e5484d)] border-[2.007px] border-[var(--cu\/red\/800,#e5484d)] border-solid inset-0" data-node-id="I68:27853;4520:48236" data-name="team">
+                            <div className="absolute inset-[calc(25%-1px)]" data-node-id="I68:27853;4520:48236;553:312" data-name="team-icons">
+                              <div className="absolute inset-[0_-9.38%_0_3.13%]" data-node-id="I68:27853;4520:48236;553:312;553:274" data-name="paintbrush">
+                                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgPaintbrush} />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative self-stretch text-[11.9px] text-[color:var(--cu\/content\/default,#202020)] text-ellipsis tracking-[-0.1275px] whitespace-nowrap" data-node-id="68:27854">
+                        Marketing
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="h-[23.8px] relative shrink-0 w-full" data-node-id="68:27860">
+                  <div className="absolute content-stretch flex flex-col items-start left-0 px-[6.8px] top-0 w-[221px]" data-node-id="68:27861">
+                    <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center pl-[18.785px] relative shrink-0 w-full" data-node-id="I68:27861;24500:103938" data-name="menu-item">
+                      <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27861;24500:103939" data-name="elements">
+                        <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27861;24500:103940" data-name="title">
+                          <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27861;24500:103942" data-name="list v2">
+                            <div className="absolute inset-[13.54%_6.25%_14.75%_6.25%]" data-node-id="I68:27861;24500:103942;4875:137" data-name="stroke (Stroke)">
+                              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStrokeStroke1} />
+                            </div>
+                          </div>
+                          <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27861;24500:103943">
+                            Campaigns
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="-translate-y-1/2 absolute bg-[var(--cu\/border\/default,#e8e8e8)] h-[125.8px] left-[19.55px] rounded-[850px] top-[calc(50%+51px)] w-[0.85px]" data-node-id="68:27862" />
+                </div>
+                <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-[197.2px]" data-node-id="68:27863">
+                  <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center pl-[18.785px] relative shrink-0 w-full" data-node-id="I68:27863;24500:103938" data-name="menu-item">
+                    <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27863;24500:103939" data-name="elements">
+                      <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27863;24500:103940" data-name="title">
+                        <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27863;24500:103942" data-name="list v2">
+                          <div className="absolute inset-[13.54%_6.25%_14.75%_6.25%]" data-node-id="I68:27863;24500:103942;4875:137" data-name="stroke (Stroke)">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStrokeStroke1} />
+                          </div>
+                        </div>
+                        <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27863;24500:103943">
+                          Blogs
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-[197.2px]" data-node-id="68:27864">
+                  <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center pl-[18.785px] relative shrink-0 w-full" data-node-id="I68:27864;24500:103938" data-name="menu-item">
+                    <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27864;24500:103939" data-name="elements">
+                      <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27864;24500:103940" data-name="title">
+                        <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27864;24500:103942" data-name="view-doc-filled">
+                          <div className="absolute inset-[8.44%_13.29%_8.44%_13.3%]" data-node-id="I68:27864;24500:103942;3:8829" data-name="fill">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill9} />
+                          </div>
+                        </div>
+                        <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27864;24500:103943">
+                          Brand Assets
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-[197.2px]" data-node-id="68:27865">
+                  <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center pl-[18.785px] relative shrink-0 w-full" data-node-id="I68:27865;24500:103938" data-name="menu-item">
+                    <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27865;24500:103939" data-name="elements">
+                      <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27865;24500:103940" data-name="title">
+                        <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27865;24500:103942" data-name="view-whiteboard-filled">
+                          <div className="absolute inset-[8.44%]" data-node-id="I68:27865;24500:103942;3:8821" data-name="fill">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill10} />
+                          </div>
+                        </div>
+                        <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27865;24500:103943">
+                          Design Workflows
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-[197.2px]" data-node-id="68:27866">
+                  <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center pl-[18.785px] relative shrink-0 w-full" data-node-id="I68:27866;24500:103938" data-name="menu-item">
+                    <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27866;24500:103939" data-name="elements">
+                      <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27866;24500:103940" data-name="title">
+                        <div className="overflow-clip relative shrink-0 size-[13.6px]" data-node-id="I68:27866;24500:103942" data-name="view-form-filled">
+                          <div className="absolute inset-[8.46%_13.74%_8.42%_13.75%]" data-node-id="I68:27866;24500:103942;3:8763" data-name="fill">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill11} />
+                          </div>
+                        </div>
+                        <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27866;24500:103943">
+                          Creative Request
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-center px-[6.8px] relative shrink-0 w-full" data-node-id="68:27867" data-name="menu-item">
+                  <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[5.1px] shrink-0 w-full" data-node-id="68:27868" data-name="elements">
+                    <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="68:27869" data-name="title">
+                      <div className="relative shrink-0 size-[13.6px]" data-node-id="68:27871">
+                        <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip rounded-[4.25px] size-[17px] top-1/2" data-node-id="68:27872" data-name="team">
+                          <div className="absolute bg-[var(--cu\/violet-\(plum\)\/800,#ab4aba)] border-[2.007px] border-[var(--cu\/violet-\(plum\)\/800,#ab4aba)] border-solid inset-0" data-node-id="I68:27872;4520:48236" data-name="team">
+                            <div className="absolute inset-[calc(25%-1px)]" data-node-id="I68:27872;4520:48236;553:312" data-name="team-icons">
+                              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgTeamIcons} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative self-stretch text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.1275px] whitespace-nowrap" data-node-id="68:27873">
+                        Product
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-[197.2px]" data-node-id="68:27879">
+                  <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center pl-[18.785px] relative shrink-0 w-full" data-node-id="I68:27879;24500:103938" data-name="menu-item">
+                    <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27879;24500:103939" data-name="elements">
+                      <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27879;24500:103940" data-name="title">
+                        <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27879;24500:103942" data-name="folder-open-color">
+                          <div className="absolute inset-[40.1%_10.74%_19.99%_21.29%]" data-node-id="I68:27879;24500:103942;3:8477" data-name="area">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArea} />
+                          </div>
+                          <div className="absolute inset-[8.33%_4.16%_12.49%_8.33%]" data-node-id="I68:27879;24500:103942;3:8478" data-name="fill">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill12} />
+                          </div>
+                        </div>
+                        <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27879;24500:103943">
+                          Sprints
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="h-[23.8px] relative shrink-0 w-full" data-node-id="68:27880">
+                  <div className="absolute content-stretch flex flex-col items-start left-0 px-[6.8px] top-0 w-[221px]" data-node-id="68:27881">
+                    <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center pl-[18.785px] relative shrink-0 w-full" data-node-id="I68:27881;24500:103938" data-name="menu-item">
+                      <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27881;24500:103939" data-name="elements">
+                        <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27881;24500:103940" data-name="title">
+                          <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27881;24500:103942" data-name="list v2">
+                            <div className="absolute inset-[13.54%_6.25%_14.75%_6.25%]" data-node-id="I68:27881;24500:103942;4875:137" data-name="stroke (Stroke)">
+                              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStrokeStroke1} />
+                            </div>
+                          </div>
+                          <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27881;24500:103943">
+                            Projects
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="-translate-y-1/2 absolute bg-[var(--cu\/border\/default,#e8e8e8)] h-[103.7px] left-[19.55px] rounded-[850px] top-[calc(50%+11.9px)] w-[0.85px]" data-node-id="68:27882" />
+                </div>
+                <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-[197.2px]" data-node-id="68:27883">
+                  <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center pl-[18.785px] relative shrink-0 w-full" data-node-id="I68:27883;24500:103938" data-name="menu-item">
+                    <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27883;24500:103939" data-name="elements">
+                      <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27883;24500:103940" data-name="title">
+                        <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27883;24500:103942" data-name="list v2">
+                          <div className="absolute inset-[13.54%_6.25%_14.75%_6.25%]" data-node-id="I68:27883;24500:103942;4875:137" data-name="stroke (Stroke)">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStrokeStroke1} />
+                          </div>
+                        </div>
+                        <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27883;24500:103943">
+                          Backlog
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-[197.2px]" data-node-id="68:27884">
+                  <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center pl-[18.785px] relative shrink-0 w-full" data-node-id="I68:27884;24500:103938" data-name="menu-item">
+                    <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27884;24500:103939" data-name="elements">
+                      <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27884;24500:103940" data-name="title">
+                        <div className="overflow-clip relative shrink-0 size-[13.6px]" data-node-id="I68:27884;24500:103942" data-name="view-form-filled">
+                          <div className="absolute inset-[8.46%_13.74%_8.42%_13.75%]" data-node-id="I68:27884;24500:103942;3:8763" data-name="fill">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill11} />
+                          </div>
+                        </div>
+                        <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27884;24500:103943">
+                          Bug report
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-center px-[6.8px] relative shrink-0 w-full" data-node-id="68:27885" data-name="menu-item">
+                  <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[5.1px] shrink-0 w-full" data-node-id="68:27886" data-name="elements">
+                    <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="68:27887" data-name="title">
+                      <div className="relative shrink-0 size-[13.6px]" data-node-id="68:27889">
+                        <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip rounded-[4.25px] size-[17px] top-1/2" data-node-id="68:27890" data-name="team">
+                          <div className="absolute bg-[var(--cu\/azureblue-\(blue\)\/800,#0091ff)] border-[2.007px] border-[var(--cu\/azureblue-\(blue\)\/800,#0091ff)] border-solid inset-0" data-node-id="I68:27890;4520:48236" data-name="team">
+                            <div className="absolute inset-[calc(25%-1px)]" data-node-id="I68:27890;4520:48236;553:312" data-name="team-icons">
+                              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgTeamIcons1} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative self-stretch text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.1275px] whitespace-nowrap" data-node-id="68:27891">
+                        Operations
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-center px-[6.8px] relative shrink-0 w-full" data-node-id="68:27897" data-name="menu-item">
+                  <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[5.1px] shrink-0 w-full" data-node-id="68:27898" data-name="elements">
+                    <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="68:27899" data-name="title">
+                      <div className="relative shrink-0 size-[13.6px]" data-node-id="68:27901">
+                        <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip rounded-[4.25px] size-[17px] top-1/2" data-node-id="68:27902" data-name="team">
+                          <div className="absolute bg-[var(--cu\/green\/800,#30a46c)] border-[2.007px] border-[var(--cu\/green\/800,#30a46c)] border-solid inset-0" data-node-id="I68:27902;4520:48236" data-name="team">
+                            <div className="absolute inset-[calc(25%-1px)]" data-node-id="I68:27902;4520:48236;553:312" data-name="team-icons">
+                              <div className="absolute inset-[0_21.88%]" data-node-id="I68:27902;4520:48236;553:312;553:256" data-name="dollar">
+                                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgDollar} />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative self-stretch text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.1275px] whitespace-nowrap" data-node-id="68:27903">{`Sales & CRM`}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="h-[164.9px] relative shrink-0 w-full" data-node-id="68:27909" />
+            <div className="content-stretch flex flex-col gap-[1.7px] items-start relative shrink-0 w-full" data-node-id="68:27910">
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-[221px]" data-node-id="68:27911" data-name="Section Header">
+                <div className="content-stretch flex flex-col gap-[var(----cu-size-3,10.200000286102295px)] items-center px-[6.8px] relative shrink-0 w-[221px]" data-node-id="I68:27911;19972:162288" data-name="chat-section-header">
+                  <div className="content-stretch flex flex-col items-start pb-[2.89px] pl-[5.78px] pr-[6.8px] pt-[17.34px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27911;19972:162289" data-name="elements">
+                    <div className="content-stretch flex gap-[8.5px] h-[13.6px] items-center relative shrink-0 w-full" data-node-id="I68:27911;19972:162290" data-name="title">
+                      <div className="absolute content-stretch flex items-center justify-center left-[-6.8px] overflow-clip pl-[5.1px] pr-[var(--spacing-xs,3.4px)] py-[var(--spacing-xs,3.4px)] rounded-[var(--radius-2-5,4.25px)] top-[-3.4px]" data-node-id="I68:27911;19972:162291" data-name="default-button">
+                        <p className="[word-break:break-word] font-['SF_Pro_Text:Medium'] leading-[13.6px] not-italic relative shrink-0 text-[10.2px] text-[color:var(--cu\/content\/secondary,#646464)] whitespace-nowrap" data-node-id="I68:27911;19972:162291;202:10954">
+                          Channels
+                        </p>
+                      </div>
+                      <div className="absolute content-stretch flex gap-[1.7px] items-center left-[151.3px] opacity-0 top-[-3.4px]" data-node-id="I68:27911;19972:162292">
+                        <div className="content-stretch flex gap-[var(--spacing-xs,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--spacing-xs,3.4px)] relative rounded-[var(--radius-2-5,4.25px)] shrink-0" data-node-id="I68:27911;19972:162293" data-name="default-button">
+                          <div className="overflow-clip relative shrink-0 size-[13.599px]" data-node-id="I68:27911;19972:162293;203:8756" data-name="ellipsis-regular">
+                            <div className="absolute inset-[41.67%_12.5%_43.33%_12.5%]" data-node-id="I68:27911;19972:162293;203:8756;6104:439" data-name="fill">
+                              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill6} />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="content-stretch flex gap-[var(--spacing-xs,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--spacing-xs,3.4px)] relative rounded-[var(--radius-2-5,4.25px)] shrink-0" data-node-id="I68:27911;19972:162294" data-name="default-button">
+                          <div className="overflow-clip relative shrink-0 size-[13.599px]" data-node-id="I68:27911;19972:162294;203:8756" data-name="add-small">
+                            <div className="absolute inset-[16.67%_16.69%_16.69%_16.67%]" data-node-id="I68:27911;19972:162294;203:8756;6050:475" data-name="fill">
+                              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill7} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col gap-[1.7px] items-start relative shrink-0 w-[221px]" data-node-id="68:27912">
+                <div className="content-stretch flex flex-col items-start px-[6.8px] relative shrink-0 w-[221px]" data-node-id="68:27913">
+                  <div className="content-stretch flex flex-col gap-[var(--cu-size-3,10.200000286102295px)] items-center relative shrink-0 w-full" data-node-id="I68:27913;24500:103938" data-name="menu-item">
+                    <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27913;24500:103939" data-name="elements">
+                      <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27913;24500:103940" data-name="title">
+                        <div className="overflow-clip relative shrink-0 size-[13.6px]" data-node-id="I68:27913;24500:103942" data-name="view-chat">
+                          <div className="absolute inset-[12.5%]" data-node-id="I68:27913;24500:103942;18919:513" data-name="Vector">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
+                          </div>
+                        </div>
+                        <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27913;24500:103943">
+                          Launches
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex gap-[6.8px] h-[23.8px] items-center px-[6.8px] py-[2.55px] relative shrink-0 w-[221px]" data-node-id="68:27914">
+                  <div className="content-stretch flex flex-[1_0_0] flex-col gap-[var(--cu-size-3,10.200000286102295px)] h-full items-center min-w-px relative" data-node-id="I68:27914;24500:103993" data-name="menu-item">
+                    <div className="content-stretch flex flex-col gap-[3.4px] items-start px-[6.8px] py-[5.1px] relative rounded-[6px] shrink-0 w-full" data-node-id="I68:27914;24500:103994" data-name="elements">
+                      <div className="content-stretch flex gap-[8.5px] items-start relative shrink-0 w-full" data-node-id="I68:27914;24500:103995" data-name="title">
+                        <div className="overflow-clip relative shrink-0 size-[13.6px]" data-node-id="I68:27914;24500:103997" data-name="view-chat">
+                          <div className="absolute inset-[12.5%]" data-node-id="I68:27914;24500:103997;18919:513" data-name="Vector">
+                            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
+                          </div>
+                        </div>
+                        <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro_Text:Regular'] leading-[13.6px] min-w-px not-italic overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[-0.15px] whitespace-nowrap" data-node-id="I68:27914;24500:103998">
+                          Bugs
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute bg-[#f9f9f9] left-[20.34px] rounded-[2px] size-[10.2px] top-[11.26px]" data-node-id="I68:27914;23933:214296">
+                    <div className="-translate-x-1/2 -translate-y-1/2 absolute content-stretch flex flex-col items-center justify-center left-1/2 size-[9.35px] top-1/2" data-node-id="I68:27914;23933:215151" data-name="v5-icon (free)">
+                      <div className="[word-break:break-word] flex flex-col font-['Font_Awesome_5_Free:Solid'] justify-center leading-[0] not-italic relative shrink-0 text-[8.5px] text-[color:var(--cu\/red\/800,#e5484d)] text-center w-[13.6px]" data-node-id="I68:27914;23933:215151;1313:4150">
+                        <p className="leading-[8.925px]">bug</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## button
+**Node ID:** 1:8979
+
+View storybook for detailed documentation 👇
+
+**Documentation:**
+- [https://dev-dls.clickup.com/](https://dev-dls.clickup.com/)
+
+## default-button
+**Node ID:** 1:2684
+
+View storybook for detailed documentation 👇
+
+**Documentation:**
+- [https://dev-dls.clickup.com/](https://dev-dls.clickup.com/)
+
+## v5-icon (free)
+**Node ID:** 1:21300
+
+Font Awesome 5 Free Icons
+
+**Documentation:**
+- [https://fontawesome.com/v5/search?m=free](https://fontawesome.com/v5/search?m=free)
+
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

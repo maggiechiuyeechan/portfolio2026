@@ -1,0 +1,573 @@
+@import "../../styles/sf-pro-demo.css";
+
+/*
+ * ClickUp 4.0 Docs demo (Figma node 68:31422, 871x530).
+ * All geometry is in raw px at the Figma frame size; the composition is
+ * scaled by .cu4-demo-frame.
+ */
+.cu4docs-root {
+  --cu4docs-font-text:
+    "SF Pro Text", "SF Pro", -apple-system, BlinkMacSystemFont, "Helvetica Neue", system-ui, Arial, sans-serif;
+  --cu4docs-font-display:
+    "SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, "Helvetica Neue", system-ui, Arial, sans-serif;
+
+  position: relative;
+  width: 871px;
+  height: 530px;
+  overflow: hidden;
+  border-top-left-radius: 10.2px;
+  background: #000;
+  font-family: var(--cu4docs-font-text);
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.cu4docs-root * {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.cu4docs-root img {
+  display: block;
+}
+
+/* App surface (68:31425) */
+.cu4docs-surface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 871.25px;
+  height: 510px;
+  overflow: hidden;
+  border-radius: 10.2px 10.2px 0 0;
+  background: #fcfcfc;
+  box-shadow:
+    0px 2px 4px -2px rgba(0, 0, 0, 0.11),
+    0px 4px 6px -1px rgba(0, 0, 0, 0.11);
+}
+
+/* Main app window (68:31429) */
+.cu4docs-app {
+  position: absolute;
+  top: 34px;
+  left: 52.7px;
+  width: 1167.9px;
+  height: 861.9px;
+  overflow: hidden;
+  border-radius: 6.8px;
+  filter: drop-shadow(0px 0px 0.425px rgba(0, 0, 0, 0.27)) drop-shadow(0px 0.85px 0.85px rgba(0, 0, 0, 0.05));
+}
+
+/* App background + top breadcrumb row (68:31430) */
+.cu4docs-appbg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1164.5px;
+  height: 629px;
+  border-top-right-radius: 3.4px;
+  background: #f9f9f9;
+}
+
+.cu4docs-breadcrumbs {
+  display: flex;
+  align-items: center;
+  padding: 6.8px;
+}
+
+.cu4docs-crumb-sep {
+  width: 6.8px;
+  padding: 3.4px 0;
+  font-size: 11.9px;
+  line-height: 13.6px;
+  letter-spacing: -0.15px;
+  text-align: center;
+  color: #bbb;
+}
+
+.cu4docs-icon-13 {
+  position: relative;
+  flex-shrink: 0;
+  width: 13.6px;
+  height: 13.6px;
+}
+
+/* Text styles (Figma SF Pro Text / Display masters) */
+.cu4docs-t-semibold-11 {
+  font-family: var(--cu4docs-font-text);
+  font-size: 11.9px;
+  font-weight: 590;
+  line-height: 13.6px;
+  letter-spacing: -0.1275px;
+  color: #202020;
+  white-space: nowrap;
+}
+
+.cu4docs-t-medium-11 {
+  font-family: var(--cu4docs-font-text);
+  font-size: 11.9px;
+  font-weight: 510;
+  line-height: 13.6px;
+  letter-spacing: -0.1275px;
+  color: #8d8d8d;
+  white-space: nowrap;
+}
+
+/* Left sidebar (68:31557) */
+.cu4docs-sidebar {
+  position: absolute;
+  top: 37.4px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.7px;
+  width: 192.1px;
+  height: 577.15px;
+  padding-bottom: 6.8px;
+}
+
+.cu4docs-pages-heading {
+  position: relative;
+  width: 100%;
+  height: 23.8px;
+}
+
+.cu4docs-pages-heading p {
+  position: absolute;
+  top: calc(50% - 6.8px);
+  left: 13.6px;
+  font-family: var(--cu4docs-font-text);
+  font-size: 10.2px;
+  font-weight: 510;
+  line-height: 13.6px;
+  letter-spacing: 0;
+  color: #8d8d8d;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.cu4docs-side-row {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0 6.8px;
+}
+
+.cu4docs-side-item {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: 6.8px;
+  min-width: 1px;
+  height: 23.8px;
+  padding: 3.4px 6.8px;
+  border-radius: 5.95px;
+  font-family: var(--cu4docs-font-text);
+  font-size: 11.9px;
+  font-weight: 400;
+  line-height: 13.6px;
+  letter-spacing: -0.1275px;
+  color: #646464;
+  white-space: nowrap;
+}
+
+.cu4docs-side-item.is-selected {
+  background: rgba(0, 0, 0, 0.06);
+  font-weight: 510;
+  letter-spacing: -0.15px;
+  color: #202020;
+}
+
+.cu4docs-side-item p {
+  flex: 1 0 0;
+  min-width: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cu4docs-side-indent {
+  position: relative;
+  flex-shrink: 0;
+  height: 23.8px;
+}
+
+.cu4docs-side-indent img {
+  position: absolute;
+  inset: -3.57% 0;
+  width: 100%;
+  height: 107.14%;
+  max-width: none;
+}
+
+/* Doc page (68:31478) */
+.cu4docs-page {
+  position: absolute;
+  top: 37.4px;
+  left: 211.65px;
+  width: 612px;
+  height: 564.4px;
+  border-radius: 10.2px;
+  background: #fff;
+  filter: drop-shadow(0px 0px 0.425px rgba(0, 0, 0, 0.27)) drop-shadow(0px 0.85px 0.85px rgba(0, 0, 0, 0.05));
+}
+
+.cu4docs-page-heading {
+  position: absolute;
+  top: 6.8px;
+  left: 34.85px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 557.6px;
+  height: 104.55px;
+  padding-top: 3.4px;
+  background: #fff;
+}
+
+.cu4docs-title {
+  overflow: hidden;
+  font-family: var(--cu4docs-font-display);
+  font-size: 27.2px;
+  font-weight: 700;
+  line-height: 34px;
+  letter-spacing: 0.42px;
+  color: #202020;
+  text-overflow: ellipsis;
+}
+
+.cu4docs-meta {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 3.4px 1.7px;
+}
+
+/*
+ * Meta row — Figma 68:31530 uses SF Pro Display Regular.
+ *
+ * The root's font-optical-sizing:auto ties opsz to the font size, which at
+ * 11.9px clamps to the axis floor of 17 — the Text cut, drawn wider and more
+ * openly spaced for small sizes. Figma sets the Display face regardless of
+ * size, so opsz is pinned to the Display end of the axis; without it the row
+ * runs 366 units against the export's 336.
+ */
+.cu4docs-meta-text {
+  font-family: var(--cu4docs-font-display);
+  font-size: 11.9px;
+  font-weight: 400;
+  font-variation-settings: "opsz" 28;
+  line-height: 13.685px;
+  letter-spacing: 0.36px;
+  color: #8d8d8d;
+  white-space: nowrap;
+}
+
+.cu4docs-meta-text.is-contributors {
+  letter-spacing: 0.306px;
+}
+
+.cu4docs-avatar-17 {
+  position: relative;
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+/* Figma strokes the ring outside the 17px avatar, so it is a shadow spread
+   rather than a border: a border would either eat into the photo or grow the
+   box, and Blink floors border-width to whole pixels, losing the 1.7. Drawing
+   it outside the layout box also lets the overlap use Figma's own -2.75. */
+.cu4docs-avatar-17.is-ringed {
+  box-shadow: 0 0 0 1.7px #fff;
+}
+
+.cu4docs-avatar-17 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Two-column link lists + Resources (68:31482) */
+.cu4docs-content {
+  position: absolute;
+  top: 131.75px;
+  left: 34.85px;
+  display: flex;
+  flex-direction: column;
+  gap: 48.45px;
+  width: 552.5px;
+  padding: 10.2px 0;
+}
+
+.cu4docs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10.2px;
+  flex-shrink: 0;
+}
+
+.cu4docs-col-heading {
+  position: relative;
+  overflow: visible;
+  width: 213.35px;
+  height: 19.55px;
+  font-family: var(--cu4docs-font-text);
+  font-size: 15.3px;
+  font-weight: 590;
+  line-height: 19.125px;
+  letter-spacing: -0.3825px;
+  color: #000;
+  white-space: pre-wrap;
+}
+
+.cu4docs-col-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5.1px;
+  font-family: var(--cu4docs-font-text);
+  font-size: 13.6px;
+  font-weight: 510;
+  line-height: 17px;
+  letter-spacing: -0.272px;
+  color: #000;
+  white-space: pre-wrap;
+}
+
+.cu4docs-col-items p {
+  position: relative;
+  overflow: visible;
+  width: 213.35px;
+  height: 19.55px;
+}
+
+/* Collaborator cursor: 0x0 inline-block anchored at the line-box top, right
+   after the typed text. Children are positioned in Figma coordinates. */
+.cu4docs-cursor {
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+/* Figma wraps the caret vector in a zero-width box with inset-[-5%_-0.85px]
+   so the 1.7px stroke is not clipped. A CSS bar matches that reliably. */
+.cu4docs-caret {
+  position: absolute;
+  top: -2.55px;
+  left: 0;
+  width: 1.7px;
+  height: var(--cu4docs-caret-h, 17px);
+  margin-left: -0.85px;
+  border-radius: 0.85px;
+  background: var(--cu4docs-caret-color, #0b68cb);
+  animation: cu4docs-blink 1.06s step-end infinite;
+}
+
+.cu4docs-root.is-paused .cu4docs-caret {
+  animation-play-state: paused;
+}
+
+.cu4docs-root.is-static .cu4docs-caret {
+  animation: none;
+}
+
+@keyframes cu4docs-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Name chip matching the Whiteboards collaborator cursors, but rounded on every
+   corner and floated so its base clears the caret by ~2px. */
+.cu4docs-flag {
+  position: absolute;
+  top: -24.95px;
+  left: 0;
+  display: block;
+  height: 20.4px;
+  padding: 0 5.1px;
+  border: 0.85px solid rgba(0, 0, 0, 0.19);
+  border-radius: 6.8px;
+  font-family: var(--cu4docs-font-text);
+  font-size: 10.2px;
+  font-weight: 500;
+  line-height: 18.7px;
+  letter-spacing: 0;
+  color: #fff;
+  white-space: nowrap;
+  box-shadow:
+    0 3.4px 5.1px -0.85px rgba(0, 0, 0, 0.1),
+    0 1.7px 3.4px -1.7px rgba(0, 0, 0, 0.1);
+}
+
+.cu4docs-flag-alexandra {
+  background: #0b68cb;
+}
+
+.cu4docs-flag-samuel {
+  background: #6647f0;
+}
+
+/* Resources */
+.cu4docs-resources {
+  display: flex;
+  flex-direction: column;
+  gap: 8.5px;
+  width: 100%;
+}
+
+.cu4docs-resources-heading {
+  font-family: var(--cu4docs-font-text);
+  font-size: 15.3px;
+  font-weight: 590;
+  line-height: 19.125px;
+  letter-spacing: -0.3825px;
+  color: #000;
+}
+
+.cu4docs-bookmark {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 408px;
+  padding: 10.2px;
+  border: 0.85px solid #e8e8e8;
+  border-radius: 8.5px;
+  background-image: linear-gradient(-82.98deg, #e1f0ff 0%, #fff 50%);
+}
+
+.cu4docs-bookmark-top {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3.4px;
+  width: 255px;
+}
+
+.cu4docs-bookmark-title {
+  font-family: var(--cu4docs-font-text);
+  font-size: 11.9px;
+  font-weight: 590;
+  line-height: 13.6px;
+  letter-spacing: -0.1275px;
+  color: #202020;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cu4docs-bookmark-sub {
+  display: flex;
+  align-items: center;
+  gap: 3.4px;
+  font-family: var(--cu4docs-font-text);
+  font-size: 10.2px;
+  font-weight: 400;
+  line-height: 13.6px;
+  letter-spacing: 0;
+  color: #646464;
+  white-space: nowrap;
+}
+
+.cu4docs-bookmark-sub-doc {
+  font-weight: 510;
+}
+
+/* Hover-preview mock card inside the bookmark (68:31513) */
+.cu4docs-mock {
+  position: absolute;
+  top: 0;
+  right: -122.4px;
+  width: 112.2px;
+  height: 77.138px;
+  overflow: hidden;
+  border-radius: 3.4px;
+  background: #fff;
+  box-shadow:
+    0px 0px 0.85px 0px rgba(0, 0, 0, 0.27),
+    0px 8.5px 12.75px -2.55px rgba(0, 0, 0, 0.1),
+    0px 3.4px 5.1px -3.4px rgba(0, 0, 0, 0.1);
+}
+
+.cu4docs-mock-body {
+  position: absolute;
+  top: 21.82px;
+  left: 4.67px;
+  width: 102.85px;
+  color: #202020;
+}
+
+.cu4docs-mock-body p,
+.cu4docs-mock-body li {
+  font-size: 2.338px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.cu4docs-mock-body ol,
+.cu4docs-mock-body ul {
+  padding-left: 3.5px;
+}
+
+.cu4docs-mock-body .is-medium {
+  font-size: 3.117px;
+  font-weight: 510;
+}
+
+.cu4docs-mock-body li.is-medium-item {
+  font-weight: 510;
+}
+
+/* Black left rail (68:31606) */
+.cu4docs-rail {
+  position: absolute;
+  top: 34px;
+  left: 5.1px;
+  width: 40.8px;
+  height: 861.9px;
+  overflow: hidden;
+  border-radius: 6.8px;
+  background: #000;
+}
+
+.cu4docs-rail-items {
+  position: absolute;
+  top: 6.8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6.8px;
+  align-items: center;
+}
+
+.cu4docs-rail-icon {
+  position: relative;
+  width: 27.2px;
+  height: 27.2px;
+  border-radius: 6.8px;
+}
+
+.cu4docs-rail-icon.is-dim {
+  opacity: 0.8;
+}
+
+.cu4docs-rail-icon img {
+  position: absolute;
+  top: 5.1px;
+  left: 5.1px;
+  width: 17px;
+  height: 17px;
+}

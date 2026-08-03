@@ -1,0 +1,555 @@
+const imgAkshay = "https://www.figma.com/api/mcp/asset/35ff52e2-5856-42e7-b1bc-27e041e3b255";
+const imgAgent1 = "https://www.figma.com/api/mcp/asset/e73e28d8-c416-4a7f-82e9-ac241abe8a93";
+const imgAkram = "https://www.figma.com/api/mcp/asset/ebc9602d-063c-4c85-8728-d080d4631da6";
+const imgMaggie = "https://www.figma.com/api/mcp/asset/fb9f5eb8-f33b-4738-b3a2-6a104b6ca362";
+const imgFill = "https://www.figma.com/api/mcp/asset/5e5a6470-866b-4bdb-b11b-ecc164848d7d";
+const imgFillOverride = "https://www.figma.com/api/mcp/asset/390e367a-e309-44be-b9c0-c59d25c45a0e";
+const imgFill1 = "https://www.figma.com/api/mcp/asset/acf6b8fd-bbd1-4802-9be2-b7bb59212909";
+const imgFill2 = "https://www.figma.com/api/mcp/asset/757e4367-8e8d-4c3e-863f-f27c253fd86a";
+const imgFill3 = "https://www.figma.com/api/mcp/asset/fff1aa25-9f4c-4710-af46-2342200aabf2";
+const imgFill4 = "https://www.figma.com/api/mcp/asset/4aa0e2cd-bc25-41d5-9b56-f3af6cbac1cc";
+const imgFill5 = "https://www.figma.com/api/mcp/asset/fc3237a4-8436-4ab3-9646-b70b88ee89be";
+const imgFill6 = "https://www.figma.com/api/mcp/asset/b8cb2be5-6e24-4d3e-b3a9-34072188a9a0";
+const imgFill7 = "https://www.figma.com/api/mcp/asset/74127cdf-ebbc-46f4-9064-0c6741b82b08";
+const imgFill8 = "https://www.figma.com/api/mcp/asset/52059e87-8e17-4f08-8899-d34eb5b9b1fc";
+
+export default function Table() {
+  return (
+    <div className="content-stretch flex flex-col items-end relative size-full" data-node-id="68:27469" data-name="table">
+      <div className="content-stretch flex items-center relative shrink-0 w-full" data-node-id="68:27470" data-name="Row">
+        <div className="content-stretch flex h-[30.6px] items-center pl-[5.1px] pr-[1.7px] relative shrink-0" data-node-id="68:27471" data-name="checkbox">
+          <div className="content-stretch flex items-center justify-center p-[0.85px] relative shrink-0" data-node-id="68:27472" data-name="layout">
+            <div className="bg-[var(--cu\/background\/main,white)] border-[0.85px] border-[var(--cu\/border\/input,#cecece)] border-solid opacity-0 relative rounded-[var(--radius-2,3.4px)] shrink-0 size-[11.9px]" data-node-id="68:27473" data-name="checkbox" />
+          </div>
+        </div>
+        <div className="content-stretch flex items-center opacity-0 relative shrink-0" data-node-id="68:27474" data-name="item-level">
+          <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--cu-size-1,3.4px)] relative rounded-[var(--radius-3,5.1px)] shrink-0" data-node-id="I68:27474;431:22081" data-name="expand-collapse">
+            <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27474;431:22081;203:8756" data-name="caret">
+              <div className="absolute bottom-1/4 flex items-center justify-center left-[33.33%] right-[33.33%] top-1/4" data-node-id="I68:27474;431:22081;203:8756;3:8067" style={{ containerType: "size" }}>
+                <div className="-rotate-90 flex-none h-[100cqw] w-[100cqh]">
+                  <div className="relative size-full" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-row items-center self-stretch" data-node-id="68:27475">
+          <div className="border-[var(--cu\/border\/low-contrast,#f0f0f0)] border-b-[0.85px] border-solid flex-[1_0_0] h-full min-w-px relative" data-name="row-1">
+            <div className="absolute content-stretch flex h-[30.6px] items-center left-0 right-0 top-0" data-node-id="68:27476" data-name="fields">
+              <div className="content-stretch flex items-center relative shrink-0" data-node-id="68:27477" data-name="button-layout">
+                <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--cu-size-1,3.4px)] relative rounded-[var(--radius-3,5.1px)] shrink-0" data-node-id="68:27479" data-name="button">
+                  <div className="overflow-clip relative rounded-[99px] shrink-0 size-[13.599px]" data-node-id="I68:27479;203:8756" data-name="status=9. closed, item-type=task">
+                    <div className="absolute inset-[8.33%]" data-node-id="I68:27479;203:8756;10576:519" data-name="fill-override">
+                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFillOverride} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[3.4px] h-[30.6px] items-center pr-[57.8px] py-[5.1px] relative shrink-0 w-[232.9px]" data-node-id="68:27480" data-name="task-item">
+                <div className="content-stretch flex flex-col gap-[3.4px] items-start relative shrink-0 w-[170.002px]" data-node-id="I68:27480;1516:12471" data-name="text-layout">
+                  <div className="content-stretch flex gap-[3.4px] items-center relative shrink-0 w-full" data-node-id="I68:27480;1516:12473" data-name="task-name">
+                    <div className="content-stretch flex flex-[1_0_0] gap-[5.1px] items-center min-w-px relative" data-node-id="I68:27480;1516:12478" data-name="single-line-layout">
+                      <div className="content-stretch flex h-[17px] items-center relative shrink-0" data-node-id="I68:27480;1516:12479" data-name="text">
+                        <div className="[word-break:break-word] flex flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] relative shrink-0 text-[10.12px] text-[color:var(--cu\/content\/default,#202020)] tracking-[var(--14px,-0.1275px)] whitespace-nowrap" data-node-id="I68:27480;1516:12480" style={{ fontVariationSettings: '"wdth" 100' }}>
+                          <p className="leading-[11.56px]">Social campaign</p>
+                        </div>
+                      </div>
+                      <div className="content-stretch flex h-[17px] items-center relative shrink-0 w-[25.5px]" data-node-id="I68:27480;1516:12481" data-name="properties" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex h-[30.6px] items-center min-h-[30.600000381469727px] min-w-[85px] pl-[6.8px] pr-[10.2px] relative shrink-0 w-[85px]" data-node-id="68:27481" data-name="assignee">
+                <div className="border-[1.7px] border-[var(--cu-background\/main,white)] border-solid relative rounded-[99px] shrink-0 size-[17px]" data-node-id="68:27482" data-name="avatar">
+                  <div className="absolute inset-0 overflow-clip rounded-[var(--radius-round,566.1px)]" data-node-id="I68:27482;301:2165" data-name="akshay">
+                    <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgAkshay} />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[6.8px] h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] px-[10.2px] relative shrink-0 w-[104.55px]" data-node-id="68:27483" data-name="priority">
+                <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27483;52:21219" data-name="priority-filled">
+                  <div className="absolute inset-[8.33%_16.39%_8.33%_16.67%]" data-node-id="I68:27483;52:21219;3:9001" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill1} />
+                  </div>
+                </div>
+                <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] min-w-px overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[var(--14px,-0.15px)] whitespace-nowrap" data-node-id="I68:27483;52:21179" style={{ fontVariationSettings: '"wdth" 100' }}>
+                  <p className="leading-[13.6px] overflow-hidden text-ellipsis">Low</p>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[3.4px] h-[30.6px] items-center min-h-[30.600000858306885px] min-w-[85.00000238418579px] px-[10.2px] relative shrink-0 w-[104.55px]" data-node-id="68:27484" data-name="tag">
+                <div className="bg-[var(--cu\/teal\/200,#e7f9f5)] content-stretch flex items-center px-[5.1px] py-[1.7px] relative rounded-[4.335px] shrink-0" data-node-id="I68:27484;2:24256" data-name="tag-1">
+                  <p className="[word-break:break-word] font-['SF_Pro:Medium'] font-[510] leading-[11.56px] relative shrink-0 text-[10.12px] text-[color:var(--cu\/teal\/1000,#067a6f)] tracking-[var(--12px,-0.1275px)] whitespace-nowrap" data-node-id="I68:27484;2:24256;228:5108" style={{ fontVariationSettings: '"wdth" 100' }}>
+                    Design
+                  </p>
+                </div>
+              </div>
+              <div className="content-stretch flex h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] opacity-0 px-[10.2px] relative shrink-0 w-[136px]" data-node-id="68:27485" data-name="progress">
+                <div className="content-stretch flex flex-[1_0_0] gap-[3.4px] h-[13.6px] items-start min-w-px relative" data-node-id="I68:27485;813:27659" data-name="progress">
+                  <div className="[word-break:break-word] flex flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] relative shrink-0 text-[10.2px] text-[color:var(--cu\/content\/default,#202020)] tracking-[var(--12px,0px)] w-[27.2px]" data-node-id="I68:27485;813:27662" style={{ fontVariationSettings: '"wdth" 100' }}>
+                    <p className="leading-[13.6px]">12%</p>
+                  </div>
+                  <div className="content-stretch flex flex-[1_0_0] h-full items-center min-w-px overflow-clip relative" data-node-id="I68:27485;813:27693" data-name="bar">
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative rounded-bl-[3.4px] rounded-tl-[3.4px] shrink-0 size-[6.8px]" data-node-id="I68:27485;813:27694" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27485;813:27724" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27485;813:27725" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27485;813:27726" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27485;813:27727" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27485;813:27728" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27485;813:27729" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27485;813:27730" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27485;813:27731" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary-on-subtle,#e5e6ff)] flex-[1_0_0] h-[6.8px] min-w-px relative rounded-br-[3.4px] rounded-tr-[3.4px]" data-node-id="I68:27485;813:27721" data-name="bar" />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex h-[30.6px] items-center justify-center min-h-[30.60000038146973px] opacity-0 px-[3.4px] relative shrink-0 w-[23.8px]" data-node-id="68:27486" data-name="button">
+                <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[5.1px] relative rounded-[var(--radius-3-5,5.95px)] shrink-0" data-node-id="I68:27486;2:24374" data-name="button">
+                  <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27486;2:24374;404:26620" data-name="ellipsis-regular">
+                    <div className="absolute inset-[41.67%_12.5%_43.33%_12.5%]" data-node-id="I68:27486;2:24374;404:26620;3:8161" data-name="fill">
+                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill2} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex items-center relative shrink-0 w-full" data-node-id="68:27487" data-name="Row">
+        <div className="content-stretch flex h-[30.6px] items-center pl-[5.1px] pr-[1.7px] relative shrink-0" data-node-id="68:27488" data-name="checkbox">
+          <div className="content-stretch flex items-center justify-center p-[0.85px] relative shrink-0" data-node-id="68:27489" data-name="layout">
+            <div className="bg-[var(--cu\/background\/main,white)] border-[0.85px] border-[var(--cu\/border\/input,#cecece)] border-solid opacity-0 relative rounded-[var(--radius-2,3.4px)] shrink-0 size-[11.9px]" data-node-id="68:27490" data-name="checkbox" />
+          </div>
+        </div>
+        <div className="content-stretch flex items-center relative shrink-0" data-node-id="68:27491" data-name="item-level">
+          <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--cu-size-1,3.4px)] relative rounded-[var(--radius-3,5.1px)] shrink-0" data-node-id="I68:27491;431:22081" data-name="expand-collapse">
+            <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27491;431:22081;203:8756" data-name="caret-expanded">
+              <div className="absolute bottom-[33.33%] left-1/4 right-1/4 top-[33.33%]" data-node-id="I68:27491;431:22081;203:8756;3:8069" data-name="fill">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill3} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="content-stretch flex items-center relative shrink-0" data-node-id="68:27492" data-name="button-layout">
+          <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--cu-size-1,3.4px)] relative rounded-[var(--radius-3,5.1px)] shrink-0" data-node-id="68:27494" data-name="button">
+            <div className="overflow-clip relative rounded-[99px] shrink-0 size-[13.599px]" data-node-id="I68:27494;203:8756" data-name="status=9. closed, item-type=task">
+              <div className="absolute inset-[8.33%]" data-node-id="I68:27494;203:8756;10576:519" data-name="fill-override">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFillOverride} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-row items-center self-stretch" data-node-id="68:27495">
+          <div className="border-[var(--cu\/border\/low-contrast,#f0f0f0)] border-b-[0.85px] border-solid flex-[1_0_0] h-full min-w-px relative" data-name="row-1">
+            <div className="absolute content-stretch flex h-[30.6px] items-center left-0 right-0 top-0" data-node-id="68:27496" data-name="fields">
+              <div className="content-stretch flex gap-[3.4px] h-[30.6px] items-center pr-[57.8px] py-[5.1px] relative shrink-0 w-[232.9px]" data-node-id="68:27497" data-name="task-item">
+                <div className="content-stretch flex flex-[1_0_0] flex-col gap-[3.4px] items-start min-w-px relative" data-node-id="I68:27497;1516:12471" data-name="text-layout">
+                  <div className="content-stretch flex gap-[3.4px] items-center relative shrink-0 w-full" data-node-id="I68:27497;1516:12473" data-name="task-name">
+                    <div className="content-stretch flex flex-[1_0_0] gap-[5.1px] items-center min-w-px relative" data-node-id="I68:27497;1516:12478" data-name="single-line-layout">
+                      <div className="content-stretch flex h-[17px] items-center relative shrink-0" data-node-id="I68:27497;1516:12479" data-name="text">
+                        <div className="[word-break:break-word] flex flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] relative shrink-0 text-[10.12px] text-[color:var(--cu\/content\/default,#202020)] tracking-[var(--14px,-0.1275px)] whitespace-nowrap" data-node-id="I68:27497;1516:12480" style={{ fontVariationSettings: '"wdth" 100' }}>
+                          <p className="leading-[11.56px]">Website assets</p>
+                        </div>
+                      </div>
+                      <div className="content-stretch flex items-center relative shrink-0" data-node-id="I68:27497;1516:12481" data-name="properties">
+                        <div className="content-stretch flex gap-[1.7px] items-center p-[2.55px] relative rounded-[var(--radius-2-5,4.25px)] shrink-0" data-node-id="I68:27497;1516:12481;1127:28861" data-name="subtasks">
+                          <div className="relative shrink-0 size-[11.9px]" data-node-id="I68:27497;1516:12481;1127:28861;1118:24265" data-name="subtask">
+                            <div className="absolute inset-[12.5%]" data-node-id="I68:27497;1516:12481;1127:28861;1118:24265;3:8565" data-name="fill">
+                              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill4} />
+                            </div>
+                          </div>
+                          <div className="[word-break:break-word] flex flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] relative shrink-0 text-[10.12px] text-[color:var(--cu\/content\/tertiary,#838383)] text-center tracking-[-0.1275px] whitespace-nowrap" data-node-id="I68:27497;1516:12481;1127:28861;1118:24266" style={{ fontVariationSettings: '"wdth" 100' }}>
+                            <p className="leading-[11.56px]">2</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] pl-[6.8px] pr-[10.2px] relative shrink-0 w-[85px]" data-node-id="68:27498" data-name="assignee">
+                <div className="content-stretch flex isolate items-center relative shrink-0" data-node-id="I68:27498;2:24114" data-name="user-group">
+                  <div className="border-[1.7px] border-[var(--cu\/background\/main,white)] border-solid mr-[-1.7px] relative rounded-[99px] shrink-0 size-[17px] z-[4]" data-node-id="I68:27498;2:24114;301:3012" data-name="user">
+                    <div className="absolute inset-0 overflow-clip rounded-[var(--radius-round,566.1px)]" data-node-id="I68:27498;2:24114;301:3012;301:2014" data-name="cu_ricardo" />
+                  </div>
+                  <div className="border-[1.7px] border-[var(--cu\/background\/main,white)] border-solid relative rounded-[99px] shrink-0 size-[17px] z-[3]" data-node-id="I68:27498;2:24114;301:3013" data-name="user">
+                    <div className="absolute inset-0 overflow-clip rounded-[var(--radius-round,566.1px)]" data-node-id="I68:27498;2:24114;301:3013;301:2014" data-name="cu_olga" />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[6.8px] h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] px-[10.2px] relative shrink-0 w-[104.55px]" data-node-id="68:27499" data-name="priority">
+                <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27499;52:21219" data-name="normal-priority">
+                  <div className="absolute inset-[8.33%_16.39%_8.33%_16.67%]" data-node-id="I68:27499;52:21219;13809:134;3:9001" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill5} />
+                  </div>
+                </div>
+                <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] min-w-px overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[var(--14px,-0.15px)] whitespace-nowrap" data-node-id="I68:27499;52:21179" style={{ fontVariationSettings: '"wdth" 100' }}>
+                  <p className="leading-[13.6px] overflow-hidden text-ellipsis">Urgent</p>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[3.4px] h-[30.6px] items-center min-h-[30.600000858306885px] min-w-[85.00000238418579px] px-[10.2px] relative shrink-0 w-[104.55px]" data-node-id="68:27500" data-name="tag">
+                <div className="bg-[var(--cu\/red\/200,#ffefef)] content-stretch flex items-center px-[5.1px] py-[1.7px] relative rounded-[4.335px] shrink-0" data-node-id="I68:27500;1057:22664" data-name="tag-2">
+                  <p className="[word-break:break-word] font-['SF_Pro:Medium'] font-[510] leading-[11.56px] relative shrink-0 text-[10.12px] text-[color:var(--cu\/red\/1000,#c62a2f)] tracking-[-0.1275px] whitespace-nowrap" data-node-id="I68:27500;1057:22664;228:4868" style={{ fontVariationSettings: '"wdth" 100' }}>
+                    PMM
+                  </p>
+                </div>
+              </div>
+              <div className="content-stretch flex h-[30.6px] items-center justify-center min-h-[30.60000038146973px] opacity-0 px-[3.4px] relative shrink-0 w-[23.8px]" data-node-id="68:27501" data-name="button">
+                <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[5.1px] relative rounded-[var(--radius-3-5,5.95px)] shrink-0" data-node-id="I68:27501;2:24374" data-name="button">
+                  <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27501;2:24374;404:26620" data-name="ellipsis-regular">
+                    <div className="absolute inset-[41.67%_12.5%_43.33%_12.5%]" data-node-id="I68:27501;2:24374;404:26620;3:8161" data-name="fill">
+                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill2} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex items-center pl-[40.8px] relative shrink-0 w-full" data-node-id="68:27502" data-name="Row">
+        <div className="content-stretch flex items-center opacity-0 relative shrink-0" data-node-id="68:27503" data-name="item-level">
+          <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--cu-size-1,3.4px)] relative rounded-[var(--radius-3,5.1px)] shrink-0" data-node-id="I68:27503;431:22081" data-name="expand-collapse">
+            <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27503;431:22081;203:8756" data-name="caret">
+              <div className="absolute bottom-1/4 flex items-center justify-center left-[33.33%] right-[33.33%] top-1/4" data-node-id="I68:27503;431:22081;203:8756;3:8067" style={{ containerType: "size" }}>
+                <div className="-rotate-90 flex-none h-[100cqw] w-[100cqh]">
+                  <div className="relative size-full" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="border-[var(--cu\/border\/low-contrast,#f0f0f0)] border-b-[0.85px] border-solid flex-[1_0_0] h-[30.6px] min-w-px relative" data-node-id="68:27504" data-name="row-1">
+          <div className="absolute content-stretch flex h-[30.6px] items-center left-0 right-0 top-0" data-node-id="68:27505" data-name="fields">
+            <div className="content-stretch flex items-center relative shrink-0" data-node-id="68:27506" data-name="button-layout">
+              <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--cu-size-1,3.4px)] relative rounded-[var(--radius-3,5.1px)] shrink-0" data-node-id="68:27508" data-name="button">
+                <div className="overflow-clip relative rounded-[99px] shrink-0 size-[13.599px]" data-node-id="I68:27508;203:8756" data-name="status=1. open, item-type=task">
+                  <div className="absolute inset-[8.33%]" data-node-id="I68:27508;203:8756;474:11287" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill6} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[3.4px] h-[30.6px] items-center pr-[57.8px] py-[5.1px] relative shrink-0 w-[211.65px]" data-node-id="68:27509" data-name="task-item">
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[3.4px] items-start min-w-px relative" data-node-id="I68:27509;1516:12471" data-name="text-layout">
+                <div className="content-stretch flex gap-[3.4px] items-center relative shrink-0 w-full" data-node-id="I68:27509;1516:12473" data-name="task-name">
+                  <div className="content-stretch flex flex-[1_0_0] gap-[5.1px] items-center min-w-px relative" data-node-id="I68:27509;1516:12478" data-name="single-line-layout">
+                    <div className="content-stretch flex h-[17px] items-center relative shrink-0" data-node-id="I68:27509;1516:12479" data-name="text">
+                      <div className="[word-break:break-word] flex flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] relative shrink-0 text-[10.12px] text-[color:var(--cu\/content\/default,#202020)] tracking-[var(--14px,-0.1275px)] whitespace-nowrap" data-node-id="I68:27509;1516:12480" style={{ fontVariationSettings: '"wdth" 100' }}>
+                        <p className="leading-[11.56px]">Landing page</p>
+                      </div>
+                    </div>
+                    <div className="content-stretch flex h-[17px] items-center relative shrink-0 w-[25.5px]" data-node-id="I68:27509;1516:12481" data-name="properties" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[30.6px] items-center min-h-[30.600000381469727px] min-w-[85px] pl-[6.8px] pr-[10.2px] relative shrink-0 w-[85px]" data-node-id="68:27510" data-name="assignee">
+              <div className="border-[1.7px] border-[var(--cu-background\/main,white)] border-solid relative rounded-[99px] shrink-0 size-[17px]" data-node-id="68:27511" data-name="avatar">
+                <div className="absolute inset-0 rounded-[var(--radius-round,566.1px)]" data-node-id="I68:27511;301:2165" data-name="agent-1">
+                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[var(--radius-round,566.1px)] size-full" src={imgAgent1} />
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[6.8px] h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] px-[10.2px] relative shrink-0 w-[104.55px]" data-node-id="68:27512" data-name="priority">
+              <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27512;52:21219" data-name="normal-priority">
+                <div className="absolute inset-[8.33%_16.39%_8.33%_16.67%]" data-node-id="I68:27512;52:21219;13809:134;3:9001" data-name="fill">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill7} />
+                </div>
+              </div>
+              <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] min-w-px overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[var(--14px,-0.15px)] whitespace-nowrap" data-node-id="I68:27512;52:21179" style={{ fontVariationSettings: '"wdth" 100' }}>
+                <p className="leading-[13.6px] overflow-hidden text-ellipsis">Normal</p>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[3.4px] h-[30.6px] items-center min-h-[30.600000858306885px] min-w-[85.00000238418579px] px-[10.2px] relative shrink-0 w-[104.55px]" data-node-id="68:27513" data-name="tag">
+              <div className="bg-[var(--cu\/teal\/200,#e7f9f5)] content-stretch flex items-center px-[5.1px] py-[1.7px] relative rounded-[4.335px] shrink-0" data-node-id="I68:27513;2:24256" data-name="tag-1">
+                <p className="[word-break:break-word] font-['SF_Pro:Medium'] font-[510] leading-[11.56px] relative shrink-0 text-[10.12px] text-[color:var(--cu\/teal\/1000,#067a6f)] tracking-[var(--12px,-0.1275px)] whitespace-nowrap" data-node-id="I68:27513;2:24256;228:5108" style={{ fontVariationSettings: '"wdth" 100' }}>
+                  Design
+                </p>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] opacity-0 px-[10.2px] relative shrink-0 w-[136px]" data-node-id="68:27514" data-name="progress">
+              <div className="content-stretch flex flex-[1_0_0] gap-[3.4px] h-[13.6px] items-start min-w-px relative" data-node-id="I68:27514;813:27659" data-name="progress">
+                <div className="[word-break:break-word] flex flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] relative shrink-0 text-[10.2px] text-[color:var(--cu\/content\/default,#202020)] tracking-[var(--12px,0px)] w-[27.2px]" data-node-id="I68:27514;813:27662" style={{ fontVariationSettings: '"wdth" 100' }}>
+                  <p className="leading-[13.6px]">12%</p>
+                </div>
+                <div className="content-stretch flex flex-[1_0_0] h-full items-center min-w-px overflow-clip relative" data-node-id="I68:27514;813:27693" data-name="bar">
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative rounded-bl-[3.4px] rounded-tl-[3.4px] shrink-0 size-[6.8px]" data-node-id="I68:27514;813:27694" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27514;813:27724" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27514;813:27725" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27514;813:27726" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27514;813:27727" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27514;813:27728" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27514;813:27729" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27514;813:27730" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27514;813:27731" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary-on-subtle,#e5e6ff)] flex-[1_0_0] h-[6.8px] min-w-px relative rounded-br-[3.4px] rounded-tr-[3.4px]" data-node-id="I68:27514;813:27721" data-name="bar" />
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[30.6px] items-center justify-center min-h-[30.60000038146973px] opacity-0 px-[3.4px] relative shrink-0 w-[23.8px]" data-node-id="68:27515" data-name="button">
+              <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[5.1px] relative rounded-[var(--radius-3-5,5.95px)] shrink-0" data-node-id="I68:27515;2:24374" data-name="button">
+                <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27515;2:24374;404:26620" data-name="ellipsis-regular">
+                  <div className="absolute inset-[41.67%_12.5%_43.33%_12.5%]" data-node-id="I68:27515;2:24374;404:26620;3:8161" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill2} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute content-stretch flex h-[30.6px] items-center left-0 pl-[5.1px] pr-[1.7px] top-0" data-node-id="68:27516" data-name="checkbox">
+          <div className="content-stretch flex items-center justify-center p-[0.85px] relative shrink-0" data-node-id="68:27517" data-name="layout">
+            <div className="bg-[var(--cu\/background\/main,white)] border-[0.85px] border-[var(--cu\/border\/input,#cecece)] border-solid opacity-0 relative rounded-[var(--radius-2,3.4px)] shrink-0 size-[11.9px]" data-node-id="68:27518" data-name="checkbox" />
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex items-center pl-[40.8px] relative shrink-0 w-full" data-node-id="68:27519" data-name="Row">
+        <div className="content-stretch flex items-center opacity-0 relative shrink-0" data-node-id="68:27520" data-name="item-level">
+          <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--cu-size-1,3.4px)] relative rounded-[var(--radius-3,5.1px)] shrink-0" data-node-id="I68:27520;431:22081" data-name="expand-collapse">
+            <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27520;431:22081;203:8756" data-name="caret">
+              <div className="absolute bottom-1/4 flex items-center justify-center left-[33.33%] right-[33.33%] top-1/4" data-node-id="I68:27520;431:22081;203:8756;3:8067" style={{ containerType: "size" }}>
+                <div className="-rotate-90 flex-none h-[100cqw] w-[100cqh]">
+                  <div className="relative size-full" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="border-[var(--cu\/border\/low-contrast,#f0f0f0)] border-b-[0.85px] border-solid flex-[1_0_0] h-[30.6px] min-w-px relative" data-node-id="68:27521" data-name="row-1">
+          <div className="absolute content-stretch flex h-[30.6px] items-center left-0 right-0 top-0" data-node-id="68:27522" data-name="fields">
+            <div className="content-stretch flex items-center relative shrink-0" data-node-id="68:27523" data-name="button-layout">
+              <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--cu-size-1,3.4px)] relative rounded-[var(--radius-3,5.1px)] shrink-0" data-node-id="68:27525" data-name="button">
+                <div className="overflow-clip relative rounded-[99px] shrink-0 size-[13.599px]" data-node-id="I68:27525;203:8756" data-name="status=1. open, item-type=task">
+                  <div className="absolute inset-[8.33%]" data-node-id="I68:27525;203:8756;474:11287" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill6} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[3.4px] h-[30.6px] items-center pr-[57.8px] py-[5.1px] relative shrink-0 w-[212.5px]" data-node-id="68:27526" data-name="task-item">
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[3.4px] items-start min-w-px relative" data-node-id="I68:27526;1516:12471" data-name="text-layout">
+                <div className="content-stretch flex gap-[3.4px] items-center relative shrink-0 w-full" data-node-id="I68:27526;1516:12473" data-name="task-name">
+                  <div className="content-stretch flex flex-[1_0_0] gap-[5.1px] items-center min-w-px relative" data-node-id="I68:27526;1516:12478" data-name="single-line-layout">
+                    <div className="content-stretch flex h-[17px] items-center relative shrink-0" data-node-id="I68:27526;1516:12479" data-name="text">
+                      <div className="[word-break:break-word] flex flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] relative shrink-0 text-[10.12px] text-[color:var(--cu\/content\/default,#202020)] tracking-[var(--14px,-0.1275px)] whitespace-nowrap" data-node-id="I68:27526;1516:12480" style={{ fontVariationSettings: '"wdth" 100' }}>
+                        <p className="leading-[11.56px]">About page</p>
+                      </div>
+                    </div>
+                    <div className="content-stretch flex h-[17px] items-center relative shrink-0 w-[25.5px]" data-node-id="I68:27526;1516:12481" data-name="properties" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[30.6px] items-center min-h-[30.600000381469727px] min-w-[85px] pl-[6.8px] pr-[10.2px] relative shrink-0 w-[85px]" data-node-id="68:27527" data-name="assignee">
+              <div className="border-[1.7px] border-[var(--cu-background\/main,white)] border-solid relative rounded-[99px] shrink-0 size-[17px]" data-node-id="68:27528" data-name="avatar">
+                <div className="absolute inset-0 overflow-clip rounded-[var(--radius-round,566.1px)]" data-node-id="I68:27528;301:2165" data-name="akram">
+                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgAkram} />
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[6.8px] h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] px-[10.2px] relative shrink-0 w-[104.55px]" data-node-id="68:27529" data-name="priority">
+              <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27529;52:21219" data-name="normal-priority">
+                <div className="absolute inset-[8.33%_16.39%_8.33%_16.67%]" data-node-id="I68:27529;52:21219;13809:134;3:9001" data-name="fill">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill8} />
+                </div>
+              </div>
+              <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] min-w-px overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[var(--14px,-0.15px)] whitespace-nowrap" data-node-id="I68:27529;52:21179" style={{ fontVariationSettings: '"wdth" 100' }}>
+                <p className="leading-[13.6px] overflow-hidden text-ellipsis">High</p>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[3.4px] h-[30.6px] items-center min-h-[30.600000858306885px] min-w-[85.00000238418579px] px-[10.2px] relative shrink-0 w-[104.55px]" data-node-id="68:27530" data-name="tag">
+              <div className="bg-[var(--cu\/purple\/200,#f0f1ff)] content-stretch flex items-center px-[5.1px] py-[1.7px] relative rounded-[4.335px] shrink-0" data-node-id="I68:27530;2:24256" data-name="tag-1">
+                <p className="[word-break:break-word] font-['SF_Pro:Medium'] font-[510] leading-[11.56px] relative shrink-0 text-[10.12px] text-[color:var(--cu\/purple\/1000,#5e42de)] tracking-[-0.1275px] whitespace-nowrap" data-node-id="I68:27530;2:24256;228:5108" style={{ fontVariationSettings: '"wdth" 100' }}>
+                  Web
+                </p>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] opacity-0 px-[10.2px] relative shrink-0 w-[136px]" data-node-id="68:27531" data-name="progress">
+              <div className="content-stretch flex flex-[1_0_0] gap-[3.4px] h-[13.6px] items-start min-w-px relative" data-node-id="I68:27531;813:27659" data-name="progress">
+                <div className="[word-break:break-word] flex flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] relative shrink-0 text-[10.2px] text-[color:var(--cu\/content\/default,#202020)] tracking-[var(--12px,0px)] w-[27.2px]" data-node-id="I68:27531;813:27662" style={{ fontVariationSettings: '"wdth" 100' }}>
+                  <p className="leading-[13.6px]">12%</p>
+                </div>
+                <div className="content-stretch flex flex-[1_0_0] h-full items-center min-w-px overflow-clip relative" data-node-id="I68:27531;813:27693" data-name="bar">
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative rounded-bl-[3.4px] rounded-tl-[3.4px] shrink-0 size-[6.8px]" data-node-id="I68:27531;813:27694" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27531;813:27724" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27531;813:27725" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27531;813:27726" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27531;813:27727" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27531;813:27728" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27531;813:27729" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27531;813:27730" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27531;813:27731" data-name="step" />
+                  <div className="bg-[var(--cu\/background\/primary-on-subtle,#e5e6ff)] flex-[1_0_0] h-[6.8px] min-w-px relative rounded-br-[3.4px] rounded-tr-[3.4px]" data-node-id="I68:27531;813:27721" data-name="bar" />
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[30.6px] items-center justify-center min-h-[30.60000038146973px] opacity-0 px-[3.4px] relative shrink-0 w-[23.8px]" data-node-id="68:27532" data-name="button">
+              <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[5.1px] relative rounded-[var(--radius-3-5,5.95px)] shrink-0" data-node-id="I68:27532;2:24374" data-name="button">
+                <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27532;2:24374;404:26620" data-name="ellipsis-regular">
+                  <div className="absolute inset-[41.67%_12.5%_43.33%_12.5%]" data-node-id="I68:27532;2:24374;404:26620;3:8161" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill2} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute content-stretch flex h-[30.6px] items-center left-0 pl-[5.1px] pr-[1.7px] top-0" data-node-id="68:27533" data-name="checkbox">
+          <div className="content-stretch flex items-center justify-center p-[0.85px] relative shrink-0" data-node-id="68:27534" data-name="layout">
+            <div className="bg-[var(--cu\/background\/main,white)] border-[0.85px] border-[var(--cu\/border\/input,#cecece)] border-solid opacity-0 relative rounded-[var(--radius-2,3.4px)] shrink-0 size-[11.9px]" data-node-id="68:27535" data-name="checkbox" />
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex items-center relative shrink-0 w-full" data-node-id="68:27536" data-name="Row">
+        <div className="content-stretch flex h-[30.6px] items-center pl-[5.1px] pr-[1.7px] relative shrink-0" data-node-id="68:27537" data-name="checkbox">
+          <div className="content-stretch flex items-center justify-center p-[0.85px] relative shrink-0" data-node-id="68:27538" data-name="layout">
+            <div className="bg-[var(--cu\/background\/main,white)] border-[0.85px] border-[var(--cu\/border\/input,#cecece)] border-solid opacity-0 relative rounded-[var(--radius-2,3.4px)] shrink-0 size-[11.9px]" data-node-id="68:27539" data-name="checkbox" />
+          </div>
+        </div>
+        <div className="content-stretch flex items-center opacity-0 relative shrink-0" data-node-id="68:27540" data-name="item-level">
+          <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--cu-size-1,3.4px)] relative rounded-[var(--radius-3,5.1px)] shrink-0" data-node-id="I68:27540;431:22081" data-name="expand-collapse">
+            <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27540;431:22081;203:8756" data-name="caret">
+              <div className="absolute bottom-1/4 flex items-center justify-center left-[33.33%] right-[33.33%] top-1/4" data-node-id="I68:27540;431:22081;203:8756;3:8067" style={{ containerType: "size" }}>
+                <div className="-rotate-90 flex-none h-[100cqw] w-[100cqh]">
+                  <div className="relative size-full" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-row items-center self-stretch" data-node-id="68:27541">
+          <div className="border-[var(--cu\/border\/low-contrast,#f0f0f0)] border-b-[0.85px] border-solid flex-[1_0_0] h-full min-w-px relative" data-name="row-1">
+            <div className="absolute content-stretch flex h-[30.6px] items-center left-0 right-0 top-0" data-node-id="68:27542" data-name="fields">
+              <div className="content-stretch flex items-center relative shrink-0" data-node-id="68:27543" data-name="button-layout">
+                <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[var(--cu-size-1,3.4px)] relative rounded-[var(--radius-3,5.1px)] shrink-0" data-node-id="68:27545" data-name="button">
+                  <div className="overflow-clip relative rounded-[99px] shrink-0 size-[13.599px]" data-node-id="I68:27545;203:8756" data-name="status=9. closed, item-type=task">
+                    <div className="absolute inset-[8.33%]" data-node-id="I68:27545;203:8756;10576:519" data-name="fill-override">
+                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFillOverride} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[3.4px] h-[30.6px] items-center pr-[57.8px] py-[5.1px] relative shrink-0 w-[232.9px]" data-node-id="68:27546" data-name="task-item">
+                <div className="content-stretch flex flex-[1_0_0] flex-col gap-[3.4px] items-start min-w-px relative" data-node-id="68:27550" data-name="text-layout">
+                  <div className="content-stretch flex gap-[3.4px] items-center relative shrink-0 w-full" data-node-id="68:27552" data-name="task-name">
+                    <div className="content-stretch flex flex-[1_0_0] gap-[5.1px] items-center min-w-px relative" data-node-id="68:27557" data-name="single-line-layout">
+                      <div className="content-stretch flex h-[17px] items-center relative shrink-0" data-node-id="68:27558" data-name="text">
+                        <div className="[word-break:break-word] flex flex-col font-['SF_Pro:Regular'] font-[var(--font-weight-regular,400)] justify-center leading-[0] relative shrink-0 text-[11.9px] text-[color:var(--cu\/content\/default,#202020)] tracking-[-0.1275px] whitespace-nowrap" data-node-id="68:27559" style={{ fontVariationSettings: '"wdth" 100' }}>
+                          <p className="leading-[13.6px]">Mobile assets</p>
+                        </div>
+                      </div>
+                      <div className="content-stretch flex h-[17px] items-center relative shrink-0 w-[25.5px]" data-node-id="68:27561" data-name="properties" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex h-[30.6px] items-center min-h-[30.600000381469727px] min-w-[85px] pl-[6.8px] pr-[10.2px] relative shrink-0 w-[85px]" data-node-id="68:27567" data-name="assignee">
+                <div className="border-[1.7px] border-[var(--cu-background\/main,white)] border-solid relative rounded-[99px] shrink-0 size-[17px]" data-node-id="68:27568" data-name="avatar">
+                  <div className="absolute inset-0 overflow-clip rounded-[var(--radius-round,566.1px)]" data-node-id="I68:27568;301:2165" data-name="maggie">
+                    <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgMaggie} />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[6.8px] h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] px-[10.2px] relative shrink-0 w-[104.55px]" data-node-id="68:27569" data-name="priority">
+                <div className="relative shrink-0 size-[13.6px]" data-node-id="I68:27569;52:21219" data-name="normal-priority">
+                  <div className="absolute inset-[8.33%_16.39%_8.33%_16.67%]" data-node-id="I68:27569;52:21219;13809:134;3:9001" data-name="fill">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill5} />
+                  </div>
+                </div>
+                <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] min-w-px overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/secondary,#646464)] text-ellipsis tracking-[var(--14px,-0.15px)] whitespace-nowrap" data-node-id="I68:27569;52:21179" style={{ fontVariationSettings: '"wdth" 100' }}>
+                  <p className="leading-[13.6px] overflow-hidden text-ellipsis">Urgent</p>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[3.4px] h-[30.6px] items-center min-h-[30.600000858306885px] min-w-[85.00000238418579px] px-[10.2px] relative shrink-0 w-[104.55px]" data-node-id="68:27570" data-name="tag">
+                <div className="bg-[var(--cu\/teal\/200,#e7f9f5)] content-stretch flex items-center px-[5.1px] py-[1.7px] relative rounded-[4.335px] shrink-0" data-node-id="I68:27570;2:24256" data-name="tag-1">
+                  <p className="[word-break:break-word] font-['SF_Pro:Medium'] font-[510] leading-[11.56px] relative shrink-0 text-[10.12px] text-[color:var(--cu\/teal\/1000,#067a6f)] tracking-[var(--12px,-0.1275px)] whitespace-nowrap" data-node-id="I68:27570;2:24256;228:5108" style={{ fontVariationSettings: '"wdth" 100' }}>
+                    Design
+                  </p>
+                </div>
+              </div>
+              <div className="content-stretch flex h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] opacity-0 px-[10.2px] relative shrink-0 w-[136px]" data-node-id="68:27571" data-name="progress">
+                <div className="content-stretch flex flex-[1_0_0] gap-[3.4px] h-[13.6px] items-start min-w-px relative" data-node-id="I68:27571;813:27659" data-name="progress">
+                  <div className="[word-break:break-word] flex flex-col font-['SF_Pro:Regular'] font-normal justify-center leading-[0] relative shrink-0 text-[10.2px] text-[color:var(--cu\/content\/default,#202020)] tracking-[var(--12px,0px)] w-[27.2px]" data-node-id="I68:27571;813:27662" style={{ fontVariationSettings: '"wdth" 100' }}>
+                    <p className="leading-[13.6px]">12%</p>
+                  </div>
+                  <div className="content-stretch flex flex-[1_0_0] h-full items-center min-w-px overflow-clip relative" data-node-id="I68:27571;813:27693" data-name="bar">
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative rounded-bl-[3.4px] rounded-tl-[3.4px] shrink-0 size-[6.8px]" data-node-id="I68:27571;813:27694" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27571;813:27724" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27571;813:27725" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27571;813:27726" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27571;813:27727" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27571;813:27728" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27571;813:27729" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27571;813:27730" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary,#6647f0)] relative shrink-0 size-[6.8px]" data-node-id="I68:27571;813:27731" data-name="step" />
+                    <div className="bg-[var(--cu\/background\/primary-on-subtle,#e5e6ff)] flex-[1_0_0] h-[6.8px] min-w-px relative rounded-br-[3.4px] rounded-tr-[3.4px]" data-node-id="I68:27571;813:27721" data-name="bar" />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex h-[30.6px] items-center justify-center min-h-[30.60000038146973px] opacity-0 px-[3.4px] relative shrink-0 w-[23.8px]" data-node-id="68:27572" data-name="button">
+                <div className="content-stretch flex gap-[var(--cu-size-1,3.4000000953674316px)] items-center justify-center overflow-clip p-[5.1px] relative rounded-[var(--radius-3-5,5.95px)] shrink-0" data-node-id="I68:27572;2:24374" data-name="button">
+                  <div className="relative shrink-0 size-[13.599px]" data-node-id="I68:27572;2:24374;404:26620" data-name="ellipsis-regular">
+                    <div className="absolute inset-[41.67%_12.5%_43.33%_12.5%]" data-node-id="I68:27572;2:24374;404:26620;3:8161" data-name="fill">
+                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill2} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="h-[30.6px] relative shrink-0 w-full" data-node-id="68:27573" data-name="add-row">
+        <div className="absolute content-stretch flex h-[30.6px] items-end left-0 right-0 top-0" data-node-id="68:27575" data-name="fields">
+          <div className="h-[30.6px] relative shrink-0 w-[99.45px]" data-node-id="68:27580" data-name="calculate" />
+          <div className="h-[30.6px] relative shrink-0 w-[136px]" data-node-id="68:27581" data-name="calculate" />
+          <div className="content-stretch flex gap-[var(--cu-size-2,6.8px)] h-[30.6px] items-center min-h-[30.60000038146973px] min-w-[85px] opacity-0 px-[10.2px] relative shrink-0 w-[136px]" data-node-id="68:27582" data-name="text">
+            <p className="[word-break:break-word] flex-[1_0_0] font-['SF_Pro:Regular'] font-normal h-[13.6px] leading-[13.6px] min-w-px overflow-hidden relative text-[11.9px] text-[color:var(--cu\/content\/default,#202020)] text-ellipsis tracking-[var(--14px,-0.15px)] whitespace-nowrap" data-node-id="I68:27582;2:23917" style={{ fontVariationSettings: '"wdth" 100' }}>
+              Text
+            </p>
+          </div>
+          <div className="h-[30.6px] relative shrink-0 w-[23.8px]" data-node-id="68:27583" data-name="spacer" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## button
+**Node ID:** 4:14026
+
+View storybook for detailed documentation 👇
+
+**Documentation:**
+- [https://dev-dls.clickup.com/](https://dev-dls.clickup.com/)
+
+## button
+**Node ID:** 4:5034
+
+View storybook for detailed documentation 👇
+
+**Documentation:**
+- [https://dev-dls.clickup.com/](https://dev-dls.clickup.com/)
+
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

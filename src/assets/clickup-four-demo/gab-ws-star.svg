@@ -1,0 +1,9 @@
+<svg style="display: block;" width="10.2" height="10.2" viewBox="2.54858 2.54999 10.2 10.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.05658 2.54999H7.24058V6.66497L4.33083 3.75522L3.75382 4.33223L6.66357 7.24199H2.54858V8.05799H6.66357L3.75382 10.9677L4.33083 11.5448L7.24058 8.635V12.75H8.05658V8.635L10.9663 11.5447L11.5433 10.9677L8.63355 8.05799H12.7486V7.24199H8.6336L11.5433 4.33223L10.9663 3.75527L8.05658 6.66497V2.54999Z" fill="url(#cs_wheel_grad)"/>
+<defs>
+<linearGradient id="cs_wheel_grad" x1="12.7486" y1="2.54999" x2="2.54858" y2="12.75" gradientUnits="userSpaceOnUse">
+<stop stop-color="#E01B00"/>
+<stop offset="1" stop-color="#FF8800"/>
+</linearGradient>
+</defs>
+</svg>

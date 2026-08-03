@@ -1,0 +1,727 @@
+@import "../../styles/sf-pro-demo.css";
+
+/* Columns are the panels' design widths; the percentage gap keeps the original
+   12/936.667 proportion at every width so desktop scaling is unchanged. */
+.bluedot-hero-demo {
+  position: relative;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 580.917fr 343.75fr;
+  gap: 1.2811%;
+  border-radius: var(--radius-2);
+  box-shadow: none;
+  container-type: inline-size;
+  user-select: none;
+}
+
+.bluedot-hero-pane.is-report {
+  aspect-ratio: 580.917 / 536;
+}
+
+.bluedot-hero-pane.is-flight {
+  aspect-ratio: 343.75 / 536;
+}
+
+.bluedot-hero-viewport {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 41.25rem) {
+  .bluedot-hero-demo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--grid-gutter, 16px);
+  }
+}
+
+.bluedot-hero-stage,
+.bluedot-hero-stage *,
+.bluedot-hero-stage *::before,
+.bluedot-hero-stage *::after {
+  box-sizing: border-box;
+}
+
+.bluedot-hero-stage {
+  width: 100%;
+  height: 536px;
+  color: #2d2d2d;
+  font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+}
+
+.bluedot-report-panel,
+.bluedot-flight-panel {
+  position: relative;
+  width: 100%;
+  height: 536px;
+  overflow: hidden;
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-elevation-border-1);
+}
+
+.bluedot-report-panel {
+  background: #d9d5ce;
+}
+
+.bluedot-flight-panel {
+  background: #cbc2c0;
+}
+
+.bluedot-panel-noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1285px;
+  height: 739px;
+  background-image: url("/images/noise-tile.png");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.bluedot-flight-panel .bluedot-panel-noise {
+  left: -0.375px;
+}
+
+.bluedot-report-card {
+  position: absolute;
+  top: 20px;
+  left: 102px;
+  width: 346.22px;
+  height: 496.75px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow:
+    0 2px 4px -2px rgba(0, 0, 0, 0.1),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 0 1px rgba(0, 0, 0, 0.27);
+  opacity: var(--bluedot-card-opacity);
+  transform: translateY(var(--bluedot-card-shift));
+}
+
+.bluedot-report-card p,
+.bluedot-report-card h3,
+.bluedot-flight-card p,
+.bluedot-flight-card h3 {
+  margin: 0;
+}
+
+.bluedot-report-header,
+.bluedot-report-metrics,
+.bluedot-report-months,
+.bluedot-report-details,
+.bluedot-report-brief {
+  transition: opacity 120ms linear;
+}
+
+.bluedot-report-date {
+  position: absolute;
+  top: 19.234px;
+  left: 20.071px;
+  color: #838383;
+  font-size: 9.69px;
+  font-weight: 500;
+  letter-spacing: 0.0969px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.bluedot-report-header h3 {
+  position: absolute;
+  top: 41.305px;
+  left: 20.071px;
+  color: #2d2d2d;
+  font-size: 18.5px;
+  font-weight: 700;
+  letter-spacing: -0.37px;
+  line-height: 1.279;
+  white-space: nowrap;
+}
+
+.bluedot-report-metrics {
+  position: absolute;
+  top: 80.283px;
+  left: 20.071px;
+  display: grid;
+  width: 306.078px;
+  grid-template-columns: 83.628px 86.137px 88.646px 47.667px;
+}
+
+.bluedot-report-metrics > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  font-variant-numeric: tabular-nums;
+}
+
+.bluedot-report-metrics span,
+.bluedot-report-months span,
+.bluedot-report-detail > p,
+.bluedot-report-brief > span {
+  color: #838383;
+  font-size: 6.69px;
+  font-weight: 500;
+  letter-spacing: 0.2676px;
+  line-height: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.bluedot-report-metrics strong {
+  width: 69.411px;
+  height: 16px;
+  margin-top: 2.036px;
+  color: #040003;
+  font-size: 11.708px;
+  font-weight: 500;
+  line-height: 1.377;
+}
+
+.bluedot-report-metrics strong.reported {
+  color: #f03375;
+}
+
+.bluedot-report-metrics strong.deaths {
+  color: #02a4ff;
+}
+
+.bluedot-report-chart {
+  position: absolute;
+  top: 118.752px;
+  left: 20.071px;
+  width: 303.975px;
+  height: 92.827px;
+  overflow: hidden;
+  transition: clip-path 30ms ease-out;
+}
+
+.bluedot-report-chart img {
+  position: absolute;
+  left: 0;
+  display: block;
+  max-width: none;
+}
+
+.bluedot-report-chart .cases {
+  top: 0;
+  width: 303.975px;
+  height: 92.827px;
+}
+
+.bluedot-report-chart .deaths {
+  top: 62.882px;
+  width: 303.975px;
+  height: 29.945px;
+}
+
+.bluedot-report-months {
+  position: absolute;
+  top: 217.433px;
+  left: 20.071px;
+  width: 306.078px;
+  height: 8px;
+}
+
+.bluedot-report-months span {
+  position: absolute;
+  width: 39.305px;
+}
+
+.bluedot-report-months span:nth-child(1) {
+  left: 0;
+}
+
+.bluedot-report-months span:nth-child(2) {
+  left: 133.805px;
+}
+
+.bluedot-report-months span:nth-child(3) {
+  left: 266.773px;
+}
+
+.bluedot-report-details {
+  position: absolute;
+  inset: 0;
+}
+
+.bluedot-report-details .divider {
+  position: absolute;
+  left: 20.071px;
+  display: block;
+  width: 306.078px;
+  height: 0.84px;
+}
+
+.bluedot-report-details .divider.top {
+  top: 234.158px;
+}
+
+.bluedot-report-details .divider.bottom {
+  top: 320.295px;
+}
+
+.bluedot-report-detail {
+  position: absolute;
+  width: 130px;
+  height: 27px;
+}
+
+.bluedot-report-detail.microbe {
+  top: 244.193px;
+  left: 20.071px;
+}
+
+.bluedot-report-detail.transmitted {
+  top: 244.193px;
+  left: 188.999px;
+}
+
+.bluedot-report-detail.vaccination {
+  top: 284.335px;
+  left: 20.071px;
+}
+
+.bluedot-report-detail.severity {
+  top: 284.335px;
+  left: 188.999px;
+}
+
+.bluedot-report-detail-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15.2px;
+  height: 15.2px;
+}
+
+.bluedot-report-detail > p,
+.bluedot-report-detail > strong {
+  position: absolute;
+  left: 20.907px;
+}
+
+.bluedot-report-detail > p {
+  top: 0;
+}
+
+.bluedot-report-detail > strong {
+  top: 9px;
+  color: #2d2d2d;
+  font-size: 11.708px;
+  font-weight: 400;
+  line-height: 1.377;
+  white-space: nowrap;
+}
+
+.bluedot-report-detail.transmitted > p,
+.bluedot-report-detail.transmitted > strong,
+.bluedot-report-detail.severity > p,
+.bluedot-report-detail.severity > strong {
+  left: 21.743px;
+}
+
+.bluedot-report-detail.microbe .bluedot-report-detail-icon {
+  top: 7.62px;
+}
+
+.bluedot-report-detail.transmitted .bluedot-report-detail-icon {
+  top: 5.872px;
+}
+
+.bluedot-report-detail.vaccination .bluedot-report-detail-icon {
+  top: 7.804px;
+}
+
+.bluedot-report-detail.severity .bluedot-report-detail-icon {
+  top: 6.992px;
+}
+
+.bluedot-report-detail.severity .bluedot-report-detail-icon > img {
+  transform: translate(-0.627px, -0.627px);
+}
+
+.bluedot-report-detail-icon > img {
+  display: block;
+  max-width: none;
+}
+
+.bluedot-microbe-icon {
+  position: relative;
+  width: 13.38px;
+  height: 13.38px;
+}
+
+.bluedot-microbe-icon img {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+.bluedot-microbe-icon .vector {
+  top: 1.882px;
+  left: 1.882px;
+}
+
+.bluedot-microbe-icon .group-a {
+  top: -0.418px;
+  left: 5.436px;
+}
+
+.bluedot-microbe-icon .group-b {
+  top: 5.436px;
+  left: -0.418px;
+}
+
+.bluedot-microbe-icon .group-c,
+.bluedot-microbe-icon .group-d {
+  top: 0.775px;
+  left: 0.775px;
+}
+
+.bluedot-report-brief {
+  position: absolute;
+  top: 328.658px;
+  left: 20.071px;
+  display: flex;
+  width: 305.242px;
+  height: 124.048px;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bluedot-report-brief p {
+  width: 305.242px;
+  height: 109.553px;
+  color: #000;
+  font-size: 11.708px;
+  font-weight: 400;
+  line-height: 1.377;
+}
+
+.bluedot-flight-card {
+  position: absolute;
+  top: 132px;
+  left: 67.638px;
+  width: 188.13px;
+  height: 264.823px;
+  overflow: hidden;
+  border-radius: 9.252px;
+  background: #fff;
+  transform: scale(1.1);
+  transform-origin: center;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1),
+    0 0 1px rgba(0, 0, 0, 0.27);
+}
+
+.bluedot-flight-header {
+  position: relative;
+  width: 188.13px;
+  height: 71.3px;
+}
+
+.bluedot-flight-header .plane {
+  position: absolute;
+  top: 16.963px;
+  left: 28.112px;
+  width: 9.828px;
+  height: 9.25px;
+}
+
+.bluedot-flight-header > span {
+  position: absolute;
+  top: 16.963px;
+  left: 47.112px;
+  color: #838383;
+  font-size: 8.844px;
+  font-weight: 500;
+  letter-spacing: 0.0884px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.bluedot-flight-header .origin-pin {
+  position: absolute;
+  top: 30.84px;
+  left: 11.86px;
+  width: 40.252px;
+  height: 39.25px;
+  transform-origin: center;
+  animation: bluedot-origin-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes bluedot-origin-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.82;
+    transform: scale(1.16);
+  }
+}
+
+.bluedot-flight-header h3 {
+  position: absolute;
+  top: 38px;
+  left: 47.112px;
+  color: #2d2d2d;
+  font-size: 18.5px;
+  font-weight: 700;
+  letter-spacing: -0.185px;
+  line-height: 1.279;
+  white-space: nowrap;
+}
+
+.bluedot-flight-header-divider {
+  position: absolute;
+  top: 71.3px;
+  left: -0.013px;
+  display: block;
+  width: 188.6px;
+  height: 0.77px;
+}
+
+.bluedot-flight-destinations {
+  position: absolute;
+  top: 71.3px;
+  left: 0;
+  width: 188.13px;
+  height: 193.523px;
+}
+
+.bluedot-flight-destination {
+  width: 188.13px;
+  height: 38.55px;
+  overflow: hidden;
+  transition: height 580ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bluedot-flight-destination.is-active {
+  height: 116.423px;
+}
+
+.bluedot-flight-row {
+  position: relative;
+  width: 188.13px;
+  height: 38.55px;
+  border-bottom: 0.57px solid rgba(0, 0, 0, 0.09);
+  background: #fff;
+}
+
+.bluedot-flight-destination:first-child .bluedot-flight-row {
+  border-top: 0.77px solid rgba(0, 0, 0, 0.12);
+}
+
+.bluedot-flight-destination:last-child .bluedot-flight-row {
+  border-bottom: 0;
+}
+
+.bluedot-flight-row img {
+  position: absolute;
+  top: 14.284px;
+  left: 27.112px;
+  width: 11.309px;
+  height: 10.28px;
+  transition: transform 580ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bluedot-flight-row span {
+  position: absolute;
+  top: 5.802px;
+  left: 47.112px;
+  color: #2d2d2d;
+  font-size: 18.5px;
+  font-weight: 500;
+  letter-spacing: -0.185px;
+  line-height: 1.479;
+  white-space: nowrap;
+}
+
+.bluedot-flight-detail-clip {
+  width: 188.13px;
+  height: 0;
+  overflow: hidden;
+  transition: height 580ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bluedot-flight-destination.is-active .bluedot-flight-detail-clip {
+  height: 77.873px;
+}
+
+.bluedot-flight-details {
+  position: relative;
+  width: 188.13px;
+  height: 77.873px;
+  border-top: 0.575px solid rgba(0, 0, 0, 0.09);
+  border-bottom: 0.575px solid rgba(0, 0, 0, 0.09);
+  background: #f9f9f9;
+  font-variant-numeric: tabular-nums;
+  transform: translateY(-10px);
+  transition: transform 580ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bluedot-flight-destination.is-active .bluedot-flight-details {
+  transform: translateY(0);
+}
+
+.bluedot-flight-detail-year,
+.bluedot-flight-stat span {
+  position: absolute;
+  color: #838383;
+  font-size: 6.168px;
+  font-weight: 700;
+  letter-spacing: 0.1234px;
+  line-height: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.bluedot-flight-detail-year {
+  top: 3.084px;
+}
+
+.bluedot-flight-detail-year.year-2017 {
+  left: 23.131px;
+}
+
+.bluedot-flight-detail-year.year-2018 {
+  left: 101.004px;
+}
+
+.bluedot-flight-detail-line,
+.bluedot-flight-detail-vertical {
+  position: absolute;
+  display: block;
+  background: rgba(0, 0, 0, 0.09);
+}
+
+.bluedot-flight-detail-line {
+  left: 0;
+  width: 188.13px;
+  height: 0.57px;
+}
+
+.bluedot-flight-detail-line.first {
+  top: 14.649px;
+}
+
+.bluedot-flight-detail-line.second {
+  top: 46.261px;
+}
+
+.bluedot-flight-detail-vertical {
+  top: 0;
+  left: 94.065px;
+  width: 0.57px;
+  height: 77.873px;
+}
+
+.bluedot-flight-stat {
+  position: absolute;
+  width: 63.995px;
+  height: 30px;
+}
+
+.bluedot-flight-stat.old {
+  left: 23.131px;
+}
+
+.bluedot-flight-stat.estimate {
+  left: 101.004px;
+}
+
+.bluedot-flight-stat.flights {
+  top: 20.047px;
+}
+
+.bluedot-flight-stat.seats {
+  top: 50.888px;
+}
+
+.bluedot-flight-stat span {
+  top: 0;
+  left: 0;
+}
+
+.bluedot-flight-stat strong {
+  position: absolute;
+  top: 9.252px;
+  left: 0;
+  color: #373a4c;
+  font-size: 10.794px;
+  font-weight: 500;
+  line-height: 1.377;
+  white-space: nowrap;
+}
+
+.bluedot-flight-bottom-divider {
+  position: absolute;
+  top: 228.223px;
+  left: 0;
+  display: block;
+  width: 188.13px;
+  height: 0.77px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bluedot-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  border: 0;
+  margin: -1px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bluedot-report-card,
+  .bluedot-report-header,
+  .bluedot-report-metrics,
+  .bluedot-report-chart,
+  .bluedot-report-months,
+  .bluedot-report-details,
+  .bluedot-report-brief,
+  .bluedot-flight-destination,
+  .bluedot-flight-row img,
+  .bluedot-flight-detail-clip {
+    transition: none;
+  }
+
+  .bluedot-flight-header .origin-pin {
+    animation: none;
+  }
+}
+
+/*
+ * The Figma offsets sit each card off-centre in its panel, which reads as
+ * balanced only while the panels are side by side. Stacked full width, each
+ * panel becomes its own frame, so the cards are centred within it instead.
+ * Placed last so it wins over the design offsets above.
+ */
+@media (max-width: 41.25rem) {
+  .bluedot-report-card {
+    left: 117.349px;
+  }
+
+  /* Enlarged to leave the same ~9.5% side margin the stacked phones use, so the
+     panel does not read as mostly empty once it is full width. */
+  .bluedot-flight-card {
+    top: 135.589px;
+    left: 77.81px;
+    transform: scale(1.48);
+  }
+}
