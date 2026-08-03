@@ -5,7 +5,4 @@ subtitle: "Led AI design across Desktop and Mobile: Brain GPT, Super Agents, Con
 navLabel: ClickUp AI
 order: 1
 anchorId: clickup-ai
-images:
-  - src: ./hero.png
-    alt: ClickUp AI chat interface on desktop
 ---

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "../../lib/motion";
+import ErrorBoundary from "../ErrorBoundary";
 import type { ClickUpFourDemoProps } from "./clickupFourDemoShared";
 import ClickUpFourTasksDemo from "./ClickUpFourTasksDemo";
 import ClickUpFourDocsDemo from "./ClickUpFourDocsDemo";
@@ -143,13 +144,26 @@ export default function ClickUpFourCarousel({ title, meta, subtitle }: Props) {
               role="tabpanel"
               aria-labelledby={`cu4-tab-${index}`}
               aria-hidden={!active}
+              /*
+               * `inert` alongside aria-hidden. The demos contain no focusable
+               * nodes today, so this is belt-and-braces — but "an aria-hidden
+               * subtree containing a focusable element" is a spec violation,
+               * and these panels are one <button> away from being one.
+               */
+              inert={!active}
               className={`cu4-panel${active ? " is-active" : ""}`}
             >
-              <slide.Demo
-                active={active}
-                paused={!visible}
-                reducedMotion={reducedMotion}
-              />
+              {/*
+                One failed demo shouldn't take the other three and the case
+                study copy with it. Keyed by label, so it resets on remount.
+              */}
+              <ErrorBoundary label={`clickup-4.0 slide: ${slide.label}`}>
+                <slide.Demo
+                  active={active}
+                  paused={!visible}
+                  reducedMotion={reducedMotion}
+                />
+              </ErrorBoundary>
             </div>
           );
         })}

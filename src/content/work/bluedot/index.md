@@ -5,7 +5,4 @@ subtitle: "Information design for global disease surveillance — turning outbre
 navLabel: BlueDot
 order: 5
 anchorId: bluedot
-images:
-  - src: ./hero.png
-    alt: BlueDot disease surveillance mobile alerts
 ---

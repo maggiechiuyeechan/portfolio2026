@@ -5,7 +5,4 @@ subtitle: "The one consumer product I've designed, and the most playful brand I'
 navLabel: HeadSpace
 order: 4
 anchorId: headspace
-images:
-  - src: ./hero.png
-    alt: Headspace habit and visualization features
 ---

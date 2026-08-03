@@ -8,6 +8,14 @@ function sourceSet(format: "avif" | "webp") {
   return WIDTHS.map((width) => `/images/casestudies/epalette-${width}.${format} ${width}w`).join(", ");
 }
 
+/**
+ * How far ahead of the viewport we start buffering the loop. Playback still
+ * begins at PLAY_MARGIN — this only decides when bytes start moving, and it
+ * needs enough runway that a cold fetch is done before the demo is on screen.
+ */
+const WARM_MARGIN = "800px";
+const PLAY_MARGIN = "100px";
+
 export default function UberEPaletteDemo() {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -29,18 +37,43 @@ export default function UberEPaletteDemo() {
       }
     };
 
+    /*
+     * The markup ships `preload="none"`, so nothing is fetched during HTML
+     * parse. Flipping the property and calling load() here is what actually
+     * starts buffering — setting preload alone doesn't re-run resource
+     * selection on an element that already decided to fetch nothing.
+     *
+     * Reduced-motion visitors never play the loop, so they never pay for it.
+     */
+    const warm = () => {
+      if (reducedMotion.matches) return;
+      video.preload = "auto";
+      video.load();
+    };
+
+    const warmObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        warmObserver.disconnect();
+        warm();
+      },
+      { rootMargin: WARM_MARGIN },
+    );
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         visible = entry.isIntersecting;
         syncPlayback();
       },
-      { rootMargin: "100px" },
+      { rootMargin: PLAY_MARGIN },
     );
 
+    warmObserver.observe(root);
     observer.observe(root);
     reducedMotion.addEventListener("change", syncPlayback);
     video.addEventListener("loadedmetadata", syncPlayback);
     return () => {
+      warmObserver.disconnect();
       observer.disconnect();
       reducedMotion.removeEventListener("change", syncPlayback);
       video.removeEventListener("loadedmetadata", syncPlayback);
@@ -73,6 +106,16 @@ export default function UberEPaletteDemo() {
               alt=""
             />
           </picture>
+          {/*
+            `preload` must stay "none". Astro server-renders this island, so the
+            tag is in the initial HTML and any other value starts the fetch
+            during parse — before the observer above has hydrated to say the
+            demo isn't on screen. Safari picks the QuickTime source (alpha-
+            channel WebM is why both exist), and that file is 28 MB.
+
+            TODO: re-encode uberMobile_alpha.mov at its render size (600x800).
+            It is currently ~53x the WebM for the same loop.
+          */}
           <video
             ref={videoRef}
             className="uber-epalette-mobile-video"
@@ -81,7 +124,7 @@ export default function UberEPaletteDemo() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
             aria-hidden="true"
           >
             <source src="/images/casestudies/uberMobile_alpha.webm" type="video/webm" />

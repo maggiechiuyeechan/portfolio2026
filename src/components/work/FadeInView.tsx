@@ -19,9 +19,13 @@ export default function FadeInView({
   delay = 0,
 }: Props) {
   const reducedMotion = usePrefersReducedMotion();
+  // `width: 100%` lives in study.css rather than an inline style: it was
+  // duplicated across all three branches below, and an inline style rewrites
+  // the style attribute on every render for a value that never changes.
+  const classes = className ? `fade-in-view ${className}` : "fade-in-view";
 
   if (reducedMotion) {
-    return <div className={className} style={{ width: "100%" }}>{children}</div>;
+    return <div className={classes}>{children}</div>;
   }
 
   const transition = { duration: 0.45, ease: "easeOut" as const, delay };
@@ -30,8 +34,7 @@ export default function FadeInView({
   if (eager) {
     return (
       <motion.div
-        className={className}
-        style={{ width: "100%" }}
+        className={classes}
         initial={from}
         animate={{ opacity: 1, y: 0 }}
         transition={transition}
@@ -43,8 +46,7 @@ export default function FadeInView({
 
   return (
     <motion.div
-      className={className}
-      style={{ width: "100%" }}
+      className={classes}
       initial={from}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}

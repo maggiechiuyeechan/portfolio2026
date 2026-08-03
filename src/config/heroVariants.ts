@@ -182,5 +182,3 @@ export function getVariant(id: string): HeroVariant | undefined {
 export function eligibleVariantIds(isNarrow: boolean): HeroVariantId[] {
   return HERO_VARIANTS.filter((v) => !(isNarrow && v.desktopOnly)).map((v) => v.id);
 }
-
-export const ALL_VARIANT_IDS: HeroVariantId[] = HERO_VARIANTS.map((v) => v.id);

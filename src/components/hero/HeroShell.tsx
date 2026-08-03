@@ -20,7 +20,7 @@ import PasswordForm from "../auth/PasswordForm";
 import HeroNoiseOverlay from "../auth/HeroNoiseOverlay";
 import HeroSceneFrame from "../auth/HeroSceneFrame";
 import HeroEarlyBackdrop from "./HeroEarlyBackdrop";
-import SceneBoundary from "./SceneBoundary";
+import ErrorBoundary from "../ErrorBoundary";
 import { getVariant } from "../../config/heroVariants";
 import AnimatedTextLink from "../ui/AnimatedTextLink";
 import { updateCursorLabel } from "../../scripts/cursor-label";
@@ -157,10 +157,10 @@ export default function HeroShell({
   }, [variantId, variantMeta?.cursorLabel]);
 
   // The key remounts on variant swap / breakpoint replay, which also resets
-  // SceneBoundary — see the note in that file.
+  // ErrorBoundary — see the note in that file.
   const scene = (
     <Fragment key={`scene-${variantId}-${sceneReplayKey}`}>
-      <SceneBoundary label={variantId}>
+      <ErrorBoundary label={`hero scene: ${variantId}`}>
         <Suspense fallback={null}>
           {renderScene({
             obstacleRefs,
@@ -168,7 +168,7 @@ export default function HeroShell({
             reducedMotion,
           })}
         </Suspense>
-      </SceneBoundary>
+      </ErrorBoundary>
     </Fragment>
   );
 

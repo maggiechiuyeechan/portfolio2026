@@ -18,12 +18,21 @@ const work = defineCollection({
       order: z.number(),
       /** In-page scroll target on /work */
       anchorId: z.string(),
-      images: z.array(
-        z.object({
-          src: image(),
-          alt: z.string(),
-        }),
-      ),
+      /**
+       * Static mockups, rendered by StudyBlock's generic branch.
+       *
+       * Every study currently ships a bespoke animated demo instead, so this
+       * is empty across the board — but it stays as the fallback path for a
+       * study that doesn't warrant one. Defaults to [] so a study can omit it.
+       */
+      images: z
+        .array(
+          z.object({
+            src: image(),
+            alt: z.string(),
+          }),
+        )
+        .default([]),
     }),
 });
 

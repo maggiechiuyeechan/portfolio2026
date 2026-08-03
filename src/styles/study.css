@@ -3,6 +3,13 @@
  * Figma: 8-col grid, text spans cols 1–4 (5 at ≤80rem), 12px gutters.
  */
 
+/* FadeInView's wrapper. Motion sets `display: block` on its div, so without an
+   explicit width the wrapper shrink-wraps inside flex/grid parents and the
+   study grid inside it collapses. */
+.fade-in-view {
+  width: 100%;
+}
+
 .study-text {
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));

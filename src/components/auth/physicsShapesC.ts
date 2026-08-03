@@ -34,6 +34,3 @@ export const STATIC_SHAPE_POSES_C: StaticShapePose[] = [
   { shapeId: "shape-red-quarter", x: 0.52, y: 0.12, angle: -0.12 },
   { shapeId: "shape-wave", x: 0.18, y: 0.55, angle: -0.18 },
 ];
-
-/** @deprecated use STATIC_SHAPE_POSES_C */
-export const STATIC_SHAPE_POSES = STATIC_SHAPE_POSES_C;

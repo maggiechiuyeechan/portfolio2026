@@ -24,11 +24,22 @@ interface Props {
   title: string;
   meta?: string;
   subtitle: string;
-  images: { src: ImageMetadata; alt: string }[];
+  /**
+   * Static mockups for the generic branch. Every study currently ships a
+   * bespoke demo instead, so this is empty in practice — see content.config.ts.
+   */
+  images?: { src: ImageMetadata; alt: string }[];
   eager?: boolean;
 }
 
-const { anchorId, title, meta, subtitle, images, eager = false } = Astro.props;
+const {
+  anchorId,
+  title,
+  meta,
+  subtitle,
+  images = [],
+  eager = false,
+} = Astro.props;
 ---
 
 <Section class="study">
