@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import ErrorBoundary from "../ErrorBoundary";
 import type { ClickUpFourDemoProps } from "./clickupFourDemoShared";
+import { CYCLE_MS } from "./clickupFourDemoShared";
 import ClickUpFourTasksDemo from "./ClickUpFourTasksDemo";
 import ClickUpFourDocsDemo from "./ClickUpFourDocsDemo";
 import ClickUpFourWhiteboardsDemo from "./ClickUpFourWhiteboardsDemo";
@@ -19,8 +20,6 @@ const SLIDES: Slide[] = [
   { label: "Whiteboards", Demo: ClickUpFourWhiteboardsDemo },
   { label: "Calendar", Demo: ClickUpFourCalendarDemo },
 ];
-
-const CYCLE_MS = 6_000;
 
 interface Props {
   title: string;
@@ -97,7 +96,11 @@ export default function ClickUpFourCarousel({ title, meta, subtitle }: Props) {
   };
 
   return (
-    <div ref={rootRef} className={`cu4-carousel${!visible ? " is-cycle-paused" : ""}`}>
+    <div
+      ref={rootRef}
+      className={`cu4-carousel${!visible ? " is-cycle-paused" : ""}`}
+      style={{ "--cu4-cycle-ms": `${CYCLE_MS}ms` } as React.CSSProperties}
+    >
       <div className="study-text cu4-carousel-text">
         <div className="study-text-inner">
           <h2 className="text-heading study-title">

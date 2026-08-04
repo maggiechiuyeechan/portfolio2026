@@ -3,9 +3,9 @@ import BlueDotFlightEstimateDemo from "./BlueDotFlightEstimateDemo";
 import "./BlueDotDemo.css";
 
 /*
- * Each panel scales inside its own viewBox so the pair can flow as grid items
- * and stack on narrow screens; a single shared viewBox would pin them to one
- * fixed aspect ratio.
+ * Each panel scales inside its own container so the pair can flow as grid items
+ * and stack on narrow screens. Plain divs + container-query scale — not SVG
+ * foreignObject — so iOS Safari doesn't lay out the stage at 1:1 px and clip.
  */
 export default function BlueDotHeroDemo() {
   return (
@@ -15,22 +15,14 @@ export default function BlueDotHeroDemo() {
       aria-label="BlueDot disease surveillance mobile alerts"
     >
       <div className="bluedot-hero-pane is-report">
-        <svg className="bluedot-hero-viewport" viewBox="0 0 580.917 536">
-          <foreignObject width="580.917" height="536">
-            <div className="bluedot-hero-stage">
-              <BlueDotDiseaseReportDemo />
-            </div>
-          </foreignObject>
-        </svg>
+        <div className="bluedot-hero-stage">
+          <BlueDotDiseaseReportDemo />
+        </div>
       </div>
       <div className="bluedot-hero-pane is-flight">
-        <svg className="bluedot-hero-viewport" viewBox="0 0 343.75 536">
-          <foreignObject width="343.75" height="536">
-            <div className="bluedot-hero-stage">
-              <BlueDotFlightEstimateDemo />
-            </div>
-          </foreignObject>
-        </svg>
+        <div className="bluedot-hero-stage">
+          <BlueDotFlightEstimateDemo />
+        </div>
       </div>
     </div>
   );

@@ -114,7 +114,7 @@
   /* ------ Layout (Figma grid annotations) ------ */
   --grid-columns: 8;
   --grid-gutter: var(--spacing-3);         /* 12px gutters */
-  --content-max-width: 60rem;              /* max width 960 */
+  --content-max-width: 62.5rem;            /* max width 1000 — desktop */
   --single-column-break: 41.25rem;         /* 660px — break into single column */
   --nav-inset: 3rem;                       /* nav positioned 48px top/left, sticky */
   --nav-inset-md: 2rem;                    /* 32px at 13-14" frame */
@@ -126,6 +126,8 @@
 @media (max-width: 80rem) {
   :root {
     --scroll-anchor-top: calc(var(--nav-inset-md) + var(--nav-logo-offset));
+    /* Match study-image `sizes`: cap content below the 1000px desktop max */
+    --content-max-width: min(62.5rem, 78vw);
   }
 }
 
@@ -139,5 +141,6 @@
   :root {
     /* mobile-nav-bar: 1rem pt + 17px logo + 12px pb */
     --scroll-anchor-top: calc(1rem + 17px + var(--spacing-3));
+    --content-max-width: 100%;
   }
 }

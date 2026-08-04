@@ -5,6 +5,8 @@
   display: grid;
   gap: var(--grid-gutter);
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .cua-demo-grid-bottom {
@@ -42,10 +44,11 @@
   background: #cbd5c9;
 }
 
-.cua-chat-viewport {
-  display: block;
-  width: 100%;
-  height: 100%;
+.cua-chat-scaler {
+  width: 936.667px;
+  height: 500px;
+  transform: scale(tan(atan2(100cqw, 936.667px)));
+  transform-origin: 0 0;
 }
 
 .cua-chat-stage,
@@ -269,7 +272,7 @@
 .cua-chat-person strong { font-weight: 600; }
 .cua-chat-person > b {
   display: grid;
-  min-width: 14.374px;
+  min-width: 16.374px;
   height: 15px;
   margin-left: auto;
   place-items: center;
@@ -1058,10 +1061,11 @@
   background: #e1e5d7;
 }
 
-.cua-credits-viewport {
-  display: block;
-  width: 100%;
-  height: 100%;
+.cua-credits-scaler {
+  width: 462.333px;
+  height: 500px;
+  transform: scale(tan(atan2(100cqw, 462.333px)));
+  transform-origin: 0 0;
 }
 
 .cua-credits-stage,
@@ -1449,26 +1453,17 @@
 
 /*
  * At a 448px frame the whole 936.667-wide app renders at under half scale and
- * the conversation is unreadable, while the left sidebar is only placeholder
- * skeletons. Making the frame proportionally taller lets the SVG's right-
- * anchored slice crop the sidebar away, leaving the chat and thread at 1.35x
- * the scale. 693.667 is the stage from the sidebar's right edge at 243 across
- * to its own right edge, so the cut lands exactly on the sidebar boundary.
- *
- * A viewport query is accurate here: below 41.25rem the page is a single column
- * and this frame spans it, so the frame is the viewport less 32px of padding.
- * Placed last so it wins over the base ratio.
+ * the conversation is unreadable. A taller aspect ratio scales to the visible
+ * 693.667px slice (sidebar edge at 243 → right edge), with a slight rightward
+ * shift so a sliver of sidebar stays in frame.
  */
 @media (max-width: 30rem) {
   .cua-chat-demo {
     aspect-ratio: 693.667 / 500;
   }
 
-  /* Before the thread opens the app sits 55px further right, which would push a
-     sliver of the sidebar's badges and half-cut skeletons back into the crop.
-     Dropping it leaves the app's own white behind, so the header and messages
-     simply slide in from the right. */
-  .cua-chat-sidebar {
-    display: none;
+  .cua-chat-scaler {
+    transform-origin: 100% 0;
+    transform: scale(tan(atan2(100cqw, 693.667px))) translateX(40px);
   }
 }

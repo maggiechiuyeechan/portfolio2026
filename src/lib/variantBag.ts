@@ -6,6 +6,9 @@
  * refill is biased so the new cycle never opens with the variant that closed
  * the previous one (otherwise ~1-in-N of cycle boundaries look like a repeat).
  *
+ * Variants marked `surpriseOnly` in the registry are excluded from the bag and
+ * from the initial page load — they are only reachable via "Surprise me".
+ *
  * State lives in localStorage so it survives tab closes. Every access is
  * wrapped — Safari private mode and hardened privacy settings throw on
  * localStorage access, and a hero that crashes because storage is unavailable
@@ -47,7 +50,10 @@ function readState(): BagState | null {
     }
     const state = parsed as BagState;
     // Drop ids that no longer exist in the registry (variant was deleted).
-    state.remaining = state.remaining.filter((id) => getVariant(id));
+    state.remaining = state.remaining.filter((id) => {
+      const variant = getVariant(id);
+      return variant && !variant.surpriseOnly;
+    });
     return state;
   } catch {
     return memoryState;
@@ -126,6 +132,19 @@ export function takeVariant(): HeroVariantId {
   writeState(state);
 
   return picked;
+}
+
+/**
+ * Pick a variant for "Surprise me" — includes surprise-only entries (e.g.
+ * organic shapes) and never consumes a slot from the normal shuffle bag.
+ */
+export function takeSurpriseVariant(exclude: HeroVariantId): HeroVariantId {
+  const isNarrow =
+    typeof window !== "undefined" && window.matchMedia(NARROW_QUERY).matches;
+  const pool = eligibleVariantIds(isNarrow, { includeSurpriseOnly: true });
+  const candidates = pool.filter((id) => id !== exclude);
+  if (candidates.length === 0) return pool[0] ?? "meadow";
+  return candidates[Math.floor(Math.random() * candidates.length)]!;
 }
 
 /**

@@ -44,11 +44,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--grid-gutter);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .study-image {
   display: block;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   height: auto;
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-elevation-border-1);

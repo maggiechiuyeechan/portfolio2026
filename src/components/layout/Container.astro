@@ -1,7 +1,8 @@
 ---
 /**
- * Content container — fill width up to 960px max (Figma annotation:
- * "fill width", "max width 960").
+ * Content container — fill width up to 1000px max on desktop (Figma:
+ * "fill width", "max width 1000"). Below 80rem, `--content-max-width`
+ * tightens to min(1000px, 78vw); on mobile it fills the shell column.
  */
 interface Props {
   class?: string;
@@ -10,10 +11,10 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class:list={["container-960", className]}><slot /></div>
+<div class:list={["container-1000", className]}><slot /></div>
 
 <style>
-  .container-960 {
+  .container-1000 {
     width: 100%;
     max-width: var(--content-max-width);
     margin-inline: auto;

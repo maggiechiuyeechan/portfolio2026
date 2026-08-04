@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { ClickUpFourDemoProps } from "./clickupFourDemoShared";
+import { CYCLE_MS, type ClickUpFourDemoProps } from "./clickupFourDemoShared";
 import ClickUpFourGabBar from "./ClickUpFourGabBar";
 import "./ClickUpFourCalendarDemo.css";
 
@@ -39,10 +39,8 @@ import railNineDots from "../../assets/clickup-four-demo/rail-nine-dots.svg";
  *   0.0–0.6s  hold at 9:00
  *   0.6–4.2s  now line eases down to the 9:30 slot (30 min at 47.379px/hour) while
  *             the badge ticks 9:00 → 9:30
- *   4.2–5.2s  Zoom logo pops 10% larger and swings +/-15deg like a ringing phone
- *   5.2–6.0s  hold final state
+ *   4.2–6.0s  Zoom logo pops and rings until the cycle ends
  */
-const CYCLE_MS = 6000;
 const MOVE_START_MS = 600;
 const MOVE_END_MS = 4200;
 // The logo starts ringing the moment the now line lands on 9:30.
@@ -319,9 +317,7 @@ export default function ClickUpFourCalendarDemo({ active, paused, reducedMotion 
                 </div>
               </div>
               <div className="cu4cal-rail-icon cu4cal-rail-icon--dots is-dim">
-                <div className="cu4cal-rail-dots-fill">
-                  <img alt="" src={railNineDots.src} />
-                </div>
+                <img alt="" src={railNineDots.src} />
               </div>
             </div>
           </div>

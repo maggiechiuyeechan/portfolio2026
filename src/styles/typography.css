@@ -78,8 +78,8 @@
   }
 }
 
-/* Hero link row — 18px, secondary color for · separators */
+/* Hero link row — 16px, secondary color for · separators */
 .hero-bio {
-  font-size: 1.125rem; /* 18px */
+  font-size: 1rem; /* 16px */
   color: var(--color-typography-content-secondary);
 }

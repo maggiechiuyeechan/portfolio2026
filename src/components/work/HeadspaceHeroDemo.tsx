@@ -264,35 +264,30 @@ export default function HeadspaceHeroDemo() {
       role="img"
       aria-label="Headspace weekend visualisation flow: choosing to spend the weekend outdoors and zoned out, writing the note 'Finding my OM at Golden Gate Park', saving, and seeing the visualisation posted to the Headspace home feed"
     >
-      {/* Each phone scales in its own viewBox so the pair can stack on narrow
-          screens. The 16px of bleed on the facing edge carries the phones'
-          drop shadows into the gap, keeping the desktop composition 860 wide. */}
+      {/* Each phone scales in its own container so the pair can stack on narrow
+          screens without SVG foreignObject (iOS Safari lays those out at 1:1 px). */}
       <div className="hsd-stage">
-        <svg className="hsd-viewport is-left" viewBox="0 0 430 816">
-          <foreignObject width="430" height="816">
-            <div className="hsd-pane">
-              <HeadspaceReflectionDemo live={running || reducedMotion} />
-            </div>
-          </foreignObject>
-        </svg>
-        <svg className="hsd-viewport is-right" viewBox="0 0 430 816">
-          <foreignObject width="430" height="816">
-            <div className="hsd-pane is-end">
-              <div className="hsd-phone">
-                <div
-                  className={`hsd-form-wrap${
-                    step === "initial" && completedLoops > 0 ? " is-loop-entering" : ""
-                  }`}
-                >
-                  <FormScreen step={step} typedCount={typedCount} />
-                </div>
-                <div className={`hsd-front-wrap ${onFrontPage ? "is-visible" : ""}`}>
-                  <FrontPage revealed={step === "post-revealed"} />
-                </div>
+        <div className="hsd-viewport is-left">
+          <div className="hsd-pane">
+            <HeadspaceReflectionDemo live={running || reducedMotion} />
+          </div>
+        </div>
+        <div className="hsd-viewport is-right">
+          <div className="hsd-pane is-end">
+            <div className="hsd-phone">
+              <div
+                className={`hsd-form-wrap${
+                  step === "initial" && completedLoops > 0 ? " is-loop-entering" : ""
+                }`}
+              >
+                <FormScreen step={step} typedCount={typedCount} />
+              </div>
+              <div className={`hsd-front-wrap ${onFrontPage ? "is-visible" : ""}`}>
+                <FrontPage revealed={step === "post-revealed"} />
               </div>
             </div>
-          </foreignObject>
-        </svg>
+          </div>
+        </div>
       </div>
     </div>
   );

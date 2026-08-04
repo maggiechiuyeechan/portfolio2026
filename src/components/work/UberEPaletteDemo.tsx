@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import "./UberEPaletteDemo.css";
 
 const WIDTHS = [480, 768, 960, 1440, 1920, 2325];
-const SIZES = "(max-width: 41.25rem) 100vw, (max-width: 80rem) 78vw, 60rem";
+const SIZES = "(max-width: 41.25rem) 100vw, (max-width: 80rem) 78vw, 62.5rem";
 
 function sourceSet(format: "avif" | "webp") {
   return WIDTHS.map((width) => `/images/casestudies/epalette-${width}.${format} ${width}w`).join(", ");

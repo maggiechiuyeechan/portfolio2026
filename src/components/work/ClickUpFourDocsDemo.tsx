@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { ClickUpFourDemoProps } from "./clickupFourDemoShared";
+import { CYCLE_MS, type ClickUpFourDemoProps } from "./clickupFourDemoShared";
 import ClickUpFourGabBar from "./ClickUpFourGabBar";
 import "./ClickUpFourDocsDemo.css";
 
@@ -37,22 +37,122 @@ import railNineDots from "../../assets/clickup-four-demo/docs-fill21.svg";
 const ALEXANDRA_CARET = { color: "#0b68cb", height: 17 };
 const SAMUEL_CARET = { color: "#6647f0", height: 16.15 };
 
-/**
- * Typed strings verified against the Figma frame (68:31422): Alexandra C.'s
- * caret (68:31605) lands exactly after the "Welcome" heading (68:31485), and
- * Samuel H.'s caret (68:31604) lands exactly after "Design/Engineering"
- * (68:31495). Figma contains no motion data; all timing below is inferred.
- */
-const ALEXANDRA_TEXT = "Welcome";
-const SAMUEL_TEXT = "Design/Engineering";
-const ALEXANDRA_START_MS = 500;
-const ALEXANDRA_CHAR_MS = 90; // done at 1130ms
-const SAMUEL_START_MS = 1100;
-const SAMUEL_CHAR_MS = 80; // done at 2540ms; final state holds until the 6s cycle ends
+type DocsTypedLine = { prefix?: string; text: string };
 
-function charsAt(elapsed: number, start: number, perChar: number, total: number) {
-  if (elapsed <= start) return 0;
-  return Math.min(total, Math.floor((elapsed - start) / perChar) + 1);
+/**
+ * Each collaborator types two lines — emoji prefix first, then body text.
+ * Figma caret positions (68:31605, 68:31604) anchor the final characters
+ * on the heading / last list item; timing is inferred to fill the carousel cycle.
+ */
+const ALEXANDRA_LINES: readonly DocsTypedLine[] = [
+  { text: "Welcome" },
+  { prefix: "✉️  ", text: "Letter from the CEO" },
+];
+const SAMUEL_LINES: readonly DocsTypedLine[] = [
+  { prefix: "📁  ", text: "Project Management" },
+  { prefix: "🎨  ", text: "Design/Engineering" },
+];
+
+const ALEXANDRA_START_MS = 500;
+const ALEXANDRA_END_MS = 3200;
+const SAMUEL_START_MS = 1500;
+const SAMUEL_END_MS = CYCLE_MS;
+
+const GRAPHEME_SEGMENTER =
+  typeof Intl !== "undefined" && "Segmenter" in Intl
+    ? new Intl.Segmenter(undefined, { granularity: "grapheme" })
+    : null;
+
+/** Split into user-perceived characters so emoji never render as � mid-type. */
+function graphemes(str: string): string[] {
+  if (!str) return [];
+  if (GRAPHEME_SEGMENTER) {
+    return [...GRAPHEME_SEGMENTER.segment(str)].map((part) => part.segment);
+  }
+  const parts: string[] = [];
+  const re = /\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic})*|\s|./gu;
+  for (const match of str.matchAll(re)) parts.push(match[0]);
+  return parts.length ? parts : [...str];
+}
+
+function lineParts(line: DocsTypedLine): string[] {
+  return [...graphemes(line.prefix ?? ""), ...graphemes(line.text)];
+}
+
+function lineLength(line: DocsTypedLine) {
+  return lineParts(line).length;
+}
+
+function totalLineLength(lines: readonly DocsTypedLine[]) {
+  return lines.reduce((sum, line) => sum + lineLength(line), 0);
+}
+
+function visibleLine(line: DocsTypedLine, count: number) {
+  return lineParts(line).slice(0, count).join("");
+}
+
+const ALEXANDRA_TOTAL_CHARS = totalLineLength(ALEXANDRA_LINES);
+const SAMUEL_TOTAL_CHARS = totalLineLength(SAMUEL_LINES);
+
+function targetTypedTotal(elapsed: number, startMs: number, endMs: number, totalChars: number) {
+  if (elapsed <= startMs) return 0;
+  if (elapsed >= endMs) return totalChars;
+  const u = (elapsed - startMs) / (endMs - startMs);
+  return Math.min(totalChars, Math.floor(u * totalChars));
+}
+
+/** Advance at most one grapheme per frame toward the linear timeline target. */
+function smoothTypedTotal(
+  elapsed: number,
+  startMs: number,
+  endMs: number,
+  totalChars: number,
+  currentTotal: number,
+) {
+  const target = targetTypedTotal(elapsed, startMs, endMs, totalChars);
+  if (target <= currentTotal) return currentTotal;
+  // Allow a second character when far behind so the sequence still finishes on time.
+  const maxStep = target - currentTotal >= 3 ? 2 : 1;
+  return Math.min(target, currentTotal + maxStep);
+}
+
+function distributeTypedTotal(total: number, lines: readonly DocsTypedLine[]) {
+  let remaining = total;
+  return lines.map((line) => {
+    const len = lineLength(line);
+    const count = Math.min(len, remaining);
+    remaining -= count;
+    return count;
+  });
+}
+
+function lineCharCounts(lines: readonly DocsTypedLine[]) {
+  return lines.map(lineLength);
+}
+
+function activeLineIndex(counts: number[], lines: readonly DocsTypedLine[]) {
+  for (let i = 0; i < lines.length; i++) {
+    if (counts[i] < lineLength(lines[i])) return i;
+  }
+  return lines.length - 1;
+}
+
+function linesEqual(a: number[], b: number[]) {
+  return a.length === b.length && a.every((value, index) => value === b[index]);
+}
+
+/** Hide empty typing rows until that line is active — static lines reflow up. */
+function shouldShowTypedLine(
+  index: number,
+  counts: number[],
+  activeLine: number,
+  animating: boolean,
+  started: boolean,
+) {
+  if (!animating) return true;
+  if (!started) return false;
+  if (counts[index] > 0) return true;
+  return activeLine === index;
 }
 
 /** Icon image absolutely positioned by fractional inset within its box. */
@@ -77,33 +177,47 @@ function CollabCursor({
 }) {
   return (
     <span className="cu4docs-cursor">
-      <span
-        className="cu4docs-caret"
-        aria-hidden="true"
-        style={
-          {
-            "--cu4docs-caret-color": caretColor,
-            "--cu4docs-caret-h": `${caretHeight}px`,
-          } as React.CSSProperties
-        }
-      />
-      <span className={`cu4docs-flag ${flagClass}`}>{name}</span>
+      <span className="cu4docs-cursor-stack">
+        <span className={`cu4docs-flag ${flagClass}`}>{name}</span>
+        <span
+          className="cu4docs-caret"
+          aria-hidden="true"
+          style={
+            {
+              "--cu4docs-caret-color": caretColor,
+              "--cu4docs-caret-h": `${caretHeight}px`,
+            } as React.CSSProperties
+          }
+        />
+      </span>
     </span>
   );
 }
 
 export default function ClickUpFourDocsDemo({ active, paused, reducedMotion }: ClickUpFourDemoProps) {
-  const [typed, setTyped] = useState({ a: ALEXANDRA_TEXT.length, s: SAMUEL_TEXT.length });
+  const fullA = lineCharCounts(ALEXANDRA_LINES);
+  const fullS = lineCharCounts(SAMUEL_LINES);
+  const [typed, setTyped] = useState({ a: fullA, s: fullS });
+  const [elapsed, setElapsed] = useState(CYCLE_MS);
   const elapsedRef = useRef(0);
+  const alexTypedTotalRef = useRef(0);
+  const samTypedTotalRef = useRef(0);
 
   // Restart the sequence whenever the slide becomes active.
   useEffect(() => {
     if (active && !reducedMotion) {
       elapsedRef.current = 0;
-      setTyped({ a: 0, s: 0 });
+      alexTypedTotalRef.current = 0;
+      samTypedTotalRef.current = 0;
+      setElapsed(0);
+      setTyped({ a: ALEXANDRA_LINES.map(() => 0), s: SAMUEL_LINES.map(() => 0) });
     } else {
       // Inactive or reduced motion: completed static state.
-      setTyped({ a: ALEXANDRA_TEXT.length, s: SAMUEL_TEXT.length });
+      elapsedRef.current = CYCLE_MS;
+      alexTypedTotalRef.current = ALEXANDRA_TOTAL_CHARS;
+      samTypedTotalRef.current = SAMUEL_TOTAL_CHARS;
+      setElapsed(CYCLE_MS);
+      setTyped({ a: fullA, s: fullS });
     }
   }, [active, reducedMotion]);
 
@@ -113,16 +227,46 @@ export default function ClickUpFourDocsDemo({ active, paused, reducedMotion }: C
     let raf = 0;
     let last = performance.now();
     const tick = (now: number) => {
-      elapsedRef.current += now - last;
+      elapsedRef.current = Math.min(CYCLE_MS, elapsedRef.current + (now - last));
       last = now;
-      const a = charsAt(elapsedRef.current, ALEXANDRA_START_MS, ALEXANDRA_CHAR_MS, ALEXANDRA_TEXT.length);
-      const s = charsAt(elapsedRef.current, SAMUEL_START_MS, SAMUEL_CHAR_MS, SAMUEL_TEXT.length);
-      setTyped((prev) => (prev.a === a && prev.s === s ? prev : { a, s }));
-      if (a < ALEXANDRA_TEXT.length || s < SAMUEL_TEXT.length) raf = requestAnimationFrame(tick);
+      const e = elapsedRef.current;
+
+      alexTypedTotalRef.current = smoothTypedTotal(
+        e,
+        ALEXANDRA_START_MS,
+        ALEXANDRA_END_MS,
+        ALEXANDRA_TOTAL_CHARS,
+        alexTypedTotalRef.current,
+      );
+      samTypedTotalRef.current = smoothTypedTotal(
+        e,
+        SAMUEL_START_MS,
+        SAMUEL_END_MS,
+        SAMUEL_TOTAL_CHARS,
+        samTypedTotalRef.current,
+      );
+
+      const a = distributeTypedTotal(alexTypedTotalRef.current, ALEXANDRA_LINES);
+      const s = distributeTypedTotal(samTypedTotalRef.current, SAMUEL_LINES);
+      setTyped((prev) => (linesEqual(prev.a, a) && linesEqual(prev.s, s) ? prev : { a, s }));
+      setElapsed((prev) => (prev === e ? prev : e));
+      if (elapsedRef.current < CYCLE_MS) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [active, paused, reducedMotion]);
+
+  const alexandraLine = activeLineIndex(typed.a, ALEXANDRA_LINES);
+  const samuelLine = activeLineIndex(typed.s, SAMUEL_LINES);
+  const showAlexandraCursor = active && !paused && !reducedMotion;
+  const showSamuelCursor = showAlexandraCursor;
+  const alexandraAnimating = showAlexandraCursor;
+  const samuelAnimating = showSamuelCursor;
+  const alexandraStarted = !alexandraAnimating || elapsed >= ALEXANDRA_START_MS;
+  const samuelStarted = !samuelAnimating || elapsed >= SAMUEL_START_MS;
+  const showAlexandraListLine = shouldShowTypedLine(1, typed.a, alexandraLine, alexandraAnimating, alexandraStarted);
+  const showSamuelLine0 = shouldShowTypedLine(0, typed.s, samuelLine, samuelAnimating, samuelStarted);
+  const showSamuelLine1 = shouldShowTypedLine(1, typed.s, samuelLine, samuelAnimating, samuelStarted);
 
   const rootClass = `cu4docs-root${paused ? " is-paused" : ""}${reducedMotion || !active ? " is-static" : ""}`;
 
@@ -308,19 +452,35 @@ export default function ClickUpFourDocsDemo({ active, paused, reducedMotion }: C
               </div>
 
               <div className="cu4docs-content">
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: "flex", alignItems: "flex-start" }}>
                   <div className="cu4docs-col">
                     <div className="cu4docs-col-heading">
-                      {ALEXANDRA_TEXT.slice(0, typed.a)}
-                      <CollabCursor
-                        name="Alexandra C."
-                        flagClass="cu4docs-flag-alexandra"
-                        caretColor={ALEXANDRA_CARET.color}
-                        caretHeight={ALEXANDRA_CARET.height}
-                      />
+                      {visibleLine(ALEXANDRA_LINES[0], typed.a[0])}
+                      {showAlexandraCursor && alexandraLine === 0 ? (
+                        <CollabCursor
+                          name="Alexandra C."
+                          flagClass="cu4docs-flag-alexandra"
+                          caretColor={ALEXANDRA_CARET.color}
+                          caretHeight={ALEXANDRA_CARET.height}
+                        />
+                      ) : null}
                     </div>
                     <div className="cu4docs-col-items">
-                      <p>{"✉️  Letter from the CEO"}</p>
+                      {showAlexandraListLine ? (
+                        <p>
+                          <span className="cu4docs-typed-line">
+                            {visibleLine(ALEXANDRA_LINES[1], typed.a[1])}
+                            {showAlexandraCursor && alexandraLine === 1 ? (
+                              <CollabCursor
+                                name="Alexandra C."
+                                flagClass="cu4docs-flag-alexandra"
+                                caretColor={ALEXANDRA_CARET.color}
+                                caretHeight={ALEXANDRA_CARET.height}
+                              />
+                            ) : null}
+                          </span>
+                        </p>
+                      ) : null}
                       <p>{"💬  Company Story"}</p>
                       <p>{"💜  Values and Principles"}</p>
                     </div>
@@ -329,17 +489,36 @@ export default function ClickUpFourDocsDemo({ active, paused, reducedMotion }: C
                     <p className="cu4docs-col-heading">Tools and systems</p>
                     <div className="cu4docs-col-items">
                       <p>{"👥  Communication"}</p>
-                      <p>{"📁  Project Management"}</p>
-                      <p>
-                        {"🎨  "}
-                        {SAMUEL_TEXT.slice(0, typed.s)}
-                        <CollabCursor
-                          name="Samuel H."
-                          flagClass="cu4docs-flag-samuel"
-                          caretColor={SAMUEL_CARET.color}
-                          caretHeight={SAMUEL_CARET.height}
-                        />
-                      </p>
+                      {showSamuelLine0 ? (
+                        <p>
+                          <span className="cu4docs-typed-line">
+                            {visibleLine(SAMUEL_LINES[0], typed.s[0])}
+                            {showSamuelCursor && samuelLine === 0 ? (
+                              <CollabCursor
+                                name="Samuel H."
+                                flagClass="cu4docs-flag-samuel"
+                                caretColor={SAMUEL_CARET.color}
+                                caretHeight={SAMUEL_CARET.height}
+                              />
+                            ) : null}
+                          </span>
+                        </p>
+                      ) : null}
+                      {showSamuelLine1 ? (
+                        <p>
+                          <span className="cu4docs-typed-line">
+                            {visibleLine(SAMUEL_LINES[1], typed.s[1])}
+                            {showSamuelCursor && samuelLine === 1 ? (
+                              <CollabCursor
+                                name="Samuel H."
+                                flagClass="cu4docs-flag-samuel"
+                                caretColor={SAMUEL_CARET.color}
+                                caretHeight={SAMUEL_CARET.height}
+                              />
+                            ) : null}
+                          </span>
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -461,19 +640,9 @@ export default function ClickUpFourDocsDemo({ active, paused, reducedMotion }: C
               <div className="cu4docs-rail-icon is-dim">
                 <img alt="" src={railBrainAi.src} />
               </div>
-              <div className="cu4docs-rail-icon" style={{ borderRadius: 100 }}>
-                {/* blue glow behind the active Docs icon */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    borderRadius: 100,
-                    filter: "blur(4.973px)",
-                    backgroundImage:
-                      "linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), linear-gradient(90deg, rgb(0, 145, 255) 0%, rgb(0, 145, 255) 100%)",
-                  }}
-                />
-                <img alt="" src={railDoc.src} style={{ position: "relative" }} />
+              <div className="cu4docs-rail-icon is-active">
+                <div className="cu4docs-rail-glow" aria-hidden="true" />
+                <img alt="" src={railDoc.src} />
               </div>
               <div className="cu4docs-rail-icon is-dim">
                 <div style={{ position: "absolute", top: 5.1, left: 5.1, width: 17, height: 17 }}>

@@ -55,6 +55,11 @@ export interface HeroVariant {
    */
   desktopOnly?: boolean;
   /**
+   * Only reachable via "Surprise me", never on a natural first landing or
+   * bag rotation reload.
+   */
+  surpriseOnly?: boolean;
+  /**
    * Assets the scene needs immediately. Used to emit <link rel="prefetch">
    * for the NEXT variant in the bag, so the following visit is warm.
    */
@@ -111,6 +116,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version C — full-canvas physics with organic Figma shapes.",
     layout: "full-canvas",
     sceneFrame: true,
+    surpriseOnly: true,
     cursorLabel: "hover on shapes",
     load: () => import("../components/hero/scenes/ShapesCScene"),
   },
@@ -179,6 +185,14 @@ export function getVariant(id: string): HeroVariant | undefined {
 }
 
 /** Ids eligible for rotation at the current viewport. */
-export function eligibleVariantIds(isNarrow: boolean): HeroVariantId[] {
-  return HERO_VARIANTS.filter((v) => !(isNarrow && v.desktopOnly)).map((v) => v.id);
+export function eligibleVariantIds(
+  isNarrow: boolean,
+  opts?: { includeSurpriseOnly?: boolean },
+): HeroVariantId[] {
+  const includeSurpriseOnly = opts?.includeSurpriseOnly ?? false;
+  return HERO_VARIANTS.filter((v) => {
+    if (isNarrow && v.desktopOnly) return false;
+    if (!includeSurpriseOnly && v.surpriseOnly) return false;
+    return true;
+  }).map((v) => v.id);
 }

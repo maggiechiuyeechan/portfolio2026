@@ -340,64 +340,71 @@
 .cu4docs-col-items p {
   position: relative;
   overflow: visible;
+  display: flex;
+  align-items: baseline;
   width: 213.35px;
   height: 19.55px;
 }
 
-/* Collaborator cursor: 0x0 inline-block anchored at the line-box top, right
-   after the typed text. Children are positioned in Figma coordinates. */
+.cu4docs-list-prefix {
+  flex: none;
+}
+
+.cu4docs-typed-line {
+  min-width: 0;
+}
+
+/* Collaborator cursor — zero-width anchor on the text baseline; stack grows up. */
 .cu4docs-cursor {
   position: relative;
   display: inline-block;
   width: 0;
   height: 0;
-  vertical-align: top;
+  vertical-align: baseline;
   white-space: nowrap;
 }
 
-/* Figma wraps the caret vector in a zero-width box with inset-[-5%_-0.85px]
-   so the 1.7px stroke is not clipped. A CSS bar matches that reliably. */
-.cu4docs-caret {
+.cu4docs-cursor-stack {
   position: absolute;
-  top: -2.55px;
+  bottom: -4px;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 0;
+}
+
+.cu4docs-caret {
+  position: relative;
+  z-index: 0;
+  display: block;
+  flex: none;
   width: 1.7px;
   height: var(--cu4docs-caret-h, 17px);
-  margin-left: -0.85px;
+  margin: 0;
   border-radius: 0.85px;
   background: var(--cu4docs-caret-color, #0b68cb);
-  animation: cu4docs-blink 1.06s step-end infinite;
 }
 
-.cu4docs-root.is-paused .cu4docs-caret {
-  animation-play-state: paused;
+.cu4docs-col-heading .cu4docs-caret {
+  height: 1.111em;
 }
 
-.cu4docs-root.is-static .cu4docs-caret {
-  animation: none;
+.cu4docs-col-items .cu4docs-caret {
+  height: 1.187em;
 }
 
-@keyframes cu4docs-blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-/* Name chip matching the Whiteboards collaborator cursors, but rounded on every
-   corner and floated so its base clears the caret by ~2px. */
+/* Name chip sits flush on the caret; rounded except bottom-left where it meets the bar. */
 .cu4docs-flag {
-  position: absolute;
-  top: -24.95px;
-  left: 0;
+  position: relative;
+  z-index: 1;
   display: block;
+  flex: none;
   height: 20.4px;
+  margin: 0 0 -0.85px;
   padding: 0 5.1px;
   border: 0.85px solid rgba(0, 0, 0, 0.19);
-  border-radius: 6.8px;
+  border-radius: 6.8px 6.8px 6.8px 1.7px;
   font-family: var(--cu4docs-font-text);
   font-size: 10.2px;
   font-weight: 500;
@@ -564,10 +571,29 @@
   opacity: 0.8;
 }
 
+.cu4docs-rail-icon.is-active {
+  border-radius: 100px;
+}
+
+.cu4docs-rail-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  filter: blur(4.973px);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%),
+    linear-gradient(90deg, rgb(0, 145, 255) 0%, rgb(0, 145, 255) 100%);
+  pointer-events: none;
+}
+
 .cu4docs-rail-icon img {
   position: absolute;
   top: 5.1px;
   left: 5.1px;
   width: 17px;
   height: 17px;
+}
+
+.cu4docs-rail-icon.is-active img {
+  z-index: 1;
 }

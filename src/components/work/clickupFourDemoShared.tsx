@@ -8,6 +8,8 @@
  * - `reducedMotion`: user prefers reduced motion. Render the completed static
  *   state; no shimmer/typing/drag/shake.
  */
+export const CYCLE_MS = 6_000;
+
 export interface ClickUpFourDemoProps {
   active: boolean;
   paused: boolean;

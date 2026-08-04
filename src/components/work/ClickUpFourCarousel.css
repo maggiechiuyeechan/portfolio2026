@@ -1,7 +1,7 @@
 @import "../../styles/sf-pro-demo.css";
 
 .cu4-carousel {
-  --cu4-cycle-duration: 6s;
+  --cu4-cycle-duration: var(--cu4-cycle-ms, 6s);
 
   width: 100%;
 }
@@ -196,9 +196,78 @@
   max-width: none;
 }
 
+/* AI card caption — DOM replaces the baked PNG text with the Tasks shimmer. */
+.cu4-wb-imggen-caption-mask {
+  position: absolute;
+  z-index: 2;
+  background: #fff;
+  pointer-events: none;
+}
+
+.cu4-wb-imggen-caption {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--cu4-wb-font);
+  font-weight: 400;
+  letter-spacing: -0.08px;
+  background-image: linear-gradient(to right, #7a28e2, #838383);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  pointer-events: none;
+}
+
+.cu4-wb-imggen-caption.is-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    #7a28e2 0%,
+    #4d3670 32%,
+    #c9a6ff 48%,
+    #35204f 64%,
+    #838383 100%
+  );
+  background-size: 250% 100%;
+  animation: cu4-wb-imggen-shimmer 1400ms linear infinite;
+}
+
+.cu4-wb-imggen-caption.is-shimmer.is-paused {
+  animation-play-state: paused;
+}
+
+@keyframes cu4-wb-imggen-shimmer {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cu4-wb-imggen-caption.is-shimmer {
+    animation: none;
+    background-image: linear-gradient(to right, #7a28e2, #838383);
+  }
+}
+
 .cu4-wb-grid-patch {
   position: absolute;
+  z-index: 1;
   background-color: #f9f9f9;
+  pointer-events: none;
+}
+
+/* Hides the baked-in blue sticky from wb-board-base.png at its Figma rect. */
+.cu4-wb-sticky-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: #f9f9f9;
   pointer-events: none;
 }
 
@@ -206,7 +275,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: #c6d4f9;
+  z-index: 3;
+  background: #ffc53d; /* toolbar stickies icon (Figma 68:31151) */
   transform-origin: 50% 50%;
   will-change: transform;
 }
@@ -221,6 +291,7 @@
   letter-spacing: -0.09px;
   color: #000;
   word-break: break-word;
+  overflow: visible;
 }
 
 .cu4-wb-caret {
@@ -230,19 +301,13 @@
   margin-left: 1px;
   vertical-align: -2px;
   background: #1f6dde;
-  animation: cu4-wb-caret-blink 1s step-end infinite;
-}
-
-@keyframes cu4-wb-caret-blink {
-  50% {
-    opacity: 0;
-  }
 }
 
 .cu4-wb-cursor {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 4;
   will-change: transform;
   pointer-events: none;
 }

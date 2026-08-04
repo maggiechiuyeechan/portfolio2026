@@ -60,11 +60,11 @@
 .hsd-viewport {
   position: relative;
   z-index: 1;
-  display: block;
-  height: 100%;
-  aspect-ratio: 430 / 816;
   flex: none;
-  overflow: visible;
+  overflow: hidden;
+  container-type: inline-size;
+  aspect-ratio: 430 / 816;
+  height: 100%;
 }
 
 /* Two phones side by side, 32px apart in design coordinates. */
@@ -76,11 +76,14 @@
   justify-content: center;
 }
 
-/* Holds one phone against the outer edge of its 430-wide viewBox. */
+/* Holds one phone against the outer edge of its 430-wide frame. */
 .hsd-pane {
   display: flex;
   width: 430px;
   height: 816px;
+  flex: none;
+  transform: scale(tan(atan2(100cqw, 430px)));
+  transform-origin: 0 0;
 }
 
 .hsd-pane.is-end {
@@ -364,6 +367,10 @@
   z-index: 3;
 }
 
+.hsd-dropdown.is-open {
+  border-radius: 0;
+}
+
 .hsd-dropdown-mood.is-open {
   left: 21px;
   width: 375px;
@@ -371,9 +378,9 @@
 
 .hsd-dropdown-highlight {
   position: absolute;
-  left: 2px;
+  left: 4px;
   top: 2px;
-  width: calc(100% - 4px);
+  width: calc(100% - 8px);
   height: 42px;
   border-radius: 6px;
   background: #ede9e3;
@@ -445,7 +452,7 @@
 .hsd-tap-target::before {
   content: "";
   position: absolute;
-  inset: 2px;
+  inset: 2px 4px;
   z-index: -1;
   border-radius: 6px;
   background: transparent;

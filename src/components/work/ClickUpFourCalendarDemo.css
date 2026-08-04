@@ -482,6 +482,7 @@
   flex: none;
   width: 11.56px;
   height: 11.56px;
+  overflow: visible;
 }
 
 .cu4cal-zoom-wrap img {
@@ -507,34 +508,34 @@
   animation-play-state: paused;
 }
 
-/* Ringing-phone shake: pop 10% larger, then swing +/-15deg a few times. */
+/* Ringing-phone shake: pop 25% larger, then swing +/-15deg a few times. */
 @keyframes cu4cal-shake {
   0% {
     transform: scale(1) rotate(0deg);
   }
   8% {
-    transform: scale(1.1) rotate(15deg);
+    transform: scale(1.25) rotate(15deg);
   }
   20% {
-    transform: scale(1.1) rotate(-15deg);
+    transform: scale(1.25) rotate(-15deg);
   }
   32% {
-    transform: scale(1.1) rotate(15deg);
+    transform: scale(1.25) rotate(15deg);
   }
   44% {
-    transform: scale(1.1) rotate(-15deg);
+    transform: scale(1.25) rotate(-15deg);
   }
   56% {
-    transform: scale(1.1) rotate(15deg);
+    transform: scale(1.25) rotate(15deg);
   }
   68% {
-    transform: scale(1.1) rotate(-15deg);
+    transform: scale(1.25) rotate(-15deg);
   }
   80% {
-    transform: scale(1.1) rotate(8deg);
+    transform: scale(1.25) rotate(8deg);
   }
   90% {
-    transform: scale(1.05) rotate(-3deg);
+    transform: scale(1.12) rotate(-3deg);
   }
   100% {
     transform: scale(1) rotate(0deg);
@@ -756,6 +757,15 @@
   transform: translate(-50%, -50%);
 }
 
+/* nine-dots SVG is 12.75px; centre at natural size, don't stretch to 17px. */
+.cu4cal-rail-icon--dots > img {
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+
 .cu4cal-rail-nav--calendar .cu4cal-rail-icon {
   border-radius: 100px;
 }
@@ -787,23 +797,6 @@
 .cu4cal-rail-calendar-view img {
   position: absolute;
   inset: 9.04%;
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-}
-
-.cu4cal-rail-dots-fill {
-  position: absolute;
-  top: 5.1px;
-  left: 5.1px;
-  width: 17px;
-  height: 17px;
-}
-
-.cu4cal-rail-dots-fill img {
-  position: absolute;
-  inset: 12.5%;
   display: block;
   width: 100%;
   height: 100%;

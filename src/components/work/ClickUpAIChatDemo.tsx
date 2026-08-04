@@ -39,7 +39,10 @@ type ChatFrame = {
   thinking: boolean;
   blockers: number;
   calendar: boolean;
+  agentChecking: boolean;
 };
+
+const CALENDAR_AGENT_DELAY_MS = 600;
 
 const FINAL_FRAME: ChatFrame = {
   typed: "",
@@ -48,16 +51,17 @@ const FINAL_FRAME: ChatFrame = {
   thinking: false,
   blockers: 4,
   calendar: true,
+  agentChecking: true,
 };
 
 function frameAt(ms: number): ChatFrame {
-  if (ms < 450) return { typed: "", posted: false, replied: false, thinking: false, blockers: 0, calendar: false };
+  if (ms < 450) return { typed: "", posted: false, replied: false, thinking: false, blockers: 0, calendar: false, agentChecking: false };
   if (ms < 4700) {
     const count = Math.min(PROMPT.length, Math.floor((ms - 450) / 55));
-    return { typed: PROMPT.slice(0, count), posted: false, replied: false, thinking: false, blockers: 0, calendar: false };
+    return { typed: PROMPT.slice(0, count), posted: false, replied: false, thinking: false, blockers: 0, calendar: false, agentChecking: false };
   }
-  if (ms < 6500) return { typed: "", posted: true, replied: false, thinking: false, blockers: 0, calendar: false };
-  if (ms < 8500) return { typed: "", posted: true, replied: true, thinking: true, blockers: 0, calendar: false };
+  if (ms < 6500) return { typed: "", posted: true, replied: false, thinking: false, blockers: 0, calendar: false, agentChecking: false };
+  if (ms < 8500) return { typed: "", posted: true, replied: true, thinking: true, blockers: 0, calendar: false, agentChecking: false };
   if (ms < 11700) {
     return {
       typed: "",
@@ -66,6 +70,18 @@ function frameAt(ms: number): ChatFrame {
       thinking: false,
       blockers: Math.min(4, Math.floor((ms - 8500) / 700) + 1),
       calendar: false,
+      agentChecking: false,
+    };
+  }
+  if (ms < 11700 + CALENDAR_AGENT_DELAY_MS) {
+    return {
+      typed: "",
+      posted: true,
+      replied: true,
+      thinking: false,
+      blockers: 4,
+      calendar: true,
+      agentChecking: false,
     };
   }
   return FINAL_FRAME;
@@ -313,29 +329,19 @@ export default function ClickUpAIChatDemo() {
 
   return (
     <div className="cua-chat-demo study-image" role="img" aria-label="ClickUp AI chat animation showing an agent prioritizing design blockers">
-      {/* Right-anchored slice: identical to the default fit while the frame
-          keeps the viewBox's ratio, and crops off the left sidebar once a
-          narrow-width rule makes the frame proportionally taller. */}
-      <svg
-        className="cua-chat-viewport"
-        viewBox="0 0 936.667 500"
-        preserveAspectRatio="xMaxYMid slice"
-        aria-hidden="true"
-      >
-        <foreignObject width="936.667" height="500">
-          <div className={`cua-chat-stage${frame.posted ? " is-thread-open" : ""}`}>
-            <div className="cua-chat-app" />
-            <div className="cua-chat-main-background" />
-            <div className="cua-chat-noise" aria-hidden="true" />
-            <Sidebar />
-            <Header />
-            <MainMessageList posted={frame.posted} replied={frame.replied} replyCount={frame.calendar ? 2 : 1} />
-            <Composer frame={frame} />
-            <ThreadPanel frame={frame} />
-            <AgentStatus visible={frame.calendar} />
-          </div>
-        </foreignObject>
-      </svg>
+      <div className="cua-chat-scaler">
+        <div className={`cua-chat-stage${frame.posted ? " is-thread-open" : ""}`}>
+          <div className="cua-chat-app" />
+          <div className="cua-chat-main-background" />
+          <div className="cua-chat-noise" aria-hidden="true" />
+          <Sidebar />
+          <Header />
+          <MainMessageList posted={frame.posted} replied={frame.replied} replyCount={frame.calendar ? 2 : 1} />
+          <Composer frame={frame} />
+          <ThreadPanel frame={frame} />
+          <AgentStatus visible={frame.agentChecking} />
+        </div>
+      </div>
     </div>
   );
 }

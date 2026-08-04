@@ -87,6 +87,8 @@
     position: static;
     width: calc(100% + 2rem);
     max-width: 25rem;
+    font-size: 0.5rem; /* 8px — tighter than .text-caption for two-line mobile wrap */
+    letter-spacing: 0.12em;
     text-wrap: balance;
   }
 }

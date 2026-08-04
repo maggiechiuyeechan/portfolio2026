@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import type { ClickUpFourDemoProps } from "./clickupFourDemoShared";
+import { CYCLE_MS } from "./clickupFourDemoShared";
 import ClickUpFourGabBar from "./ClickUpFourGabBar";
 import "./ClickUpFourTasksDemo.css";
 
@@ -131,11 +132,10 @@ const avatarDanila = avatarDanilaAsset.src;
  * Animation timing (all inferred — Figma only defines the static
  * "Prioritizing..." text and the finished priority chips). Every row in the
  * Priority column starts as "Prioritizing..." and resolves top to bottom; the
- * CSS fade/rise of each chip runs 300ms, so the last one lands at 3.9s and the
- * rest of the carousel's 6s cycle is a static hold.
+ * CSS fade/rise of each chip runs 300ms, landing as the tab cycle ends.
  */
 const RESOLVE_START = 800;
-const RESOLVE_STEP = 400;
+const RESOLVE_ANIM_MS = 300;
 const RESOLVE_ORDER = [
   "socialCampaign",
   "websiteAssets",
@@ -146,10 +146,10 @@ const RESOLVE_ORDER = [
   "competitorBenchmarking",
   "brandPositioning",
 ] as const;
+const RESOLVE_STEP = (CYCLE_MS - RESOLVE_START - RESOLVE_ANIM_MS) / (RESOLVE_ORDER.length - 1);
 const RESOLVE_AT = Object.fromEntries(
   RESOLVE_ORDER.map((row, index) => [row, RESOLVE_START + index * RESOLVE_STEP]),
 ) as Record<(typeof RESOLVE_ORDER)[number], number>;
-const LAST_RESOLVE_MS = RESOLVE_START + (RESOLVE_ORDER.length - 1) * RESOLVE_STEP;
 
 type IconProps = { src: string; rotate?: number; className?: string; style?: CSSProperties };
 
@@ -250,9 +250,10 @@ function TeamTile({ color, icon }: { color: string; icon: string }) {
 }
 
 function RowAvatar({ src }: { src?: string }) {
+  if (!src) return null;
   return (
     <span className="cu4t-row-avatar" aria-hidden="true">
-      {src ? <img src={src} alt="" /> : <span className="cu4t-avatar-fill" />}
+      <img src={src} alt="" />
     </span>
   );
 }
@@ -323,28 +324,28 @@ function RowStatusLead({ src }: { src: string }) {
 }
 
 export default function ClickUpFourTasksDemo({ active, paused, reducedMotion }: ClickUpFourDemoProps) {
-  const [elapsed, setElapsed] = useState(reducedMotion ? LAST_RESOLVE_MS : 0);
+  const [elapsed, setElapsed] = useState(reducedMotion ? CYCLE_MS : 0);
   const elapsedRef = useRef(0);
 
   // Restart the cascade on activation.
   useEffect(() => {
     if (active) {
       elapsedRef.current = 0;
-      setElapsed(reducedMotion ? LAST_RESOLVE_MS : 0);
+      setElapsed(reducedMotion ? CYCLE_MS : 0);
     }
   }, [active, reducedMotion]);
 
   // Pausable clock driving the staggered resolves.
   useEffect(() => {
     if (!active || paused || reducedMotion) return;
-    if (elapsedRef.current >= LAST_RESOLVE_MS) return;
+    if (elapsedRef.current >= CYCLE_MS) return;
     let raf = 0;
     const startedAt = performance.now() - elapsedRef.current;
     const tick = (now: number) => {
-      const next = Math.min(now - startedAt, LAST_RESOLVE_MS);
+      const next = Math.min(now - startedAt, CYCLE_MS);
       elapsedRef.current = next;
       setElapsed(next);
-      if (next < LAST_RESOLVE_MS) raf = requestAnimationFrame(tick);
+      if (next < CYCLE_MS) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
@@ -557,15 +558,15 @@ export default function ClickUpFourTasksDemo({ active, paused, reducedMotion }: 
                 <span className="cu4t-group-caret">
                   <Icon src={groupCaretDone} className="cu4t-icon-glyph" />
                 </span>
-                <span className="cu4t-status-chip" style={{ background: "#30a46c" }}>
-                  <span className="cu4t-status-icon">
-                    <img src={statusDone} alt="" />
+                <div className="cu4t-group-label">
+                  <span className="cu4t-status-chip" style={{ background: "#30a46c" }}>
+                    <span className="cu4t-status-icon">
+                      <img src={statusDone} alt="" />
+                    </span>
+                    DONE
                   </span>
-                  DONE
-                </span>
-                <span className="cu4t-group-count" style={{ left: 103.1 }}>
-                  5
-                </span>
+                  <span className="cu4t-group-count">5</span>
+                </div>
               </div>
 
               <div className="cu4t-table" style={{ top: 37.4 }}>
@@ -707,16 +708,16 @@ export default function ClickUpFourTasksDemo({ active, paused, reducedMotion }: 
                 <span className="cu4t-group-caret">
                   <Icon src={groupCaretIp} className="cu4t-icon-glyph" />
                 </span>
-                <span className="cu4t-status-chip" style={{ background: "#0091ff" }}>
-                  <span className="cu4t-status-icon">
-                    <img src={statusIp} alt="" />
-                    <img className="cu4t-status-progress" src={statusIpProgress} alt="" />
+                <div className="cu4t-group-label">
+                  <span className="cu4t-status-chip" style={{ background: "#0091ff" }}>
+                    <span className="cu4t-status-icon">
+                      <img src={statusIp} alt="" />
+                      <img className="cu4t-status-progress" src={statusIpProgress} alt="" />
+                    </span>
+                    IN PROGRESS
                   </span>
-                  IN PROGRESS
-                </span>
-                <span className="cu4t-group-count" style={{ left: 148.35 }}>
-                  3
-                </span>
+                  <span className="cu4t-group-count">3</span>
+                </div>
               </div>
 
               <div className="cu4t-table" style={{ top: 264.35 }}>

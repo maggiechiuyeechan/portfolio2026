@@ -14,7 +14,7 @@ import {
   type HeroSceneProps,
   type HeroVariantId,
 } from "../../config/heroVariants";
-import { forcedVariant, peekNextVariant, takeVariant } from "../../lib/variantBag";
+import { forcedVariant, peekNextVariant, takeSurpriseVariant, takeVariant } from "../../lib/variantBag";
 
 interface Props {
   name: string;
@@ -85,9 +85,11 @@ export default function HeroRotator({ name, title, tagline, variantId }: Props) 
     if (window.location.pathname !== "/" || window.location.search) {
       window.history.replaceState(null, "", "/");
     }
-    const nextId = takeVariant();
-    warmVariant(nextId);
-    setActiveId(nextId);
+    setActiveId((current) => {
+      const nextId = takeSurpriseVariant(current);
+      warmVariant(nextId);
+      return nextId;
+    });
   }, []);
 
   // Warm the NEXT visit's chunk once this page is idle. Speculative, so

@@ -92,9 +92,8 @@ export default function ClickUpAICreditsDemo() {
 
   return (
     <div className="cua-credits-demo study-image" role="img" aria-label="ClickUp AI credits usage animation">
-      <svg className="cua-credits-viewport" viewBox="0 0 462.333 500" aria-hidden="true">
-        <foreignObject width="462.333" height="500">
-          <div className="cua-credits-stage" style={maskStyle}>
+      <div className="cua-credits-scaler">
+        <div className="cua-credits-stage" style={maskStyle}>
             <div className="cua-credits-noise" />
             <div className="cua-credits-screen" aria-hidden="true" />
             <div className="cua-credits-sidebar">
@@ -146,9 +145,8 @@ export default function ClickUpAICreditsDemo() {
                 </div>
               </div>
             </div>
-          </div>
-        </foreignObject>
-      </svg>
+        </div>
+      </div>
     </div>
   );
 }

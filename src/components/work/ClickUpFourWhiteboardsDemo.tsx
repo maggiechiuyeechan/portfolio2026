@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { ClickUpFourDemoProps } from "./clickupFourDemoShared";
+import { CYCLE_MS, type ClickUpFourDemoProps } from "./clickupFourDemoShared";
 import boardBase from "../../assets/clickup-four-demo/wb-board-base.png";
 import cursorArrowA from "../../assets/clickup-four-demo/wb-cursor-arrow-a.svg";
 import cursorArrowB from "../../assets/clickup-four-demo/wb-cursor-arrow-b.svg";
@@ -19,6 +19,8 @@ import cursorArrowB from "../../assets/clickup-four-demo/wb-cursor-arrow-b.svg";
 // ---- Figma geometry (frame coordinates, 871x530) --------------------------
 const STICKY = { x: 317, y: 287, w: 97, h: 97 } as const;
 const STICKY_TEXT = "Position button in lower left corner";
+/** Toolbar stickies icon yellow — sampled from wb-board-base.png (Figma 68:31151). */
+const STICKY_COLOR = "#ffc53d";
 // Frame-root collaborator cursor instances (arrow tip = instance origin).
 const CURSOR_A_REST = { x: 459, y: 256.35 } as const; // Andrew K. (68:31420)
 const CURSOR_B_REST = { x: 202.3, y: 239.7 } as const; // Court S. (68:31421)
@@ -36,19 +38,30 @@ const CARDS = [
   { key: "doc", x: 469.5, y: 70.1, w: 173.7, h: 126.1 },
   { key: "imggen", x: 531.5, y: 257.8, w: 156.7, h: 89.5 },
 ] as const;
+const IMGGEN_CARD = CARDS[2];
+/** Figma card 68:31069 — caption node 68:31072. */
+const IMGGEN_FIGMA = { w: 153.12, h: 86.91 } as const;
+const IMGGEN_CAPTION = {
+  offsetX: 21.835,
+  offsetY: 49.513,
+  width: 110,
+  height: 14,
+  fontSize: 8,
+  lineHeight: 13.602,
+} as const;
 
 const GRID_PITCH = 14.9317;
 const GRID_DOT_R = 0.7466;
 const GRID_ORIGIN = { x: 40.385, y: 33.735 } as const;
 
-// ---- Inferred timeline (total 6s slide cycle) ------------------------------
+// ---- Inferred timeline (matches carousel CYCLE_MS) ------------------------
 const T_MOVE_TO_TOOL = 400; // cursor leaves rest position
 const T_GRAB = 1000; // cursor reaches the stickies tool
 const T_STICKY_IN = 1250; // new sticky popped in under cursor
 const T_DROPPED = 2600; // drag ends, sticky at final position
 const T_SETTLED = 2900; // settle bounce done, typing starts
 const T_TYPED = 5400; // full text typed, cursor returns to rest
-const T_CURSOR_HOME = 6000;
+const T_CURSOR_HOME = CYCLE_MS;
 const TYPE_MS = (T_TYPED - T_SETTLED) / STICKY_TEXT.length;
 
 // Grab point near the stickies tool in the bottom toolbar; the cursor "carries"
@@ -60,6 +73,23 @@ const easeInOut = (p: number) => (p < 0.5 ? 2 * p * p : 1 - (-2 * p + 2) ** 2 / 
 const easeOut = (p: number) => 1 - (1 - p) ** 3;
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const lerp = (a: number, b: number, p: number) => a + (b - a) * p;
+
+function cardPointOnBoard(card: (typeof CARDS)[number], offsetX: number, offsetY: number) {
+  const cx = card.x + card.w / 2;
+  const cy = card.y + card.h / 2;
+  const px = offsetX * (card.w / IMGGEN_FIGMA.w);
+  const py = offsetY * (card.h / IMGGEN_FIGMA.h);
+  const absX = card.x + px;
+  const absY = card.y + py;
+  return {
+    x: cx + (absX - cx) * CARD_SCALE,
+    y: cy + (absY - cy) * CARD_SCALE,
+  };
+}
+
+function cardScaleFactor(card: (typeof CARDS)[number]) {
+  return CARD_SCALE * (card.w / IMGGEN_FIGMA.w);
+}
 
 function useDemoClock(active: boolean, paused: boolean, reducedMotion: boolean) {
   const [elapsed, setElapsed] = useState(0);
@@ -123,7 +153,7 @@ export default function ClickUpFourWhiteboardsDemo({ active, paused, reducedMoti
   let stickyY: number = STICKY.y;
   let stickyScale = 1;
   let dragging = false;
-  if (t < T_GRAB) {
+  if (!done && t < T_GRAB) {
     stickyVisible = false;
   } else if (t < T_STICKY_IN) {
     const p = easeOut(clamp01((t - T_GRAB) / (T_STICKY_IN - T_GRAB)));
@@ -142,10 +172,10 @@ export default function ClickUpFourWhiteboardsDemo({ active, paused, reducedMoti
   const dragTilt = dragging ? -2.5 * Math.sin(Math.PI * clamp01((t - T_STICKY_IN) / (T_DROPPED - T_STICKY_IN))) : 0;
   const lift = dragging ? 1 : 1 - settleP;
 
-  // Typed text.
+  // Typed text — caret stays through T_TYPED so it doesn't vanish early.
   const typedCount =
     t < T_SETTLED ? 0 : Math.min(STICKY_TEXT.length, Math.floor((t - T_SETTLED) / TYPE_MS));
-  const typing = t >= T_SETTLED && typedCount < STICKY_TEXT.length;
+  const showStickyCaret = !done && t >= T_SETTLED && t < T_TYPED;
 
   // Andrew K. cursor position.
   let cursorX: number = CURSOR_A_REST.x;
@@ -192,6 +222,14 @@ export default function ClickUpFourWhiteboardsDemo({ active, paused, reducedMoti
   const patchTop = GRID_ORIGIN.y + 16 * GRID_PITCH - GRID_PITCH / 2; // 265.18
   const patch = { left: patchLeft, top: patchTop, width: 428 - patchLeft, height: 411 - patchTop };
 
+  const imggenScale = cardScaleFactor(IMGGEN_CARD);
+  const imggenCaptionPos = cardPointOnBoard(IMGGEN_CARD, IMGGEN_CAPTION.offsetX, IMGGEN_CAPTION.offsetY);
+  const imggenCaptionWidth = IMGGEN_CAPTION.width * imggenScale;
+  const imggenCaptionHeight = IMGGEN_CAPTION.height * imggenScale;
+  const imggenCaptionFont = IMGGEN_CAPTION.fontSize * imggenScale;
+  const imggenCaptionLine = IMGGEN_CAPTION.lineHeight * imggenScale;
+  const imggenShimmerActive = active && !reducedMotion;
+
   return (
     <div className="cu4-demo-frame cu4-wb">
       <img
@@ -228,12 +266,44 @@ export default function ClickUpFourWhiteboardsDemo({ active, paused, reducedMoti
         </div>
       ))}
       <div
+        className="cu4-wb-imggen-caption-mask"
+        aria-hidden="true"
+        style={{
+          left: imggenCaptionPos.x - 1,
+          top: imggenCaptionPos.y - 1,
+          width: imggenCaptionWidth + 2,
+          height: imggenCaptionHeight + 2,
+        }}
+      />
+      <p
+        className={`cu4-wb-imggen-caption${imggenShimmerActive ? " is-shimmer" : ""}${imggenShimmerActive && paused ? " is-paused" : ""}`}
+        aria-hidden="true"
+        style={{
+          left: imggenCaptionPos.x,
+          top: imggenCaptionPos.y,
+          width: imggenCaptionWidth,
+          fontSize: imggenCaptionFont,
+          lineHeight: `${imggenCaptionLine}px`,
+        }}
+      >
+        Image generation in progress
+      </p>
+      <div
         className="cu4-wb-grid-patch"
         aria-hidden="true"
         style={{
           ...patch,
           backgroundImage: `radial-gradient(circle ${GRID_DOT_R}px at ${GRID_PITCH / 2}px ${GRID_PITCH / 2}px, #e0e0e0 98%, transparent)`,
           backgroundSize: `${GRID_PITCH}px ${GRID_PITCH}px`,
+        }}
+      />
+      <div
+        className="cu4-wb-sticky-mask"
+        aria-hidden="true"
+        style={{
+          transform: `translate(${STICKY.x}px, ${STICKY.y}px)`,
+          width: STICKY.w,
+          height: STICKY.h,
         }}
       />
       {stickyVisible && (
@@ -243,6 +313,7 @@ export default function ClickUpFourWhiteboardsDemo({ active, paused, reducedMoti
           style={{
             width: STICKY.w,
             height: STICKY.h,
+            backgroundColor: STICKY_COLOR,
             transform: `translate(${stickyX}px, ${stickyY}px) rotate(${dragTilt}deg) scale(${stickyScale})`,
             boxShadow:
               lift > 0
@@ -252,7 +323,7 @@ export default function ClickUpFourWhiteboardsDemo({ active, paused, reducedMoti
         >
           <p className="cu4-wb-sticky-text">
             {STICKY_TEXT.slice(0, typedCount)}
-            {typing && <span className="cu4-wb-caret" aria-hidden="true" />}
+            {showStickyCaret ? <span className="cu4-wb-caret" aria-hidden="true" /> : null}
           </p>
         </div>
       )}

@@ -6,12 +6,20 @@
   position: relative;
   display: grid;
   width: 100%;
+  min-width: 0;
   grid-template-columns: 580.917fr 343.75fr;
   gap: 1.2811%;
+  overflow: hidden;
   border-radius: var(--radius-2);
   box-shadow: none;
-  container-type: inline-size;
   user-select: none;
+}
+
+.bluedot-hero-pane {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  container-type: inline-size;
 }
 
 .bluedot-hero-pane.is-report {
@@ -22,17 +30,24 @@
   aspect-ratio: 343.75 / 536;
 }
 
-.bluedot-hero-viewport {
-  display: block;
-  width: 100%;
-  height: 100%;
+/*
+ * Fixed design size scaled into each pane — same pattern as ClickUpFourCarousel.
+ * tan(atan2(100cqw, Npx)) == pane width / N without JS.
+ */
+.bluedot-hero-stage {
+  width: 580.917px;
+  height: 536px;
+  transform: scale(tan(atan2(100cqw, 580.917px)));
+  transform-origin: 0 0;
+  color: #2d2d2d;
+  font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-optical-sizing: auto;
+  font-synthesis: none;
 }
 
-@media (max-width: 41.25rem) {
-  .bluedot-hero-demo {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--grid-gutter, 16px);
-  }
+.bluedot-hero-pane.is-flight .bluedot-hero-stage {
+  width: 343.75px;
+  transform: scale(tan(atan2(100cqw, 343.75px)));
 }
 
 .bluedot-hero-stage,
@@ -42,13 +57,17 @@
   box-sizing: border-box;
 }
 
-.bluedot-hero-stage {
-  width: 100%;
-  height: 536px;
-  color: #2d2d2d;
-  font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-optical-sizing: auto;
-  font-synthesis: none;
+@supports not (transform: scale(tan(atan2(1px, 1px)))) {
+  .bluedot-hero-demo {
+    display: none;
+  }
+}
+
+@media (max-width: 41.25rem) {
+  .bluedot-hero-demo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--grid-gutter, 16px);
+  }
 }
 
 .bluedot-report-panel,
@@ -717,11 +736,10 @@
     left: 117.349px;
   }
 
-  /* Enlarged to leave the same ~9.5% side margin the stacked phones use, so the
-     panel does not read as mostly empty once it is full width. */
+  /* Sized to leave side margin in the stacked full-width panel. */
   .bluedot-flight-card {
     top: 135.589px;
     left: 77.81px;
-    transform: scale(1.48);
+    transform: scale(1.3);
   }
 }
