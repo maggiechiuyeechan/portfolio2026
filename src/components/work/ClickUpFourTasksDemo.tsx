@@ -363,28 +363,28 @@ export default function ClickUpFourTasksDemo({ active, paused, reducedMotion }: 
       <div className="cu4t-surface">
         <ClickUpFourGabBar />
 
-        {/* Black icon rail (68:27977) — 27.2px tiles, 17px glyph frames */}
+        {/* Black icon rail (Figma 68:27977) */}
         <div className="cu4t-rail">
           <div className="cu4t-rail-stack">
             <span className="cu4t-rail-item is-active">
-              <span className="cu4t-rail-glow" />
-              <span className="cu4t-rail-glyph">
-                <img className="cu4t-rail-home" src={railHome} alt="" />
+              <span className="cu4t-rail-glow" aria-hidden="true" />
+              <span className="cu4t-rail-home-view">
+                <span className="cu4t-rail-home-fill">
+                  <img className="cu4t-rail-home" src={railHome} alt="" />
+                </span>
               </span>
             </span>
-            <span className="cu4t-rail-item">
-              <span className="cu4t-rail-glyph">
-                <img src={railChat} alt="" />
-              </span>
+            <span className="cu4t-rail-item is-dim">
+              <img src={railChat} alt="" />
             </span>
-            <span className="cu4t-rail-item">
-              <span className="cu4t-rail-glyph">
-                <img src={railBrainAi} alt="" />
-              </span>
+            <span className="cu4t-rail-item is-dim cu4t-rail-item--brain">
+              <img src={railBrainAi} alt="" />
             </span>
-            <span className="cu4t-rail-item">
-              <span className="cu4t-rail-glyph">
-                <img src={railNineDots} alt="" />
+            <span className="cu4t-rail-item cu4t-rail-item--dots is-dim">
+              <span className="cu4t-rail-dots-view">
+                <span className="cu4t-rail-dots-fill">
+                  <img src={railNineDots} alt="" />
+                </span>
               </span>
             </span>
           </div>

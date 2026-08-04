@@ -3,6 +3,11 @@ import { CYCLE_MS, type ClickUpFourDemoProps } from "./clickupFourDemoShared";
 import boardBase from "../../assets/clickup-four-demo/wb-board-base.png";
 import cursorArrowA from "../../assets/clickup-four-demo/wb-cursor-arrow-a.svg";
 import cursorArrowB from "../../assets/clickup-four-demo/wb-cursor-arrow-b.svg";
+import railHome from "../../assets/clickup-four-demo/rail-home-outlined.svg";
+import railChat from "../../assets/clickup-four-demo/rail-frame1618872783.svg";
+import railBrainAi from "../../assets/clickup-four-demo/rail-brain-ai.svg";
+import railWhiteboards from "../../assets/clickup-four-demo/rail-whiteboards-view.svg";
+import railNineDots from "../../assets/clickup-four-demo/rail-nine-dots.svg";
 
 /**
  * ClickUp 4.0 Whiteboards demo — Figma node 68:28756 (871x530).
@@ -341,6 +346,35 @@ export default function ClickUpFourWhiteboardsDemo({ active, paused, reducedMoti
         x={cursorX}
         y={cursorY}
       />
+
+      {/* Black left rail (Figma 68:31329) — masks the baked PNG rail underneath. */}
+      <div className="cu4-wb-rail-mask" aria-hidden="true" />
+      <div className="cu4-wb-rail">
+        <div className="cu4-wb-rail-items">
+          <div className="cu4-wb-rail-icon is-dim">
+            <img alt="" src={railHome.src} />
+          </div>
+          <div className="cu4-wb-rail-icon is-dim">
+            <img alt="" src={railChat.src} />
+          </div>
+          <div className="cu4-wb-rail-icon is-dim cu4-wb-rail-icon--brain">
+            <img alt="" src={railBrainAi.src} />
+          </div>
+          <div className="cu4-wb-rail-icon is-active">
+            <div className="cu4-wb-rail-glow" aria-hidden="true" />
+            <div className="cu4-wb-rail-whiteboards-view">
+              <img alt="" src={railWhiteboards.src} />
+            </div>
+          </div>
+          <div className="cu4-wb-rail-icon cu4-wb-rail-icon--dots is-dim">
+            <div className="cu4-wb-rail-dots-view">
+              <div className="cu4-wb-rail-dots-fill">
+                <img alt="" src={railNineDots.src} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

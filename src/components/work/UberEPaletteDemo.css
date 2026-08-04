@@ -32,17 +32,36 @@
   object-position: center;
 }
 
-.uber-epalette-mobile-video {
+.uber-epalette-mobile-video-wrap {
   position: absolute;
   z-index: 1;
   top: calc(3% + 62.5px);
   left: 53%;
-  display: block;
   width: 36%;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: none;
+}
+
+/*
+ * Safari draws this file's HEVC alpha channel opaque, so the phone arrived as a
+ * white rectangle covering the vehicle — and no amount of layer coaxing on the
+ * wrapper above changed that. The silhouette is a static rounded rect, though:
+ * sampling the WebM's alpha puts it at 127/105/19/15 inset with a ~44px corner
+ * in the 600x800 frame, unchanged across all 4.7s. Clipping to that shape makes
+ * the phone's outline independent of whether the engine composites alpha, so
+ * both paths land in the same place.
+ *
+ * The two radii keep the corner circular: the box's ratio is locked to 600/800,
+ * so 44/600 of the width and 44/800 of the height are the same length.
+ */
+.uber-epalette-mobile-video {
+  display: block;
+  width: 100%;
   height: auto;
   background: transparent;
+  clip-path: inset(2.375% 17.5% 1.875% 21.1667% round 7.3333% / 5.5%);
   object-fit: contain;
-  pointer-events: none;
 }
 
 /*
@@ -57,7 +76,7 @@
     transform-origin: center center;
   }
 
-  .uber-epalette-mobile-video {
+  .uber-epalette-mobile-video-wrap {
     top: 3.5%;
     left: 51%;
     width: 43.2%;
@@ -91,8 +110,13 @@
     display: none;
   }
 
-  .uber-epalette-mobile-video {
+  .uber-epalette-mobile-video-wrap {
     position: static;
+    width: 100%;
+    transform: none;
+  }
+
+  .uber-epalette-mobile-video {
     width: 100%;
   }
 }

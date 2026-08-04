@@ -15,10 +15,18 @@
   user-select: none;
 }
 
+/*
+ * The frame's radius and border live here rather than on the panel inside,
+ * because the panel is inside the --demo-scale transform — an 8px radius there
+ * renders at 8 × scale and reads visibly tighter than the neighbouring case
+ * study frames, which round their unscaled outer element.
+ */
 .bluedot-hero-pane {
   position: relative;
   min-width: 0;
   overflow: hidden;
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-elevation-border-1);
   container-type: inline-size;
 }
 
@@ -31,13 +39,12 @@
 }
 
 /*
- * Fixed design size scaled into each pane — same pattern as ClickUpFourCarousel.
- * tan(atan2(100cqw, Npx)) == pane width / N without JS.
+ * Fixed design size scaled into each pane via container query units.
  */
 .bluedot-hero-stage {
   width: 580.917px;
   height: 536px;
-  transform: scale(tan(atan2(100cqw, 580.917px)));
+  transform: scale(var(--demo-scale, 1));
   transform-origin: 0 0;
   color: #2d2d2d;
   font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -47,7 +54,7 @@
 
 .bluedot-hero-pane.is-flight .bluedot-hero-stage {
   width: 343.75px;
-  transform: scale(tan(atan2(100cqw, 343.75px)));
+  transform: scale(var(--demo-scale, 1));
 }
 
 .bluedot-hero-stage,
@@ -57,12 +64,6 @@
   box-sizing: border-box;
 }
 
-@supports not (transform: scale(tan(atan2(1px, 1px)))) {
-  .bluedot-hero-demo {
-    display: none;
-  }
-}
-
 @media (max-width: 41.25rem) {
   .bluedot-hero-demo {
     grid-template-columns: minmax(0, 1fr);
@@ -70,14 +71,13 @@
   }
 }
 
+/* Radius and border are on .bluedot-hero-pane; this only clips its own children. */
 .bluedot-report-panel,
 .bluedot-flight-panel {
   position: relative;
   width: 100%;
   height: 536px;
   overflow: hidden;
-  border-radius: var(--radius-2);
-  box-shadow: var(--shadow-elevation-border-1);
 }
 
 .bluedot-report-panel {
@@ -732,14 +732,45 @@
  * Placed last so it wins over the design offsets above.
  */
 @media (max-width: 41.25rem) {
-  .bluedot-report-card {
-    left: 117.349px;
+  /*
+   * The report card is dense enough that at full-width-stacked scale its brief
+   * is barely legible, so it grows to 1.32. It already fills 496.75 of the panel's
+   * 536px, so the panel has to grow with it: at 1.32 the card is 457.01 x 655.71,
+   * which leaves (580.917 - 457.01) / 2 = 61.95 of side margin, and repeating
+   * that above and below puts the panel at 655.71 + 123.91 = 779.62.
+   */
+  .bluedot-hero-pane.is-report {
+    aspect-ratio: 580.917 / 779.62;
   }
 
-  /* Sized to leave side margin in the stacked full-width panel. */
+  .bluedot-report-panel {
+    height: 779.62px;
+  }
+
+  /* Tile past the taller panel — the base height stops at 739. */
+  .bluedot-report-panel .bluedot-panel-noise {
+    height: 820px;
+  }
+
+  /*
+   * The scale is about the card's centre, so centring the unscaled box centres
+   * the scaled one: left/top are (panel - card) / 2 at the design size.
+   */
+  .bluedot-report-card {
+    top: 141.44px;
+    left: 117.349px;
+    transform: translateY(var(--bluedot-card-shift)) scale(1.32);
+    transform-origin: center;
+  }
+
+  /*
+   * Centred in the stacked panel. The offsets place the unscaled box, and the
+   * scale is about its centre, so centring the box centres the card at any
+   * scale. Kept at the base 1.1 rather than the panel-filling 1.3 so the
+   * panel's own background still reads as a frame around the card.
+   */
   .bluedot-flight-card {
     top: 135.589px;
     left: 77.81px;
-    transform: scale(1.3);
   }
 }

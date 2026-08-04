@@ -290,34 +290,30 @@ export default function ClickUpFourCalendarDemo({ active, paused, reducedMotion 
             </div>
           </div>
 
-          {/* Black left rail (Figma 68:28676) */}
+          {/* Black left rail (Figma 68:28665) */}
           <div className="cu4cal-rail">
             <div className="cu4cal-rail-items">
-              <div className="cu4cal-rail-nav is-dim">
-                <div className="cu4cal-rail-icon">
-                  <img alt="" src={railHomeOutlined.src} />
-                </div>
+              <div className="cu4cal-rail-icon is-dim">
+                <img alt="" src={railHomeOutlined.src} />
               </div>
-              <div className="cu4cal-rail-nav is-dim">
-                <div className="cu4cal-rail-icon">
-                  <img alt="" src={railChat.src} />
-                </div>
+              <div className="cu4cal-rail-icon is-dim">
+                <img alt="" src={railChat.src} />
               </div>
-              <div className="cu4cal-rail-nav is-dim">
-                <div className="cu4cal-rail-icon cu4cal-rail-icon--brain">
-                  <img alt="" src={railBrainAi.src} />
-                </div>
+              <div className="cu4cal-rail-icon is-dim cu4cal-rail-icon--brain">
+                <img alt="" src={railBrainAi.src} />
               </div>
-              <div className="cu4cal-rail-nav cu4cal-rail-nav--calendar">
+              <div className="cu4cal-rail-icon is-active">
                 <div className="cu4cal-rail-glow" aria-hidden="true" />
-                <div className="cu4cal-rail-icon cu4cal-rail-icon--calendar">
-                  <div className="cu4cal-rail-calendar-view">
-                    <img alt="" src={railCalendar.src} />
-                  </div>
+                <div className="cu4cal-rail-calendar-view">
+                  <img alt="" src={railCalendar.src} />
                 </div>
               </div>
               <div className="cu4cal-rail-icon cu4cal-rail-icon--dots is-dim">
-                <img alt="" src={railNineDots.src} />
+                <div className="cu4cal-rail-dots-view">
+                  <div className="cu4cal-rail-dots-fill">
+                    <img alt="" src={railNineDots.src} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

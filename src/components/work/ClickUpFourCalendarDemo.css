@@ -724,22 +724,21 @@
   align-items: center;
 }
 
-.cu4cal-rail-nav {
+.cu4cal-rail-icon {
   position: relative;
   flex-shrink: 0;
   width: 27.2px;
+  height: 27.2px;
+  border-radius: 6.8px;
 }
 
-.cu4cal-rail-nav.is-dim,
 .cu4cal-rail-icon.is-dim {
   opacity: 0.8;
+  border-radius: 8px;
 }
 
-.cu4cal-rail-icon {
-  position: relative;
-  width: 27.2px;
-  height: 27.2px;
-  border-radius: 8px;
+.cu4cal-rail-icon.is-dim.cu4cal-rail-icon--dots {
+  border-radius: 6.8px;
 }
 
 .cu4cal-rail-icon > img {
@@ -757,16 +756,7 @@
   transform: translate(-50%, -50%);
 }
 
-/* nine-dots SVG is 12.75px; centre at natural size, don't stretch to 17px. */
-.cu4cal-rail-icon--dots > img {
-  top: 50%;
-  left: 50%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-}
-
-.cu4cal-rail-nav--calendar .cu4cal-rail-icon {
+.cu4cal-rail-icon.is-active {
   border-radius: 100px;
 }
 
@@ -789,6 +779,7 @@
   position: absolute;
   top: 5.1px;
   left: 5.1px;
+  z-index: 1;
   overflow: hidden;
   width: 17px;
   height: 17px;
@@ -801,4 +792,23 @@
   width: 100%;
   height: 100%;
   max-width: none;
+}
+
+.cu4cal-rail-dots-view {
+  position: absolute;
+  top: 5.1px;
+  left: 5.1px;
+  width: 17px;
+  height: 17px;
+}
+
+.cu4cal-rail-dots-fill {
+  position: absolute;
+  inset: 12.5%;
+}
+
+.cu4cal-rail-dots-fill img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }

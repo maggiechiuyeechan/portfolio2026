@@ -110,26 +110,32 @@ export default function UberEPaletteDemo() {
             `preload` must stay "none". Astro server-renders this island, so the
             tag is in the initial HTML and any other value starts the fetch
             during parse — before the observer above has hydrated to say the
-            demo isn't on screen. Safari picks the QuickTime source (alpha-
-            channel WebM is why both exist), and that file is 28 MB.
+            demo isn't on screen.
 
-            TODO: re-encode uberMobile_alpha.mov at its render size (600x800).
-            It is currently ~53x the WebM for the same loop.
+            HEVC-with-alpha comes first because Safari decodes VP9 WebM but
+            composites its alpha channel as opaque. Chrome and Firefox report no
+            support for quicktime/hvc1, so they fall through to the WebM, which
+            is the only transparent path they have.
           */}
-          <video
-            ref={videoRef}
-            className="uber-epalette-mobile-video"
-            width="600"
-            height="800"
-            muted
-            loop
-            playsInline
-            preload="none"
-            aria-hidden="true"
-          >
-            <source src="/images/casestudies/uberMobile_alpha.webm" type="video/webm" />
-            <source src="/images/casestudies/uberMobile_alpha.mov" type="video/quicktime" />
-          </video>
+          <div className="uber-epalette-mobile-video-wrap">
+            <video
+              ref={videoRef}
+              className="uber-epalette-mobile-video"
+              width="600"
+              height="800"
+              muted
+              loop
+              playsInline
+              preload="none"
+              aria-hidden="true"
+            >
+              <source
+                src="/images/casestudies/uberMobile_alpha.mov"
+                type='video/quicktime; codecs="hvc1"'
+              />
+              <source src="/images/casestudies/uberMobile_alpha.webm" type="video/webm" />
+            </video>
+          </div>
         </div>
       </div>
     </div>

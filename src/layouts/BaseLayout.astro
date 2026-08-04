@@ -136,8 +136,10 @@ const websiteSchema = {
     <slot />
     <script>
       import { initCuelume } from "../lib/cuelume";
+      import { initDemoScale } from "../lib/demoScale";
       import { initCursorLabel } from "../scripts/cursor-label";
       initCuelume();
+      initDemoScale();
       initCursorLabel();
     </script>
   </body>

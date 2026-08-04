@@ -352,8 +352,10 @@ export default function ClickUpFourDocsDemo({ active, paused, reducedMotion }: C
                     <img alt="" src={sideIndent.src} />
                   </div>
                   <div className="cu4docs-side-item">
-                    <div className="cu4docs-icon-13" style={{ transform: "scaleY(-1)" }}>
-                      <Fill src={sideGitMergeFill.src} inset="6.25% 12.5%" />
+                    <div className="cu4docs-icon-13 cu4docs-icon-git-merge">
+                      <div className="cu4docs-git-merge-fill">
+                        <img alt="" src={sideGitMergeFill.src} />
+                      </div>
                     </div>
                     <p>Who we are</p>
                   </div>
@@ -637,15 +639,17 @@ export default function ClickUpFourDocsDemo({ active, paused, reducedMotion }: C
               <div className="cu4docs-rail-icon is-dim">
                 <img alt="" src={railChat.src} />
               </div>
-              <div className="cu4docs-rail-icon is-dim">
+              <div className="cu4docs-rail-icon is-dim cu4docs-rail-icon--brain">
                 <img alt="" src={railBrainAi.src} />
               </div>
               <div className="cu4docs-rail-icon is-active">
                 <div className="cu4docs-rail-glow" aria-hidden="true" />
-                <img alt="" src={railDoc.src} />
+                <div className="cu4docs-rail-doc-view">
+                  <img alt="" src={railDoc.src} />
+                </div>
               </div>
-              <div className="cu4docs-rail-icon is-dim">
-                <div style={{ position: "absolute", top: 5.1, left: 5.1, width: 17, height: 17 }}>
+              <div className="cu4docs-rail-icon is-dim cu4docs-rail-icon--dots">
+                <div className="cu4docs-rail-dots-view">
                   <Fill src={railNineDots.src} inset="12.5%" />
                 </div>
               </div>

@@ -70,62 +70,103 @@
 
 .cu4t-rail-item {
   position: relative;
+  flex-shrink: 0;
   width: 27.2px;
   height: 27.2px;
-  border-radius: 8px;
+  border-radius: 6.8px;
+}
+
+.cu4t-rail-item.is-dim {
   opacity: 0.8;
+  border-radius: 8px;
+}
+
+.cu4t-rail-item.is-dim.cu4t-rail-item--dots {
+  border-radius: 6.8px;
 }
 
 .cu4t-rail-item.is-active {
   opacity: 1;
+  border-radius: 8px;
 }
 
 /* I68:27989;2:29407 — conic sweep blurred behind the active tile. */
 .cu4t-rail-glow {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: -0.04px;
+  width: 27.276px;
+  height: 27.276px;
   border-radius: 100px;
   filter: blur(4.973px);
   background-image: conic-gradient(
-    from 45deg at 50% 50%,
+    from 90deg,
     #0091ff 0%,
     #ff02f0 37.409%,
     #ed5f00 52%,
     #b38cff 74.724%,
     #0091ff 100%
   );
+  transform: rotate(89.84deg);
+  pointer-events: none;
 }
 
-/* 17px glyph frame; each asset is exported at its Figma fill size and centred. */
-.cu4t-rail-glyph {
+.cu4t-rail-item > img {
   position: absolute;
-  left: 5.1px;
   top: 5.1px;
+  left: 5.1px;
   width: 17px;
   height: 17px;
 }
 
-.cu4t-rail-glyph img {
-  position: absolute;
-  left: 50%;
+.cu4t-rail-item--brain > img {
   top: 50%;
-  width: auto;
-  height: auto;
-  max-width: none;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
-/* home-filled is exported with its drop-shadow bleed (48.17x49.69), so it is
- * pinned rather than centred — Figma inset [0 -93.33% -192.27% -90%]. */
-.cu4t-rail-glyph img.cu4t-rail-home {
-  left: -15.3px;
-  top: 0;
-  width: 48.1667px;
-  height: 49.686px;
-  transform: none;
+.cu4t-rail-home-view {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  overflow: visible;
+  width: 17px;
+  height: 17px;
+  transform: translate(-50%, -50%);
 }
 
-/* ---- black left rail (68:27977) ---- */
+.cu4t-rail-home-fill {
+  position: absolute;
+  inset: 0 -93.33% -192.27% -90%;
+}
+
+.cu4t-rail-home-fill img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.cu4t-rail-dots-view {
+  position: absolute;
+  top: 5.1px;
+  left: 5.1px;
+  width: 17px;
+  height: 17px;
+}
+
+.cu4t-rail-dots-fill {
+  position: absolute;
+  inset: 12.5%;
+}
+
+.cu4t-rail-dots-fill img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .cu4t-container {
   position: absolute;
   left: 51px;

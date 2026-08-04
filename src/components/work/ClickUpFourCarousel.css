@@ -136,27 +136,13 @@
 
 /*
  * Fixed 871x530 composition scaled proportionally into the panel, with no
- * internal reflow. Scale factor = panel width / 871px, computed in pure CSS:
- * tan(atan2(100cqw, 871px)) divides the two lengths without JS/ResizeObserver.
+ * internal reflow. Scale factor = panel width / 871px via container query units.
  */
 .cu4-demo-frame {
   width: 871px;
   height: 530px;
-  transform: scale(tan(atan2(100cqw, 871px)));
+  transform: scale(var(--demo-scale, 1));
   transform-origin: 0 0;
-}
-
-/*
- * If the trig functions don't parse, the whole `transform` above is dropped and
- * the 871x530 stage renders unscaled inside an overflow:hidden panel — the
- * visitor sees the top-left corner of a mockup and no reason to think it's
- * broken. Baseline since 2023, so this should never fire; the point is that the
- * failure is silent, and hiding the stage is honest where a crop isn't.
- */
-@supports not (transform: scale(tan(atan2(1px, 1px)))) {
-  .cu4-carousel-images {
-    display: none;
-  }
 }
 
 /* ---- Whiteboards demo (Figma 68:28756) ---------------------------------- */
@@ -338,6 +324,128 @@
     0 1.7px 3.4px -1.7px rgba(0, 0, 0, 0.1);
 }
 
+/* Black left rail (Figma 68:31329) */
+.cu4-wb-rail-mask {
+  position: absolute;
+  top: 34px;
+  left: 5.1px;
+  z-index: 5;
+  width: 40.8px;
+  height: 476px;
+  border-radius: 6.8px;
+  background: #000;
+  pointer-events: none;
+}
+
+.cu4-wb-rail {
+  position: absolute;
+  top: 34px;
+  left: 5.1px;
+  z-index: 6;
+  width: 40.8px;
+  height: 476px;
+  overflow: hidden;
+  border-radius: 6.8px;
+  background: #000;
+  pointer-events: none;
+}
+
+.cu4-wb-rail-items {
+  position: absolute;
+  top: 6.8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6.8px;
+  align-items: center;
+}
+
+.cu4-wb-rail-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 27.2px;
+  height: 27.2px;
+  border-radius: 6.8px;
+}
+
+.cu4-wb-rail-icon.is-dim {
+  opacity: 0.8;
+  border-radius: 8px;
+}
+
+.cu4-wb-rail-icon.is-dim.cu4-wb-rail-icon--dots {
+  border-radius: 6.8px;
+}
+
+.cu4-wb-rail-icon.is-active {
+  border-radius: 100px;
+}
+
+.cu4-wb-rail-glow {
+  position: absolute;
+  top: 0;
+  left: -0.04px;
+  width: 27.276px;
+  height: 27.276px;
+  border-radius: 100px;
+  filter: blur(4.973px);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%),
+    linear-gradient(90deg, rgb(171, 100, 0) 0%, rgb(171, 100, 0) 100%);
+  transform: rotate(89.84deg);
+  pointer-events: none;
+}
+
+.cu4-wb-rail-icon > img {
+  position: absolute;
+  top: 5.1px;
+  left: 5.1px;
+  width: 17px;
+  height: 17px;
+}
+
+.cu4-wb-rail-icon--brain > img {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cu4-wb-rail-whiteboards-view {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 17px;
+  height: 17px;
+  transform: translate(-50%, -50%);
+}
+
+.cu4-wb-rail-whiteboards-view img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cu4-wb-rail-dots-view {
+  position: absolute;
+  top: 5.1px;
+  left: 5.1px;
+  width: 17px;
+  height: 17px;
+}
+
+.cu4-wb-rail-dots-fill {
+  position: absolute;
+  inset: 12.5%;
+}
+
+.cu4-wb-rail-dots-fill img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 @media (max-width: 80rem) {
   .cu4-carousel-tabs {
     grid-column: 6 / -1;
@@ -365,7 +473,15 @@
     border-radius: var(--radius-2);
   }
 
+  /*
+   * The 2rem inset is a much larger share of a phone-width frame than a desktop
+   * one, so it halves here. Pulling the panel up and left also brings more of the
+   * composition into frame on the other two edges, since the panel's overhang
+   * shrinks by the same amount it moves.
+   */
   .cu4-panel {
+    top: 1rem;
+    left: 1rem;
     width: 125%;
   }
 }

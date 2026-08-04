@@ -569,6 +569,7 @@
 
 .cu4docs-rail-icon.is-dim {
   opacity: 0.8;
+  border-radius: 8px;
 }
 
 .cu4docs-rail-icon.is-active {
@@ -577,16 +578,20 @@
 
 .cu4docs-rail-glow {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: -0.04px;
+  width: 27.276px;
+  height: 27.276px;
   border-radius: 100px;
   filter: blur(4.973px);
   background-image:
     linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%),
     linear-gradient(90deg, rgb(0, 145, 255) 0%, rgb(0, 145, 255) 100%);
+  transform: rotate(89.84deg);
   pointer-events: none;
 }
 
-.cu4docs-rail-icon img {
+.cu4docs-rail-icon > img {
   position: absolute;
   top: 5.1px;
   left: 5.1px;
@@ -594,6 +599,54 @@
   height: 17px;
 }
 
-.cu4docs-rail-icon.is-active img {
+.cu4docs-rail-icon--brain > img {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cu4docs-rail-doc-view {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   z-index: 1;
+  overflow: hidden;
+  width: 17px;
+  height: 17px;
+  transform: translate(-50%, -50%);
+}
+
+.cu4docs-rail-doc-view img {
+  position: absolute;
+  inset: 0 0 -7.11% 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.cu4docs-rail-dots-view {
+  position: absolute;
+  top: 5.1px;
+  left: 5.1px;
+  width: 17px;
+  height: 17px;
+}
+
+.cu4docs-icon-git-merge {
+  container-type: size;
+}
+
+.cu4docs-git-merge-fill {
+  position: absolute;
+  inset: 6.25% 12.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cu4docs-git-merge-fill img {
+  width: 100%;
+  height: 100%;
+  transform: rotate(180deg) scaleX(-1);
 }

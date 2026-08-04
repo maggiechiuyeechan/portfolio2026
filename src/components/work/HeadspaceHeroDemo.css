@@ -82,7 +82,7 @@
   width: 430px;
   height: 816px;
   flex: none;
-  transform: scale(tan(atan2(100cqw, 430px)));
+  transform: scale(var(--demo-scale, 1));
   transform-origin: 0 0;
 }
 
@@ -91,61 +91,40 @@
 }
 
 /*
- * Stacked, the phones are sized off the frame width, so the frame's height has
- * to be derived from them. A 84cqw viewBox puts the phone itself at
- * 84 * 414/430 = 80.87cqw, leaving 9.56cqw of margin each side. Two panes of
- * 84 * 816/430 = 159.42cqw plus the 24-unit gap come to 323.53cqw; adding the
- * same 9.56cqw above and below gives the frame ratio below, which keeps the
- * pair optically centred with even margins on all four sides.
+ * Side by side the pair needs a two-column frame; stacked it would run over
+ * three frame-widths tall, which is a lot of scrolling for one figure. So below
+ * 41.25rem — where the page is a single column anyway — only the visualisation
+ * flow is kept, the phone the demo's label describes.
+ *
+ * A 66cqw pane puts the phone itself at 66 * 414/430 = 63.54cqw, leaving
+ * 18.23cqw of margin each side. `padding-block` repeats that figure (percentage
+ * padding resolves against width) so the frame shows the same amount of
+ * background above and below as it does left and right.
  */
 @media (max-width: 41.25rem) {
   .headspace-hero-demo {
-    aspect-ratio: 1 / 3.4265;
+    /* Height follows the one remaining phone rather than a fixed ratio. */
+    aspect-ratio: auto;
+    padding-block: 18.23%;
   }
 
   .hsd-stage {
-    flex-direction: column;
     width: auto;
     height: auto;
-    gap: 4.69cqw;
   }
 
   .hsd-viewport {
-    width: 84cqw;
+    width: 66cqw;
     height: auto;
-  }
-
-  /* Cancel the facing-edge bleed so each stacked phone sits centred. */
-  .hsd-viewport.is-left {
-    transform: translateX(1.86%);
-  }
-
-  .hsd-viewport.is-right {
-    transform: translateX(-1.86%);
-  }
-}
-
-/*
- * Stacked, the pair is over three frame-widths tall, which is a lot of scrolling
- * for one figure on a small screen. Below a 448px frame only the visualisation
- * flow is kept — the phone the label describes — which halves the height. The
- * phone keeps its 84cqw width so nothing resizes at the breakpoint; only the
- * second phone drops away.
- *
- * A viewport query is accurate here, unlike on the Uber frames: below 41.25rem
- * the page is a single column, so the frame is exactly the viewport less the
- * 32px of container padding. 30rem viewport is the 448px frame.
- */
-@media (max-width: 30rem) {
-  .headspace-hero-demo {
-    aspect-ratio: auto;
-    /* Percentage padding resolves against width, matching the 9.56% side
-       margin the phone leaves, so the margins stay even on all four sides. */
-    padding-block: 9.56%;
   }
 
   .hsd-viewport.is-left {
     display: none;
+  }
+
+  /* Cancel the facing-edge bleed so the phone sits centred in the frame. */
+  .hsd-viewport.is-right {
+    transform: translateX(-1.86%);
   }
 }
 
@@ -517,6 +496,11 @@
 
 .hsd-save {
   position: absolute;
+  /* The open mood dropdown reaches 781px, past this button's 743.68px top. It
+     carries z-index 3, so without a higher one here the dropdown's square lower
+     edge buries the pill's rounded corners — which is what Safari painted while
+     Chrome happened to composite the button on top regardless. */
+  z-index: 4;
   left: 23.18px;
   top: 743.68px;
   width: 373.15px;

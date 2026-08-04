@@ -47,7 +47,7 @@
 .cua-chat-scaler {
   width: 936.667px;
   height: 500px;
-  transform: scale(tan(atan2(100cqw, 936.667px)));
+  transform: scale(var(--demo-scale, 1));
   transform-origin: 0 0;
 }
 
@@ -1064,7 +1064,7 @@
 .cua-credits-scaler {
   width: 462.333px;
   height: 500px;
-  transform: scale(tan(atan2(100cqw, 462.333px)));
+  transform: scale(var(--demo-scale, 1));
   transform-origin: 0 0;
 }
 
@@ -1453,17 +1453,60 @@
 
 /*
  * At a 448px frame the whole 936.667-wide app renders at under half scale and
- * the conversation is unreadable. A taller aspect ratio scales to the visible
- * 693.667px slice (sidebar edge at 243 → right edge), with a slight rightward
- * shift so a sliver of sidebar stays in frame.
+ * the conversation is unreadable, so narrow frames crop instead of shrinking.
+ *
+ * The slice runs from 183 to 27px past the app's own right edge (882 with the
+ * thread open) — 726 design px. 27 is the app's top offset, so the sage frame
+ * shows the same margin above and to the right. 183 lands 60px inside the
+ * sidebar rather than at its 243 right edge, so the sidebar stays in frame and
+ * runs off the left rather than disappearing. The app is taller than the 500px
+ * stage, so it bleeds off the bottom here exactly as it does at full width.
  */
 @media (max-width: 30rem) {
   .cua-chat-demo {
-    aspect-ratio: 693.667 / 500;
+    aspect-ratio: 726 / 580;
+  }
+
+  /*
+   * The stage clips at 500 — just below the composer's 502.97 bottom — so the
+   * frame ratio alone can't show more. Raising it to 580 uncovers another 80px
+   * of the thread panel, which runs to 610, and of the app below the composer.
+   * It deliberately stops short of the app's own 628 bottom: the main background
+   * and sidebar square off there rather than following the app's rounded corners,
+   * so the composition is built to be cropped, exactly as it is at full width.
+   */
+  .cua-chat-stage {
+    height: 580px;
   }
 
   .cua-chat-scaler {
-    transform-origin: 100% 0;
-    transform: scale(tan(atan2(100cqw, 693.667px))) translateX(40px);
+    /* Scale about the top-left, then pull the crop line to the frame's edge.
+       --demo-scale resolves against 726 here (see src/lib/demoScale.ts). */
+    transform-origin: 0 0;
+    transform: translateX(calc(-183px * var(--demo-scale, 1))) scale(var(--demo-scale, 1));
+  }
+}
+
+/*
+ * Stacked, these two run the full column width, so their 462.333 x 500 frames get
+ * much taller than they ever are side by side and the dead space above each
+ * composition stretches with them. Both lose 60px of that headroom.
+ */
+@media (max-width: 41.25rem) {
+  .cua-agents-demo,
+  .cua-credits-demo {
+    aspect-ratio: 462.333 / 440;
+  }
+
+  /*
+   * The credits stage is anchored at its top and the frame clips the overflow, so
+   * without this the 60px would come off the bottom instead. Pulling the stage up
+   * by the same amount moves the crop to the top, leaving the composition — card
+   * at 128, sidebar and widgets ending together at 443 — sitting where it did
+   * against the frame's bottom edge. The agents frame is a single cover-fit image,
+   * which splits the crop between top and bottom on its own.
+   */
+  .cua-credits-scaler {
+    transform: translateY(calc(-60px * var(--demo-scale, 1))) scale(var(--demo-scale, 1));
   }
 }
