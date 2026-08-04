@@ -62,8 +62,14 @@
   .hero {
     justify-content: flex-end;
     padding-top: var(--spacing-5);
-    /* Room for bottom collage shapes without a huge dead zone above them. */
-    padding-bottom: max(4rem, 12vh);
+    /*
+     * Room for bottom collage shapes without a huge dead zone above them, and for
+     * iOS 26 Safari's floating address bar, which overlays the page instead of
+     * insetting the viewport. The bar plus its margin and the home indicator come
+     * to roughly 6rem, so the floor keeps the password chip clear of it — 12vh
+     * alone only reached 5rem on a short phone.
+     */
+    padding-bottom: max(7rem, 12vh);
   }
 
   .hero-inner {

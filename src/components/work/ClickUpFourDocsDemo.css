@@ -616,12 +616,18 @@
   transform: translate(-50%, -50%);
 }
 
+/*
+ * The export is 17 x 18.2092 — a 17px glyph plus drop-shadow bleed, which the
+ * negative bottom inset hangs below the icon frame. height: 100% squashed all of
+ * that into 17px, compressing the glyph by 5.6%, so the height comes from the
+ * asset's own ratio instead.
+ */
 .cu4docs-rail-doc-view img {
   position: absolute;
   inset: 0 0 -7.11% 0;
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   max-width: none;
 }
 

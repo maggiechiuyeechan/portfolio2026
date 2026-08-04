@@ -32,7 +32,13 @@ import sideIndent2 from "../../assets/clickup-four-demo/docs-indent1.svg";
 import railHome from "../../assets/clickup-four-demo/docs-home.svg";
 import railChat from "../../assets/clickup-four-demo/docs-frame1618872783.svg";
 import railBrainAi from "../../assets/clickup-four-demo/docs-brain-ai-outlined.svg";
-import railDoc from "../../assets/clickup-four-demo/docs-doc.svg";
+/*
+ * Rasterised to 12x WebP by scripts/rasterize-demo-svgs.mjs. As SVG this was
+ * plainly pixelated in Safari, which rasterises an SVG <img> at its pre-transform
+ * layout size — only 17px here — and then stretches that bitmap by the demo
+ * frame's scale. Re-run the script if the .svg source changes.
+ */
+import railDoc from "../../assets/clickup-four-demo/docs-doc.webp";
 import railNineDots from "../../assets/clickup-four-demo/docs-fill21.svg";
 const ALEXANDRA_CARET = { color: "#0b68cb", height: 17 };
 const SAMUEL_CARET = { color: "#6647f0", height: 16.15 };

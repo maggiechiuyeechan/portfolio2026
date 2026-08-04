@@ -3,12 +3,18 @@ import { CYCLE_MS, type ClickUpFourDemoProps } from "./clickupFourDemoShared";
 import ClickUpFourGabBar from "./ClickUpFourGabBar";
 import "./ClickUpFourCalendarDemo.css";
 
-// Day columns (pills baked into the Figma exports)
-import colMon from "../../assets/clickup-four-demo/cal-col-mon.svg";
-import colTue from "../../assets/clickup-four-demo/cal-col-tue.svg";
-import colWed from "../../assets/clickup-four-demo/cal-col-wed.svg";
-import colThu from "../../assets/clickup-four-demo/cal-col-thu.svg";
-import colFri from "../../assets/clickup-four-demo/cal-col-fri.svg";
+/*
+ * Day columns (pills baked into the Figma exports), rasterised to 3x WebP by
+ * scripts/rasterize-demo-svgs.mjs. As SVG these blurred in Safari, which
+ * rasterises an SVG <img> at its pre-transform layout size and then stretches
+ * that bitmap by the demo frame's scale. Re-run the script if the .svg sources
+ * change.
+ */
+import colMon from "../../assets/clickup-four-demo/cal-col-mon.webp";
+import colTue from "../../assets/clickup-four-demo/cal-col-tue.webp";
+import colWed from "../../assets/clickup-four-demo/cal-col-wed.webp";
+import colThu from "../../assets/clickup-four-demo/cal-col-thu.webp";
+import colFri from "../../assets/clickup-four-demo/cal-col-fri.webp";
 import allDayPill from "../../assets/clickup-four-demo/cal-allday-pill.svg";
 import nowLine from "../../assets/clickup-four-demo/cal-now-line.svg";
 // Event card

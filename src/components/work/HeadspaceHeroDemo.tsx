@@ -178,6 +178,9 @@ function FrontPage({ revealed }: { revealed: boolean }) {
       <img className="hsd-fp-lower" src={fpLowerBg.src} alt="" />
       <div className="hsd-fp-list-pill" />
       <p className="hsd-fp-list-title">Weekend visualisation</p>
+      <div className="hsd-fp-meta-mask" />
+      <p className="hsd-fp-meta-activity">Mindful Activity</p>
+      <p className="hsd-fp-meta-duration">1 min</p>
       <img className="hsd-fp-group7" src={fpGroup7.src} alt="" />
       <img className="hsd-fp-daily" src={fpDaily.src} alt="" />
       <img className="hsd-fp-left" src={fpLeft.src} alt="" />

@@ -346,8 +346,15 @@
   z-index: 3;
 }
 
+/*
+ * The pill keeps its radius as it grows into a panel — every other surface here is
+ * heavily rounded, and squaring it off was what buried the Save pill's corners
+ * under a hard edge. Floating above that button is also what makes the overlap
+ * read as an open menu rather than a clipped list: the panel reaches 781px, past
+ * the button's 743.68px top, so whichever one loses is partly covered.
+ */
 .hsd-dropdown.is-open {
-  border-radius: 0;
+  z-index: 5;
 }
 
 .hsd-dropdown-mood.is-open {
@@ -496,10 +503,7 @@
 
 .hsd-save {
   position: absolute;
-  /* The open mood dropdown reaches 781px, past this button's 743.68px top. It
-     carries z-index 3, so without a higher one here the dropdown's square lower
-     edge buries the pill's rounded corners — which is what Safari painted while
-     Chrome happened to composite the button on top regardless. */
+  /* Above the closed pills, below an open dropdown — see .hsd-dropdown.is-open. */
   z-index: 4;
   left: 23.18px;
   top: 743.68px;
@@ -609,6 +613,44 @@
   letter-spacing: -0.95px;
   line-height: 25px;
   color: #3a3937;
+}
+
+/*
+ * The card's meta row is baked into fp-lower-bg at 2x, but the pane renders at
+ * 0.605, so that bitmap resamples down to roughly 60% of the size it was drawn
+ * for and the small type goes soft beside the live title above it. Same approach
+ * as .hsd-fp-list-pill/.hsd-fp-list-title: cover the baked run and redraw it as
+ * text. The mask clears the icons, which end at 71px, and stops well short of the
+ * artwork at 233px.
+ */
+.hsd-fp-meta-mask {
+  position: absolute;
+  left: 74px;
+  top: 587px;
+  width: 126px;
+  height: 39px;
+  background: #ffffff;
+}
+
+/* Offsets are matched to the baked run's ink by scripts/hsd-meta-ink.mjs. */
+.hsd-fp-meta-activity,
+.hsd-fp-meta-duration {
+  position: absolute;
+  left: 77.4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.hsd-fp-meta-activity {
+  top: 591px;
+  color: #6ba6f2;
+}
+
+.hsd-fp-meta-duration {
+  top: 611px;
+  color: #5a5756;
 }
 
 .hsd-fp-group7 {
