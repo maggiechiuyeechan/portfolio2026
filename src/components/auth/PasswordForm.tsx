@@ -12,6 +12,7 @@
 import { useRef, useState } from "react";
 import { motion, useAnimationControls } from "motion/react";
 import { play } from "cuelume";
+import { usePasswordViewportLift } from "../../lib/usePasswordViewportLift";
 
 interface Props {
   onSuccess?: () => void;
@@ -89,6 +90,8 @@ export default function PasswordForm({ onSuccess }: Props) {
 
   const hasValue = value.length > 0;
   const active = focused || hasValue;
+
+  usePasswordViewportLift(focused, inputRef);
 
   const chipClass = [
     "password-chip",

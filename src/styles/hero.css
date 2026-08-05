@@ -78,6 +78,25 @@
   }
 }
 
+/*
+ * Focused password on mobile: the page is not scrollable at rest, so
+ * scroll-margin on the input cannot clear iOS 26's floating URL pill when the
+ * keyboard opens. PasswordForm sets --password-lift from visualViewport while
+ * focused; lift the copy stack above the pill/keyboard instead.
+ */
+@media (max-width: 41.25rem), (max-height: 40.625rem) {
+  body[data-password-focused] .hero-inner {
+    transform: translateY(calc(-1 * var(--password-lift, 6rem)));
+    transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-password-focused] .hero-inner {
+    transition: none;
+  }
+}
+
 /* ---------------------------------------------------------------------------
  * Avatar frame (Version O only).
  *
