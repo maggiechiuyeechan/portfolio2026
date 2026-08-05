@@ -13,6 +13,7 @@ import { useRef, useState } from "react";
 import { motion, useAnimationControls } from "motion/react";
 import { play } from "cuelume";
 import { usePasswordViewportLift } from "../../lib/usePasswordViewportLift";
+import { site } from "../../config/site";
 
 interface Props {
   onSuccess?: () => void;
@@ -149,6 +150,21 @@ export default function PasswordForm({ onSuccess }: Props) {
     inputRef.current?.focus();
   }
 
+  function handleInputFocus() {
+    setFocused(true);
+    const input = inputRef.current;
+    if (!input || input.value.length > 0) return;
+    // Safari keeps the caret mid-field on an empty password input when the
+    // placeholder is visible — text-align alone does not move it to the start.
+    requestAnimationFrame(() => {
+      try {
+        input.setSelectionRange(0, 0);
+      } catch {
+        // Some engines reject selection on password fields.
+      }
+    });
+  }
+
   function handleBlur(event: React.FocusEvent) {
     const next = event.relatedTarget as Node | null;
     if (next && event.currentTarget.contains(next)) return;
@@ -184,15 +200,21 @@ export default function PasswordForm({ onSuccess }: Props) {
         onFocus={() => setFocused(true)}
         onBlur={handleBlur}
       >
+        {!hasValue ? (
+          <span className="password-chip-placeholder" aria-hidden="true">
+            {site.passwordPlaceholder}
+          </span>
+        ) : null}
         <input
           ref={inputRef}
           type="password"
           name="password"
           value={value}
-          placeholder="Enter password"
+          placeholder=""
           aria-label="Password"
           autoComplete="current-password"
           disabled={status === "submitting"}
+          onFocus={handleInputFocus}
           onChange={handlePasswordInput}
         />
         {hasValue && (
