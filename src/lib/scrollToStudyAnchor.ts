@@ -12,12 +12,25 @@ export function getVisibleNavLogo() {
   return null;
 }
 
-/** Live Y of the sticky nav logo top — the work-page scroll alignment line. */
+/**
+ * Live Y of the work-page scroll alignment line.
+ *
+ * Desktop: sticky sidebar — align study titles with the logo top.
+ * Mobile: sticky header bar covers everything below the logo, so align to the
+ * bar's bottom (matches `--scroll-anchor-top`). Using logo top here scrolled
+ * titles up under the opaque bar.
+ */
 export function getStudyScrollAlignTop() {
+  const mobileBar = document.querySelector<HTMLElement>(".mobile-nav-bar");
+  if (mobileBar) {
+    const { width, height, bottom } = mobileBar.getBoundingClientRect();
+    // Hidden desktop twin (parent `display: none`) reports a zero box.
+    if (width > 0 && height > 0) return bottom;
+  }
   return getVisibleNavLogo()?.top ?? 48;
 }
 
-/** Scroll so a study title top aligns with the nav logo top. */
+/** Scroll so a study title sits on the nav alignment line (see getStudyScrollAlignTop). */
 export function scrollToStudyAnchor(
   anchorId: string,
   options?: { behavior?: ScrollBehavior; updateHash?: boolean },
