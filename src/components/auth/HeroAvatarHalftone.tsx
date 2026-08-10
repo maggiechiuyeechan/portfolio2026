@@ -18,14 +18,12 @@ interface Props {
   variants?: Variants;
 }
 
-const FRAME_RADIUS = "6.5rem";
-
 const frameStyle: React.CSSProperties = {
   position: "relative",
   flexShrink: 0,
   overflow: "hidden",
-  borderRadius: FRAME_RADIUS,
-  clipPath: `inset(0 round ${FRAME_RADIUS})`,
+  // Radius lives in hero.css (--hero-avatar-radius) so mobile can use a
+  // smaller rem and keep a tall capsule instead of rounding into a circle.
 };
 
 const fillStyle: React.CSSProperties = {
