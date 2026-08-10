@@ -1455,16 +1455,16 @@
  * At a 448px frame the whole 936.667-wide app renders at under half scale and
  * the conversation is unreadable, so narrow frames crop instead of shrinking.
  *
- * The slice runs from 183 to 27px past the app's own right edge (882 with the
- * thread open) — 726 design px. 27 is the app's top offset, so the sage frame
- * shows the same margin above and to the right. 183 lands 60px inside the
- * sidebar rather than at its 243 right edge, so the sidebar stays in frame and
- * runs off the left rather than disappearing. The app is taller than the 500px
- * stage, so it bleeds off the bottom here exactly as it does at full width.
+ * The slice runs from 230 to 27px past the app's own right edge (882 with the
+ * thread open) — 680 design px. 27 is the app's top offset, so the sage frame
+ * shows the same margin above and to the right. 230 lands just inside the
+ * sidebar's 243px right edge, so less of the nav bleeds in than the old 183px
+ * crop. The app is taller than the 500px stage, so it bleeds off the bottom here
+ * exactly as it does at full width.
  */
 @media (max-width: 30rem) {
   .cua-chat-demo {
-    aspect-ratio: 726 / 580;
+    aspect-ratio: 680 / 580;
   }
 
   /*
@@ -1481,9 +1481,9 @@
 
   .cua-chat-scaler {
     /* Scale about the top-left, then pull the crop line to the frame's edge.
-       --demo-scale resolves against 726 here (see src/lib/demoScale.ts). */
+       --demo-scale resolves against 680 here (see src/lib/demoScale.ts). */
     transform-origin: 0 0;
-    transform: translateX(calc(-183px * var(--demo-scale, 1))) scale(var(--demo-scale, 1));
+    transform: translateX(calc(-230px * var(--demo-scale, 1))) scale(var(--demo-scale, 1));
   }
 }
 

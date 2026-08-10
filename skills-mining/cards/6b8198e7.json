@@ -1,0 +1,23 @@
+{
+  "id": "6b8198e7",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-07-31",
+  "user_intent": "Replace the static ClickUp AI case study image on /work with pixel-accurate looping DOM/CSS animated demos matching the Figma frames.",
+  "domains": ["figma", "react", "astro", "animation", "pixel-perfect"],
+  "resolution": "After a first attempt approximated styles from a too-large Figma metadata dump, the agent re-pulled each Figma frame individually with get_design_context (sequentially — four parallel high-res exports hung the Figma MCP server), downloaded exact avatars/graphics via download_assets + curl into src/assets/clickup-ai-demo/, and split the single crossfading component into three separate React islands (Chat, Agents, Credits) arranged in the original Figma collage layout. Verified by minting an auth cookie via curl against the password-gated /work page and inspecting the running demo through browser CDP.",
+  "artifacts": [
+    "src/components/work/ClickUpAIChatDemo.tsx",
+    "src/components/work/ClickUpAIAgentsDemo.tsx",
+    "src/components/work/ClickUpAICreditsDemo.tsx",
+    "src/components/work/ClickUpAIDemo.css",
+    "src/components/work/StudyBlock.astro",
+    "src/assets/clickup-ai-demo/"
+  ],
+  "user_corrections": [
+    "none of the styles are correct...are you not able to pull the styles from figma",
+    "you combined three animations into one - want all three animations to be seaprate",
+    "I think you hung"
+  ],
+  "repeatability": "high",
+  "skill_candidate": "figma-pixel-perfect-animated-demo"
+}

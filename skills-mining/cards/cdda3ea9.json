@@ -1,0 +1,31 @@
+{
+  "id": "cdda3ea9",
+  "project": "portfolio2026",
+  "date": "2026-08-05",
+  "user_intent": "Fix Safari-specific rendering bugs across the portfolio work demos and login page",
+  "domains": ["safari", "webkit", "css", "playwright", "mobile", "ios"],
+  "resolution": "ResizeObserver-driven --demo-scale polyfill for cqw transforms; rasterized WebKit-blurred SVGs to high-DPI WebP via scripts/rasterize-demo-svgs.mjs; replaced baked PNG text with DOM overlays matched by ink-centroid probes; clip-path instead of alpha video compositing; visualViewport lift for iOS floating URL bar; custom placeholder span + fixed chip width for password field",
+  "artifacts": [
+    "src/lib/demoScale.ts",
+    "scripts/rasterize-demo-svgs.mjs",
+    "scripts/hsd-meta-ink.mjs",
+    "src/lib/usePasswordViewportLift.ts",
+    "src/components/auth/PasswordForm.tsx",
+    "src/styles/password-form.css",
+    "src/components/work/ClickUpAIDemo.css"
+  ],
+  "user_corrections": [
+    "video mask still doesn't work",
+    "border radius not showing",
+    "calendar got all blurry",
+    "icon cut off / blurry — double check against Figma",
+    "liquid glass pill covering password input",
+    "placeholder cut off when selected",
+    "cursor should be at front of input",
+    "key icon in middle not end",
+    "input changes position and width",
+    "do not change size of input when typing"
+  ],
+  "repeatability": "high",
+  "skill_candidate": "safari-demo-rendering + ios-safari-form-fixes + playwright-visual-probes"
+}

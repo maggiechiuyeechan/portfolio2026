@@ -1,4 +1,5 @@
 import { useEffect, useState, type RefObject } from "react";
+import { observeLayoutDrift } from "./observeLayoutDrift";
 
 /**
  * Center of the empty band above a content element (viewport top → content top).
@@ -66,6 +67,7 @@ export function useBandCenterAnchor(
     if (artRef?.current) observer.observe(artRef.current);
 
     window.addEventListener("resize", measure);
+    const stopDrift = observeLayoutDrift(measure);
 
     let cancelled = false;
     void document.fonts?.ready.then(() => {
@@ -77,6 +79,7 @@ export function useBandCenterAnchor(
       cancelAnimationFrame(raf1);
       observer.disconnect();
       window.removeEventListener("resize", measure);
+      stopDrift();
     };
   }, [contentRef, gapPx, artRef]);
 

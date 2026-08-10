@@ -1,0 +1,17 @@
+{
+  "id": "541c4313",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-08-01",
+  "user_intent": "Implement only the Docs slide of the ClickUp 4.0 carousel as a pixel-accurate 871x530 rebuild of Figma frame 68:31422 with a two-collaborator typing animation, honoring the { active, paused, reducedMotion } contract.",
+  "domains": ["figma", "react", "animation", "playwright", "pixel-perfect", "css"],
+  "resolution": "Rebuilt the full frame in ClickUpFourDocsDemo.tsx/.css from a pre-extracted refs dump (docs-code.txt) and a kebab-case asset manifest, sampling exact backdrop colors from the reference PNG with sharp. Verified with a temporary Playwright shot script against a dev server started with SITE_PASSWORD/AUTH_SECRET env vars, iterating three visual-correction passes; a notable fix was a CSS mask quirk where multiple mask-images union by default, so only the spoke mask was applied to get the intended pinwheel intersection. Temp script and screenshots were deleted after verification.",
+  "artifacts": [
+    "src/components/work/ClickUpFourDocsDemo.tsx",
+    "src/components/work/ClickUpFourDocsDemo.css",
+    "src/components/work/clickup-four-demo-refs/",
+    "src/assets/clickup-four-demo/asset-manifest.json"
+  ],
+  "user_corrections": [],
+  "repeatability": "high",
+  "skill_candidate": "pixel-perfect-figma-slide-rebuild"
+}

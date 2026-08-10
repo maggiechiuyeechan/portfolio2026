@@ -1,0 +1,30 @@
+{
+  "id": "89fd1a6f",
+  "project": "empty-window",
+  "date": "2026-07-31",
+  "user_intent": "Build a custom cursor-label system that trails the pointer with per-hero-variant instruction text (e.g. \"Drag and edit shapes\"), styled with the site's design tokens, dismissed after the visitor interacts, and remembered across visits.",
+  "domains": ["react", "typescript", "css", "astro", "design-tokens", "animation", "ux"],
+  "resolution": "Final approach keeps the native cursor and trails a small Geist Mono caption pill (global controller in src/scripts/cursor-label.ts + cursor-label.css) offset 12px from the pointer, with per-variant copy defined in heroVariants.ts and motion-library scale in/out animation. Labels dismiss on first meaningful interaction with each scene (reusing the idle-nudge interaction listeners) and dismissals persist per variant in localStorage under cursor-label:seen, chosen over a database after discussing scale/performance. Styling was iterated entirely through global typography tokens (caption style moved to Geist Mono, 10px, 0.15em letter-spacing, 1.5 line-height) with fixed 8rem max-width and text-wrap balance to stop width-flash on reload.",
+  "artifacts": [
+    "src/scripts/cursor-label.ts",
+    "src/styles/cursor-label.css",
+    "src/config/heroVariants.ts",
+    "src/components/hero/HeroShell.tsx",
+    "src/styles/typography.css",
+    "src/lib/useIdleNudge.ts"
+  ],
+  "user_corrections": [
+    "no why do you need to do that I just need you to always show a cursor label in a way that I can style it",
+    "use the normal cursor as the cursor keep the label",
+    "i dont see the typography token applied",
+    "can you remove the labeled region logic",
+    "yah but the label is staying on even after interaction",
+    "theres a little flash on reload where the label changes widths...why",
+    "the label is still disappearing randomly can you double check whats happening and that its behaving correctly according to what I've defined",
+    "so you can't make it shimmer as if it was part of the text? ... just remove the animation completely",
+    "it loks like the grid mask is now no longer there",
+    "for some reason when i keep clicking surprise me without moving my mouse - the label doesnt show every time i click it"
+  ],
+  "repeatability": "high",
+  "skill_candidate": "token-driven-cursor-affordance-labels"
+}

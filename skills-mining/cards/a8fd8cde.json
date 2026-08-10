@@ -1,0 +1,12 @@
+{
+  "id": "a8fd8cde",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-07-25",
+  "user_intent": "Verify the agent's shell/git access works, then check whether a Figma file can be read via MCP.",
+  "domains": ["setup", "git", "figma", "mcp"],
+  "resolution": "Confirmed shell and git access (clean tree, remote configured). The Figma MCP check found no Figma server configured — ~/.cursor/mcp.json was empty — and opening the Figma URL in the browser hit a login wall, so the diagnosis was that the Figma MCP connection needed to be set up (done in a follow-up chat).",
+  "artifacts": [],
+  "user_corrections": [],
+  "repeatability": "low",
+  "skill_candidate": null
+}

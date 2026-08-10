@@ -15,9 +15,9 @@ const SCALERS: ScalerEntry[] = [
   { selector: ".bluedot-hero-pane.is-report .bluedot-hero-stage", designWidth: 580.917 },
   { selector: ".bluedot-hero-pane.is-flight .bluedot-hero-stage", designWidth: 343.75 },
   {
-    // Narrow frames crop to the slice the mobile rule in ClickUpAIDemo.css frames.
+    // Narrow frames crop a 680px-wide slice starting at 230px — see ClickUpAIDemo.css.
     selector: ".cua-chat-scaler",
-    designWidth: () => (window.matchMedia("(max-width: 30rem)").matches ? 726 : 936.667),
+    designWidth: () => (window.matchMedia("(max-width: 30rem)").matches ? 680 : 936.667),
   },
   { selector: ".cua-credits-scaler", designWidth: 462.333 },
 ];

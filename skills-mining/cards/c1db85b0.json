@@ -1,0 +1,17 @@
+{
+  "id": "c1db85b0",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-08-01",
+  "user_intent": "Run the final verification phase for the ClickUp 4.0 carousel: kill stray dev servers, typecheck/build, and visually verify all four demo slides against reference PNGs.",
+  "domains": ["playwright", "visual-verification", "figma", "react", "astro"],
+  "resolution": "Killed stray dev servers by PID, confirmed the reported ~68 TS errors were stale (typecheck/build clean), then wrote a reusable Playwright script (scripts/cu4-visual-check.mjs) that clicks each carousel tab via JS dispatch (avoiding hover auto-pause), captures early/late/reduced-motion states, and compares against reference PNGs. Bypassed the cookie-gated /work route by temporarily removing '/work' from PROTECTED_PREFIXES in src/config/auth.ts and restoring it afterward. Found and fixed one real bug: the Tasks demo Icon helper set both inset and width/height:100%, making disclosure carets render oversized; fixed with inset:0 + margin:auto centering at intrinsic SVG size.",
+  "artifacts": [
+    "scripts/cu4-visual-check.mjs",
+    "scripts/cu4-shots/",
+    "src/components/work/ClickUpFourTasksDemo.tsx",
+    "src/config/auth.ts"
+  ],
+  "user_corrections": [],
+  "repeatability": "high",
+  "skill_candidate": "playwright-demo-visual-verification"
+}

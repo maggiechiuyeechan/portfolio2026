@@ -1,0 +1,15 @@
+{
+  "id": "690ae2a9",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-07-25",
+  "user_intent": "Get the Figma MCP server actually connected so the agent can read a Figma design file.",
+  "domains": ["figma", "mcp", "setup", "cursor-settings"],
+  "resolution": "After attempts to call get_design_context failed (plugin skills present but no MCP server registered), the fix was adding {\"mcpServers\": {\"figma\": {\"url\": \"https://mcp.figma.com/mcp\"}}} to ~/.cursor/mcp.json, authenticating via Cursor Settings > MCP, and starting a new Agent chat since MCP servers don't attach to an already-open chat.",
+  "artifacts": [],
+  "user_corrections": [
+    "now you should be able to read this figma (after prior chat found MCP unconfigured)",
+    "what do i put here (screenshot of empty mcp.json)"
+  ],
+  "repeatability": "medium",
+  "skill_candidate": "figma-mcp-connect-troubleshoot"
+}

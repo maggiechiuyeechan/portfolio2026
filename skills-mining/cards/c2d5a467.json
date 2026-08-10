@@ -1,0 +1,37 @@
+{
+  "id": "c2d5a467",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-08-02",
+  "user_intent": "Replace static case-study hero images on the portfolio with pixel-accurate animated React demos rebuilt from Figma frames (ClickUp AI Chat, AI Credits, Uber vehicle dashboard, BlueDot disease report and flight estimates, Headspace hero), refining animation choreography and pixel details through element-by-element feedback.",
+  "domains": ["figma", "react", "css", "animation", "astro", "typography", "svg", "video"],
+  "resolution": "Established a reusable rebuild-prompt template ('Rebuild only the X demo as a pixel-accurate animated implementation of this Figma frame... canonical output size from the node's exact dimensions') and executed it per demo using Figma MCP get_design_context for exact specs. Each demo renders inside an SVG foreignObject stage at the frame's canonical size so it scales cleanly within the Astro StudyBlock; brand fonts came from local OTFs (Uber Move) or fonts already on the site (Atkinson). Animation timing, panel slide-ins, wrap behavior, and dozens of positioning nits were fixed iteratively via the user's DOM-path element selections, with Playwright screenshots for verification.",
+  "artifacts": [
+    "src/components/work/ClickUpAIChatDemo.tsx",
+    "src/components/work/ClickUpAICreditsDemo.tsx",
+    "src/components/work/ClickUpAIAgentsDemo.tsx",
+    "src/components/work/ClickUpAIDemo.css",
+    "src/components/work/UberVehicleDashboardDemo.tsx",
+    "src/components/work/UberVehicleDashboardDemo.css",
+    "src/components/work/BlueDotHeroDemo.tsx",
+    "src/components/work/BlueDotDiseaseReportDemo.tsx",
+    "src/components/work/BlueDotFlightEstimateDemo.tsx",
+    "src/components/work/BlueDotDemo.css",
+    "src/components/work/HeadspaceHeroDemo.tsx",
+    "src/components/work/HeadspaceHeroDemo.css",
+    "src/components/work/StudyBlock.astro"
+  ],
+  "user_corrections": [
+    "why do i need to download those - cant i just use the figma?",
+    "the atkinson font should be loaded to the site already",
+    "lets standardize the ... animations - use the smaller one",
+    "slow down the animations farther",
+    "when sara posts, don't draw the reply just yet - the reply comes after",
+    "dont nudge down the icons when the image is typing",
+    "i thought the background of the mobile video on top of the car is transparent",
+    "you removed the text that was there on this image before tho",
+    "no need to fade out the last screen as the first screen slides in",
+    "you misaligned this line - align properly according to the figma"
+  ],
+  "repeatability": "high",
+  "skill_candidate": "figma-pixel-perfect-animated-demo"
+}

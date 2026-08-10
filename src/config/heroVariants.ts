@@ -146,6 +146,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     layout: "full-canvas",
     sceneFrame: true,
     earlyBackdrop: "grid",
+    surpriseOnly: true,
     cursorLabel: "hover on shapes, click to reload",
     load: () => import("../components/hero/scenes/ShapeCollageScene"),
   },

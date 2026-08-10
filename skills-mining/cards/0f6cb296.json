@@ -1,0 +1,29 @@
+{
+  "id": "0f6cb296",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-07-31",
+  "user_intent": "Enable PostHog session recording, then fix a batch of hero polish issues: physics pile jitter, scroll-to alignment with the nav, slow mobile background loading, meadow video centering, and (abandoned) an animated fake-cursor onboarding guide.",
+  "domains": ["analytics", "physics", "react", "css", "performance", "astro"],
+  "resolution": "PostHog session recording shipped with maskAllInputs and recording disabled on localhost. Physics jitter was fixed with a snap-on-settle pattern in PhysicsTileStack (freeze position/angle in a ref once at rest, stop updating until re-popped) plus tighter damping; work-page scroll-to was aligned by correcting scroll-margin-top for the nav logo's actual 6px offset from --nav-inset; slow mobile backgrounds were fixed by preloading the active variant's meadow video/poster in warmVariant, and meadow is vertically centered only at the small-viewport-height breakpoint. A fake-cursor demo guide (HeroCursorGuide.tsx, heroDemoTarget.tsx, hero-cursor-guide.css) was built, iterated on, and then fully deleted at the user's request.",
+  "artifacts": [
+    "src/components/auth/PhysicsTileStack.tsx",
+    "src/components/nav/Nav.tsx",
+    "src/components/hero/HeroShell.tsx",
+    "src/components/hero/scenes/MeadowScene.tsx",
+    "src/components/hero/HeroEarlyBackdrop.tsx",
+    "src/styles/study.css"
+  ],
+  "user_corrections": [
+    "why is the headspace on still scrolling pass the header",
+    "sometimes its scrolling completely past",
+    "for the meadow vertically centering change - only apply that to small viewport heights breakpoint and revert back for the rest of the screensizes",
+    "yeah but why does it show that you're not centering the meadow image vertically",
+    "ok but it went way too fast and also trigger it after 1s",
+    "the sprinkle one - its popping too many it should max pop 3",
+    "ok so no this block one is not working can we do radiating circles instead of the mouse pointer",
+    "I can't see the circle tho can it be 28px by 28px and black stroke",
+    "ok remove all the animations to do with the fake cursor"
+  ],
+  "repeatability": "medium",
+  "skill_candidate": "matterjs-snap-on-settle-jitter-fix"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "8dee5dda",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-07-29",
+  "user_intent": "Bootstrap a password-protected Astro portfolio site from a Figma design system, then iteratively design ~15 interactive hero-background variants (physics shapes, drawn collages, eye-tracking monsters, video shaders, sounds) and ship them as a random per-visit rotation.",
+  "domains": ["figma", "astro", "react", "motion", "css", "design-tokens", "physics", "matter-js", "svg", "canvas", "webgl", "audio", "vercel", "seo"],
+  "resolution": "Each hero variant became an isolated React island (src/components/auth/*) driven by SVG shape sets pulled straight from Figma frames via the Figma MCP (get_design_context + download_assets, 51 asset downloads across the chat) and converted into shape-data modules like collageShapes.ts and physicsShapesC.ts. Side-by-side /compare-* routes were used to iterate per-variant, then retired in favor of a random rotation (HeroRotator + variantBag) with a shared text position, grain/noise overlay tuned to 18-22% opacity, and cross-variant fade transitions. The password gate was styled from Figma tokens with Cuelume typing/hover sound effects, gated by browser autoplay policy (sound only after first user gesture).",
+  "artifacts": [
+    "src/components/hero/HeroShell.tsx",
+    "src/components/hero/HeroRotator.tsx",
+    "src/components/auth/PhysicsTileStack.tsx",
+    "src/components/auth/ShapeDesk.tsx",
+    "src/components/auth/ShapeCollage.tsx",
+    "src/components/auth/GridSprinkle.tsx",
+    "src/components/auth/MonsterEyes.tsx",
+    "src/components/auth/BotanicalGrowth.tsx",
+    "src/components/auth/EditableBlobField.tsx",
+    "src/components/auth/HeroAvatarHalftone.tsx",
+    "src/components/auth/HeroNoiseOverlay.tsx",
+    "src/components/auth/PasswordForm.tsx",
+    "src/components/auth/collageShapes.ts",
+    "src/lib/variantBag.ts",
+    "src/lib/heroSounds.ts",
+    "src/lib/cuelume.ts",
+    "src/pages/index.astro"
+  ],
+  "user_corrections": [
+    "Motion I thought we were using motion library from framer",
+    "uhoh.. look the layouts are all messup up ... it looks like you broke the grid etc",
+    "oh no you replaced ALL of my versions...I only wanted you to replace version B with the new blocks...",
+    "hmm it looks like they are all rounded - i thoguht my figma had more like rectangles?",
+    "how come for version L some of the shapes are black - i don't see any that are black in figma",
+    "did you speed up the duration?? ... remove that change",
+    "woops i meant ONLY for mobile, not desktop",
+    "no I didnt mean the short viewport hero I meant all the other desktop sizes above the short viewport hero",
+    "ou did not replace the pressed state of the arrow its still the old svg",
+    "now the text disappears completely when i press surprise me"
+  ],
+  "repeatability": "high",
+  "skill_candidate": "figma-assets-to-interactive-hero-variants"
+}

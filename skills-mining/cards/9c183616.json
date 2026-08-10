@@ -1,0 +1,22 @@
+{
+  "id": "9c183616",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-08-01",
+  "user_intent": "Replace the static Headspace mobile image with a pixel-accurate animated walkthrough of a 7-frame Figma storyboard as one 414x816 phone, then add a second animated phone frame beside it.",
+  "domains": ["figma", "react", "animation", "fonts", "playwright", "pixel-perfect"],
+  "resolution": "Extracted each Figma frame individually with get_design_context, exported complex hero illustrations and front-page rasters as PNG/SVG via download_assets + curl into src/assets/headspace-demo/, sampled exact divider colors from reference PNGs with PIL, and built a timer-driven state machine component verified with Playwright screenshot loops against the password-gated dev server. A key fix: locally installed 'Apercu Mono' was aliasing the Figma font stack to monospace, resolved by subsetting the user's real Apercu OTFs (Regular/Medium/Bold) to woff2 via fonttools using the scripts/subset-fonts.sh recipe and scoping @font-face as 'Apercu Demo'. A second component (HeadspaceReflectionDemo) reused the same pipeline for an animate-in-only phone 32px to the left.",
+  "artifacts": [
+    "src/components/work/HeadspaceHeroDemo.tsx",
+    "src/components/work/HeadspaceHeroDemo.css",
+    "src/components/work/HeadspaceReflectionDemo.tsx",
+    "src/components/work/StudyBlock.astro",
+    "src/assets/headspace-demo/",
+    "public/fonts/apercu/",
+    "scripts/subset-fonts.sh"
+  ],
+  "user_corrections": [
+    "use the rigth fonts - they are attached (pointing to Apercu OTFs in Google Drive)"
+  ],
+  "repeatability": "high",
+  "skill_candidate": "figma-storyboard-to-animated-demo"
+}

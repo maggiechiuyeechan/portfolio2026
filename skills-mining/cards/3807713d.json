@@ -1,0 +1,38 @@
+{
+  "id": "3807713d",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-08-03",
+  "user_intent": "Rebuild the ClickUp 4.0 carousel slides (Tasks, Docs, Calendar, Whiteboards) as pixel-perfect animated React demos matching specific Figma frames, then polish every font, icon, stroke, and alignment detail through dozens of visual QA rounds before committing.",
+  "domains": ["figma", "react", "css", "animation", "playwright", "astro", "typography", "svg"],
+  "resolution": "Worked from a plan file (clickup_four_animations plan) and pulled exact specs with the Figma MCP get_design_context (~70 calls) to build per-slide demo components (ClickUpFourTasksDemo, DocsDemo, CalendarDemo, WhiteboardsDemo) plus a shared GabBar/nav rail. Verified accuracy by writing throwaway Playwright screenshot probe scripts (scripts/cu4-*-shot.mjs) that read SITE_PASSWORD from .env to pass the /work cookie gate, screenshot specific components in chromium/webkit, and compare against Figma exports. Fixed fonts by loading local SF Pro OTFs, standardized shared icons across slides from the Whiteboards frame, removed hover-pause interaction, handled mobile breakpoints, and committed/pushed the finished carousel.",
+  "artifacts": [
+    "src/components/work/ClickUpFourTasksDemo.tsx",
+    "src/components/work/ClickUpFourTasksDemo.css",
+    "src/components/work/ClickUpFourCalendarDemo.tsx",
+    "src/components/work/ClickUpFourCalendarDemo.css",
+    "src/components/work/ClickUpFourDocsDemo.tsx",
+    "src/components/work/ClickUpFourDocsDemo.css",
+    "src/components/work/ClickUpFourWhiteboardsDemo.tsx",
+    "src/components/work/ClickUpFourGabBar.tsx",
+    "src/components/work/ClickUpFourCarousel.tsx",
+    "src/components/work/ClickUpFourCarousel.css",
+    "scripts/cu4-tasks-shot.mjs",
+    "scripts/cu4-calendar-shot.mjs",
+    "scripts/cu4-docs-shot.mjs",
+    "scripts/cu4-visual-check.mjs"
+  ],
+  "user_corrections": [
+    "why do you say that you couldnt load SF Pro when the other animations use it",
+    "these fonts dont look accurate",
+    "these nav icons on calendar are not correct re-check the figma",
+    "use the workspace picker, search and ai icon from whiteboards on all the slides. the other ones are all wrong",
+    "cursor is missing the stroke",
+    "double check the stroked line widths",
+    "task icons ang alignements are off",
+    "nav bar is off - make sure they are all accurate across all the slides",
+    "no I don't want hovering to have any interaction associated with it",
+    "no use fable low for those please"
+  ],
+  "repeatability": "high",
+  "skill_candidate": "playwright-figma-visual-probe"
+}

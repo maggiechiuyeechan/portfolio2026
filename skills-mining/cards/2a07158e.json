@@ -1,0 +1,14 @@
+{
+  "id": "2a07158e",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-07-31",
+  "user_intent": "Figure out why the Vercel production deployment stopped working.",
+  "domains": ["vercel", "deployment", "npm", "astro", "debugging"],
+  "resolution": "Diagnosed that production was stuck on an old successful deploy: comparing prod asset hashes with the local build showed staleness, and the GitHub deployments API (queried via a python urllib script since Vercel CLI was not logged in) showed the last 4 production deploys failed. Root cause: @astrojs/check was added to package.json without a lockfile update and peers on TypeScript ^5||^6 while the project uses TS 7, so Vercel's npm ci hits ERESOLVE before the build. Fix: removed @astrojs/check, pointed the typecheck script at tsc --noEmit, and verified with a clean npm ci + full verify locally.",
+  "artifacts": [
+    "package.json"
+  ],
+  "user_corrections": [],
+  "repeatability": "high",
+  "skill_candidate": "vercel-deploy-failure-triage"
+}

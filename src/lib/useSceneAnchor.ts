@@ -1,4 +1,5 @@
 import { useEffect, useState, type RefObject } from "react";
+import { observeLayoutDrift } from "./observeLayoutDrift";
 
 /**
  * Track a point just above an element, for scenes that perch art on the name.
@@ -17,6 +18,9 @@ import { useEffect, useState, type RefObject } from "react";
  *   - window resize
  *   - document.fonts.ready — the h1 uses a custom face, so first paint
  *     measures the fallback metrics and must be re-measured after swap
+ *   - observeLayoutDrift — ancestor transforms (password lift) move the name
+ *     in viewport space without resizing it; without this the portaled art
+ *     stays put and overlaps the copy
  *
  * Net effect is also more accurate than the poll: the anchor now updates on
  * the frame the layout changes rather than up to 200ms later.
@@ -69,6 +73,7 @@ export function useSceneAnchor(
     }
 
     window.addEventListener("resize", measure);
+    const stopDrift = observeLayoutDrift(measure);
 
     // Custom display face — first measurement sees fallback metrics.
     let cancelled = false;
@@ -81,6 +86,7 @@ export function useSceneAnchor(
       cancelAnimationFrame(raf1);
       observer.disconnect();
       window.removeEventListener("resize", measure);
+      stopDrift();
     };
   }, [ref, gap]);
 

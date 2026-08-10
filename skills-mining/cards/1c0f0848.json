@@ -1,0 +1,15 @@
+{
+  "id": "1c0f0848",
+  "project": "empty-window",
+  "date": "2026-08-04",
+  "user_intent": "Get the Astro dev server running and stop Cursor from asking for permission on every command.",
+  "domains": ["setup", "astro", "cursor-settings"],
+  "resolution": "Restarted the Astro dev server (previous instances kept dying with exit 137, ending up on port 4322 when 4321 stayed occupied) and explained that the approval prompts come from Cursor's Auto-review run mode rather than the agent, pointing the user to the Run Mode setting.",
+  "artifacts": [],
+  "user_corrections": [
+    "it says its not running",
+    "WHY ARE YOU ALWAYS ASKING ME for permission to run things"
+  ],
+  "repeatability": "low",
+  "skill_candidate": null
+}

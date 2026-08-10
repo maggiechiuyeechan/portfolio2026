@@ -1,0 +1,27 @@
+{
+  "id": "9866ac6e",
+  "project": "Users-maggiechiuyeechan-Documents-portfolio2026",
+  "date": "2026-07-29",
+  "user_intent": "Iteratively tune the portfolio hero: h1 font weight, then add and refine an idle 'nudge' scale-up animation across all hero scene variants.",
+  "domains": ["animation", "css", "react", "design-tuning", "astro"],
+  "resolution": "Built a shared useIdleNudge hook applied to every hero variant except meadow/monsters, with per-variant peak scales (sprinkle 1.75x, collage 1.03x, others 1.075x), a 5s idle delay, visible-frame targeting so off-screen sprinkle dots are never nudged, and permanent disable after the user's first interaction each visit. Committed and pushed as one change.",
+  "artifacts": [
+    "src/lib/useIdleNudge.ts",
+    "src/lib/idleNudgeScale.ts",
+    "src/styles/hero-idle-nudge.css",
+    "src/components/auth/GridSprinkle.tsx",
+    "src/components/auth/ShapeCollage.tsx",
+    "src/components/auth/EditableBlobField.tsx",
+    "src/styles/typography.css"
+  ],
+  "user_corrections": [
+    "for h1 can we try font weight 300 (after trying 350)",
+    "lets change it to 5s everywhere",
+    "for this version only 2x one of the dots",
+    "i dont always see the nudge could it be that its off screen? the sprinkle one",
+    "for the collage can the nudge scale up not be so dramatic",
+    "for sprinkle nudge - scale up to only 1.75 instead of 2"
+  ],
+  "repeatability": "medium",
+  "skill_candidate": null
+}
