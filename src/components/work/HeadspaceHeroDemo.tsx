@@ -214,9 +214,18 @@ export default function HeadspaceHeroDemo() {
   useEffect(() => {
     const node = rootRef.current;
     if (!node) return;
+    if (!("IntersectionObserver" in window)) {
+      setRunning(true);
+      return;
+    }
     const observer = new IntersectionObserver(
-      ([entry]) => setRunning(entry.isIntersecting),
-      { threshold: 0.35 },
+      ([entry]) => {
+        if (entry?.isIntersecting) setRunning(true);
+        else setRunning(false);
+      },
+      // Any intersection is enough — mid-content on the left phone stays at
+      // opacity 0 until `running` is true, so a high threshold read as broken.
+      { threshold: 0, rootMargin: "48px 0px 48px 0px" },
     );
     observer.observe(node);
     return () => observer.disconnect();

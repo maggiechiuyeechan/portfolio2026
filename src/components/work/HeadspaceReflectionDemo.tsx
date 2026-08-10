@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import dayMon from "../../assets/headspace-demo/day-mon.png";
 import dayTue from "../../assets/headspace-demo/day-tue.png";
 import dayWed from "../../assets/headspace-demo/day-wed.png";
@@ -18,10 +19,23 @@ const DAYS = [
  * The "week's reflective moments" front-page screen (Figma 2408:6499),
  * with a staggered entrance animation. Playback is driven by the `live`
  * prop from the parent hero.
+ *
+ * Once live has fired, keep `is-revealed` so the mid-content (which starts at
+ * opacity 0) never snaps back to a blank phone if the intersection observer
+ * flickers — chrome (top/bottom) is always painted, so that read as "broken".
  */
 export default function HeadspaceReflectionDemo({ live }: { live: boolean }) {
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    if (live) setRevealed(true);
+  }, [live]);
+
   return (
-    <div className={`hsd-phone hsr-phone ${live ? "is-live" : ""}`} aria-hidden="true">
+    <div
+      className={`hsd-phone hsr-phone${live ? " is-live" : ""}${revealed ? " is-revealed" : ""}`}
+      aria-hidden="true"
+    >
       <img className="hsr-top" src={rfTop.src} alt="" />
       <p className="hsr-greeting hsr-in hsr-in-0">Happy Friday, Maggie!</p>
 

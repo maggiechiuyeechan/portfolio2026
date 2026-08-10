@@ -908,51 +908,67 @@
   height: 66px;
 }
 
-/* entrance animation — staggered rise-in once the hero is on screen */
+/*
+ * Entrance — staggered rise-in once the hero is on screen.
+ *
+ * Use keyframes (not transition-from-opacity-0): inside a `transform: scale()`
+ * pane, Safari often skips those transitions and the phone stays blank while
+ * the always-visible chrome (top/bottom bars) still paints.
+ */
 
 .hsr-in {
   opacity: 0;
   transform: translateY(14px);
-  transition:
-    opacity 0.55s ease,
-    transform 0.55s cubic-bezier(0.3, 0.8, 0.35, 1);
 }
 
-.hsr-phone.is-live .hsr-in {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes hsr-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hsr-phone.is-live .hsr-in-0 {
-  transition-delay: 0.05s;
+  animation: hsr-rise-in 0.55s cubic-bezier(0.3, 0.8, 0.35, 1) 0.05s both;
 }
 
 .hsr-phone.is-live .hsr-in-1 {
-  transition-delay: 0.2s;
+  animation: hsr-rise-in 0.55s cubic-bezier(0.3, 0.8, 0.35, 1) 0.2s both;
 }
 
 .hsr-phone.is-live .hsr-in-day-0 {
-  transition-delay: 0.4s;
+  animation: hsr-rise-in 0.55s cubic-bezier(0.3, 0.8, 0.35, 1) 0.4s both;
 }
 
 .hsr-phone.is-live .hsr-in-day-1 {
-  transition-delay: 0.55s;
+  animation: hsr-rise-in 0.55s cubic-bezier(0.3, 0.8, 0.35, 1) 0.55s both;
 }
 
 .hsr-phone.is-live .hsr-in-day-2 {
-  transition-delay: 0.7s;
+  animation: hsr-rise-in 0.55s cubic-bezier(0.3, 0.8, 0.35, 1) 0.7s both;
 }
 
 .hsr-phone.is-live .hsr-in-day-3 {
-  transition-delay: 0.85s;
+  animation: hsr-rise-in 0.55s cubic-bezier(0.3, 0.8, 0.35, 1) 0.85s both;
 }
 
 .hsr-phone.is-live .hsr-in-2 {
-  transition-delay: 1.05s;
+  animation: hsr-rise-in 0.55s cubic-bezier(0.3, 0.8, 0.35, 1) 1.05s both;
 }
 
 .hsr-phone.is-live .hsr-in-3 {
-  transition-delay: 1.2s;
+  animation: hsr-rise-in 0.55s cubic-bezier(0.3, 0.8, 0.35, 1) 1.2s both;
+}
+
+/* After the first play, keep mid-content painted even if `is-live` drops. */
+.hsr-phone.is-revealed:not(.is-live) .hsr-in {
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -960,9 +976,17 @@
     animation: none;
   }
 
-  .hsr-in {
+  .hsr-in,
+  .hsr-phone.is-live .hsr-in-0,
+  .hsr-phone.is-live .hsr-in-1,
+  .hsr-phone.is-live .hsr-in-day-0,
+  .hsr-phone.is-live .hsr-in-day-1,
+  .hsr-phone.is-live .hsr-in-day-2,
+  .hsr-phone.is-live .hsr-in-day-3,
+  .hsr-phone.is-live .hsr-in-2,
+  .hsr-phone.is-live .hsr-in-3 {
     opacity: 1;
     transform: none;
-    transition: none;
+    animation: none;
   }
 }
