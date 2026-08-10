@@ -84,7 +84,7 @@ const heroText: React.CSSProperties = {
   flexDirection: "column",
   alignItems: "center",
   gap: "var(--spacing-2)",
-  marginBottom: "var(--spacing-3)",
+  marginBottom: "var(--spacing-5)",
 };
 
 const heroHeading: React.CSSProperties = {
