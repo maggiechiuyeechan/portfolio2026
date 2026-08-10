@@ -137,7 +137,7 @@
 
 @media (max-width: 41.25rem) {
   .hero-avatar-frame {
-    --hero-avatar-radius: 3.5rem;
+    --hero-avatar-radius: 4.75rem;
     width: 9.5rem;
     height: 15.5rem; /* tall capsule in the open band on phones */
   }
