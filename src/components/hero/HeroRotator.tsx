@@ -6,7 +6,7 @@
  * in an effect would flash the wrong layout; doing it in the component body
  * would re-roll (and burn a bag entry) on every re-render.
  */
-import { lazy, useCallback, useEffect, useState, type ComponentType } from "react";
+import { lazy, useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import HeroShell from "./HeroShell";
 import {
   getVariant,
@@ -15,6 +15,9 @@ import {
   type HeroVariantId,
 } from "../../config/heroVariants";
 import { forcedVariant, peekNextVariant, takeSurpriseVariant, takeVariant } from "../../lib/variantBag";
+
+/** Match hero.css `--hero-scene-swap-duration` — keep outgoing art up until faded. */
+const SCENE_SWAP_MS = 400;
 
 interface Props {
   name: string;
@@ -77,19 +80,54 @@ export default function HeroRotator({ name, title, tagline, variantId }: Props) 
     return id;
   });
   const [playEntrance, setPlayEntrance] = useState(true);
+  const activeIdRef = useRef(activeId);
+  activeIdRef.current = activeId;
+  const swappingRef = useRef(false);
+  const swapTimerRef = useRef(0);
   const variant = getVariant(activeId) ?? HERO_VARIANTS[0]!;
   const Scene = LAZY_SCENES[variant.id]!;
 
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(swapTimerRef.current);
+      delete document.body.dataset.heroSceneExiting;
+      delete document.body.dataset.heroSceneEntering;
+      swappingRef.current = false;
+    };
+  }, []);
+
   const handleSurprise = useCallback(() => {
+    if (swappingRef.current) return;
     setPlayEntrance(false);
     if (window.location.pathname !== "/" || window.location.search) {
       window.history.replaceState(null, "", "/");
     }
-    setActiveId((current) => {
-      const nextId = takeSurpriseVariant(current);
-      warmVariant(nextId);
-      return nextId;
-    });
+
+    const nextId = takeSurpriseVariant(activeIdRef.current);
+    warmVariant(nextId);
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setActiveId(nextId);
+      return;
+    }
+
+    // Fade the portaled scene out in place, then remount the next variant.
+    // Scenes render under document.body, so a React wrapper fade would miss them.
+    swappingRef.current = true;
+    delete document.body.dataset.heroSceneEntering;
+    document.body.dataset.heroSceneExiting = "";
+
+    window.clearTimeout(swapTimerRef.current);
+    swapTimerRef.current = window.setTimeout(() => {
+      delete document.body.dataset.heroSceneExiting;
+      document.body.dataset.heroSceneEntering = "";
+      setActiveId(nextId);
+      swappingRef.current = false;
+      swapTimerRef.current = window.setTimeout(() => {
+        delete document.body.dataset.heroSceneEntering;
+      }, SCENE_SWAP_MS);
+    }, SCENE_SWAP_MS);
   }, []);
 
   // Warm the NEXT visit's chunk once this page is idle. Speculative, so

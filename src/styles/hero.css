@@ -49,7 +49,7 @@
   .hero {
     justify-content: flex-end;
     padding-top: var(--spacing-5);
-    padding-bottom: 4rem;
+    padding-bottom: 6rem;
   }
 
   .hero-inner {
@@ -161,6 +161,89 @@ body[data-hero-interactive] textarea {
 }
 
 /* ---------------------------------------------------------------------------
+ * Surprise-me scene swap — portaled art lives on document.body, so fade via
+ * body flags rather than a React wrapper around the scene render prop.
+ * Duration must match SCENE_SWAP_MS in HeroRotator.tsx.
+ * ------------------------------------------------------------------------- */
+
+:root {
+  --hero-scene-swap-duration: 0.4s;
+  --hero-scene-swap-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.physics-tiles,
+.shape-collage,
+.grid-sprinkle,
+.shape-desk,
+.editable-blob-field,
+.botanical-growth,
+.hero-monsters-scene,
+.hero-meadow-scene,
+.hero-early-backdrop {
+  transition: opacity var(--hero-scene-swap-duration) var(--hero-scene-swap-ease);
+}
+
+body[data-hero-scene-exiting] .physics-tiles,
+body[data-hero-scene-exiting] .shape-collage,
+body[data-hero-scene-exiting] .grid-sprinkle,
+body[data-hero-scene-exiting] .shape-desk,
+body[data-hero-scene-exiting] .editable-blob-field,
+body[data-hero-scene-exiting] .botanical-growth,
+body[data-hero-scene-exiting] .hero-monsters-scene,
+body[data-hero-scene-exiting] .hero-meadow-scene,
+body[data-hero-scene-exiting] .hero-early-backdrop {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes hero-scene-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body[data-hero-scene-entering] .physics-tiles,
+body[data-hero-scene-entering] .shape-collage,
+body[data-hero-scene-entering] .grid-sprinkle,
+body[data-hero-scene-entering] .shape-desk,
+body[data-hero-scene-entering] .editable-blob-field,
+body[data-hero-scene-entering] .botanical-growth,
+body[data-hero-scene-entering] .hero-monsters-scene,
+body[data-hero-scene-entering] .hero-meadow-scene,
+body[data-hero-scene-entering] .hero-early-backdrop {
+  animation: hero-scene-fade-in var(--hero-scene-swap-duration) var(--hero-scene-swap-ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .physics-tiles,
+  .shape-collage,
+  .grid-sprinkle,
+  .shape-desk,
+  .editable-blob-field,
+  .botanical-growth,
+  .hero-monsters-scene,
+  .hero-meadow-scene,
+  .hero-early-backdrop {
+    transition: none;
+  }
+
+  body[data-hero-scene-entering] .physics-tiles,
+  body[data-hero-scene-entering] .shape-collage,
+  body[data-hero-scene-entering] .grid-sprinkle,
+  body[data-hero-scene-entering] .shape-desk,
+  body[data-hero-scene-entering] .editable-blob-field,
+  body[data-hero-scene-entering] .botanical-growth,
+  body[data-hero-scene-entering] .hero-monsters-scene,
+  body[data-hero-scene-entering] .hero-meadow-scene,
+  body[data-hero-scene-entering] .hero-early-backdrop {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
  * Scene frame (Versions B, C, I, F, L, N).
  * Solid background-main mat + scene clip + border-default on inner edge.
  * ------------------------------------------------------------------------- */
@@ -169,6 +252,13 @@ body[data-hero-scene-frame] {
   --hero-scene-frame-inset: 3rem;
   --hero-scene-frame-radius: 3rem;
   --hero-scene-frame-mat-overlap: 2px;
+}
+
+@media (max-width: 41.25rem), (max-height: 40.625rem) {
+  body[data-hero-scene-frame] {
+    --hero-scene-frame-inset: 2rem;
+    --hero-scene-frame-radius: 2rem;
+  }
 }
 
 /* Clip portaled scenes so shapes never paint into the mat zone (fixes corner bleed). */
