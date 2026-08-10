@@ -12,6 +12,12 @@ export function getVisibleNavLogo() {
   return null;
 }
 
+/** Extra air between the sticky chrome and the study title after a nav jump. */
+function studyScrollGapPx() {
+  const rootSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+  return Number.isFinite(rootSize) ? rootSize : 16; // 1rem
+}
+
 /**
  * Live Y of the work-page scroll alignment line.
  *
@@ -19,15 +25,18 @@ export function getVisibleNavLogo() {
  * Mobile: sticky header bar covers everything below the logo, so align to the
  * bar's bottom (matches `--scroll-anchor-top`). Using logo top here scrolled
  * titles up under the opaque bar.
+ *
+ * Always leave 1rem under that line so the title isn't flush against the nav.
  */
 export function getStudyScrollAlignTop() {
+  const gap = studyScrollGapPx();
   const mobileBar = document.querySelector<HTMLElement>(".mobile-nav-bar");
   if (mobileBar) {
     const { width, height, bottom } = mobileBar.getBoundingClientRect();
     // Hidden desktop twin (parent `display: none`) reports a zero box.
-    if (width > 0 && height > 0) return bottom;
+    if (width > 0 && height > 0) return bottom + gap;
   }
-  return getVisibleNavLogo()?.top ?? 48;
+  return (getVisibleNavLogo()?.top ?? 48) + gap;
 }
 
 /** Scroll so a study title sits on the nav alignment line (see getStudyScrollAlignTop). */
