@@ -13,6 +13,7 @@ export interface ResumeContact {
 export interface ResumeEducation {
   degree: string;
   school: string;
+  location?: string;
 }
 
 /** Sub-heading followed by its lines within one role (rendered flat, per Figma). */
@@ -47,6 +48,7 @@ export const resume = {
       { label: "psw: build" },
     ],
     [
+      { label: "Based in San Francisco" },
       { label: "mach.sq@gmail.com", href: "mailto:mach.sq@gmail.com" },
       { label: "412.298.2988" },
       {
@@ -57,8 +59,16 @@ export const resume = {
   ] satisfies ResumeContact[][],
 
   education: [
-    { degree: "Master's HCI", school: "Carnegie Mellon 2019" },
-    { degree: "Bachelor's Graphic Design", school: "OCAD University 2013" },
+    {
+      degree: "Master's HCI",
+      school: "Carnegie Mellon 2019",
+      location: "Pittsburgh, PA",
+    },
+    {
+      degree: "Bachelor's Graphic Design",
+      school: "OCAD University 2013",
+      location: "Toronto, Canada",
+    },
   ] satisfies ResumeEducation[],
 
   work: [
@@ -82,7 +92,7 @@ export const resume = {
           ],
         },
         {
-          heading: "Shipping with care for the pixels",
+          heading: "Leading the initiatives, owning the details",
           bullets: [
             "Personally designed and shipped 135+ features to production as an IC and a design leader",
             "Led ClickUp 4.0, the largest redesign in company history, introducing a new visual language and navigation IA across Lists, Chat, Docs, and other core surfaces. Every risky change was tested qualitatively and quantitatively, while low-risk changes were shipped rapidly and dogfooded",

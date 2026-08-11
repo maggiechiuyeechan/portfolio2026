@@ -1,0 +1,88 @@
+---
+/**
+ * Print-ready resume: two US Letter pages generated from the same content as
+ * /resume. Browser print keeps the text selectable and links clickable.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ResumeRole from "../../components/resume/ResumeRole.astro";
+import { resume } from "../../config/resume";
+import { site } from "../../config/site";
+import "../../styles/resume-print.css";
+
+export const prerender = true;
+
+const [currentRole, ...previousRoles] = resume.work;
+const title = `Print resume — ${site.fullName}`;
+const description = `Print-ready resume for ${resume.name}`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  noindex
+  canonicalPath="/resume"
+>
+  <div class="resume-print-shell">
+    <div class="resume-print-toolbar" aria-label="Print controls">
+      <a href="/resume">Back to web resume</a>
+      <span>US Letter · 2 pages</span>
+      <a
+        class="resume-print-download"
+        href="/Maggie-CY-Chan-Resume.pdf"
+        download
+      >
+        Download PDF
+      </a>
+    </div>
+
+    <main class="resume-print-document">
+      <section class="resume-print-page" aria-label="Resume page 1">
+        <aside class="resume-print-rail">
+          <h1 class="resume-print-name">{resume.name}</h1>
+
+          <div class="resume-print-contacts">
+            {
+              resume.contactColumns.map((group) => (
+                <div class="resume-print-contact-group">
+                  {group.map((contact) =>
+                    contact.href ? (
+                      <a href={contact.href}>{contact.label}</a>
+                    ) : (
+                      <p>{contact.label}</p>
+                    ),
+                  )}
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="resume-print-education">
+            {
+              resume.education.map((entry) => (
+                <p>
+                  <span>{entry.degree}</span>
+                  <small>{entry.school}</small>
+                  {entry.location && <small>{entry.location}</small>}
+                </p>
+              ))
+            }
+          </div>
+        </aside>
+
+        <section class="resume-print-work" aria-label="Current experience">
+          <ResumeRole role={currentRole} />
+        </section>
+
+      </section>
+
+      <section
+        class="resume-print-page resume-print-page--continued"
+        aria-label="Resume page 2"
+      >
+        <section class="resume-print-work" aria-label="Earlier experience">
+          {previousRoles.map((role) => <ResumeRole role={role} />)}
+        </section>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

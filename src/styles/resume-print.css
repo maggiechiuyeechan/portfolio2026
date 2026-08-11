@@ -1,0 +1,260 @@
+/*
+ * /resume/print — deterministic two-page US Letter layout.
+ * The browser preview resembles sheets of paper; @media print removes the
+ * preview chrome and maps each .resume-print-page to one physical page.
+ */
+
+.resume-print-shell {
+  min-height: 100vh;
+  padding: var(--spacing-6);
+  color: var(--color-typography-content-default);
+  background: var(--color-gray-3);
+}
+
+.resume-print-toolbar {
+  position: sticky;
+  top: var(--spacing-4);
+  z-index: 10;
+  width: 8.5in;
+  max-width: 100%;
+  margin: 0 auto var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  color: var(--color-typography-content-secondary);
+  background: color-mix(in srgb, var(--color-white) 94%, transparent);
+  border: 1px solid var(--color-gray-6);
+  border-radius: var(--radius-2);
+  box-shadow: var(--elevation-2);
+  backdrop-filter: blur(12px);
+}
+
+.resume-print-toolbar a {
+  color: var(--color-typography-content-default);
+  text-decoration: none;
+}
+
+.resume-print-toolbar span {
+  margin-left: auto;
+}
+
+.resume-print-toolbar .resume-print-download {
+  border-radius: var(--radius-full);
+  padding: var(--spacing-1) var(--spacing-3);
+  font: inherit;
+  color: var(--color-typography-inverse-default);
+  background: var(--color-background-inverse);
+  cursor: pointer;
+}
+
+.resume-print-toolbar .resume-print-download:hover {
+  background: var(--color-background-inverse-hover);
+}
+
+.resume-print-document {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+.resume-print-page {
+  position: relative;
+  box-sizing: border-box;
+  width: 8.5in;
+  height: 11in;
+  padding: 0.8in 1.25in 1in 1in;
+  display: grid;
+  grid-template-columns: 1.6in minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  column-gap: 0.3in;
+  align-items: start;
+  overflow: hidden;
+  color: var(--color-typography-content-default);
+  background: var(--color-white);
+  box-shadow: var(--elevation-4);
+  text-wrap: pretty;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+body:has(.resume-print-shell) .cursor-label-root,
+body:has(.resume-print-shell) .cursor-label-pill {
+  display: none !important;
+}
+
+.resume-print-rail,
+.resume-print-work {
+  min-width: 0;
+}
+
+.resume-print-name {
+  margin: 0 0 0.4in;
+  font-family: var(--font-sans);
+  font-size: 15pt;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.resume-print-contacts,
+.resume-print-education {
+  font-family: var(--font-sans);
+  font-size: 8.4pt;
+  line-height: 14.4pt;
+  letter-spacing: -0.0037rem;
+}
+
+.resume-print-contact-group + .resume-print-contact-group {
+  margin-top: 0.8rem;
+}
+
+.resume-print-contact-group p,
+.resume-print-contact-group a {
+  display: block;
+  margin: 0;
+  color: var(--color-typography-content-default);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.resume-print-education {
+  margin-top: 0.2in;
+}
+
+.resume-print-education p {
+  margin: 0;
+}
+
+.resume-print-education p + p {
+  margin-top: 0.12in;
+}
+
+.resume-print-education span,
+.resume-print-education small {
+  display: block;
+}
+
+.resume-print-education small {
+  font: inherit;
+  color: var(--color-typography-content-secondary);
+}
+
+.resume-print-work {
+  font-family: var(--font-sans);
+}
+
+.resume-print-page:not(.resume-print-page--continued) .resume-print-work {
+  /* Align ClickUp with the first contact line below the name. */
+  padding-top: calc(15pt * 1.45 + 0.4in);
+}
+
+.resume-print-work .text-heading,
+.resume-print-work .text-body {
+  /* Preserve the web type tokens' proportions at an 80% print scale. */
+  font-size: 8.4pt;
+  line-height: 14.4pt;
+  letter-spacing: -0.0037rem;
+}
+
+.resume-print-work .resume-role-header {
+  gap: 0.2em;
+}
+
+.resume-print-work .resume-role-dates {
+  margin-left: auto;
+}
+
+.resume-print-work .resume-role-meta + .resume-role-summary {
+  margin-top: 0.8rem;
+}
+
+.resume-print-work .resume-role-summary {
+  margin-top: 0.04in;
+}
+
+.resume-print-work .resume-role-header + .resume-bullets {
+  margin-top: 0;
+}
+
+.resume-print-work .resume-role-meta + .resume-bullets {
+  margin-top: 0.04in;
+}
+
+.resume-print-work .resume-group {
+  margin-top: 0.08in;
+}
+
+.resume-print-work .resume-role + .resume-role {
+  margin-top: 0.24in;
+}
+
+.resume-print-work .resume-bullets li {
+  break-inside: avoid;
+}
+
+.resume-print-work .resume-bullets li::before {
+  inset-inline-start: -0.8em;
+}
+
+.resume-print-page--continued .resume-print-work {
+  grid-column: 2;
+}
+
+@media (max-width: 55rem) {
+  .resume-print-shell {
+    padding: var(--spacing-4);
+    overflow-x: auto;
+  }
+
+  .resume-print-toolbar,
+  .resume-print-document {
+    min-width: 8.5in;
+  }
+}
+
+@page {
+  size: Letter;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 8.5in;
+    margin: 0;
+    padding: 0;
+    background: var(--color-white);
+  }
+
+  .resume-print-shell {
+    min-height: 0;
+    padding: 0;
+    background: var(--color-white);
+  }
+
+  .resume-print-toolbar {
+    display: none;
+  }
+
+  .resume-print-document {
+    display: block;
+  }
+
+  .resume-print-page {
+    margin: 0;
+    box-shadow: none;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .resume-print-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+}

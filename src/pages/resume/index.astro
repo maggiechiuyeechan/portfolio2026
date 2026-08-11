@@ -48,6 +48,13 @@ const description = `${resume.name} — resume`;
                   <p class="resume-education-line text-body">
                     <span class="resume-education-degree">{entry.degree}</span>
                     <span class="resume-education-school">{entry.school}</span>
+                    {
+                      entry.location && (
+                        <span class="resume-education-location">
+                          {entry.location}
+                        </span>
+                      )
+                    }
                   </p>
                 ))
               }

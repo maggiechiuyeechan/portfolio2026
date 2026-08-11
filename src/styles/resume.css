@@ -109,7 +109,8 @@
   color: var(--color-typography-content-tertiary);
 }
 
-.resume-education-school {
+.resume-education-school,
+.resume-education-location {
   color: var(--color-typography-content-secondary);
 }
 
@@ -150,7 +151,6 @@
 }
 
 .resume-role-company {
-  font-weight: 600;
   color: var(--color-typography-content-default);
 }
 
@@ -172,7 +172,10 @@
   margin-top: var(--spacing-4);
 }
 
-.resume-role-header + .resume-bullets,
+.resume-role-header + .resume-bullets {
+  margin-top: 0;
+}
+
 .resume-role-meta + .resume-bullets {
   margin-top: var(--spacing-1);
 }
