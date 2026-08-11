@@ -139,6 +139,10 @@
   color: var(--color-typography-content-default);
 }
 
+.resume-role-promotion {
+  color: var(--color-typography-content-tertiary);
+}
+
 .resume-role-dates {
   margin-left: auto;
   color: var(--color-typography-content-secondary);
@@ -146,12 +150,16 @@
 }
 
 .resume-role-summary {
-  margin: var(--spacing-5) 0 0;
+  margin: var(--spacing-1) 0 0;
+}
+
+.resume-role-meta + .resume-role-summary {
+  margin-top: var(--spacing-2);
 }
 
 .resume-role-header + .resume-bullets,
 .resume-role-meta + .resume-bullets {
-  margin-top: var(--spacing-2);
+  margin-top: var(--spacing-1);
 }
 
 /* Groups render flat per Figma: heading and lines share the body style,

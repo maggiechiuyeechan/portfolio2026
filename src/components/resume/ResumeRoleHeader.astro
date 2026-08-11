@@ -3,17 +3,20 @@ interface Props {
   company: string;
   title: string;
   dates: string;
+  /** Tertiary note after the title, e.g. promotion date. */
+  promotion?: string;
   /** Secondary lines under company · title (prior roles, acquisition notes). */
   meta?: readonly string[];
 }
 
-const { company, title, dates, meta } = Astro.props;
+const { company, title, dates, promotion, meta } = Astro.props;
 ---
 
 <p class="resume-role-header text-heading">
   <span class="resume-role-company">{company}</span>
   <span class="resume-role-sep" aria-hidden="true">·</span>
   <span>{title}</span>
+  {promotion && <span class="resume-role-promotion text-body">{promotion}</span>}
   <span class="resume-role-dates text-body">{dates}</span>
 </p>
 {

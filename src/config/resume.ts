@@ -25,6 +25,8 @@ export interface ResumeRole {
   company: string;
   title: string;
   dates: string;
+  /** Tertiary note after the title, e.g. promotion date. */
+  promotion?: string;
   /** Secondary lines under company · title (prior roles, acquisition notes). */
   meta?: readonly string[];
   /** Intro paragraph before bullets or groups. */
@@ -65,9 +67,8 @@ export const resume = {
       title: "VP, Product Design & Research",
       dates: "2023 to present",
       meta: [
-        "Sr. Director 2024-25",
-        "Product Design Manager 2023-24",
-        "Sr. Product Designer 2023",
+        "Promoted Jan '26 · Sr. Director 2024–25", 
+        "Product Design Manager 2023–24 · Sr. Product Designer 2023",
       ],
       summary:
         "I lead the design and research team, working closely with the CEO. Built the team to 18 designers and 4 researchers at peak, now 8 designers and 2 researchers after a company-wide restructuring. I run the org and stay close to the details, shipping features myself.",
@@ -75,7 +76,8 @@ export const resume = {
         {
           heading: "Turning ClickUp into an AI-native work platform",
           bullets: [
-            "Oversaw design across the AI suite (Brain, Super Agents, AI Fields, AI Summaries, Artifacts, Skills) with 3 designers in the area. Shaped, tested, and iterated on directions, held alignment across parallel feature areas, and pushed pace & quality across all surfaces",
+            "Oversaw design across the AI suite (Brain, Super Agents, AI Fields, AI Summaries, Artifacts, Skills) with 3 designers in the area. Shaped, tested, and iterated on directions, created alignment across parallel feature areas, and pushed pace & quality across all surfaces",
+            "Measuring the UX: Brain adoption went 9.6% to 19.6% (+104%) with M1 retention up 35% and 3.7x growth in monthly AI uses, and agents grew to 117,751 monthly active workspaces",
             "AI revenue got healthier: AI subscription ARR $6.89M to $40.73M between Jan 2025 and Jun 2026 (5.9x), with NDR crossing 100% (98.2% to 102.1%)",
           ],
         },
@@ -84,22 +86,22 @@ export const resume = {
           bullets: [
             "Personally designed and shipped 135+ features to production as an IC and a design leader",
             "Led design on ClickUp 4.0, the biggest redesign in the company's history: a new visual language and navigation IA, with improvements across every surface including Lists, Chats, and Docs. Every risky change was tested qualitatively and quantitatively",
-            "Overall product NPS rose 15 points to an all-time high",
+            "Overall product NPS rose 15 points to an all-time high. Task View shipped to 456K users at a 0.09% revert rate",
           ],
         },
         {
           heading:
             "Internal agentic tools & workflow for success, creativity & efficiency",
           bullets: [
-            "Coding and productivity agents are core to the team's daily practice. Designers now push simple fixes straight to the frontend repo themselves",
             "Built the internal workflows that changed how EPD works: research studies launched by agents from inside ClickUp, and live prototypes coded with agents and Cursor, testable in minutes in the Prototype Playground",
+            "Brought coding and productivity agents into the team's daily practice. Designers now ship simple fixes straight to the frontend repo themselves",
             "Currently setting up the foundation that lets the system learn from human corrections and improve its own agents, skills, rules, and design system documentation",
           ],
         },
         {
           heading: "Building and growing teams",
           bullets: [
-            "Grew design 12 to 18 and research 1 to 4. Promoted four people in 1.5 years", 
+            "Grew design 12 to 18 and research 1 to 4, with 6 promoted across both teams", 
             "Iterated on recruiting practices with our recruiting partners: screening, hiring process, and quality bars",
             "Built career ladders, personalized career paths, and created a performance rubric on Craft, Collaboration, and Leadership",
             "Established the design rituals and continuous processes that enable alignment, quality, and speed",
