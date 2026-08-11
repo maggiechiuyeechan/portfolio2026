@@ -12,9 +12,6 @@
 }
 
 .resume-print-toolbar {
-  position: sticky;
-  top: var(--spacing-4);
-  z-index: 10;
   width: 8.5in;
   max-width: 100%;
   margin: 0 auto var(--spacing-4);
@@ -27,9 +24,9 @@
   line-height: 1.25rem;
   color: var(--color-typography-content-secondary);
   background: color-mix(in srgb, var(--color-white) 94%, transparent);
-  border: 1px solid var(--color-gray-6);
+  border: 0;
   border-radius: var(--radius-2);
-  box-shadow: var(--elevation-3);
+  box-shadow: var(--elevation-border-3);
   backdrop-filter: blur(12px);
 }
 
@@ -76,7 +73,8 @@
   overflow: hidden;
   color: var(--color-typography-content-default);
   background: var(--color-white);
-  box-shadow: var(--elevation-4);
+  border-radius: var(--radius-2);
+  box-shadow: var(--elevation-border-3);
   text-wrap: pretty;
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
@@ -248,6 +246,7 @@ body:has(.resume-print-shell) .cursor-label-pill {
 
   .resume-print-page {
     margin: 0;
+    border-radius: 0;
     box-shadow: none;
     break-after: page;
     page-break-after: always;
