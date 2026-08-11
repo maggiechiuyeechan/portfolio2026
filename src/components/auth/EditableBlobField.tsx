@@ -41,7 +41,7 @@ const MIN_PIECES = 10;
 /** Piece budget at the reference viewport (~1280×800). */
 const BASE_MAX_PIECES = 22;
 /** Hard cap so very wide monitors stay performant. */
-const ABSOLUTE_MAX_PIECES = 48;
+const ABSOLUTE_MAX_PIECES = 52;
 const REF_VIEWPORT_AREA = 1280 * 800;
 
 interface PackTargets {
@@ -57,8 +57,8 @@ function viewportPackTargets(vw: number, vh: number): PackTargets {
     Math.max(MIN_PIECES, Math.round(BASE_MAX_PIECES * Math.sqrt(areaRatio))),
   );
   const targetCoverage = Math.min(
-    0.68,
-    TARGET_COVERAGE + 0.1 * Math.min(1, (areaRatio - 1) / 1.5),
+    0.72,
+    TARGET_COVERAGE + 0.14 * Math.min(1, (areaRatio - 1) / 1.5),
   );
   return { maxPieces, targetCoverage };
 }
@@ -200,8 +200,10 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
     placed: Placement[],
     radius: number,
   ): { cx: number; cy: number } => {
-    if (placed.length === 0 || Math.random() < 0.22) {
-      if (zones.length > 0) {
+    const randomCandidate = (): { cx: number; cy: number } => {
+      const roll = Math.random();
+
+      if (placed.length > 0 && zones.length > 0 && roll < 0.16) {
         const zone = zones[Math.floor(Math.random() * zones.length)]!;
         const midX = (zone.left + zone.right) / 2;
         const midY = (zone.top + zone.bottom) / 2;
@@ -215,19 +217,50 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
           cy: midY + Math.sin(angle) * nest,
         };
       }
+
+      if (placed.length === 0 || roll < 0.56) {
+        const edgeInset = radius * 0.15;
+        return {
+          cx: edgeInset + Math.random() * Math.max(1, vw - edgeInset * 2),
+          cy: edgeInset + Math.random() * Math.max(1, vh - edgeInset * 2),
+        };
+      }
+
+      const anchor = placed[Math.floor(Math.random() * placed.length)]!;
+      const angle = Math.random() * Math.PI * 2;
+      const dist = anchor.radius + radius + GAP;
       return {
-        cx: radius + Math.random() * (vw - radius * 2),
-        cy: radius + Math.random() * (vh - radius * 2),
+        cx: anchor.cx + Math.cos(angle) * dist,
+        cy: anchor.cy + Math.sin(angle) * dist,
       };
+    };
+
+    let best = randomCandidate();
+    let bestScore = Number.NEGATIVE_INFINITY;
+
+    for (let sample = 0; sample < 12; sample++) {
+      const candidate = randomCandidate();
+      const nearestClearance =
+        placed.length === 0
+          ? Math.hypot(candidate.cx - vw / 2, candidate.cy - vh / 2)
+          : Math.min(
+              ...placed.map(
+                (other) =>
+                  Math.hypot(candidate.cx - other.cx, candidate.cy - other.cy) -
+                  other.radius -
+                  radius,
+              ),
+            );
+      const distanceFromCenter = Math.hypot(candidate.cx - vw / 2, candidate.cy - vh / 2);
+      const score = nearestClearance + distanceFromCenter * 0.05;
+
+      if (score > bestScore) {
+        best = candidate;
+        bestScore = score;
+      }
     }
 
-    const anchor = placed[Math.floor(Math.random() * placed.length)]!;
-    const angle = Math.random() * Math.PI * 2;
-    const dist = anchor.radius + radius + GAP;
-    return {
-      cx: anchor.cx + Math.cos(angle) * dist,
-      cy: anchor.cy + Math.sin(angle) * dist,
-    };
+    return best;
   };
 
   const attemptPack = (scale: number): Placement[] => {
@@ -299,7 +332,7 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
 
   const placed = best;
 
-  // Relaxation: push apart anything that drifted into overlap; light clustering only when clear.
+  // Relaxation: separate collisions without pulling pieces back into clusters.
   for (let iter = 0; iter < PACK_ITERS; iter++) {
     for (let i = 0; i < placed.length; i++) {
       const a = placed[i]!;
@@ -317,10 +350,6 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
           const push = ((min - dist) / dist) * 0.55;
           fx += dx * push;
           fy += dy * push;
-        } else if (dist < min + 24) {
-          const pull = ((dist - min) / dist) * 0.06;
-          fx -= dx * pull;
-          fy -= dy * pull;
         }
       }
 
@@ -333,16 +362,6 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
           const dist = Math.hypot(dx, dy) || 0.001;
           fx += (dx / dist) * 6;
           fy += (dy / dist) * 6;
-        } else {
-          const midX = (zone.left + zone.right) / 2;
-          const midY = (zone.top + zone.bottom) / 2;
-          const dx = midX - a.cx;
-          const dy = midY - a.cy;
-          const dist = Math.hypot(dx, dy) || 0.001;
-          if (dist > a.radius + 100) {
-            fx += (dx / dist) * 0.25;
-            fy += (dy / dist) * 0.25;
-          }
         }
       }
 

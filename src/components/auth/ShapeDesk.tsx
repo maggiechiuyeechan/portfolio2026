@@ -49,13 +49,13 @@ function deskBaseSize(viewportWidth: number, viewportHeight: number) {
     size = 260 + ((minDim - 768) / (1024 - 768)) * (340 - 260);
   } else {
     // desktop
-    size = 340 + ((minDim - 1024) / 416) * 60;
+    size = 340 + ((minDim - 1024) / 416) * 100;
   }
 
   // Keep shapes from dominating short or narrow viewports
-  size = Math.min(size, viewportHeight * 0.26, viewportWidth * 0.44);
+  size = Math.min(size, viewportHeight * 0.29, viewportWidth * 0.44);
 
-  return Math.round(Math.max(104, Math.min(400, size)));
+  return Math.round(Math.max(104, Math.min(440, size)));
 }
 
 function rotateHandleOffset(baseSize: number) {
@@ -218,13 +218,24 @@ function placeClearOfText(
   placed: Array<{ x: number; y: number; w: number; h: number; overlapCount: number }>,
 ) {
   const pieceSize = Math.max(pieceWidth, pieceHeight);
+  let best: { x: number; y: number; score: number } | null = null;
 
   for (let attempt = 0; attempt < PLACE_ATTEMPTS; attempt++) {
     const { x, y } = randomDeskPosition(width, height, pieceSize);
     if (overlapsZone(x, y, pieceWidth, pieceHeight, zones)) continue;
     if (violatesStackLimit(x, y, pieceWidth, pieceHeight, placed)) continue;
-    return { x, y };
+
+    const nearestPiece =
+      placed.length === 0
+        ? Math.hypot(x - width / 2, y - height / 2)
+        : Math.min(...placed.map((other) => Math.hypot(x - other.x, y - other.y)));
+    const distanceFromCenter = Math.hypot(x - width / 2, y - height / 2);
+    const score = nearestPiece + distanceFromCenter * 0.08;
+
+    if (!best || score > best.score) best = { x, y, score };
   }
+
+  if (best) return { x: best.x, y: best.y };
 
   // Last resort: park in a corner away from the centred copy.
   const inset = pieceSize * 0.45;
