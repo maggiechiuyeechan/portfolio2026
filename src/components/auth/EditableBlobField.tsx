@@ -47,20 +47,24 @@ const REF_VIEWPORT_AREA = 1280 * 800;
 interface PackTargets {
   maxPieces: number;
   targetCoverage: number;
+  extraPieces: number;
 }
 
 /** Larger screens get more shapes and slightly higher coverage. */
 function viewportPackTargets(vw: number, vh: number): PackTargets {
   const areaRatio = (vw * vh) / REF_VIEWPORT_AREA;
+  const isRegularLaptop = vw >= 960 && vw <= 1728 && vh >= 540 && vh <= 1200;
   const maxPieces = Math.min(
     ABSOLUTE_MAX_PIECES,
     Math.max(MIN_PIECES, Math.round(BASE_MAX_PIECES * Math.sqrt(areaRatio))),
   );
   const targetCoverage = Math.min(
-    0.72,
-    TARGET_COVERAGE + 0.14 * Math.min(1, (areaRatio - 1) / 1.5),
+    isRegularLaptop ? 0.8 : 0.72,
+    TARGET_COVERAGE +
+      0.14 * Math.min(1, (areaRatio - 1) / 1.5) +
+      (isRegularLaptop ? 0.2 : 0),
   );
-  return { maxPieces, targetCoverage };
+  return { maxPieces, targetCoverage, extraPieces: isRegularLaptop ? 3 : 0 };
 }
 
 interface Rect {
@@ -142,9 +146,10 @@ function buildPool(
   const targetCount = Math.min(
     targets.maxPieces,
     Math.max(
+      EDITABLE_BLOBS.length + targets.extraPieces,
       MIN_PIECES,
-      Math.round((targets.targetCoverage * vw * vh) / (Math.PI * comfortR * comfortR)),
-    ) + 1,
+      Math.round((targets.targetCoverage * vw * vh) / (Math.PI * comfortR * comfortR)) + 1,
+    ),
   );
 
   const counts = new Map<string, number>();
@@ -309,7 +314,8 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
       : globalScale * 0.7;
   const used = new Set(best.map((p) => p.instanceId));
   let fillGuard = 0;
-  while (best.length < targets.maxPieces && fillGuard < targets.maxPieces * 8) {
+  const fillTarget = Math.min(targets.maxPieces, pool.length);
+  while (best.length < fillTarget && fillGuard < fillTarget * 8) {
     fillGuard += 1;
     const def = EDITABLE_BLOBS[Math.floor(Math.random() * EDITABLE_BLOBS.length)]!;
     let n = 0;
