@@ -71,42 +71,40 @@ export const resume = {
         "Product Design Manager 2023–24 · Sr. Product Designer 2023",
       ],
       summary:
-        "I lead the design and research team, working closely with the CEO. Built the team to 18 designers and 4 researchers at peak, now 8 designers and 2 researchers after a company-wide restructuring. I run the org and stay close to the details, shipping features myself.",
+        "I lead product design and research in close partnership with the CEO. I scaled design from 12 to 18 and research from 1 to 4 before reorganizing around a leaner team of 8 designers and 2 researchers. I run the org and stay close to the details, often shipping features myself.",
       groups: [
         {
           heading: "Turning ClickUp into an AI-native work platform",
           bullets: [
-            "Oversaw design across the AI suite (Brain, Super Agents, AI Fields, AI Summaries, Artifacts, Skills) with 3 designers in the area. Shaped, tested, and iterated on directions, created alignment across parallel feature areas, and pushed pace & quality across all surfaces",
-            "Measuring the UX: Brain adoption went 9.6% to 19.6% (+104%) with M1 retention up 35% and 3.7x growth in monthly AI uses, and agents grew to 117,751 monthly active workspaces",
-            "AI revenue got healthier: AI subscription ARR $6.89M to $40.73M between Jan 2025 and Jun 2026 (5.9x), with NDR crossing 100% (98.2% to 102.1%)",
+            "Led design across ClickUp’s AI suite (including Brain, Super Agents, AI Fields, AI Summaries, Artifacts, and Skills) with three designers.", 
+            "Pushed pace & quality, aligned parallel teams by rapid prototyping, customer testing, and daily dogfooding. As a result, Brain adoption grew from 9.6% to 19.6% while improving M1 retention by 35%.",
+            "AI revenue got healthier between Jan 2025 and Jun 2026: AI subscription ARR $6.89M to $40.73M (5.9x), with NDR crossing 100% (98.2% to 102.1%)",
           ],
         },
         {
           heading: "Shipping with care for the pixels",
           bullets: [
             "Personally designed and shipped 135+ features to production as an IC and a design leader",
-            "Led design on ClickUp 4.0, the biggest redesign in the company's history: a new visual language and navigation IA, with improvements across every surface including Lists, Chats, and Docs. Every risky change was tested qualitatively and quantitatively",
+            "Led ClickUp 4.0, the largest redesign in company history, introducing a new visual language and navigation IA across Lists, Chat, Docs, and other core surfaces. Every risky change was tested qualitatively and quantitatively, while low-risk changes were shipped rapidly and dogfooded",
             "Overall product NPS rose 15 points to an all-time high. Task View shipped to 456K users at a 0.09% revert rate",
           ],
         },
         {
           heading:
-            "Internal agentic tools & workflow for success, creativity & efficiency",
+            "Building internal AI-native tools for success, creativity & efficiency",
           bullets: [
-            "Built the internal workflows that changed how EPD works: research studies launched by agents from inside ClickUp, and live prototypes coded with agents and Cursor, testable in minutes in the Prototype Playground",
-            "Brought coding and productivity agents into the team's daily practice. Designers now ship simple fixes straight to the frontend repo themselves",
-            "Currently setting up the foundation that lets the system learn from human corrections and improve its own agents, skills, rules, and design system documentation",
+            "Built the internal workflows that changed how EPD works: research studies launched by agents from inside ClickUp, and live prototypes coded with agents, testable in minutes in the Prototype Playground",
+            "Brought coding and productivity agents into the design team's daily practice. Designers now ship simple fixes straight to the frontend repo themselves",
+            "Building a learning system that improves from human corrections and adjusts its agents, skills, rules, and design-system documentation",
           ],
         },
         {
           heading: "Building and growing teams",
           bullets: [
             "Grew design 12 to 18 and research 1 to 4, with 6 promoted across both teams", 
-            "Iterated on recruiting practices with our recruiting partners: screening, hiring process, and quality bars",
+            "Iterated on recruiting practices: screening, hiring process, and quality bars",
             "Built career ladders, personalized career paths, and created a performance rubric on Craft, Collaboration, and Leadership",
-            "Established the design rituals and continuous processes that enable alignment, quality, and speed",
-            "Built structured onboarding for new product designers",
-            "Organized pivotal onsites to align and motivate the team",
+            "Established the design rituals and continuous processes that enabled alignment, quality, and speed",
           ],
         },
       ],
@@ -115,11 +113,11 @@ export const resume = {
       company: "'Nuffsaid",
       title: "Head of Design",
       dates: "2022 to 2023",
-      meta: ["Acquired by ClickUp"],
+      meta: ["Acquired by ClickUp, backed by Google Ventures and General Catalyst"],
       bullets: [
         "Joined as Head of Design and second design hire, brought in to rebuild the design practice",
-        "Owned product, design language, and vision for a universal inbox for customer success teams. Hired the team's next designer. Backed by Google Ventures and General Catalyst",
-        "Set up a weekly iteration loop with a live customer advisory board. It caught that we were building the wrong thing. We pivoted the whole product and launched a new product from scratch within 3 months",
+        "Owned product, design language, and vision for a universal inbox for customer success teams",
+        "Set up a weekly iteration loop from insights to prototypes with a live customer advisory board, building deep customer empathy across the team. The continuous discovery loop revealed that we were building the wrong thing, so we pivoted and launched a new product from scratch within three months",
       ],
     },
     {
@@ -128,7 +126,8 @@ export const resume = {
       dates: "2019 to 2022",
       meta: ["Advanced Technologies Group (acquired by Aurora, 2021)"],
       bullets: [
-        "Led user research and design end to end across multiple teams, every one of them building for engineers and researchers: log search and mining, tooling to generate and improve the maps self-driving vehicles run on, and vehicle data visualization for mission specialists, triage, autonomy capabilities, and autonomy developers",
+        "Made complex tools more usable for ML engineers through human-centered design, leading user research and product design end-to-end across multiple autonomy teams",
+        "Designed tools for log search and mining, map generation, and vehicle-data visualization used by mission specialists, triage teams, and autonomy developers",
       ],
     },
     {
@@ -136,7 +135,7 @@ export const resume = {
       title: "Product Consultant",
       dates: "2019",
       bullets: [
-        "Designed the data annotation platform that Bloomberg's data scientists use to train more accurate machine learning models",
+        "Designed the next-generation data annotation platform that Bloomberg's data scientists use to train more accurate machine learning models. It ensured annotation quality, streamlined annotation requests, and consolidated multiple annotation sources",
       ],
     },
     {
@@ -144,7 +143,7 @@ export const resume = {
       title: "Product Consultant",
       dates: "2019",
       bullets: [
-        "Diagnosed the usage dips driving churn risk across a 65M-user base, then designed new mobile features aimed at the highest-attrition segment to lift weekend engagement",
+        "Designed new mobile features aimed at the highest-attrition segment to lift weekend engagement",
       ],
     },
     {
@@ -152,7 +151,7 @@ export const resume = {
       title: "UX & Data Designer",
       dates: "2014 to 2018",
       bullets: [
-        "Designed and coded 100+ data visualizations for an infectious disease surveillance platform, one featured in The Economist",
+        "Designed and built ML tools to track and predict how infectious diseases spread, including 100+ data visualizations, one featured in The Economist",
         "Built the product 0 to 1 across vision, research, build, and release. Created the proof of concept behind a $1M+ Air Canada partnership",
         "BlueDot later became the first in the world to flag COVID-19 ahead of the World Health Organization",
       ],

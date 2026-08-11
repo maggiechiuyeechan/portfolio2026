@@ -1,7 +1,7 @@
 ---
 title: HeadSpace
 meta: "2017"
-subtitle: "The one consumer product I've designed, and the most playful brand I've worked with. Built habit and visualization features that grew engagement at one of the most loved names in wellness."
+subtitle: "As part of a five-person consultancy team, we built on the insight that weekends saw the biggest usage dip. We researched opportunities, designed and iterated on solutions, and built a reflection and visualisation experience that encouraged mindfulness throughout the weekend."
 navLabel: HeadSpace
 order: 4
 anchorId: headspace

@@ -8,7 +8,6 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/layout/Container.astro";
 import ResumeRole from "../../components/resume/ResumeRole.astro";
-import ResumeDebugPanel from "../../components/resume/ResumeDebugPanel";
 import { resume } from "../../config/resume";
 import { site } from "../../config/site";
 
@@ -61,6 +60,5 @@ const description = `${resume.name} — resume`;
         </div>
       </div>
     </Container>
-    <ResumeDebugPanel client:load />
   </div>
 </BaseLayout>
