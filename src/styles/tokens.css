@@ -87,6 +87,8 @@
   --spacing-3: 0.75rem;   /* 12px — grid gutter */
   --spacing-4: 1rem;      /* 16px */
   --spacing-5: 1.5rem;    /* 24px */
+  --spacing-6: 2.25rem;   /* 36px */
+  --spacing-15: 3.75rem;  /* 60px */
   --spacing-30: 7.5rem;   /* 120px */
 
   /* ------ Border radius ------ */

@@ -2,14 +2,19 @@
  * /resume layout — public online resume.
  * Mirrors the Figma "resume" file (tVMS249ETBK3cSjxrHQvGB, node 1:2) on the
  * shared 8-col / 12px-gutter content grid:
- *   label rail  → cols 1–2
- *   body        → cols 3–7
+ *   identity rail → cols 2–3  (name, contacts, education)
+ *   work          → cols 4–7
+ *   unused        → cols 1 and 8
  * Collapses to a single column below --single-column-break (660px).
  */
 
 .resume {
-  padding: var(--nav-inset) var(--spacing-5) var(--spacing-30);
+  padding: calc(var(--nav-inset) + var(--spacing-5)) var(--spacing-5) var(--spacing-30);
   text-wrap: pretty;
+}
+
+.resume-content {
+  position: relative;
 }
 
 /* ------ Grid rows ------ */
@@ -18,15 +23,16 @@
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
   gap: var(--grid-gutter);
+  align-items: baseline;
 }
 
-.resume-col-label {
-  grid-column: 1 / span 2;
+.resume-rail {
+  grid-column: 2 / span 2;
   min-width: 0;
 }
 
 .resume-col-body {
-  grid-column: 3 / span 5;
+  grid-column: 4 / span 4;
   min-width: 0;
 }
 
@@ -35,29 +41,19 @@
   min-width: 0;
 }
 
-/* Vertical rhythm from the Figma frame (name 86 → contacts 144 → sections). */
-.resume-contacts-row {
-  margin-top: calc(var(--spacing-4) * 2);
-}
-
-.resume-section {
-  margin-top: calc(var(--spacing-4) * 3);
-}
-
 /* ------ Header ------ */
 
 .resume-name {
-  grid-column: 1 / -1;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 1.25rem; /* 20px — Figma 19.95 Medium */
-  line-height: normal;
+  grid-column: 2 / span 2;
   white-space: nowrap;
-  color: var(--color-typography-content-default);
-  margin: 0;
+  margin: 0 0 var(--spacing-15);
 }
 
 /* Header contacts + section labels bleed on nowrap rather than wrap mid-URL. */
+.resume-contact-group + .resume-contact-group {
+  margin-top: var(--spacing-4);
+}
+
 .resume-contact-group p,
 .resume-contact-group a {
   margin: 0;
@@ -81,15 +77,24 @@
 
 /* ------ Education ------ */
 
+.resume-education {
+  margin-top: var(--spacing-4);
+}
+
 .resume-education-line {
+  display: flex;
+  flex-direction: column;
   margin: 0;
+}
+
+.resume-education-line + .resume-education-line {
+  margin-top: var(--spacing-2);
 }
 
 .resume-education-degree {
   color: var(--color-typography-content-default);
 }
 
-.resume-education-sep,
 .resume-role-sep {
   color: var(--color-typography-content-tertiary);
 }
@@ -122,8 +127,8 @@
 }
 
 /* Space between stacked roles in the work section. */
-.resume-col-body.resume-role ~ .resume-col-body.resume-role {
-  margin-top: calc(var(--spacing-4) * 3);
+.resume-role + .resume-role {
+  margin-top: var(--spacing-6);
 }
 
 .resume-role-header {
@@ -154,7 +159,7 @@
 }
 
 .resume-role-meta + .resume-role-summary {
-  margin-top: var(--spacing-2);
+  margin-top: var(--spacing-4);
 }
 
 .resume-role-header + .resume-bullets,
@@ -162,10 +167,9 @@
   margin-top: var(--spacing-1);
 }
 
-/* Groups render flat per Figma: heading and lines share the body style,
-   separated from the previous block by one blank line (24px). */
+/* Groups render flat per Figma: heading and lines share the body style. */
 .resume-group {
-  margin-top: var(--spacing-5);
+  margin-top: var(--spacing-4);
 }
 
 .resume-group-heading {
@@ -192,6 +196,161 @@
   color: inherit;
 }
 
+/* ------ Red content-grid overlay (off until .resume-grid-debug) ------ */
+
+.resume-debug-overlay {
+  display: none;
+}
+
+.resume-grid-debug .resume-debug-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--grid-gutter);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.resume-grid-debug .resume-debug-col {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
+/* ------ Debug control panel ------ */
+
+.resume-panel {
+  position: fixed;
+  right: var(--spacing-4);
+  bottom: var(--spacing-4);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-2);
+}
+
+.resume-panel-toggle {
+  background: var(--color-background-inverse);
+  color: var(--color-typography-inverse-default);
+  border: 0;
+  border-radius: var(--radius-full);
+  padding: var(--spacing-2) var(--spacing-4);
+  cursor: pointer;
+  box-shadow: var(--elevation-3);
+}
+
+.resume-panel-toggle:hover {
+  background: var(--color-background-inverse-hover);
+}
+
+.resume-panel-body {
+  width: 18rem;
+  max-height: min(70vh, 34rem);
+  overflow-y: auto;
+  background: var(--color-background-main);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-2);
+  box-shadow: var(--elevation-4);
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.resume-panel-control {
+  cursor: pointer;
+  gap: var(--spacing-2);
+}
+
+.resume-panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.resume-panel-section-title {
+  margin: 0 0 var(--spacing-05);
+}
+
+.resume-panel-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.resume-panel-swatch {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-1);
+  border: 1px solid var(--color-border-default);
+}
+
+.resume-panel-token {
+  font-family: var(--font-mono, "Geist Mono", monospace);
+  font-size: 0.6875rem;
+  color: var(--color-typography-content-default);
+  overflow-wrap: anywhere;
+}
+
+.resume-panel-value {
+  font-family: var(--font-mono, "Geist Mono", monospace);
+  font-size: 0.6875rem;
+  color: var(--color-typography-content-secondary);
+  margin-left: auto;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.resume-panel-type-row {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  cursor: help;
+}
+
+.resume-panel-type-tooltip {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + var(--spacing-1));
+  z-index: 2;
+  margin: 0;
+  padding: var(--spacing-2) var(--spacing-3);
+  max-width: 16rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: var(--font-mono, "Geist Mono", monospace);
+  font-size: 0.625rem;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-typography-inverse-default);
+  background: var(--color-background-inverse);
+  border-radius: var(--radius-2);
+  box-shadow: var(--elevation-3);
+  pointer-events: none;
+}
+
+.resume-panel-type-row:hover .resume-panel-type-tooltip,
+.resume-panel-type-row:focus-within .resume-panel-type-tooltip {
+  display: block;
+}
+
+.resume-panel-type-sample {
+  line-height: 1.2;
+}
+
+.resume-panel-type-sample.text-display {
+  font-size: 1.75rem;
+}
+
+.resume-panel-type-sample.text-title {
+  font-size: 1.25rem;
+}
+
 /* ------ Single column below 660px ------ */
 
 @media (max-width: 41.25rem) {
@@ -204,6 +363,7 @@
     gap: var(--spacing-2);
   }
 
+  .resume-rail,
   .resume-col-label,
   .resume-col-body,
   .resume-col-aside {
@@ -213,5 +373,9 @@
   .resume-role-dates {
     flex-basis: 100%;
     margin-left: 0;
+  }
+
+  .resume-grid-debug .resume-debug-overlay {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

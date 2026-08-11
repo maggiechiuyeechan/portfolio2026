@@ -7,8 +7,8 @@
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/layout/Container.astro";
-import Text from "../../components/ui/Text.astro";
 import ResumeRole from "../../components/resume/ResumeRole.astro";
+import ResumeDebugPanel from "../../components/resume/ResumeDebugPanel";
 import { resume } from "../../config/resume";
 import { site } from "../../config/site";
 
@@ -22,20 +22,17 @@ const description = `${resume.name} — resume`;
   <div class="resume">
     <Container>
       <div class="resume-content">
-        <header>
-          <div class="resume-row">
-            <h1 class="resume-name">{resume.name}</h1>
-          </div>
-          <div class="resume-row resume-contacts-row">
+        <div class="resume-debug-overlay" aria-hidden="true">
+          {Array.from({ length: 8 }).map(() => <div class="resume-debug-col" />)}
+        </div>
+        <div class="resume-row">
+          <h1 class="resume-name text-title">{resume.name}</h1>
+        </div>
+        <div class="resume-row">
+          <header class="resume-rail">
             {
-              resume.contactColumns.map((group, index) => (
-                <div
-                  class:list={[
-                    "resume-contact-group",
-                    "text-body",
-                    index === 0 ? "resume-col-label" : "resume-col-body",
-                  ]}
-                >
+              resume.contactColumns.map((group) => (
+                <div class="resume-contact-group text-body">
                   {group.map((contact) =>
                     contact.href ? (
                       <a href={contact.href}>{contact.label}</a>
@@ -46,35 +43,24 @@ const description = `${resume.name} — resume`;
                 </div>
               ))
             }
-          </div>
-        </header>
+            <div class="resume-education">
+              {
+                resume.education.map((entry) => (
+                  <p class="resume-education-line text-body">
+                    <span class="resume-education-degree">{entry.degree}</span>
+                    <span class="resume-education-school">{entry.school}</span>
+                  </p>
+                ))
+              }
+            </div>
+          </header>
 
-        <section class="resume-row resume-section">
-          <Text as="h2" variant="body" class="resume-section-label resume-col-label">
-            education
-          </Text>
-          <div class="resume-col-body">
-            {
-              resume.education.map((entry) => (
-                <Text as="p" variant="body" class="resume-education-line">
-                  <span class="resume-education-degree">{entry.degree}</span>
-                  {" "}
-                  <span class="resume-education-sep">·</span>
-                  {" "}
-                  <span class="resume-education-school">{entry.school}</span>
-                </Text>
-              ))
-            }
-          </div>
-        </section>
-
-        <section class="resume-row resume-section">
-          <Text as="h2" variant="body" class="resume-section-label resume-col-label">
-            work
-          </Text>
-          {resume.work.map((role) => <ResumeRole role={role} />)}
-        </section>
+          <section class="resume-col-body">
+            {resume.work.map((role) => <ResumeRole role={role} />)}
+          </section>
+        </div>
       </div>
     </Container>
+    <ResumeDebugPanel client:load />
   </div>
 </BaseLayout>

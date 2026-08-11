@@ -7,19 +7,33 @@ import type { ResumeRole } from "../../config/resume";
 
 interface Props {
   role: ResumeRole;
+  hideHeader?: boolean;
 }
 
-const { role } = Astro.props;
+const { role, hideHeader = false } = Astro.props;
 ---
 
-<article class="resume-col-body resume-role">
-  <ResumeRoleHeader
-    company={role.company}
-    title={role.title}
-    dates={role.dates}
-    promotion={role.promotion}
-    meta={role.meta}
-  />
+<article class="resume-role">
+  {
+    !hideHeader && (
+      <ResumeRoleHeader
+        company={role.company}
+        title={role.title}
+        dates={role.dates}
+        promotion={role.promotion}
+        meta={role.meta}
+      />
+    )
+  }
+  {
+    hideHeader && role.meta && role.meta.length > 0 && (
+      <div class="resume-role-meta text-body">
+        {role.meta.map((line) => (
+          <p>{line}</p>
+        ))}
+      </div>
+    )
+  }
   {
     role.summary && (
       <Text as="p" variant="body" class="resume-role-summary">

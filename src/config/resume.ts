@@ -57,7 +57,7 @@ export const resume = {
   ] satisfies ResumeContact[][],
 
   education: [
-    { degree: "Master's Human Computer Interaction", school: "Carnegie Mellon 2019" },
+    { degree: "Master's HCI", school: "Carnegie Mellon 2019" },
     { degree: "Bachelor's Graphic Design", school: "OCAD University 2013" },
   ] satisfies ResumeEducation[],
 
