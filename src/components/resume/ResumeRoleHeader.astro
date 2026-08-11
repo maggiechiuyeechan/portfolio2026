@@ -1,0 +1,27 @@
+---
+interface Props {
+  company: string;
+  title: string;
+  dates: string;
+  /** Secondary lines under company · title (prior roles, acquisition notes). */
+  meta?: readonly string[];
+}
+
+const { company, title, dates, meta } = Astro.props;
+---
+
+<p class="resume-role-header text-heading">
+  <span class="resume-role-company">{company}</span>
+  <span class="resume-role-sep" aria-hidden="true">·</span>
+  <span>{title}</span>
+  <span class="resume-role-dates text-body">{dates}</span>
+</p>
+{
+  meta && meta.length > 0 && (
+    <div class="resume-role-meta text-body">
+      {meta.map((line) => (
+        <p>{line}</p>
+      ))}
+    </div>
+  )
+}

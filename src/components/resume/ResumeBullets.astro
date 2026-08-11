@@ -1,0 +1,11 @@
+---
+interface Props {
+  bullets: readonly string[];
+}
+
+const { bullets } = Astro.props;
+---
+
+<ul class="resume-bullets text-body">
+  {bullets.map((bullet) => <li>{bullet}</li>)}
+</ul>

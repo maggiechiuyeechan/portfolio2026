@@ -3,6 +3,7 @@
 @import "./tokens.css";
 @import "./typography.css";
 @import "./study.css";
+@import "./resume.css";
 @import "./hero.css";
 @import "./nav.css";
 @import "./hero-idle-nudge.css";
@@ -94,7 +95,7 @@ body {
   margin: 0;
   background: var(--color-background-main);
   color: var(--color-typography-content-default);
-  font-family: "Geist", sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

@@ -1,0 +1,18 @@
+---
+import Text from "../ui/Text.astro";
+import ResumeBullets from "./ResumeBullets.astro";
+
+interface Props {
+  heading: string;
+  bullets: readonly string[];
+}
+
+const { heading, bullets } = Astro.props;
+---
+
+<div class="resume-group">
+  <Text as="h3" variant="body" class="resume-group-heading">
+    {heading}
+  </Text>
+  <ResumeBullets bullets={bullets} />
+</div>

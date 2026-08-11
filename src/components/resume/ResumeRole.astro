@@ -1,0 +1,35 @@
+---
+import Text from "../ui/Text.astro";
+import ResumeRoleHeader from "./ResumeRoleHeader.astro";
+import ResumeBullets from "./ResumeBullets.astro";
+import ResumeHighlightGroup from "./ResumeHighlightGroup.astro";
+import type { ResumeRole } from "../../config/resume";
+
+interface Props {
+  role: ResumeRole;
+}
+
+const { role } = Astro.props;
+---
+
+<article class="resume-col-body resume-role">
+  <ResumeRoleHeader
+    company={role.company}
+    title={role.title}
+    dates={role.dates}
+    meta={role.meta}
+  />
+  {
+    role.summary && (
+      <Text as="p" variant="body" class="resume-role-summary">
+        {role.summary}
+      </Text>
+    )
+  }
+  {role.bullets && <ResumeBullets bullets={role.bullets} />}
+  {
+    role.groups?.map((group) => (
+      <ResumeHighlightGroup heading={group.heading} bullets={group.bullets} />
+    ))
+  }
+</article>

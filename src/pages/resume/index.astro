@@ -1,0 +1,80 @@
+---
+/**
+ * Public online resume. Prerendered and intentionally outside the password
+ * gate (not in PROTECTED_PREFIXES). Layout mirrors the Figma "resume" file
+ * (tVMS249ETBK3cSjxrHQvGB, node 1:2) on the shared 8-col content grid.
+ * Copy lives in src/config/resume.ts; styles in src/styles/resume.css.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/layout/Container.astro";
+import Text from "../../components/ui/Text.astro";
+import ResumeRole from "../../components/resume/ResumeRole.astro";
+import { resume } from "../../config/resume";
+import { site } from "../../config/site";
+
+export const prerender = true;
+
+const title = `Resume — ${site.fullName}`;
+const description = `${resume.name} — resume`;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="resume">
+    <Container>
+      <div class="resume-content">
+        <header>
+          <div class="resume-row">
+            <h1 class="resume-name">{resume.name}</h1>
+          </div>
+          <div class="resume-row resume-contacts-row">
+            {
+              resume.contactColumns.map((group, index) => (
+                <div
+                  class:list={[
+                    "resume-contact-group",
+                    "text-body",
+                    index === 0 ? "resume-col-label" : "resume-col-body",
+                  ]}
+                >
+                  {group.map((contact) =>
+                    contact.href ? (
+                      <a href={contact.href}>{contact.label}</a>
+                    ) : (
+                      <p>{contact.label}</p>
+                    ),
+                  )}
+                </div>
+              ))
+            }
+          </div>
+        </header>
+
+        <section class="resume-row resume-section">
+          <Text as="h2" variant="body" class="resume-section-label resume-col-label">
+            education
+          </Text>
+          <div class="resume-col-body">
+            {
+              resume.education.map((entry) => (
+                <Text as="p" variant="body" class="resume-education-line">
+                  <span class="resume-education-degree">{entry.degree}</span>
+                  {" "}
+                  <span class="resume-education-sep">·</span>
+                  {" "}
+                  <span class="resume-education-school">{entry.school}</span>
+                </Text>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="resume-row resume-section">
+          <Text as="h2" variant="body" class="resume-section-label resume-col-label">
+            work
+          </Text>
+          {resume.work.map((role) => <ResumeRole role={role} />)}
+        </section>
+      </div>
+    </Container>
+  </div>
+</BaseLayout>

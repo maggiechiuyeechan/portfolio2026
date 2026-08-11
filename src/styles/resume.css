@@ -1,0 +1,209 @@
+/*
+ * /resume layout — public online resume.
+ * Mirrors the Figma "resume" file (tVMS249ETBK3cSjxrHQvGB, node 1:2) on the
+ * shared 8-col / 12px-gutter content grid:
+ *   label rail  → cols 1–2
+ *   body        → cols 3–7
+ * Collapses to a single column below --single-column-break (660px).
+ */
+
+.resume {
+  padding: var(--nav-inset) var(--spacing-5) var(--spacing-30);
+  text-wrap: pretty;
+}
+
+/* ------ Grid rows ------ */
+
+.resume-row {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--grid-gutter);
+}
+
+.resume-col-label {
+  grid-column: 1 / span 2;
+  min-width: 0;
+}
+
+.resume-col-body {
+  grid-column: 3 / span 5;
+  min-width: 0;
+}
+
+.resume-col-aside {
+  grid-column: 7 / span 2;
+  min-width: 0;
+}
+
+/* Vertical rhythm from the Figma frame (name 86 → contacts 144 → sections). */
+.resume-contacts-row {
+  margin-top: calc(var(--spacing-4) * 2);
+}
+
+.resume-section {
+  margin-top: calc(var(--spacing-4) * 3);
+}
+
+/* ------ Header ------ */
+
+.resume-name {
+  grid-column: 1 / -1;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1.25rem; /* 20px — Figma 19.95 Medium */
+  line-height: normal;
+  white-space: nowrap;
+  color: var(--color-typography-content-default);
+  margin: 0;
+}
+
+/* Header contacts + section labels bleed on nowrap rather than wrap mid-URL. */
+.resume-contact-group p,
+.resume-contact-group a {
+  margin: 0;
+  display: block;
+  white-space: nowrap;
+  color: var(--color-typography-content-default);
+  text-decoration: none;
+}
+
+.resume-contact-group a:hover {
+  color: var(--color-typography-content-default-hover);
+}
+
+/* ------ Section labels (lowercase body text, secondary) ------ */
+
+.resume-section-label {
+  margin: 0;
+  color: var(--color-typography-content-secondary);
+  white-space: nowrap;
+}
+
+/* ------ Education ------ */
+
+.resume-education-line {
+  margin: 0;
+}
+
+.resume-education-degree {
+  color: var(--color-typography-content-default);
+}
+
+.resume-education-sep,
+.resume-role-sep {
+  color: var(--color-typography-content-tertiary);
+}
+
+.resume-education-school {
+  color: var(--color-typography-content-secondary);
+}
+
+/* ------ Work ------ */
+
+/* Figma renders the work body copy in content-default, not the .text-body
+   secondary gray. Bullet lines use content-secondary. */
+.resume-role-header,
+.resume-role-summary,
+.resume-group-heading {
+  color: var(--color-typography-content-default);
+}
+
+.resume-bullets {
+  color: var(--color-typography-content-secondary);
+}
+
+.resume-role-meta {
+  margin: 0;
+  color: var(--color-typography-content-tertiary);
+}
+
+.resume-role-meta p {
+  margin: 0;
+}
+
+/* Space between stacked roles in the work section. */
+.resume-col-body.resume-role ~ .resume-col-body.resume-role {
+  margin-top: calc(var(--spacing-4) * 3);
+}
+
+.resume-role-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-1);
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.resume-role-company {
+  font-weight: 600;
+  color: var(--color-typography-content-default);
+}
+
+.resume-role-dates {
+  margin-left: auto;
+  color: var(--color-typography-content-secondary);
+  white-space: nowrap;
+}
+
+.resume-role-summary {
+  margin: var(--spacing-5) 0 0;
+}
+
+.resume-role-header + .resume-bullets,
+.resume-role-meta + .resume-bullets {
+  margin-top: var(--spacing-2);
+}
+
+/* Groups render flat per Figma: heading and lines share the body style,
+   separated from the previous block by one blank line (24px). */
+.resume-group {
+  margin-top: var(--spacing-5);
+}
+
+.resume-group-heading {
+  margin: 0;
+  font-weight: 400;
+}
+
+.resume-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Text aligns with the body column; markers hang into the gutter. */
+.resume-bullets li {
+  margin: 0;
+  position: relative;
+}
+
+.resume-bullets li::before {
+  content: "•";
+  position: absolute;
+  inset-inline-start: -1em;
+  color: inherit;
+}
+
+/* ------ Single column below 660px ------ */
+
+@media (max-width: 41.25rem) {
+  .resume {
+    padding: var(--spacing-5) var(--spacing-4) var(--spacing-30);
+  }
+
+  .resume-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-2);
+  }
+
+  .resume-col-label,
+  .resume-col-body,
+  .resume-col-aside {
+    grid-column: auto;
+  }
+
+  .resume-role-dates {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+}
