@@ -50,21 +50,30 @@ interface PackTargets {
   extraPieces: number;
 }
 
+function isRegularDesktopViewport(vw: number, vh: number) {
+  return vw >= 960 && vw <= 1920 && vh >= 540 && vh <= 1200;
+}
+
 /** Larger screens get more shapes and slightly higher coverage. */
 function viewportPackTargets(vw: number, vh: number): PackTargets {
   const areaRatio = (vw * vh) / REF_VIEWPORT_AREA;
-  const isRegularLaptop = vw >= 960 && vw <= 1728 && vh >= 540 && vh <= 1200;
+  const isRegularDesktop = isRegularDesktopViewport(vw, vh);
+  const desktopExtraPieces = isRegularDesktop ? 9 : 0;
   const maxPieces = Math.min(
     ABSOLUTE_MAX_PIECES,
-    Math.max(MIN_PIECES, Math.round(BASE_MAX_PIECES * Math.sqrt(areaRatio))),
+    Math.max(
+      MIN_PIECES,
+      EDITABLE_BLOBS.length + desktopExtraPieces,
+      Math.round(BASE_MAX_PIECES * Math.sqrt(areaRatio)),
+    ),
   );
   const targetCoverage = Math.min(
-    isRegularLaptop ? 0.8 : 0.72,
+    isRegularDesktop ? 0.9 : 0.72,
     TARGET_COVERAGE +
       0.14 * Math.min(1, (areaRatio - 1) / 1.5) +
-      (isRegularLaptop ? 0.2 : 0),
+      (isRegularDesktop ? 0.3 : 0),
   );
-  return { maxPieces, targetCoverage, extraPieces: isRegularLaptop ? 3 : 0 };
+  return { maxPieces, targetCoverage, extraPieces: desktopExtraPieces };
 }
 
 interface Rect {
@@ -412,7 +421,21 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
     }
   }
 
-  return placed;
+  const randomizedColors: string[] = [];
+  const palette = EDITABLE_BLOBS.map((blob) => blob.color);
+  while (randomizedColors.length < placed.length) {
+    randomizedColors.push(...shuffle(palette));
+  }
+
+  const visualScale = isRegularDesktopViewport(vw, vh) ? 1.1 : 1;
+  return placed.map((placement, index) => ({
+    ...placement,
+    def: {
+      ...placement.def,
+      color: randomizedColors[index]!,
+    },
+    scale: placement.scale * visualScale,
+  }));
 }
 
 /** Blob centers inside the clipped scene frame — nudges in the mat inset are invisible. */
@@ -459,9 +482,7 @@ export default function EditableBlobField({ obstacleRefs = [], variants }: Props
       setPlacements(next);
     };
 
-    const boot = window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(layout);
-    });
+    layout();
 
     const onResize = () => {
       window.clearTimeout(resizeTimer);
@@ -470,20 +491,19 @@ export default function EditableBlobField({ obstacleRefs = [], variants }: Props
     window.addEventListener("resize", onResize);
 
     return () => {
-      cancelAnimationFrame(boot);
       window.clearTimeout(resizeTimer);
       window.removeEventListener("resize", onResize);
     };
   }, [mounted, obstacleRefs]);
 
-  if (!mounted) return null;
+  if (!mounted || placements.length === 0) return null;
 
   return createPortal(
     <motion.div
       className="editable-blob-field"
       aria-hidden="true"
       variants={variants}
-      initial={variants ? "hidden" : false}
+      initial={false}
       animate={variants ? "visible" : undefined}
       style={{
         position: "fixed",

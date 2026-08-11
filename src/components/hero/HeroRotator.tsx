@@ -9,6 +9,7 @@
 import { lazy, useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import HeroShell from "./HeroShell";
 import {
+  eligibleVariantIds,
   getVariant,
   HERO_VARIANTS,
   type HeroSceneProps,
@@ -58,8 +59,11 @@ function getRolledId(): HeroVariantId {
 /** Kick the scene chunk + current assets ASAP — don't wait for Suspense / idle. */
 function warmVariant(id: HeroVariantId) {
   const variant = getVariant(id);
-  if (!variant) return;
-  void variant.load();
+  if (!variant) return Promise.reject(new Error(`Unknown hero variant: ${id}`));
+  const load = variant.load();
+  // Initial and speculative warmups are intentionally fire-and-forget, but
+  // their failures must not become unhandled rejections in the browser.
+  void load.catch(() => undefined);
   if (typeof document === "undefined") return;
   for (const href of variant.assets ?? []) {
     if (document.head.querySelector(`link[data-hero-preload="${href}"]`)) continue;
@@ -70,6 +74,7 @@ function warmVariant(id: HeroVariantId) {
     link.dataset.heroPreload = href;
     document.head.appendChild(link);
   }
+  return load;
 }
 
 export default function HeroRotator({ name, title, tagline, variantId }: Props) {
@@ -96,25 +101,50 @@ export default function HeroRotator({ name, title, tagline, variantId }: Props) 
     };
   }, []);
 
-  const handleSurprise = useCallback(() => {
+  const handleSurprise = useCallback(async () => {
     if (swappingRef.current) return;
+    swappingRef.current = true;
     setPlayEntrance(false);
     if (window.location.pathname !== "/" || window.location.search) {
       window.history.replaceState(null, "", "/");
     }
 
-    const nextId = takeSurpriseVariant(activeIdRef.current);
-    warmVariant(nextId);
+    const currentId = activeIdRef.current;
+    const firstChoice = takeSurpriseVariant(currentId);
+    const isNarrow = window.matchMedia("(max-width: 48rem)").matches;
+    const fallbackChoices = eligibleVariantIds(isNarrow, { includeSurpriseOnly: true })
+      .filter((id) => id !== currentId && id !== firstChoice)
+      .sort(() => Math.random() - 0.5);
+    const candidates = [firstChoice, ...fallbackChoices];
+
+    let nextId: HeroVariantId | null = null;
+    let loadError: unknown;
+    for (const candidate of candidates) {
+      try {
+        await warmVariant(candidate);
+        nextId = candidate;
+        break;
+      } catch (error) {
+        loadError = error;
+      }
+    }
+
+    if (!nextId) {
+      // Keep the current scene visible if every eligible chunk fails.
+      console.error("[hero] Could not load a surprise scene", loadError);
+      swappingRef.current = false;
+      return;
+    }
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
       setActiveId(nextId);
+      swappingRef.current = false;
       return;
     }
 
     // Fade the portaled scene out in place, then remount the next variant.
     // Scenes render under document.body, so a React wrapper fade would miss them.
-    swappingRef.current = true;
     delete document.body.dataset.heroSceneEntering;
     document.body.dataset.heroSceneExiting = "";
 
@@ -144,7 +174,7 @@ export default function HeroRotator({ name, title, tagline, variantId }: Props) 
         : (cb: () => void) => window.setTimeout(cb, 1200);
 
     const handle = schedule(() => {
-      void next.load();
+      void next.load().catch(() => undefined);
       for (const href of next.assets ?? []) {
         const link = document.createElement("link");
         link.rel = "prefetch";
