@@ -77,6 +77,34 @@
   color: var(--color-typography-content-default-hover);
 }
 
+.resume-printable-link {
+  position: fixed;
+  bottom: 24px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  width: fit-content;
+  margin-top: var(--spacing-4);
+  padding: var(--spacing-1) var(--spacing-3);
+  color: var(--color-typography-content-default);
+  text-decoration: none;
+  background: var(--color-white);
+  border: 0;
+  border-radius: var(--radius-2);
+  box-shadow: var(--elevation-border-1);
+}
+
+.resume-printable-link-icon {
+  flex: 0 0 auto;
+  margin-left: 2px;
+}
+
+.resume-printable-link:hover {
+  color: var(--color-typography-content-default);
+  background: var(--color-background-onmain-default);
+}
+
 /* ------ Section labels (lowercase body text, secondary) ------ */
 
 .resume-section-label {
@@ -432,6 +460,11 @@
   .resume-education {
     grid-column: 2;
     margin-top: 0;
+  }
+
+  .resume-printable-link {
+    position: static;
+    grid-column: 1 / -1;
   }
 
   .resume-role-dates {
