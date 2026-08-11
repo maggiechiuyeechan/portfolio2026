@@ -26,23 +26,23 @@ const description = `${resume.name} — resume`;
           {Array.from({ length: 8 }).map(() => <div class="resume-debug-col" />)}
         </div>
         <div class="resume-row">
-          <h1 class="resume-name text-title">{resume.name}</h1>
-        </div>
-        <div class="resume-row">
           <header class="resume-rail">
-            {
-              resume.contactColumns.map((group) => (
-                <div class="resume-contact-group text-body">
-                  {group.map((contact) =>
-                    contact.href ? (
-                      <a href={contact.href}>{contact.label}</a>
-                    ) : (
-                      <p>{contact.label}</p>
-                    ),
-                  )}
-                </div>
-              ))
-            }
+            <h1 class="resume-name text-title">{resume.name}</h1>
+            <div class="resume-contacts">
+              {
+                resume.contactColumns.map((group) => (
+                  <div class="resume-contact-group text-body">
+                    {group.map((contact) =>
+                      contact.href ? (
+                        <a href={contact.href}>{contact.label}</a>
+                      ) : (
+                        <p>{contact.label}</p>
+                      ),
+                    )}
+                  </div>
+                ))
+              }
+            </div>
             <div class="resume-education">
               {
                 resume.education.map((entry) => (

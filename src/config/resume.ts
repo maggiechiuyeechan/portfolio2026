@@ -38,7 +38,7 @@ export interface ResumeRole {
 }
 
 export const resume = {
-  name: "Maggie Chiu Yee Chan",
+  name: "Maggie CY Chan",
 
   /** Header contact columns: [0] label rail column, [1] body column. */
   contactColumns: [
