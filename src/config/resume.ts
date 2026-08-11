@@ -136,7 +136,7 @@ export const resume = {
       title: "Product Consultant",
       dates: "2019",
       bullets: [
-        "Led a team of 5 designing a tool for Bloomberg's data scientists, improving the accuracy of their machine learning models",
+        "Designed the data annotation platform that Bloomberg's data scientists use to train more accurate machine learning models",
       ],
     },
     {
