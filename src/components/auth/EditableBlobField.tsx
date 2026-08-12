@@ -43,7 +43,8 @@ const BASE_MAX_PIECES = 22;
 /** Hard cap so very wide monitors stay performant. */
 const ABSOLUTE_MAX_PIECES = 52;
 const REF_VIEWPORT_AREA = 1280 * 800;
-const LARGE_DESKTOP_TEXT_PAD = 72;
+const REGULAR_DESKTOP_TEXT_PAD = 96;
+const LARGE_DESKTOP_TEXT_PAD = 144;
 
 interface PackTargets {
   maxPieces: number;
@@ -150,6 +151,44 @@ function shuffle<T>(items: T[]): T[] {
     next[j] = tmp;
   }
   return next;
+}
+
+function rotateBlobDef(def: EditableBlobDef, radians: number, color: string): EditableBlobDef {
+  const cos = Math.cos(radians);
+  const sin = Math.sin(radians);
+  const rotate = (x: number, y: number) => ({
+    x: x * cos - y * sin,
+    y: x * sin + y * cos,
+  });
+
+  return {
+    ...def,
+    color,
+    subpaths: def.subpaths.map((subpath) => ({
+      ...subpath,
+      segments: subpath.segments.map((segment) => {
+        const p0 = rotate(segment.x0, segment.y0);
+        const p1 = rotate(segment.x1, segment.y1);
+        const p2 = rotate(segment.x2, segment.y2);
+        const p = rotate(segment.x, segment.y);
+        return {
+          ...segment,
+          x0: p0.x,
+          y0: p0.y,
+          x1: p1.x,
+          y1: p1.y,
+          x2: p2.x,
+          y2: p2.y,
+          x: p.x,
+          y: p.y,
+        };
+      }),
+    })),
+    nodes: def.nodes.map((node) => {
+      const point = rotate(node.x, node.y);
+      return { ...node, x: point.x, y: point.y };
+    }),
+  };
 }
 
 /** One of each shape, then random repeats until the viewport needs that many pieces. */
@@ -443,10 +482,11 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
       : 1;
   return placed.map((placement, index) => ({
     ...placement,
-    def: {
-      ...placement.def,
-      color: randomizedColors[index]!,
-    },
+    def: rotateBlobDef(
+      placement.def,
+      Math.random() < 0.5 ? 0 : Math.PI,
+      randomizedColors[index]!,
+    ),
     scale: placement.scale * visualScale,
   }));
 }
@@ -489,9 +529,14 @@ export default function EditableBlobField({ obstacleRefs = [], variants }: Props
     const layout = () => {
       const vw = window.innerWidth;
       const vh = window.innerHeight;
+      const textPadding = isLargeDesktopViewport(vw)
+        ? LARGE_DESKTOP_TEXT_PAD
+        : isRegularDesktopViewport(vw, vh)
+          ? REGULAR_DESKTOP_TEXT_PAD
+          : TEXT_PAD;
       const zones = measureZones(
         obstacleRefs,
-        isLargeDesktopViewport(vw) ? LARGE_DESKTOP_TEXT_PAD : TEXT_PAD,
+        textPadding,
       );
       const next = packBlobs(vw, vh, zones);
       layoutKey.current += 1;
