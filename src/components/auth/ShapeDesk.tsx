@@ -32,6 +32,7 @@ const OVERLAP_RADIUS_FACTOR = 0.78;
 const MAX_INITIAL_STACK = 2;
 /** Single-column / mobile breakpoint (matches --single-column-break). */
 const MOBILE_MAX_WIDTH_PX = 660;
+const LARGE_DESKTOP_MIN_WIDTH_PX = 1920;
 
 /** Scale shape size from viewport — smaller on phones, larger on desktop. */
 function deskBaseSize(viewportWidth: number, viewportHeight: number) {
@@ -254,8 +255,6 @@ function placeClearOfText(
 }
 
 function shapesForViewport(shapes: ShapeDef[], width: number): ShapeDef[] {
-  if (width > MOBILE_MAX_WIDTH_PX) return shapes;
-  // Mobile: one of each shape (drop the doubled spawn set).
   const seen = new Set<string>();
   const unique: ShapeDef[] = [];
   for (const shape of shapes) {
@@ -263,6 +262,11 @@ function shapesForViewport(shapes: ShapeDef[], width: number): ShapeDef[] {
     seen.add(shape.id);
     unique.push(shape);
   }
+
+  // Large desktop: add a third set; regular desktop keeps the doubled spawn set.
+  if (width > LARGE_DESKTOP_MIN_WIDTH_PX) return [...shapes, ...unique];
+  if (width > MOBILE_MAX_WIDTH_PX) return shapes;
+  // Mobile: one of each shape (drop the doubled spawn set).
   return unique;
 }
 

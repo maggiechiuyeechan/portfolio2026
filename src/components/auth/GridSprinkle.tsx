@@ -17,6 +17,9 @@ import {
 import HeroGridSurface, { HERO_GRID_CELL } from "./HeroGridBackdrop";
 
 const GRID_CELL = HERO_GRID_CELL;
+const LARGE_DESKTOP_MIN_WIDTH = 1920;
+const MAX_DOTS = 120;
+const LARGE_DESKTOP_MAX_DOTS = 200;
 /** Dot diameter in rem (canvas draws in CSS px via root font-size). */
 const DOT_DIAMETER_REM = 1;
 const EXCLUSION_PAD = GRID_CELL * 2;
@@ -102,7 +105,8 @@ function isInteractiveTarget(target: Element | null) {
 }
 
 function dotCount(width: number, height: number) {
-  return Math.min(120, Math.max(72, Math.round((width * height) / 14_000) + 40));
+  const maxDots = width > LARGE_DESKTOP_MIN_WIDTH ? LARGE_DESKTOP_MAX_DOTS : MAX_DOTS;
+  return Math.min(maxDots, Math.max(72, Math.round((width * height) / 14_000) + 40));
 }
 
 function measureExclusionZones(refs: React.RefObject<HTMLElement | null>[]): ExclusionZone[] {
