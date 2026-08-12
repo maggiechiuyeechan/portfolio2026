@@ -18,11 +18,12 @@ import HeroGridSurface, { HERO_GRID_CELL } from "./HeroGridBackdrop";
 
 const GRID_CELL = HERO_GRID_CELL;
 const LARGE_DESKTOP_MIN_WIDTH = 1920;
-const MAX_DOTS = 120;
+const MAX_DOTS = 140;
 const LARGE_DESKTOP_MAX_DOTS = 200;
 /** Dot diameter in rem (canvas draws in CSS px via root font-size). */
 const DOT_DIAMETER_REM = 1;
 const EXCLUSION_PAD = GRID_CELL * 2;
+const OUTER_EXCLUSION_PAD = GRID_CELL * 4;
 /** Per-dot ease-out duration when reshuffling. */
 const SPRINKLE_IN_MS = 380;
 /** Max random delay before a dot starts fading/scaling in. */
@@ -106,24 +107,26 @@ function isInteractiveTarget(target: Element | null) {
 
 function dotCount(width: number, height: number) {
   const maxDots = width > LARGE_DESKTOP_MIN_WIDTH ? LARGE_DESKTOP_MAX_DOTS : MAX_DOTS;
-  return Math.min(maxDots, Math.max(72, Math.round((width * height) / 14_000) + 40));
+  return Math.min(maxDots, Math.max(84, Math.round((width * height) / 14_000) + 52));
 }
 
 function measureExclusionZones(refs: React.RefObject<HTMLElement | null>[]): ExclusionZone[] {
   const zones: ExclusionZone[] = [];
 
-  refs.forEach((ref) => {
+  refs.forEach((ref, index) => {
     const el = ref.current;
     if (!el) return;
 
     const rect = el.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) return;
+    const isOuterEdge = index === 0 || index === refs.length - 1;
+    const padding = isOuterEdge ? OUTER_EXCLUSION_PAD : EXCLUSION_PAD;
 
     zones.push({
-      left: rect.left - EXCLUSION_PAD,
-      top: rect.top - EXCLUSION_PAD,
-      right: rect.right + EXCLUSION_PAD,
-      bottom: rect.bottom + EXCLUSION_PAD,
+      left: rect.left - padding,
+      top: rect.top - padding,
+      right: rect.right + padding,
+      bottom: rect.bottom + padding,
     });
   });
 

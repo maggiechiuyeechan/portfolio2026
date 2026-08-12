@@ -48,6 +48,7 @@ let pointerX = 0;
 let pointerY = 0;
 let labelX = 0;
 let labelY = 0;
+let pointerPositionKnown = false;
 
 let rafId: number | null = null;
 let scrollRafId: number | null = null;
@@ -274,7 +275,13 @@ async function crossfadeLabel(next: string) {
  * never replay enter on pointer move (that was causing random flash-outs).
  */
 function activate(label: string) {
-  if (!mounted || !rootEl?.isConnected || syncDismissedFromDom()) return;
+  if (
+    !mounted ||
+    !rootEl?.isConnected ||
+    !pointerPositionKnown ||
+    syncDismissedFromDom()
+  )
+    return;
 
   if (active) {
     if (label !== currentLabel) void crossfadeLabel(label);
@@ -308,7 +315,7 @@ function isInteractive(el: Element | null) {
 }
 
 function resolvePointerTarget(el: Element | null) {
-  if (!mounted || !pageLabel || syncDismissedFromDom()) {
+  if (!mounted || !pageLabel || !pointerPositionKnown || syncDismissedFromDom()) {
     deactivate();
     return;
   }
@@ -354,6 +361,7 @@ function scheduleResolve() {
 function onPointerMove(event: PointerEvent) {
   pointerX = event.clientX;
   pointerY = event.clientY;
+  pointerPositionKnown = true;
   if (syncDismissedFromDom()) {
     if (active) deactivate();
     return;
@@ -365,15 +373,20 @@ function onPointerMove(event: PointerEvent) {
 }
 
 function onPointerOver(event: PointerEvent) {
+  pointerX = event.clientX;
+  pointerY = event.clientY;
+  pointerPositionKnown = true;
   const target = event.target;
   resolvePointerTarget(target instanceof Element ? target : null);
 }
 
 function onPointerLeaveDocument() {
+  pointerPositionKnown = false;
   deactivate();
 }
 
 function onWindowBlur() {
+  pointerPositionKnown = false;
   deactivate();
 }
 
@@ -457,6 +470,7 @@ function teardownDom() {
   textEl = null;
   active = false;
   currentLabel = null;
+  pointerPositionKnown = false;
   mounted = false;
 }
 
@@ -518,7 +532,9 @@ export function updateCursorLabel(
   }
 
   if (!mounted) return;
-  resolvePointerTarget(document.elementFromPoint(pointerX, pointerY));
+  if (pointerPositionKnown) {
+    resolvePointerTarget(document.elementFromPoint(pointerX, pointerY));
+  }
 }
 
 /**

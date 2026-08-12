@@ -11,7 +11,7 @@ import { dismissCursorLabel } from "../../../scripts/cursor-label";
 import type { HeroSceneProps } from "../../../config/heroVariants";
 
 const monsterArt: React.CSSProperties = {
-  width: "min(28rem, 100%)",
+  width: "min(26rem, 100%)",
   position: "relative",
   zIndex: 2,
   pointerEvents: "none",
@@ -81,7 +81,7 @@ export default function MonstersScene({ obstacleRefs, variants }: HeroSceneProps
           left: anchor?.x ?? "50%",
           top: anchor?.y ?? "50%",
           transform: "translate(-50%, -100%)",
-          width: "min(28rem, 100vw)",
+          width: "min(26rem, 100vw)",
           paddingInline: "1.5rem",
           boxSizing: "border-box",
         }}

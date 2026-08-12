@@ -24,7 +24,7 @@ const WHEEL_ROTATE = 0.004;
 const CLICK_MOVE_THRESHOLD = 5;
 const CLICK_ROTATE_RAD = (15 * Math.PI) / 180;
 /** Clearance around the hero text for initial placement. */
-const TEXT_PADDING = 28;
+const TEXT_PADDING = 64;
 const PLACE_ATTEMPTS = 120;
 /** Bounding-circle shrink so light grazing doesn’t count as a stack. */
 const OVERLAP_RADIUS_FACTOR = 0.78;
