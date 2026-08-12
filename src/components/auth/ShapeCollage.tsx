@@ -257,7 +257,7 @@ function placeOneShape(
   placed: Placement[],
 ): Placement {
   const minWidth = 0.25 * vw;
-  const widthCap = vw <= MOBILE_MAX_WIDTH_PX ? 1 : 0.55;
+  const widthCap = vw <= MOBILE_MAX_WIDTH_PX ? 1 : 0.45;
   const maxWidth = Math.min(widthCap * vw, MAX_HEIGHT_RATIO * vh * shape.aspect);
   const preferredWidth = Math.max(minWidth, Math.min(widthRatio * vw, maxWidth));
 

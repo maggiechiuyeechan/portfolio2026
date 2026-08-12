@@ -43,8 +43,8 @@ const BASE_MAX_PIECES = 22;
 /** Hard cap so very wide monitors stay performant. */
 const ABSOLUTE_MAX_PIECES = 52;
 const REF_VIEWPORT_AREA = 1280 * 800;
-const REGULAR_DESKTOP_TEXT_PAD = 96;
-const LARGE_DESKTOP_TEXT_PAD = 144;
+const REGULAR_DESKTOP_TEXT_PAD = 120;
+const LARGE_DESKTOP_TEXT_PAD = 180;
 
 interface PackTargets {
   maxPieces: number;

@@ -79,6 +79,15 @@ interface DeskPiece {
   zIndex: number;
 }
 
+interface PlacedMeta {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  overlapCount: number;
+  shapeId: string;
+}
+
 interface ActiveInteraction {
   pieceId: string;
   pointerId: number;
@@ -194,7 +203,7 @@ function violatesStackLimit(
   y: number,
   pieceWidth: number,
   pieceHeight: number,
-  placed: Array<{ x: number; y: number; w: number; h: number; overlapCount: number }>,
+  placed: PlacedMeta[],
 ) {
   const hits: number[] = [];
   for (let i = 0; i < placed.length; i++) {
@@ -216,7 +225,8 @@ function placeClearOfText(
   pieceWidth: number,
   pieceHeight: number,
   zones: Rect[],
-  placed: Array<{ x: number; y: number; w: number; h: number; overlapCount: number }>,
+  placed: PlacedMeta[],
+  shapeId: string,
 ) {
   const pieceSize = Math.max(pieceWidth, pieceHeight);
   let best: { x: number; y: number; score: number } | null = null;
@@ -231,7 +241,12 @@ function placeClearOfText(
         ? Math.hypot(x - width / 2, y - height / 2)
         : Math.min(...placed.map((other) => Math.hypot(x - other.x, y - other.y)));
     const distanceFromCenter = Math.hypot(x - width / 2, y - height / 2);
-    const score = nearestPiece + distanceFromCenter * 0.08;
+    const sameShapes = placed.filter((other) => other.shapeId === shapeId);
+    const nearestSameShape =
+      sameShapes.length === 0
+        ? Math.hypot(width, height)
+        : Math.min(...sameShapes.map((other) => Math.hypot(x - other.x, y - other.y)));
+    const score = nearestPiece + nearestSameShape * 0.6 + distanceFromCenter * 0.08;
 
     if (!best || score > best.score) best = { x, y, score };
   }
@@ -277,8 +292,7 @@ function createInitialPieces(
   baseSize: number,
   zones: Rect[],
 ): DeskPiece[] {
-  const placedMeta: Array<{ x: number; y: number; w: number; h: number; overlapCount: number }> =
-    [];
+  const placedMeta: PlacedMeta[] = [];
   const pieces: DeskPiece[] = [];
 
   shapes.forEach((shape, index) => {
@@ -290,6 +304,7 @@ function createInitialPieces(
       pieceHeight,
       zones,
       placedMeta,
+      shape.id,
     );
 
     // Update overlap counts for the pair graph.
@@ -307,6 +322,7 @@ function createInitialPieces(
       w: pieceWidth,
       h: pieceHeight,
       overlapCount: hits.length,
+      shapeId: shape.id,
     });
 
     pieces.push({
