@@ -43,6 +43,7 @@ const BASE_MAX_PIECES = 22;
 /** Hard cap so very wide monitors stay performant. */
 const ABSOLUTE_MAX_PIECES = 52;
 const REF_VIEWPORT_AREA = 1280 * 800;
+const LARGE_DESKTOP_TEXT_PAD = 72;
 
 interface PackTargets {
   maxPieces: number;
@@ -54,26 +55,31 @@ function isRegularDesktopViewport(vw: number, vh: number) {
   return vw >= 960 && vw <= 1920 && vh >= 540 && vh <= 1200;
 }
 
+function isLargeDesktopViewport(vw: number) {
+  return vw > 1920;
+}
+
 /** Larger screens get more shapes and slightly higher coverage. */
 function viewportPackTargets(vw: number, vh: number): PackTargets {
   const areaRatio = (vw * vh) / REF_VIEWPORT_AREA;
   const isRegularDesktop = isRegularDesktopViewport(vw, vh);
-  const desktopExtraPieces = isRegularDesktop ? 9 : 0;
+  const isLargeDesktop = isLargeDesktopViewport(vw);
+  const extraPieces = isRegularDesktop ? 9 : isLargeDesktop ? 22 : 0;
   const maxPieces = Math.min(
     ABSOLUTE_MAX_PIECES,
     Math.max(
       MIN_PIECES,
-      EDITABLE_BLOBS.length + desktopExtraPieces,
+      EDITABLE_BLOBS.length + extraPieces,
       Math.round(BASE_MAX_PIECES * Math.sqrt(areaRatio)),
     ),
   );
   const targetCoverage = Math.min(
-    isRegularDesktop ? 0.9 : 0.72,
+    isRegularDesktop ? 0.9 : isLargeDesktop ? 0.96 : 0.72,
     TARGET_COVERAGE +
       0.14 * Math.min(1, (areaRatio - 1) / 1.5) +
-      (isRegularDesktop ? 0.3 : 0),
+      (isRegularDesktop ? 0.3 : isLargeDesktop ? 0.24 : 0),
   );
-  return { maxPieces, targetCoverage, extraPieces: desktopExtraPieces };
+  return { maxPieces, targetCoverage, extraPieces };
 }
 
 interface Rect {
@@ -97,7 +103,10 @@ interface Props {
   variants?: Variants;
 }
 
-function measureZones(refs: React.RefObject<HTMLElement | null>[]): Rect[] {
+function measureZones(
+  refs: React.RefObject<HTMLElement | null>[],
+  padding = TEXT_PAD,
+): Rect[] {
   const zones: Rect[] = [];
   for (const ref of refs) {
     const el = ref.current;
@@ -105,10 +114,10 @@ function measureZones(refs: React.RefObject<HTMLElement | null>[]): Rect[] {
     const rect = el.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) continue;
     zones.push({
-      left: rect.left - TEXT_PAD,
-      top: rect.top - TEXT_PAD,
-      right: rect.right + TEXT_PAD,
-      bottom: rect.bottom + TEXT_PAD,
+      left: rect.left - padding,
+      top: rect.top - padding,
+      right: rect.right + padding,
+      bottom: rect.bottom + padding,
     });
   }
   return zones;
@@ -427,7 +436,11 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
     randomizedColors.push(...shuffle(palette));
   }
 
-  const visualScale = isRegularDesktopViewport(vw, vh) ? 1.1 : 1;
+  const visualScale = isRegularDesktopViewport(vw, vh)
+    ? 1.1
+    : isLargeDesktopViewport(vw)
+      ? 1.12
+      : 1;
   return placed.map((placement, index) => ({
     ...placement,
     def: {
@@ -476,7 +489,10 @@ export default function EditableBlobField({ obstacleRefs = [], variants }: Props
     const layout = () => {
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      const zones = measureZones(obstacleRefs);
+      const zones = measureZones(
+        obstacleRefs,
+        isLargeDesktopViewport(vw) ? LARGE_DESKTOP_TEXT_PAD : TEXT_PAD,
+      );
       const next = packBlobs(vw, vh, zones);
       layoutKey.current += 1;
       setPlacements(next);

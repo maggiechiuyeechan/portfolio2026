@@ -467,11 +467,6 @@
     grid-column: 1 / -1;
   }
 
-  .resume-role-dates {
-    flex-basis: 100%;
-    margin-left: 0;
-  }
-
   .resume-grid-debug .resume-debug-overlay {
     grid-template-columns: minmax(0, 1fr);
   }

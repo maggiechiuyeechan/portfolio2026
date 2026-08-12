@@ -48,6 +48,7 @@ const FRAG = `
 precision mediump float;
 uniform sampler2D uTex;
 uniform vec2 uRes;
+uniform vec2 uTexRes;
 uniform vec2 uMouse;
 uniform float uHasMouse;
 uniform float uTime;
@@ -90,6 +91,16 @@ void main() {
   vec2 splashOffset = sDir * (pulse * splashWave + impact) * fade * 0.045;
 
   vec2 rippledUv = uv + mouseOffset + splashOffset;
+
+  // Match object-fit: cover: preserve the source aspect ratio, scale until the
+  // frame is filled, then crop the excess around the center.
+  float textureAspect = uTexRes.x / max(uTexRes.y, 1.0);
+  if (textureAspect > aspect) {
+    rippledUv.x = 0.5 + (rippledUv.x - 0.5) * (aspect / textureAspect);
+  } else {
+    rippledUv.y = 0.5 + (rippledUv.y - 0.5) * (textureAspect / aspect);
+  }
+
   vec3 color = texture2D(uTex, clamp(rippledUv, 0.0, 1.0)).rgb;
   gl_FragColor = vec4(color, 1.0);
 }
@@ -171,6 +182,7 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
 
     const uTex = gl.getUniformLocation(program, "uTex");
     const uRes = gl.getUniformLocation(program, "uRes");
+    const uTexRes = gl.getUniformLocation(program, "uTexRes");
     const uMouse = gl.getUniformLocation(program, "uMouse");
     const uHasMouse = gl.getUniformLocation(program, "uHasMouse");
     const uTime = gl.getUniformLocation(program, "uTime");
@@ -232,6 +244,7 @@ export default function HeroAvatarHalftone({ src, alt, poster, variants }: Props
         gl.viewport(0, 0, bw, bh);
       }
       gl.uniform2f(uRes, w, h);
+      gl.uniform2f(uTexRes, video.videoWidth || 400, video.videoHeight || 712);
     };
 
     const onPointerMove = (event: PointerEvent) => {

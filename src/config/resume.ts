@@ -81,7 +81,7 @@ export const resume = {
         "Product Design Manager 2023–24 · Sr. Product Designer 2023",
       ],
       summary:
-        "I lead product design and research in close partnership with the CEO. I scaled design from 12 to 18 and research from 1 to 4 before reorganizing around a leaner team of 8 designers and 2 researchers. I run the org and stay close to the details, often shipping features myself.",
+        "I lead product design and research in close partnership with the CEO. I run the org and stay close to the details, often shipping features myself.",
       groups: [
         {
           heading: "Turning ClickUp into an AI-native work platform",
@@ -105,7 +105,7 @@ export const resume = {
           bullets: [
             "Built the internal workflows that changed how EPD works: research studies launched by agents from inside ClickUp, and live prototypes coded with agents, testable in minutes in the Prototype Playground",
             "Brought coding and productivity agents into the design team's daily practice. Designers now ship simple fixes straight to the frontend repo themselves",
-            "Building a learning system that improves from human corrections and adjusts its agents, skills, rules, and design-system documentation",
+            "Building a prototyping and code generation system that learns, improves from human corrections by adjusting its agents, skills, rules, and design-system documentation",
           ],
         },
         {
