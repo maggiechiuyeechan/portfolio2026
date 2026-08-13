@@ -175,7 +175,15 @@ body[data-hero-interactive] textarea {
 
 :root {
   --hero-scene-swap-duration: 0.4s;
+  --hero-page-exit-duration: 0.4s;
   --hero-scene-swap-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hero-entrance-replay,
+.hero-scene-frame,
+.hero-noise-overlay,
+.cursor-label-root {
+  transition: opacity var(--hero-page-exit-duration) var(--hero-scene-swap-ease);
 }
 
 .physics-tiles,
@@ -188,6 +196,23 @@ body[data-hero-interactive] textarea {
 .hero-meadow-scene,
 .hero-early-backdrop {
   transition: opacity var(--hero-scene-swap-duration) var(--hero-scene-swap-ease);
+}
+
+body[data-hero-page-exiting] .hero-entrance-replay,
+body[data-hero-page-exiting] .hero-scene-frame,
+body[data-hero-page-exiting] .hero-noise-overlay,
+body[data-hero-page-exiting] .cursor-label-root,
+body[data-hero-page-exiting] .physics-tiles,
+body[data-hero-page-exiting] .shape-collage,
+body[data-hero-page-exiting] .grid-sprinkle,
+body[data-hero-page-exiting] .shape-desk,
+body[data-hero-page-exiting] .editable-blob-field,
+body[data-hero-page-exiting] .botanical-growth,
+body[data-hero-page-exiting] .hero-monsters-scene,
+body[data-hero-page-exiting] .hero-meadow-scene,
+body[data-hero-page-exiting] .hero-early-backdrop {
+  opacity: 0 !important;
+  pointer-events: none;
 }
 
 body[data-hero-scene-exiting] .physics-tiles,

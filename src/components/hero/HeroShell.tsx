@@ -49,6 +49,9 @@ const container = {
   exit: { opacity: 0, y: -8, transition: { duration: 0.25, ease: easeOut } },
 };
 
+/** Match --hero-page-exit-duration in hero.css. */
+const HERO_PAGE_EXIT_MS = 400;
+
 const item = {
   hidden: { opacity: 0, y: 12 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOut } },
@@ -131,6 +134,14 @@ export default function HeroShell({
   const showEarlyBackdrop = variantMeta?.earlyBackdrop === "grid";
   const settled = !animateEntrance;
   const animateLayout = settled && !reducedMotion;
+
+  useEffect(() => {
+    if (!exiting) return;
+    const timeout = window.setTimeout(() => {
+      window.location.assign("/work");
+    }, HERO_PAGE_EXIT_MS);
+    return () => window.clearTimeout(timeout);
+  }, [exiting]);
 
   // Own the frame flag here so early backdrops clip on the first paint,
   // instead of waiting for the frame portal's mounted effect.
@@ -250,7 +261,10 @@ export default function HeroShell({
         <PasswordForm
           onSuccess={() => {
             if (reducedMotion) window.location.assign("/work");
-            else setExiting(true);
+            else {
+              document.body.dataset.heroPageExiting = "";
+              setExiting(true);
+            }
           }}
         />
       </div>
@@ -290,9 +304,6 @@ export default function HeroShell({
       initial={animateEntrance ? "hidden" : false}
       animate={exiting ? "exit" : settled ? { opacity: 1 } : motionState}
       transition={{ layout: layoutShift }}
-      onAnimationComplete={() => {
-        if (exiting) window.location.assign("/work");
-      }}
     >
       {inlineScene}
       {nameHeading}
