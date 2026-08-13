@@ -116,7 +116,7 @@ export const resume = {
     },
     {
       label: "Tools",
-      items: ["Figma", "ClickUp", "Cursor", "React", "TypeScript"],
+      items: ["Cursor", "Figma", "ClickUp", "React", "TypeScript"],
     },
   ] satisfies ResumeSkillGroup[],
 

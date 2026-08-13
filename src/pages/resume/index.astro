@@ -53,14 +53,12 @@ const description = `${resume.name} — resume`;
                   resume.education.map((entry) => (
                     <p class="resume-education-line text-body">
                       <span class="resume-education-degree">{entry.degree}</span>
-                      <span class="resume-education-school">
-                        {entry.school}, {entry.year}
+                      <span class="resume-education-school">{entry.school}</span>
+                      <span class="resume-education-meta">
+                        {entry.location
+                          ? `${entry.year} · ${entry.location}`
+                          : entry.year}
                       </span>
-                      {entry.location && (
-                        <span class="resume-education-location">
-                          {entry.location}
-                        </span>
-                      )}
                     </p>
                   ))
                 }

@@ -66,10 +66,12 @@ const description = `Print-ready resume for ${resume.name}`;
               resume.education.map((entry) => (
                 <p>
                   <span>{entry.degree}</span>
+                  <small>{entry.school}</small>
                   <small>
-                    {entry.school}, {entry.year}
+                    {entry.location
+                      ? `${entry.year} · ${entry.location}`
+                      : entry.year}
                   </small>
-                  {entry.location && <small>{entry.location}</small>}
                 </p>
               ))
             }
