@@ -150,7 +150,7 @@ export const resume = {
         },
         {
           heading:
-            "Building internal AI-native tools for success, creativity & efficiency",
+            "Building internal AI-native tools for creativity & efficiency",
           bullets: [
             "Built the internal workflows that changed how EPD works: research studies launched by agents from inside ClickUp, and live prototypes coded with agents, testable in minutes in the Prototype Playground",
             "Brought coding and productivity agents into the design team's daily practice. Designers now ship simple fixes straight to the frontend repo themselves",
