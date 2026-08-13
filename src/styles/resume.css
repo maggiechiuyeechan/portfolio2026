@@ -218,7 +218,7 @@
 
 /* Space between stacked roles in the work section. */
 .resume-role + .resume-role {
-  margin-top: var(--spacing-6);
+  margin-top: var(--spacing-5);
 }
 
 .resume-role-header {

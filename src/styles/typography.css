@@ -28,11 +28,11 @@
   color: var(--color-typography-content-default);
 }
 
-/* h3 — Geist Semibold, nudged up the variable wght axis. */
+/* h3 — Geist semibold, set off the 100-step scale on the variable wght axis. */
 .text-heading {
   font-family: var(--font-sans);
-  font-weight: 610;
-  font-size: 0.885rem;
+  font-weight: 590;
+  font-size: 0.895rem;
   line-height: 1.5rem;
   letter-spacing: -0.00463rem;
   color: var(--color-typography-content-default);
