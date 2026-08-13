@@ -8,6 +8,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/layout/Container.astro";
 import ResumeRole from "../../components/resume/ResumeRole.astro";
+import ResumeSkills from "../../components/resume/ResumeSkills.astro";
+import ResumeDebugPanel from "../../components/resume/ResumeDebugPanel";
 import { resume } from "../../config/resume";
 import { site } from "../../config/site";
 
@@ -27,37 +29,43 @@ const description = `${resume.name} — resume`;
         <div class="resume-row">
           <header class="resume-rail">
             <h1 class="resume-name text-title">{resume.name}</h1>
-            <div class="resume-contacts">
-              {
-                resume.contactColumns.map((group) => (
-                  <div class="resume-contact-group text-body">
-                    {group.map((contact) =>
-                      contact.href ? (
-                        <a href={contact.href}>{contact.label}</a>
-                      ) : (
-                        <p>{contact.label}</p>
-                      ),
-                    )}
-                  </div>
-                ))
-              }
+            <div class="resume-contacts-block">
+              <h2 class="resume-section-label text-caption">Contact</h2>
+              <div class="resume-contacts">
+                {
+                  resume.contactColumns.map((group) => (
+                    <div class="resume-contact-group text-body">
+                      {group.map((contact) =>
+                        contact.href ? (
+                          <a href={contact.href}>{contact.label}</a>
+                        ) : (
+                          <p>{contact.label}</p>
+                        ),
+                      )}
+                    </div>
+                  ))
+                }
+              </div>
             </div>
-            <div class="resume-education">
-              {
-                resume.education.map((entry) => (
-                  <p class="resume-education-line text-body">
-                    <span class="resume-education-degree">{entry.degree}</span>
-                    <span class="resume-education-school">{entry.school}</span>
-                    {
-                      entry.location && (
+            <div class="resume-education-block">
+              <h2 class="resume-section-label text-caption">Education</h2>
+              <div class="resume-education">
+                {
+                  resume.education.map((entry) => (
+                    <p class="resume-education-line text-body">
+                      <span class="resume-education-degree">{entry.degree}</span>
+                      <span class="resume-education-school">
+                        {entry.school}, {entry.year}
+                      </span>
+                      {entry.location && (
                         <span class="resume-education-location">
                           {entry.location}
                         </span>
-                      )
-                    }
-                  </p>
-                ))
-              }
+                      )}
+                    </p>
+                  ))
+                }
+              </div>
             </div>
             <a
               class="resume-printable-link text-body"
@@ -87,10 +95,16 @@ const description = `${resume.name} — resume`;
           </header>
 
           <section class="resume-col-body">
+            <h2 class="resume-section-label text-caption">Experience</h2>
             {resume.work.map((role) => <ResumeRole role={role} />)}
+            <h2 class="resume-section-label resume-section-label--skills text-caption">
+              Skills
+            </h2>
+            <ResumeSkills groups={resume.skills} />
           </section>
         </div>
       </div>
     </Container>
+    <ResumeDebugPanel client:idle />
   </div>
 </BaseLayout>

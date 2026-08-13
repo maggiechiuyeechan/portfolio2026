@@ -64,7 +64,10 @@
   box-sizing: border-box;
   width: 8.5in;
   height: 11in;
-  padding: 0.8in 1.25in 1in 1in;
+  /* Top and bottom split the same 1.4in the layout can afford, so the name sits
+     off the top edge without shortening the content box — page 1 has only
+     ~0.08in of headroom left. */
+  padding: 0.7in 1.25in 0.7in 1in;
   display: grid;
   grid-template-columns: 1.6in minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr);
@@ -91,7 +94,7 @@ body:has(.resume-print-shell) .cursor-label-pill {
 }
 
 .resume-print-name {
-  margin: 0 0 0.4in;
+  margin: 0 0 var(--resume-name-gap);
   font-family: var(--font-sans);
   font-size: 15pt;
   font-weight: 400;
@@ -121,8 +124,37 @@ body:has(.resume-print-shell) .cursor-label-pill {
   overflow-wrap: anywhere;
 }
 
-.resume-print-education {
+.resume-print-shell {
+  --resume-label-line: 14.4pt;
+  --resume-label-gap: 0.08in;
+  /* --spacing-15 at print scale. */
+  --resume-name-gap: 0.5in;
+}
+
+/* Matches the caption's 10px at print scale. */
+.resume-print-shell .resume-section-label {
+  font-size: 7.5pt;
+}
+
+.resume-print-rail > .resume-section-label {
+  margin-bottom: var(--resume-label-gap);
+}
+
+.resume-print-rail > .resume-section-label--education {
+  margin-top: 0.3in;
+}
+
+.resume-print-work > .resume-section-label {
+  margin-bottom: var(--resume-label-gap);
+}
+
+.resume-print-work > .resume-section-label--skills {
   margin-top: 0.2in;
+}
+
+/* Skills close the sheet, so the rows sit tight to stay inside page 2. */
+.resume-print-work .resume-skill-row + .resume-skill-row {
+  margin-top: 0;
 }
 
 .resume-print-education p {
@@ -148,8 +180,8 @@ body:has(.resume-print-shell) .cursor-label-pill {
 }
 
 .resume-print-page:not(.resume-print-page--continued) .resume-print-work {
-  /* Align ClickUp with the first contact line below the name. */
-  padding-top: calc(15pt * 1.45 + 0.4in);
+  /* Clears the name in the rail so Experience lands level with Contact. */
+  padding-top: calc(15pt * 1.45 + var(--resume-name-gap));
 }
 
 .resume-print-work .text-heading,
@@ -193,11 +225,8 @@ body:has(.resume-print-shell) .cursor-label-pill {
 }
 
 .resume-print-work .resume-bullets li {
+  --resume-bullet-hang: 0.8em;
   break-inside: avoid;
-}
-
-.resume-print-work .resume-bullets li::before {
-  inset-inline-start: -0.8em;
 }
 
 .resume-print-page--continued .resume-print-work {

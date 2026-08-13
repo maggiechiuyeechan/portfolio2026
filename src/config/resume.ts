@@ -13,7 +13,15 @@ export interface ResumeContact {
 export interface ResumeEducation {
   degree: string;
   school: string;
+  /** Graduation year, kept separate from the school so parsers can read both. */
+  year: string;
   location?: string;
+}
+
+/** Keyword group for the skills section (label + comma-joined items). */
+export interface ResumeSkillGroup {
+  label: string;
+  items: readonly string[];
 }
 
 /** Sub-heading followed by its lines within one role (rendered flat, per Figma). */
@@ -60,25 +68,66 @@ export const resume = {
 
   education: [
     {
-      degree: "Master's HCI",
-      school: "Carnegie Mellon 2019",
+      degree: "Master of Human-Computer Interaction",
+      school: "Carnegie Mellon University",
+      year: "2019",
       location: "Pittsburgh, PA",
     },
     {
-      degree: "Bachelor's Graphic Design",
-      school: "OCAD University 2013",
+      degree: "Bachelor of Graphic Design",
+      school: "OCAD University",
+      year: "2013",
       location: "Toronto, Canada",
     },
   ] satisfies ResumeEducation[],
+
+  /* Sized to the slack left on print page 2 — roughly six wrapped lines. */
+  skills: [
+    {
+      label: "Design & research",
+      items: [
+        "Product design",
+        "Design systems",
+        "Interaction design",
+        "Prototyping",
+        "Usability testing",
+        "Mixed-methods research",
+        "Continuous discovery",
+        "Data visualization",
+      ],
+    },
+    {
+      label: "AI product",
+      items: [
+        "AI product design",
+        "Agentic workflows",
+        "LLM-powered features",
+        "AI-assisted prototyping",
+      ],
+    },
+    {
+      label: "Leadership",
+      items: [
+        "Org leadership",
+        "Hiring",
+        "Career frameworks",
+        "Performance management",
+      ],
+    },
+    {
+      label: "Tools",
+      items: ["Figma", "ClickUp", "Cursor", "React", "TypeScript"],
+    },
+  ] satisfies ResumeSkillGroup[],
 
   work: [
     {
       company: "ClickUp",
       title: "VP, Product Design & Research",
-      dates: "2023 to present",
+      dates: "2023 – Present",
       meta: [
-        "Promoted Jan '26 · Sr. Director 2024–25", 
-        "Product Design Manager 2023–24 · Sr. Product Designer 2023",
+        "Promoted Jan 2026 · Sr. Director 2024–2025",
+        "Product Design Manager 2023–2024 · Sr. Product Designer 2023",
       ],
       summary:
         "I lead product design and research in close partnership with the CEO. I run the org and stay close to the details, often shipping features myself.",
@@ -122,7 +171,7 @@ export const resume = {
     {
       company: "'Nuffsaid",
       title: "Head of Design",
-      dates: "2022 to 2023",
+      dates: "2022 – 2023",
       meta: ["Acquired by ClickUp, backed by Google Ventures and General Catalyst"],
       bullets: [
         "Joined as Head of Design and second design hire, brought in to rebuild the design practice",
@@ -133,7 +182,7 @@ export const resume = {
     {
       company: "Uber",
       title: "Sr. Product Designer",
-      dates: "2019 to 2022",
+      dates: "2019 – 2022",
       meta: ["Advanced Technologies Group (acquired by Aurora, 2021)"],
       bullets: [
         "Made complex tools more usable for ML engineers through human-centered design, leading user research and product design end-to-end across multiple autonomy teams",
@@ -159,7 +208,7 @@ export const resume = {
     {
       company: "BlueDot",
       title: "UX & Data Designer",
-      dates: "2014 to 2018",
+      dates: "2014 – 2018",
       bullets: [
         "Designed and built ML tools to track and predict how infectious diseases spread, including 100+ data visualizations, one featured in The Economist",
         "Built the product 0 to 1 across vision, research, build, and release. Created the proof of concept behind a $1M+ Air Canada partnership",

@@ -5,6 +5,7 @@
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ResumeRole from "../../components/resume/ResumeRole.astro";
+import ResumeSkills from "../../components/resume/ResumeSkills.astro";
 import { resume } from "../../config/resume";
 import { site } from "../../config/site";
 import "../../styles/resume-print.css";
@@ -40,6 +41,7 @@ const description = `Print-ready resume for ${resume.name}`;
         <aside class="resume-print-rail">
           <h1 class="resume-print-name">{resume.name}</h1>
 
+          <h2 class="resume-section-label text-caption">Contact</h2>
           <div class="resume-print-contacts">
             {
               resume.contactColumns.map((group) => (
@@ -56,12 +58,17 @@ const description = `Print-ready resume for ${resume.name}`;
             }
           </div>
 
+          <h2 class="resume-section-label resume-section-label--education text-caption">
+            Education
+          </h2>
           <div class="resume-print-education">
             {
               resume.education.map((entry) => (
                 <p>
                   <span>{entry.degree}</span>
-                  <small>{entry.school}</small>
+                  <small>
+                    {entry.school}, {entry.year}
+                  </small>
                   {entry.location && <small>{entry.location}</small>}
                 </p>
               ))
@@ -70,6 +77,7 @@ const description = `Print-ready resume for ${resume.name}`;
         </aside>
 
         <section class="resume-print-work" aria-label="Current experience">
+          <h2 class="resume-section-label text-caption">Experience</h2>
           <ResumeRole role={currentRole} />
         </section>
 
@@ -81,6 +89,10 @@ const description = `Print-ready resume for ${resume.name}`;
       >
         <section class="resume-print-work" aria-label="Earlier experience">
           {previousRoles.map((role) => <ResumeRole role={role} />)}
+          <h2 class="resume-section-label resume-section-label--skills text-caption">
+            Skills
+          </h2>
+          <ResumeSkills groups={resume.skills} />
         </section>
       </section>
     </main>

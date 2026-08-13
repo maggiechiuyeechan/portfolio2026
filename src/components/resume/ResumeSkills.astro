@@ -1,0 +1,24 @@
+---
+/**
+ * Skills keywords, one line per group. Each line keeps its label and keywords
+ * in a single text run so applicant tracking systems read them together.
+ */
+import type { ResumeSkillGroup } from "../../config/resume";
+
+interface Props {
+  groups: readonly ResumeSkillGroup[];
+}
+
+const { groups } = Astro.props;
+---
+
+<div class="resume-skills text-body">
+  {
+    groups.map((group) => (
+      <p class="resume-skill-row">
+        <span class="resume-skill-label">{group.label}:</span>{" "}
+        {group.items.join(", ")}
+      </p>
+    ))
+  }
+</div>

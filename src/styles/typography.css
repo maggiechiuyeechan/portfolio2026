@@ -28,11 +28,11 @@
   color: var(--color-typography-content-default);
 }
 
-/* h3 — Geist Medium */
+/* h3 — Geist Semibold, nudged up the variable wght axis. */
 .text-heading {
   font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 0.875rem;
+  font-weight: 610;
+  font-size: 0.885rem;
   line-height: 1.5rem;
   letter-spacing: -0.00463rem;
   color: var(--color-typography-content-default);

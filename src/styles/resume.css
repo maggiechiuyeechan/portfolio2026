@@ -8,6 +8,17 @@
  * Collapses to a single column at 41.25rem.
  */
 
+/* Section-label metrics, shared with the print sheet so both layouts can
+   reserve the same vertical slot for a label. */
+.resume,
+.resume-print-shell {
+  --resume-label-line: 1.5rem;
+  --resume-label-gap: var(--spacing-2);
+  /* Gap below the name, before the Contact and Experience labels. Both columns
+     derive from it so the two labels stay level. */
+  --resume-name-gap: var(--spacing-15);
+}
+
 .resume {
   padding: calc(var(--nav-inset) + var(--spacing-5)) var(--spacing-5) var(--spacing-30);
   text-wrap: pretty;
@@ -36,8 +47,8 @@
 .resume-col-body {
   grid-column: 4 / span 4;
   min-width: 0;
-  /* Name sits above; line ClickUp up with the website. */
-  padding-top: calc(1.25rem * 1.45 + var(--spacing-15));
+  /* Clears the name in the rail so Experience lands level with Contact. */
+  padding-top: calc(1.25rem * 1.45 + var(--resume-name-gap));
 }
 
 .resume-col-aside {
@@ -56,7 +67,7 @@
 
 .resume-name {
   white-space: nowrap;
-  margin: 0 0 var(--spacing-15);
+  margin: 0 0 var(--resume-name-gap);
 }
 
 /* Header contacts + section labels bleed on nowrap rather than wrap mid-URL. */
@@ -105,18 +116,40 @@
   background: var(--color-background-onmain-default);
 }
 
-/* ------ Section labels (lowercase body text, secondary) ------ */
+/* ------ Section labels ------ */
 
+/*
+ * Contact / Experience / Education / Skills. Applicant tracking systems segment
+ * a resume on these words, so they are real text rather than implied by layout.
+ * Type comes from .text-caption; only the line box is pinned here, because the
+ * name and work column reserve exactly this height to keep the labels aligned
+ * across the gutter.
+ */
 .resume-section-label {
   margin: 0;
-  color: var(--color-typography-content-secondary);
+  line-height: var(--resume-label-line);
+  /* .text-caption tracks at 0.15em, which makes PDF text extractors read the
+     label as "C O N T A C T" and stops an ATS matching the section. Measured
+     with scripts/resume-label-tracking-probe.mjs: 0.12em still splits, 0.1em
+     survives; 0.08em keeps a margin for less tolerant parsers. */
+  letter-spacing: 0.08em;
   white-space: nowrap;
+}
+
+.resume-col-body > .resume-section-label,
+.resume-contacts-block > .resume-section-label,
+.resume-education-block > .resume-section-label {
+  margin-bottom: var(--resume-label-gap);
+}
+
+.resume-section-label--skills {
+  margin-top: var(--spacing-6);
 }
 
 /* ------ Education ------ */
 
-.resume-education {
-  margin-top: var(--spacing-4);
+.resume-education-block {
+  margin-top: var(--spacing-6);
 }
 
 .resume-education-line {
@@ -127,6 +160,24 @@
 
 .resume-education-line + .resume-education-line {
   margin-top: var(--spacing-2);
+}
+
+/* ------ Skills ------ */
+
+.resume-skills {
+  color: var(--color-typography-content-secondary);
+}
+
+.resume-skill-row {
+  margin: 0;
+}
+
+.resume-skill-row + .resume-skill-row {
+  margin-top: var(--spacing-1);
+}
+
+.resume-skill-label {
+  color: var(--color-typography-content-default);
 }
 
 .resume-education-degree {
@@ -186,8 +237,12 @@
   color: var(--color-typography-content-tertiary);
 }
 
+/* Dates track the role header's size rather than the .text-body size their
+   class would otherwise set. */
 .resume-role-dates {
   margin-left: auto;
+  font-size: inherit;
+  line-height: inherit;
   color: var(--color-typography-content-secondary);
   white-space: nowrap;
 }
@@ -224,16 +279,29 @@
   padding: 0;
 }
 
-/* Text aligns with the body column; markers hang into the gutter. */
+/*
+ * Text aligns with the body column; markers hang into the gutter.
+ *
+ * The marker stays in the inline flow (hanging indent) rather than being
+ * absolutely positioned. A positioned marker forces `position: relative` on
+ * every li, which moves the whole list into the painting order's positioned
+ * pass — so PDF export emitted all role and group headings first and every
+ * bullet afterwards, detaching bullets from the job they belong to when an
+ * applicant tracking system reads the file.
+ */
 .resume-bullets li {
+  --resume-bullet-hang: 1em;
   margin: 0;
-  position: relative;
+  margin-inline-start: calc(-1 * var(--resume-bullet-hang));
+  padding-inline-start: var(--resume-bullet-hang);
+  text-indent: calc(-1 * var(--resume-bullet-hang));
 }
 
 .resume-bullets li::before {
   content: "•";
-  position: absolute;
-  inset-inline-start: -1em;
+  display: inline-block;
+  width: var(--resume-bullet-hang);
+  text-indent: 0;
   color: inherit;
 }
 
@@ -397,10 +465,11 @@
 @media (max-width: 55em) {
   .resume {
     padding: calc(var(--nav-inset) + var(--spacing-6)) var(--spacing-6) var(--spacing-30);
-  }
-
-  .resume .container-1000 {
-    max-width: 100%;
+    /* Drop the 78vw cap inherited from 80rem, which otherwise leaves ~100px of
+       margin on each side and squeezes the work column until the role header
+       wraps. Set through the token because Container's scoped max-width
+       outranks a descendant override here. */
+    --content-max-width: 100%;
   }
 
   .resume-rail {
@@ -409,6 +478,24 @@
 
   .resume-col-body {
     grid-column: 4 / span 5;
+  }
+}
+
+/* ------ 52rem (832px): narrow the rail so role headers stay on one line ------ */
+
+@media (max-width: 52rem) {
+  .resume-rail {
+    grid-column: 1 / span 2;
+  }
+
+  .resume-col-body {
+    grid-column: 3 / span 6;
+    /* The nowrap contact URL is wider than the two-column rail and bleeds past
+       it, so the 12px gutter alone leaves the two text blocks touching. Inset
+       the work column instead of padding the rail, which would only push the
+       URL further out. 16px is the most the column can give up before the role
+       header wraps at the single-column break. */
+    padding-inline-start: var(--spacing-4);
   }
 }
 
@@ -449,7 +536,7 @@
     grid-column: 1 / -1;
   }
 
-  .resume-contacts {
+  .resume-contacts-block {
     grid-column: 1;
   }
 
@@ -457,7 +544,7 @@
     margin-top: var(--spacing-5);
   }
 
-  .resume-education {
+  .resume-education-block {
     grid-column: 2;
     margin-top: 0;
   }
