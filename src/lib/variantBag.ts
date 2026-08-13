@@ -1,10 +1,11 @@
 /**
  * Shuffle-bag rotation for hero variants.
  *
- * Semantics: every visitor sees all N variants in a random order before any
- * repeats. When the bag empties it refills with a fresh shuffle, and the
- * refill is biased so the new cycle never opens with the variant that closed
- * the previous one (otherwise ~1-in-N of cycle boundaries look like a repeat).
+ * Semantics: a new visitor sees Meadow first. Later visits use a shuffle bag,
+ * so every visitor sees all N variants before any repeats. When the bag
+ * empties it refills with a fresh shuffle, and the refill is biased so the new
+ * cycle never opens with the variant that closed the previous one (otherwise
+ * ~1-in-N of cycle boundaries look like a repeat).
  *
  * Variants marked `surpriseOnly` in the registry are excluded from the bag and
  * from the initial page load — they are only reachable via "Surprise me".
@@ -24,6 +25,7 @@ import {
 } from "../config/heroVariants";
 
 const STORAGE_KEY = "hero:bag:v1";
+const VISITED_STORAGE_KEY = "hero:visited:v1";
 const NARROW_QUERY = "(max-width: 48rem)";
 
 interface BagState {
@@ -35,6 +37,24 @@ interface BagState {
 
 /** In-memory fallback when localStorage is unavailable. */
 let memoryState: BagState | null = null;
+let memoryVisited = false;
+
+function hasVisited(): boolean {
+  try {
+    return window.localStorage.getItem(VISITED_STORAGE_KEY) === "1" || memoryVisited;
+  } catch {
+    return memoryVisited;
+  }
+}
+
+function markVisited(): void {
+  memoryVisited = true;
+  try {
+    window.localStorage.setItem(VISITED_STORAGE_KEY, "1");
+  } catch {
+    /* private mode or storage disabled — memoryVisited carries this session */
+  }
+}
 
 function readState(): BagState | null {
   try {
@@ -108,7 +128,24 @@ export function takeVariant(): HeroVariantId {
   // Should never happen, but a registry misconfiguration shouldn't blank the page.
   if (pool.length === 0) return "meadow";
 
-  const state = readState() ?? { remaining: [], last: null };
+  const storedState = readState();
+  const state = storedState ?? { remaining: [], last: null };
+
+  // Existing bag state predates the explicit visit marker, so treat it as
+  // evidence of a returning visitor during migration.
+  const isFirstVisit = !hasVisited() && !storedState;
+  markVisited();
+
+  if (isFirstVisit) {
+    const picked = pool.includes("meadow") ? "meadow" : pool[0]!;
+    state.remaining = refill(
+      pool.filter((id) => id !== picked),
+      picked,
+    );
+    state.last = picked;
+    writeState(state);
+    return picked;
+  }
 
   // Find the first entry that's eligible right now. A desktop-only variant
   // already sitting in the bag is skipped over — not consumed — so it survives
