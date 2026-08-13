@@ -1,7 +1,7 @@
 ---
 title: ClickUp 4.0
 meta: "2025"
-subtitle: "The largest redesign in ClickUp's history. Raised the craft bar across Docs, Calendar, Tasks and more. Rebuilt the information architecture to prepare for a future of dynamically generated apps. Resulted in a +15 NPS lift."
+subtitle: "I led ClickUp 4.0, the largest redesign in the company's history, introducing a new visual language and navigation architecture across Lists, Chat, Docs, and other core surfaces. The redesign resulted in a 15-point NPS lift."
 navLabel: ClickUp 4.0
 order: 2
 anchorId: clickup-4-0
