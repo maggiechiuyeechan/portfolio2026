@@ -7,8 +7,17 @@
 .nav-desktop {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
   margin-top: 6px;
+}
+
+/* Collapsible logo row. Its spacing sits on the logo itself so a height of 0
+   takes the gap with it — see Nav.tsx. */
+.nav-logo-slot {
+  overflow: hidden;
+}
+
+.nav-logo-slot .nav-logo {
+  margin-bottom: var(--spacing-4);
 }
 
 .nav-logo {

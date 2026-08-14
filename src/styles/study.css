@@ -23,6 +23,45 @@
   gap: var(--spacing-05);
 }
 
+/* Registered so the rule colour can transition on hover. */
+@property --work-intro-rule {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+
+/*
+ * Company links in the intro lede: dotted rule that firms up on hover.
+ * text-decoration always spans the full advance width, so it overhangs each
+ * glyph's side bearing (1.5px in front of "Uber" at this size). Drawing the
+ * rule as a background instead lets it start and stop at the ink; the
+ * background-coloured text-shadow restores the skip-ink gap around descenders
+ * and relies on the page background being flat.
+ */
+.work-intro a {
+  --work-intro-rule: var(--color-typography-content-tertiary);
+  color: inherit;
+  text-decoration: none;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--work-intro-rule) 0 1.5px,
+    transparent 1.5px 3px
+  );
+  background-repeat: no-repeat;
+  background-size: calc(100% - 0.11em) 1px;
+  background-position: 0.075em calc(100% - 0.15em);
+  text-shadow:
+    0.06em 0 var(--color-background-main),
+    -0.06em 0 var(--color-background-main);
+  transition: --work-intro-rule 0.2s ease;
+}
+
+/* Only the dots darken — tinting the words would make them read as lighter
+   than the prose around them, since the hover token is a mid grey. */
+.work-intro a:hover {
+  --work-intro-rule: currentColor;
+}
+
 .study-scroll-target {
   height: 0;
   overflow: hidden;

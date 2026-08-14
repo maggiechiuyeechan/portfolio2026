@@ -6,6 +6,8 @@
 import { getCollection } from "astro:content";
 import ContentShell from "../../layouts/ContentShell.astro";
 import Container from "../../components/layout/Container.astro";
+import Section from "../../components/layout/Section.astro";
+import Text from "../../components/ui/Text.astro";
 import StudyBlock from "../../components/work/StudyBlock.astro";
 import { site } from "../../config/site";
 
@@ -23,8 +25,18 @@ const workLinks = studies.map((study) => ({
 }));
 ---
 
-<ContentShell title={`Work — ${site.name}`} workLinks={workLinks}>
+<ContentShell title={`Work — ${site.name}`} workLinks={workLinks} logoRevealsOnScroll>
   <Container>
+    {/* Reuses the study text grid so the lede lines up with the case study copy. */}
+    <Section class="work-intro">
+      <div class="study-text" data-nav-logo-reveal>
+        <div class="study-text-inner">
+          <Text as="p" variant="title" class="hero-title">
+            <Fragment set:html={site.workIntroHtml} />
+          </Text>
+        </div>
+      </div>
+    </Section>
     {
       studies.map((study, index) => (
         <StudyBlock

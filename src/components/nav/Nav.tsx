@@ -15,6 +15,13 @@ interface Props {
   socials: Link[];
   logoSrc: string;
   logoAlt: string;
+  /**
+   * Start the desktop sidebar without its logo, so the link list sits at the
+   * top of the column, and slide the logo in once the element marked
+   * `data-nav-logo-reveal` has scrolled out of view. Server-rendered from a
+   * prop rather than detected on the client so the logo never flashes in.
+   */
+  logoRevealsOnScroll?: boolean;
 }
 
 const MOBILE_QUERY = "(max-width: 41.25rem)";
@@ -78,6 +85,33 @@ function useActiveWorkLink(workLinks: Link[]) {
   }, [workLinks]);
 
   return activeHref;
+}
+
+/**
+ * Desktop logo visibility for scroll-reveal pages: hidden while the flagged
+ * element is on screen. Pages that never flag one keep the logo.
+ */
+function useLogoVisible(revealsOnScroll: boolean) {
+  const [visible, setVisible] = useState(!revealsOnScroll);
+
+  useEffect(() => {
+    if (!revealsOnScroll) return;
+
+    const sentinel = document.querySelector("[data-nav-logo-reveal]");
+    if (!sentinel) {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(!entry!.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [revealsOnScroll]);
+
+  return visible;
 }
 
 function useIsMobile() {
@@ -194,11 +228,18 @@ function NavMenu({
   );
 }
 
-export default function Nav({ workLinks, socials, logoSrc, logoAlt }: Props) {
+export default function Nav({
+  workLinks,
+  socials,
+  logoSrc,
+  logoAlt,
+  logoRevealsOnScroll = false,
+}: Props) {
   const reducedMotion = usePrefersReducedMotion();
   const isMobile = useIsMobile();
   const [menuOpen, setMenuOpen] = useState(false);
   const activeHref = useActiveWorkLink(workLinks);
+  const logoVisible = useLogoVisible(logoRevealsOnScroll);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -237,9 +278,17 @@ export default function Nav({ workLinks, socials, logoSrc, logoAlt }: Props) {
     if (!isMobile) setMenuOpen(false);
   }, [isMobile]);
 
+  // Resume sits right under LinkedIn. It stays out of site.socials because that
+  // list is also destructured for the hero links and feeds the JSON-LD profiles.
   const navSocials: Link[] = [
     { label: "Email", href: "mailto:mach.sq@gmail.com" },
-    ...socials.filter((s) => !s.href.startsWith("mailto:")),
+    ...socials
+      .filter((s) => !s.href.startsWith("mailto:"))
+      .flatMap((s) =>
+        s.href.includes("linkedin.com")
+          ? [s, { label: "Resume", href: "/resume/print" }]
+          : [s],
+      ),
   ];
 
   const logo = (
@@ -304,7 +353,20 @@ export default function Nav({ workLinks, socials, logoSrc, logoAlt }: Props) {
       </div>
 
       <nav className="nav-desktop" aria-label="Main">
-        {logo}
+        {/*
+          The gap to the link list lives on the logo inside this slot, so
+          collapsing the slot removes the logo and its spacing together.
+        */}
+        <motion.div
+          className="nav-logo-slot"
+          initial={false}
+          animate={{ height: logoVisible ? "auto" : 0, opacity: logoVisible ? 1 : 0 }}
+          transition={reducedMotion ? { duration: 0 } : { duration: 0.3, ease: easeOut }}
+          aria-hidden={!logoVisible}
+          inert={!logoVisible}
+        >
+          {logo}
+        </motion.div>
         <NavMenu
           workLinks={workLinks}
           socials={navSocials}

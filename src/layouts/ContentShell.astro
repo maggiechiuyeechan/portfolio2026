@@ -12,9 +12,16 @@ interface Props {
   title?: string;
   description?: string;
   workLinks?: { label: string; href: string }[];
+  /** See Nav's logoRevealsOnScroll — needs a `data-nav-logo-reveal` element. */
+  logoRevealsOnScroll?: boolean;
 }
 
-const { title, description, workLinks = [] } = Astro.props;
+const {
+  title,
+  description,
+  workLinks = [],
+  logoRevealsOnScroll = false,
+} = Astro.props;
 const socials = site.socials.map(({ label, href }) => ({ label, href }));
 ---
 
@@ -27,6 +34,7 @@ const socials = site.socials.map(({ label, href }) => ({ label, href }));
         socials={socials}
         logoSrc="/images/MClogo.svg"
         logoAlt={`${site.name} logo`}
+        logoRevealsOnScroll={logoRevealsOnScroll}
       />
     </header>
     <main class="shell-main">
