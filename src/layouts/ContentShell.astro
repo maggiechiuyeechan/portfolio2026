@@ -95,8 +95,9 @@ const socials = site.socials.map(({ label, href }) => ({ label, href }));
       width: 100%;
     }
 
+    /* Extra top inset so content clears the sticky header's rule. */
     .shell-main {
-      padding: 1rem;
+      padding: var(--spacing-5) var(--spacing-4) var(--spacing-4);
     }
   }
 </style>
