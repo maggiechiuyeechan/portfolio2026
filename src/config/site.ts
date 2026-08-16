@@ -16,7 +16,7 @@ export const site = {
    * is injected with set:html — keep the markup to plain anchors.
    */
   workIntroHtml:
-    'I\'m Maggie, VP of Design &amp; Research at <a href="https://clickup.com">ClickUp</a>, where I lead the org and stay close to the craft, often shipping features myself. I arrived through ClickUp\'s acquisition of \'Nuffsaid, where I was Head of Design. Before that, I designed for self-driving vehicles at <a href="https://www.uber.com">Uber</a>, machine-learning annotation tools at <a href="https://www.bloomberg.com">Bloomberg</a>, outbreak detection at BlueDot, and mindfulness at <a href="https://www.headspace.com">Headspace</a>.',
+    `I'm Maggie, VP of Design &amp; Research at <a href="https://clickup.com">ClickUp</a>, where I lead the org and stay close to the craft, often shipping features myself. Three years in, ClickUp has grown from $150M to +$360M ARR. I got here through NuffSaid, a seed-stage company that ClickUp acquired, where I was Head of Design. Before that: I designed for self-driving vehicles at <a href="https://www.uber.com">Uber</a>, ML annotation tools at <a href="https://www.bloomberg.com">Bloomberg</a>, outbreak detection at BlueDot, and mindfulness at <a href="https://www.headspace.com">Headspace</a>.`,
   seoTitle: "Maggie Chan — VP of Design & Research @ ClickUp",
   seoDescription:
     "Product design and UX research portfolio. Maggie Chan leads design and research at ClickUp, designing how humans and AI work together.",
