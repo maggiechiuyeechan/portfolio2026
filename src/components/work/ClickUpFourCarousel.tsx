@@ -123,6 +123,7 @@ export default function ClickUpFourCarousel({ title, meta, subtitle }: Props) {
               data-cuelume-hover="tick"
               data-cuelume-press
               data-cuelume-release
+              className="text-body"
               onClick={() => selectSlide(index)}
               onKeyDown={handleTabKeyDown}
             >

@@ -12,11 +12,14 @@ export const site = {
   title: "VP of Design & Research @ ClickUp",
   tagline: "Designing how humans and AI work together.",
   /**
-   * Lede above the first case study on /work. Holds inline company links, so it
-   * is injected with set:html — keep the markup to plain anchors.
+   * Lede above the first case study on /work. Each string is a paragraph.
+   * Holds inline company links, so they are injected with set:html —
+   * keep the markup to plain anchors.
    */
-  workIntroHtml:
-    `I'm Maggie, VP of Design &amp; Research at <a href="https://clickup.com">ClickUp</a>, where I lead the org and stay close to the craft, often shipping features myself. Three years in, ClickUp has grown from $150M to +$360M ARR. I got here through NuffSaid, a seed-stage company that ClickUp acquired, where I was Head of Design. Before that: I designed for self-driving vehicles at <a href="https://www.uber.com">Uber</a>, ML annotation tools at <a href="https://www.bloomberg.com">Bloomberg</a>, outbreak detection at BlueDot, and mindfulness at <a href="https://www.headspace.com">Headspace</a>.`,
+  workIntroHtml: [
+    `I'm Maggie, VP of Design &amp; Research at <a href="https://clickup.com">ClickUp</a>, where I lead the org and stay close to the craft, often shipping features myself. Since 2023, I've been involved in every major feature shipped as the company grew from $150M to $360M+ ARR.`,
+    `I arrived through ClickUp's acquisition of 'Nuffsaid, where I was Head of Design at the seed-stage company. Before that, I designed for self-driving vehicles at <a href="https://www.uber.com">Uber</a>, dabbled in a few founding design roles, designed machine-learning annotation tools at <a href="https://www.bloomberg.com">Bloomberg</a>, mindfulness at <a href="https://www.headspace.com">Headspace</a>, and outbreak detection at BlueDot.`,
+  ],
   seoTitle: "Maggie Chan — VP of Design & Research @ ClickUp",
   seoDescription:
     "Product design and UX research portfolio. Maggie Chan leads design and research at ClickUp, designing how humans and AI work together.",

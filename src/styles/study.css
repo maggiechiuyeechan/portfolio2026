@@ -23,6 +23,14 @@
   gap: var(--spacing-05);
 }
 
+.work-intro .study-text-inner {
+  gap: var(--spacing-4);
+}
+
+.work-intro .hero-title {
+  margin: 0;
+}
+
 /* Registered so the rule colour can transition on hover. */
 @property --work-intro-rule {
   syntax: "<color>";
@@ -100,6 +108,12 @@
 @media (max-width: 80rem) {
   .study-text-inner {
     grid-column: 1 / span 5;
+  }
+}
+
+@media (max-width: 52rem) {
+  .study-text-inner {
+    grid-column: 1 / span 6;
   }
 }
 

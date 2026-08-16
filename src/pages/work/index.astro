@@ -36,9 +36,13 @@ const workLinks = studies.map((study) => ({
       <FadeInView client:load eager>
         <div class="study-text" data-nav-logo-reveal>
           <div class="study-text-inner">
-            <Text as="p" variant="title" class="hero-title">
-              <Fragment set:html={site.workIntroHtml} />
-            </Text>
+            {
+              site.workIntroHtml.map((html) => (
+                <Text as="p" variant="title" class="hero-title">
+                  <Fragment set:html={html} />
+                </Text>
+              ))
+            }
           </div>
         </div>
       </FadeInView>

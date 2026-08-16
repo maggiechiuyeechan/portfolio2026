@@ -26,11 +26,6 @@
   padding: 0;
   margin: 0;
   background: transparent;
-  color: var(--color-typography-content-secondary);
-  font: inherit;
-  font-size: 1rem;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
   cursor: pointer;
   transition:
     color 150ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -453,6 +448,19 @@
 
   .cu4-panel {
     width: 110%;
+  }
+}
+
+@media (max-width: 52rem) {
+  .cu4-carousel-text {
+    align-items: start;
+  }
+
+  .cu4-carousel-tabs {
+    grid-column: 1 / span 6;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-2);
   }
 }
 
