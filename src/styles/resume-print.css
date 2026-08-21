@@ -66,7 +66,7 @@
   height: 11in;
   /* Top and bottom split the same 1.4in the layout can afford, so the name sits
      off the top edge without shortening the content box — page 1 has only
-     ~0.08in of headroom left. */
+     ~0.12in of headroom left. */
   padding: 0.7in 1.25in 0.7in 1in;
   display: grid;
   grid-template-columns: 1.6in minmax(0, 1fr);

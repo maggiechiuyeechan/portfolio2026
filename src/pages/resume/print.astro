@@ -2,6 +2,12 @@
 /**
  * Print-ready resume: two US Letter pages generated from the same content as
  * /resume. Browser print keeps the text selectable and links clickable.
+ *
+ * Each .resume-print-page is one physical sheet with a fixed height, so nothing
+ * reflows across pages on its own — both sheets currently run within ~30px of
+ * their bottom margin. Run scripts/resume-fit-probe.mjs after editing the copy;
+ * if a sheet reports negative slack, either trim it or split the ClickUp role
+ * across sheets (ResumeRole's hideHeader renders a headerless continuation).
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ResumeRole from "../../components/resume/ResumeRole.astro";
