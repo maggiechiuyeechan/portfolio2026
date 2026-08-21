@@ -157,7 +157,7 @@ export const resume = {
           bullets: [
             "Stood up research and design processes and reinvented it for agents. Now, studies are launched by agents, live prototypes coded and testable in minutes in the Prototype Playground, designers ship simple fixes straight to the frontend repo",
             "Built the design system myself, then won resourcing to take it 0 to 1, replacing thousands of hardcoded components and tokens. It's now the self-healing source of truth agents build from, correcting itself with human feedback",
-            "Grew design 12 to 18 and research 1 to 4, with 6 promoted across both teams, on a sharper hiring bar and clearer screening. Built career ladders, personalized paths, and a performance rubric on Craft, Collaboration, and Leadership, plus the design rituals that drove alignment, quality, and speed",
+            "Grew design 12 to 18 and research 1 to 4, with 6 promoted across both teams. Sharpened the hiring bar, built career ladders, personalized paths, and a performance rubric on Craft, Collaboration, and Leadership, plus designed the team rituals that drove alignment, quality, and speed",
           ],
         },
       ],
