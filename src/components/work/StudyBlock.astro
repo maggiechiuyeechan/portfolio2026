@@ -71,12 +71,11 @@ const {
         <div class="study-images">
           {
             anchorId === "clickup-ai" ? (
-              <div class="cua-demo-grid">
-                <ClickUpAIChatDemo client:visible />
-                <div class="cua-demo-grid-bottom">
-                  <ClickUpAIAgentsDemo />
-                  <ClickUpAICreditsDemo client:visible />
-                </div>
+              <ClickUpAIChatDemo client:visible />
+            ) : anchorId === "clickup-growth" ? (
+              <div class="cua-demo-pair">
+                <ClickUpAIAgentsDemo />
+                <ClickUpAICreditsDemo client:visible />
               </div>
             ) : anchorId === "uber" ? (
               <>
