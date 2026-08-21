@@ -1,8 +1,9 @@
 /**
  * Draggable paper-desk — shapes splayed on a flat surface (no gravity).
  * Drag to move, scroll or use the handle to rotate, click to nudge rotation.
- * Initial placement keeps clear of the hero text and allows at most pairwise
- * overlaps (no 3+ stacks). Drag freely afterward.
+ * Initial placement keeps clear of the hero text, allows at most pairwise
+ * overlaps of different shapes, and skips a piece rather than stacking it.
+ * Drag freely afterward.
  * After 5s idle, one shape pulses to 1.075× every 5s as a gentle invite.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -25,9 +26,11 @@ const CLICK_MOVE_THRESHOLD = 5;
 const CLICK_ROTATE_RAD = (15 * Math.PI) / 180;
 /** Clearance around the hero text for initial placement. */
 const TEXT_PADDING = 64;
-const PLACE_ATTEMPTS = 120;
+const PLACE_ATTEMPTS = 220;
 /** Bounding-circle shrink so light grazing doesn’t count as a stack. */
-const OVERLAP_RADIUS_FACTOR = 0.78;
+const OVERLAP_RADIUS_FACTOR = 0.88;
+/** Wider than overlap — keeps two legal pairs from sitting as one pile. */
+const CLUSTER_RADIUS_FACTOR = 1.5;
 /** At most this many shapes may share an overlap (pairs only on first paint). */
 const MAX_INITIAL_STACK = 2;
 /** Single-column / mobile breakpoint (matches --single-column-break). */
@@ -189,8 +192,8 @@ function randomScatterPosition(width: number, height: number, pieceSize: number)
 }
 
 function randomDeskPosition(width: number, height: number, pieceSize: number) {
-  // Bias toward the open field so the desk reads more spread out.
-  if (Math.random() < 0.55) return randomScatterPosition(width, height, pieceSize);
+  // Prefer the open field. Edge rolls used to park leftover pairs in corners.
+  if (Math.random() < 0.82) return randomScatterPosition(width, height, pieceSize);
   return randomEdgePosition(width, height, pieceSize);
 }
 
@@ -204,6 +207,7 @@ function violatesStackLimit(
   pieceWidth: number,
   pieceHeight: number,
   placed: PlacedMeta[],
+  shapeId: string,
 ) {
   const hits: number[] = [];
   for (let i = 0; i < placed.length; i++) {
@@ -216,7 +220,86 @@ function violatesStackLimit(
   if (hits.length >= MAX_INITIAL_STACK) return true;
   // Partner already in a pair — adding this would make a triple.
   if (hits.some((i) => placed[i]!.overlapCount >= 1)) return true;
+  // Two of the same SVG on top of each other reads as a muddy stack.
+  if (hits.some((i) => placed[i]!.shapeId === shapeId)) return true;
+
+  const ownRadius = pieceRadius(pieceWidth, pieceHeight);
+  for (const other of placed) {
+    if (other.shapeId !== shapeId) continue;
+    const minDist = (ownRadius + pieceRadius(other.w, other.h)) * 1.4;
+    if (Math.hypot(x - other.x, y - other.y) < minDist) return true;
+  }
+
+  // Two isolated pairs can still read as one pile if they sit in the same
+  // corner. Reject any seat that already has two neighbors in a wider radius.
+  const clusterRadius = pieceRadius(pieceWidth, pieceHeight) * CLUSTER_RADIUS_FACTOR;
+  let nearby = 0;
+  for (const other of placed) {
+    const otherRadius = pieceRadius(other.w, other.h) * CLUSTER_RADIUS_FACTOR;
+    if (Math.hypot(x - other.x, y - other.y) < clusterRadius + otherRadius) nearby += 1;
+  }
+  if (nearby >= MAX_INITIAL_STACK) return true;
+
   return false;
+}
+
+function placementScore(
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  placed: PlacedMeta[],
+  shapeId: string,
+) {
+  const nearestPiece =
+    placed.length === 0
+      ? Math.hypot(x - width / 2, y - height / 2)
+      : Math.min(...placed.map((other) => Math.hypot(x - other.x, y - other.y)));
+  const distanceFromCenter = Math.hypot(x - width / 2, y - height / 2);
+  const sameShapes = placed.filter((other) => other.shapeId === shapeId);
+  const nearestSameShape =
+    sameShapes.length === 0
+      ? Math.hypot(width, height)
+      : Math.min(...sameShapes.map((other) => Math.hypot(x - other.x, y - other.y)));
+  const edgeDist = Math.min(x, y, width - x, height - y);
+  return nearestPiece + nearestSameShape * 0.6 + edgeDist * 0.2 - distanceFromCenter * 0.04;
+}
+
+function considerSpot(
+  x: number,
+  y: number,
+  pieceWidth: number,
+  pieceHeight: number,
+  width: number,
+  height: number,
+  zones: Rect[],
+  placed: PlacedMeta[],
+  shapeId: string,
+  best: { x: number; y: number; score: number } | null,
+) {
+  if (overlapsZone(x, y, pieceWidth, pieceHeight, zones)) return best;
+  if (violatesStackLimit(x, y, pieceWidth, pieceHeight, placed, shapeId)) return best;
+  const score = placementScore(x, y, width, height, placed, shapeId);
+  if (!best || score > best.score) return { x, y, score };
+  return best;
+}
+
+function gridDeskPositions(width: number, height: number, pieceSize: number) {
+  const inset = pieceSize * 0.4;
+  const usableW = Math.max(1, width - inset * 2);
+  const usableH = Math.max(1, height - inset * 2);
+  const cols = 6;
+  const rows = 5;
+  const spots: { x: number; y: number }[] = [];
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      spots.push({
+        x: inset + (col / Math.max(1, cols - 1)) * usableW,
+        y: inset + (row / Math.max(1, rows - 1)) * usableH,
+      });
+    }
+  }
+  return spots;
 }
 
 function placeClearOfText(
@@ -227,33 +310,34 @@ function placeClearOfText(
   zones: Rect[],
   placed: PlacedMeta[],
   shapeId: string,
-) {
+): { x: number; y: number } | null {
   const pieceSize = Math.max(pieceWidth, pieceHeight);
   let best: { x: number; y: number; score: number } | null = null;
 
   for (let attempt = 0; attempt < PLACE_ATTEMPTS; attempt++) {
     const { x, y } = randomDeskPosition(width, height, pieceSize);
-    if (overlapsZone(x, y, pieceWidth, pieceHeight, zones)) continue;
-    if (violatesStackLimit(x, y, pieceWidth, pieceHeight, placed)) continue;
-
-    const nearestPiece =
-      placed.length === 0
-        ? Math.hypot(x - width / 2, y - height / 2)
-        : Math.min(...placed.map((other) => Math.hypot(x - other.x, y - other.y)));
-    const distanceFromCenter = Math.hypot(x - width / 2, y - height / 2);
-    const sameShapes = placed.filter((other) => other.shapeId === shapeId);
-    const nearestSameShape =
-      sameShapes.length === 0
-        ? Math.hypot(width, height)
-        : Math.min(...sameShapes.map((other) => Math.hypot(x - other.x, y - other.y)));
-    const score = nearestPiece + nearestSameShape * 0.6 + distanceFromCenter * 0.08;
-
-    if (!best || score > best.score) best = { x, y, score };
+    best = considerSpot(x, y, pieceWidth, pieceHeight, width, height, zones, placed, shapeId, best);
   }
 
   if (best) return { x: best.x, y: best.y };
 
-  // Last resort: park in a corner away from the centred copy.
+  // Random tries failed — walk a fixed grid, then corners, before giving up.
+  for (const spot of gridDeskPositions(width, height, pieceSize)) {
+    best = considerSpot(
+      spot.x,
+      spot.y,
+      pieceWidth,
+      pieceHeight,
+      width,
+      height,
+      zones,
+      placed,
+      shapeId,
+      best,
+    );
+  }
+  if (best) return { x: best.x, y: best.y };
+
   const inset = pieceSize * 0.45;
   const corners = [
     { x: inset, y: inset },
@@ -263,10 +347,12 @@ function placeClearOfText(
   ];
   for (const corner of corners) {
     if (overlapsZone(corner.x, corner.y, pieceWidth, pieceHeight, zones)) continue;
-    if (violatesStackLimit(corner.x, corner.y, pieceWidth, pieceHeight, placed)) continue;
+    if (violatesStackLimit(corner.x, corner.y, pieceWidth, pieceHeight, placed, shapeId)) continue;
     return corner;
   }
-  return corners[0]!;
+
+  // No legal pair-only seat — omit the piece instead of stacking it in a corner.
+  return null;
 }
 
 function shapesForViewport(shapes: ShapeDef[], width: number): ShapeDef[] {
@@ -297,7 +383,7 @@ function createInitialPieces(
 
   shapes.forEach((shape, index) => {
     const { width: pieceWidth, height: pieceHeight } = shapeBodyDimensions(baseSize, shape);
-    const { x, y } = placeClearOfText(
+    const spot = placeClearOfText(
       width,
       height,
       pieceWidth,
@@ -306,6 +392,9 @@ function createInitialPieces(
       placedMeta,
       shape.id,
     );
+    if (!spot) return;
+
+    const { x, y } = spot;
 
     // Update overlap counts for the pair graph.
     const hits: number[] = [];

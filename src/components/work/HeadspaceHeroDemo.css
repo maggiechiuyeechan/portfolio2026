@@ -364,11 +364,10 @@
 
 .hsd-dropdown-highlight {
   position: absolute;
-  left: 4px;
-  top: 2px;
-  width: calc(100% - 8px);
-  height: 42px;
-  border-radius: 6px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 46px;
   background: #ede9e3;
   transition: opacity 0.25s ease;
 }

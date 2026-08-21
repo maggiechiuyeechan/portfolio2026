@@ -142,8 +142,8 @@ export const resume = {
         {
           heading: "Driving growth across the full funnel",
           bullets: [
-            "Led Growth design across activation, onboarding, retention, monetization, and access management, shipping 171 in-app experiments by balancing quantitative testing with customer interviews, think-alouds, and iteration by intuition",
-            "Two winning experiments: an onboarding agent lifted W0 retention 3.3%, and a credit-card free trial raised net paid upgrade rate 13% (statistically significant, net of downgrades)",
+            "Led design for ClickUp's in-app growth surfaces across the funnel: activation, onboarding, retention, monetization, and expansion. Mixed quantitative experiments with customer interviews, think-alouds, daily dogfooding, and a bit of intuition across 171 in-app experiments we shipped",
+            "Two example winning experiments: an onboarding agent lifted W0 retention 3.3%, and a credit-card free trial raised net paid upgrade rate 13% (statistically significant, net of downgrades)",
           ],
         },
         {
