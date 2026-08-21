@@ -150,20 +150,19 @@ export const resume = {
         },
         {
           heading:
-            "Building internal AI-native tools for creativity & efficiency",
+            "Laying design foundations 0 to 1, then remaking them for agents",
           bullets: [
-            "Built the internal workflows that changed how EPD works: research studies launched by agents from inside ClickUp, and live prototypes coded with agents, testable in minutes in the Prototype Playground",
+            "Stood up the research and design practice from 0 to 1, then reinvented it for an agentic world: research studies launched by agents from inside ClickUp, and live prototypes coded with agents, testable in minutes in the Prototype Playground",
             "Brought coding and productivity agents into the design team's daily practice. Designers now ship simple fixes straight to the frontend repo themselves",
-            "Building a prototyping and code generation system that learns, improves from human corrections by adjusting its agents, skills, rules, and design-system documentation",
+            "Built the first version of our design system myself, then won the resourcing to take it 0 to 1, replacing thousands of hardcoded components and tokens. Craft now scales by default, and it's the source of truth agents work from",
+            "Developing a prototyping and code generation system that learns, improves from human corrections by adjusting its agents, skills, rules, and design-system documentation",
           ],
         },
         {
-          heading: "Building and growing teams",
+          heading: "Growing teams and careers",
           bullets: [
             "Grew design 12 to 18 and research 1 to 4, with 6 promoted across both teams", 
-            "Iterated on recruiting practices: screening, hiring process, and quality bars",
-            "Built career ladders, personalized career paths, and created a performance rubric on Craft, Collaboration, and Leadership",
-            "Established the design rituals and continuous processes that enabled alignment, quality, and speed",
+            "Built career ladders, personalized career paths, a performance rubric on Craft, Collaboration, and Leadership, and a sharper hiring bar",
           ],
         },
       ],

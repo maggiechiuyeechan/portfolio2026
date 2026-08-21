@@ -29,6 +29,7 @@
 
 .work-intro .hero-title {
   margin: 0;
+  text-wrap: pretty;
 }
 
 /* Registered so the rule colour can transition on hover. */
