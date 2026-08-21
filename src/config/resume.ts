@@ -123,27 +123,27 @@ export const resume = {
   work: [
     {
       company: "ClickUp",
-      title: "VP, Product Design & Research",
+      title: "VP of Design & Research",
       dates: "2023 – Present",
       meta: [
         "Promoted Jan 2026 · Sr. Director 2024–2025",
         "Product Design Manager 2023–2024 · Sr. Product Designer 2023",
       ],
       summary:
-        "I lead product design and research in close partnership with the CEO, currently as a player-coach to 6 designers and 2 researchers. I stay close to the details, often shipping features myself. Since 2023, I've been involved in every major feature shipped as the company grew from $150M to $360M+ ARR.",
+        "I lead product design and research in close partnership with the CEO, currently as a player-coach for 6 designers and 2 researchers. I stay close to the details, often shipping features myself. Since 2023, I've shaped every major feature as the company grew from $150M to $360M+ ARR.",
       groups: [
         {
           heading: "Turning ClickUp into an AI-native work platform",
           bullets: [
             "Led design across ClickUp's AI suite (Brain, Super Agents, AI Fields, AI Summaries, Artifacts, Skills) with three designers. Pushed pace & quality, aligned parallel teams by rapid prototyping, customer testing, and daily dogfooding",
-            "As a result, Brain adoption grew from 9.6% to 19.6% while improving M1 retention by 35%. AI subscription ARR grew $6.89M to $40.73M (5.9x) from Jan 2025 to Jun 2026, with NDR crossing 100% (98.2% to 102.1%)",
+            "As a result, Brain adoption grew from 9.6% to 19.6% while improving M1 retention by 35%. AI subscription ARR grew from $6.89M to $40.73M (5.9x) from Jan 2025 to Jun 2026, with NDR crossing 100% (98.2% to 102.1%)",
           ],
         },
         {
           heading: "Driving growth across the full funnel",
           bullets: [
             "Led Growth design across activation, onboarding, retention, monetization, and access management, shipping 171 in-app experiments by balancing quantitative testing with customer interviews, think-alouds, and iteration by intuition",
-            "Two winning experiments: an onboarding agent lifted W0 retention 3.3%, and a credit-card free trial raised net paid upgrade rate 13% (stat sig, net of downgrades)",
+            "Two winning experiments: an onboarding agent lifted W0 retention 3.3%, and a credit-card free trial raised net paid upgrade rate 13% (statistically significant, net of downgrades)",
           ],
         },
         {
@@ -155,9 +155,9 @@ export const resume = {
         {
           heading: "Building the design practice, then remaking it for agents",
           bullets: [
-            "Stood up research and design processes and reinvented it for agents. Now, studies are launched by agents, live prototypes coded and testable in minutes in the Prototype Playground, designers ship simple fixes straight to the frontend repo",
+            "Stood up the research and design practice and reinvented it for agents. Now agents launch studies, and live prototypes are coded and testable in minutes in the Prototype Playground; designers ship simple fixes straight to the frontend repo",
             "Built the design system myself, then won resourcing to take it 0 to 1, replacing thousands of hardcoded components and tokens. It's now the self-healing source of truth agents build from, correcting itself with human feedback",
-            "Grew design 12 to 18 and research 1 to 4, with 6 promoted across both teams. Sharpened the hiring bar, built career ladders, personalized paths, and a performance rubric on Craft, Collaboration, and Leadership, plus designed the team rituals that drove alignment, quality, and speed",
+            "Grew design 12 to 18 and research 1 to 4, with 6 promoted across both teams. Sharpened the hiring bar, built career ladders, personalized paths, and created a performance rubric on Craft, Collaboration, and Leadership; designed the rituals that drove alignment, quality, and speed",
           ],
         },
       ],
