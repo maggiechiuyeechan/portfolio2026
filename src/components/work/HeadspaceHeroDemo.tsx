@@ -279,13 +279,15 @@ export default function HeadspaceHeroDemo() {
       {/* Each phone scales in its own container so the pair can stack on narrow
           screens without SVG foreignObject (iOS Safari lays those out at 1:1 px). */}
       <div className="hsd-stage">
+        {/* --demo-scale on each pane arrives from initDemoScale before hydration;
+            see src/lib/demoScale.ts */}
         <div className="hsd-viewport is-left">
-          <div className="hsd-pane">
+          <div className="hsd-pane" suppressHydrationWarning>
             <HeadspaceReflectionDemo live={running || reducedMotion} />
           </div>
         </div>
         <div className="hsd-viewport is-right">
-          <div className="hsd-pane is-end">
+          <div className="hsd-pane is-end" suppressHydrationWarning>
             <div className="hsd-phone">
               <div
                 className={`hsd-form-wrap${

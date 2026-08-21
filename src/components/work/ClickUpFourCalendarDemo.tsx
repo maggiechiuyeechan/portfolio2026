@@ -130,7 +130,8 @@ export default function ClickUpFourCalendarDemo({ active, paused, reducedMotion 
   const rootClass = `cu4cal-root${paused ? " is-paused" : ""}`;
 
   return (
-    <div className="cu4-demo-frame">
+    /* --demo-scale arrives from initDemoScale before hydration; see src/lib/demoScale.ts */
+    <div className="cu4-demo-frame" suppressHydrationWarning>
       <div className={rootClass} aria-hidden="true">
         <div className="cu4cal-surface">
           {/* Main app window */}

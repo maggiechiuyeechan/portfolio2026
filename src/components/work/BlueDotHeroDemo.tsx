@@ -14,13 +14,15 @@ export default function BlueDotHeroDemo() {
       role="group"
       aria-label="BlueDot disease surveillance mobile alerts"
     >
+      {/* --demo-scale on each stage arrives from initDemoScale before hydration;
+          see src/lib/demoScale.ts */}
       <div className="bluedot-hero-pane is-report">
-        <div className="bluedot-hero-stage">
+        <div className="bluedot-hero-stage" suppressHydrationWarning>
           <BlueDotDiseaseReportDemo />
         </div>
       </div>
       <div className="bluedot-hero-pane is-flight">
-        <div className="bluedot-hero-stage">
+        <div className="bluedot-hero-stage" suppressHydrationWarning>
           <BlueDotFlightEstimateDemo />
         </div>
       </div>

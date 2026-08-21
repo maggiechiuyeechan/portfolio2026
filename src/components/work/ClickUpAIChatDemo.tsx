@@ -329,7 +329,8 @@ export default function ClickUpAIChatDemo() {
 
   return (
     <div className="cua-chat-demo study-image" role="img" aria-label="ClickUp AI chat animation showing an agent prioritizing design blockers">
-      <div className="cua-chat-scaler">
+      {/* --demo-scale arrives from initDemoScale before hydration; see src/lib/demoScale.ts */}
+      <div className="cua-chat-scaler" suppressHydrationWarning>
         <div className={`cua-chat-stage${frame.posted ? " is-thread-open" : ""}`}>
           <div className="cua-chat-app" />
           <div className="cua-chat-main-background" />

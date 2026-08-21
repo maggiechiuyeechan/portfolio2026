@@ -92,7 +92,8 @@ export default function ClickUpAICreditsDemo() {
 
   return (
     <div className="cua-credits-demo study-image" role="img" aria-label="ClickUp AI credits usage animation">
-      <div className="cua-credits-scaler">
+      {/* --demo-scale arrives from initDemoScale before hydration; see src/lib/demoScale.ts */}
+      <div className="cua-credits-scaler" suppressHydrationWarning>
         <div className="cua-credits-stage" style={maskStyle}>
             <div className="cua-credits-noise" />
             <div className="cua-credits-screen" aria-hidden="true" />

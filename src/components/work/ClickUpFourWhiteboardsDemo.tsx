@@ -236,7 +236,8 @@ export default function ClickUpFourWhiteboardsDemo({ active, paused, reducedMoti
   const imggenShimmerActive = active && !reducedMotion;
 
   return (
-    <div className="cu4-demo-frame cu4-wb">
+    /* --demo-scale arrives from initDemoScale before hydration; see src/lib/demoScale.ts */
+    <div className="cu4-demo-frame cu4-wb" suppressHydrationWarning>
       <img
         className="cu4-wb-base"
         src={boardBase.src}

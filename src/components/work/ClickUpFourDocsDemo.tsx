@@ -277,7 +277,8 @@ export default function ClickUpFourDocsDemo({ active, paused, reducedMotion }: C
   const rootClass = `cu4docs-root${paused ? " is-paused" : ""}${reducedMotion || !active ? " is-static" : ""}`;
 
   return (
-    <div className="cu4-demo-frame">
+    /* --demo-scale arrives from initDemoScale before hydration; see src/lib/demoScale.ts */
+    <div className="cu4-demo-frame" suppressHydrationWarning>
       <div className={rootClass} aria-hidden="true">
         <div className="cu4docs-surface">
           {/* Main app window */}

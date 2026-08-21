@@ -2,6 +2,12 @@
  * Safari (and some older engines) reject `transform: scale(calc(100cqw / Npx))`,
  * leaving fixed-width demo stages clipped inside overflow:hidden containers.
  * This sets `--demo-scale` from the container width / design width instead.
+ *
+ * This runs from BaseLayout on page load, which is earlier than the demos'
+ * `client:visible` islands hydrate — deliberately, so a demo is already scaled
+ * correctly while the user scrolls toward it. The cost is that React hydrates
+ * elements carrying an inline `--demo-scale` its own render never produced, so
+ * every scaler element below must set `suppressHydrationWarning`.
  */
 
 type ScalerEntry = {

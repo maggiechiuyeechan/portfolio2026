@@ -355,8 +355,10 @@ export default function ClickUpFourTasksDemo({ active, paused, reducedMotion }: 
   const isResolved = (at: number) => elapsed >= at;
 
   return (
+    /* --demo-scale arrives from initDemoScale before hydration; see src/lib/demoScale.ts */
     <div
       className="cu4-demo-frame cu4t"
+      suppressHydrationWarning
       role="img"
       aria-label="ClickUp 4.0 Tasks list view: an AI agent works down the Priority column, resolving every task from Prioritizing to a priority level"
     >
