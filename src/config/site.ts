@@ -17,8 +17,7 @@ export const site = {
    * keep the markup to plain anchors.
    */
   workIntroHtml: [
-    `I'm Maggie, VP of Design &amp; Research at <a href="https://clickup.com">ClickUp</a>, where I lead the org and stay close to the craft, often shipping features myself. Since 2023, I've shaped every major feature at ClickUp as the company grew from $150M to $360M+ ARR.`,
-    `I arrived through ClickUp's acquisition of seed-stage 'Nuffsaid, where I was Head of Design. Before that, I designed for self-driving vehicles at <a href="https://www.uber.com">Uber</a>, machine-learning annotation tools at <a href="https://www.bloomberg.com">Bloomberg</a>, mindfulness at <a href="https://www.headspace.com">Headspace</a>, and outbreak detection at BlueDot.`,
+    `I'm Maggie, VP of Design &amp; Research at <a href="https://clickup.com">ClickUp</a> where I lead the org and stay close to the craft, often shipping features myself. Since 2023, I've shaped every major feature at ClickUp as the company grew from $150M to $360M+ ARR. Before that, I designed at <a href="https://www.uber.com">Uber</a> (self-driving), <a href="https://www.bloomberg.com">Bloomberg</a>, <a href="https://www.headspace.com">Headspace</a>, and BlueDot.`,
   ],
   seoTitle: "Maggie Chan — VP of Design & Research @ ClickUp",
   seoDescription:

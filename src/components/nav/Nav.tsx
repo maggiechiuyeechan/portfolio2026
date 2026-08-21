@@ -35,14 +35,17 @@ const linkLabelStyle: React.CSSProperties = {
 /**
  * Scroll spy via IntersectionObserver.
  *
- * The previous implementation ran on every scroll event and called
- * getBoundingClientRect() once for the nav plus once per work link — six
- * forced layouts per scroll tick with five studies, unthrottled.
+ * A 1px band sits on the nav alignment line. Each observed box is the
+ * `.study` section, not the zero-height `#anchor` — a 0×0 target never
+ * stably overlaps a 1px band, so the old observer emptied its "above"
+ * set and fell back to the first link after you scrolled past a title.
  *
- * IntersectionObserver does the same job off the main thread. The rootMargin
- * reproduces the old marker: a section becomes active once its title crosses
- * just below the nav. Top inset is negative down to the nav's bottom edge;
- * bottom is -100% so only titles above the line are ever "intersecting".
+ * `rootMargin: -Npx 0 -100% 0` was also inverted (bottom above top), so
+ * the band itself was empty per the spec. The bottom inset is the rest of
+ * the viewport under the line, which leaves that 1px probe.
+ *
+ * On each crossing we re-measure tops and pick the last study at or above
+ * the line, so the highlight holds for the whole section.
  */
 function useActiveWorkLink(workLinks: Link[]) {
   const [activeHref, setActiveHref] = useState(() => workLinks[0]?.href ?? "");
@@ -50,38 +53,47 @@ function useActiveWorkLink(workLinks: Link[]) {
   useEffect(() => {
     if (workLinks.length === 0) return;
 
-    // Visible logo only — hidden mobile/desktop twin reports a zero rect.
-    const marker = Math.round(getStudyScrollAlignTop());
-
     const targets = workLinks
-      .map((link) => ({ link, el: document.getElementById(link.href.slice(1)) }))
-      .filter((entry): entry is { link: Link; el: HTMLElement } => !!entry.el);
+      .map((link) => {
+        const anchor = document.getElementById(link.href.slice(1));
+        const section = anchor?.closest<HTMLElement>(".study") ?? anchor;
+        return section ? { link, el: section } : null;
+      })
+      .filter((entry): entry is { link: Link; el: HTMLElement } => !!entry);
 
     if (targets.length === 0) return;
 
-    // Which titles are currently above the marker line.
-    const above = new Set<string>();
+    const pick = () => {
+      const marker = getStudyScrollAlignTop();
+      let current = workLinks[0]!.href;
+      for (const { link, el } of targets) {
+        if (el.getBoundingClientRect().top <= marker) current = link.href;
+      }
+      setActiveHref(current);
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const href = `#${entry.target.id}`;
-          if (entry.isIntersecting) above.add(href);
-          else above.delete(href);
-        }
-        // Last one in document order that's above the line wins — same
-        // resolution rule as the old loop.
-        let current = workLinks[0]!.href;
-        for (const { link } of targets) {
-          if (above.has(link.href)) current = link.href;
-        }
-        setActiveHref(current);
-      },
-      { rootMargin: `-${marker}px 0px -100% 0px`, threshold: 0 },
-    );
+    const band = () => {
+      const marker = Math.round(getStudyScrollAlignTop());
+      const below = Math.max(0, window.innerHeight - marker - 1);
+      return { rootMargin: `-${marker}px 0px -${below}px 0px` as const, threshold: 0 };
+    };
 
+    let observer = new IntersectionObserver(pick, band());
     for (const { el } of targets) observer.observe(el);
-    return () => observer.disconnect();
+    pick();
+
+    const onResize = () => {
+      observer.disconnect();
+      observer = new IntersectionObserver(pick, band());
+      for (const { el } of targets) observer.observe(el);
+      pick();
+    };
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", onResize);
+    };
   }, [workLinks]);
 
   return activeHref;

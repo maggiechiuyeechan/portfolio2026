@@ -39,7 +39,24 @@ export function getStudyScrollAlignTop() {
   return (getVisibleNavLogo()?.top ?? 48) + gap;
 }
 
-/** Scroll so a study title sits on the nav alignment line (see getStudyScrollAlignTop). */
+function alignedTop(target: HTMLElement) {
+  return Math.max(
+    0,
+    window.scrollY + target.getBoundingClientRect().top - getStudyScrollAlignTop(),
+  );
+}
+
+let settle: { stop: () => void } | null = null;
+
+/**
+ * Scroll so a study title sits on the nav alignment line.
+ *
+ * Demos below the fold (client:visible, --demo-scale) grow after we measure,
+ * which used to leave the target hundreds of pixels short — Growth sat at the
+ * bottom of the viewport after a click because ClickUp AI hadn't sized yet.
+ * A short ResizeObserver on `.study` re-pins the target as that layout lands.
+ * User input or 2s of quiet ends the watch so we don't steal the scroll.
+ */
 export function scrollToStudyAnchor(
   anchorId: string,
   options?: { behavior?: ScrollBehavior; updateHash?: boolean },
@@ -51,10 +68,39 @@ export function scrollToStudyAnchor(
     options?.behavior ??
     (window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth");
 
-  const top =
-    window.scrollY + target.getBoundingClientRect().top - getStudyScrollAlignTop();
+  settle?.stop();
+  window.scrollTo({ top: alignedTop(target), behavior });
 
-  window.scrollTo({ top: Math.max(0, top), behavior });
+  let stopped = false;
+  const pin = () => {
+    const top = alignedTop(target);
+    if (Math.abs(window.scrollY - top) > 2) {
+      window.scrollTo({ top, behavior: "auto" });
+    }
+  };
+  const observer = new ResizeObserver(pin);
+  document.querySelectorAll<HTMLElement>(".study").forEach((el) => observer.observe(el));
+
+  const stop = () => {
+    if (stopped) return;
+    stopped = true;
+    observer.disconnect();
+    window.removeEventListener("wheel", stop);
+    window.removeEventListener("touchstart", stop);
+    window.removeEventListener("keydown", onKey);
+    window.clearTimeout(timer);
+    if (settle?.stop === stop) settle = null;
+  };
+  const onKey = (event: KeyboardEvent) => {
+    if (["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "].includes(event.key)) {
+      stop();
+    }
+  };
+  window.addEventListener("wheel", stop, { passive: true });
+  window.addEventListener("touchstart", stop, { passive: true });
+  window.addEventListener("keydown", onKey);
+  const timer = window.setTimeout(stop, 2000);
+  settle = { stop };
 
   if (options?.updateHash !== false) {
     history.replaceState(null, "", `#${anchorId}`);

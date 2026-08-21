@@ -49,7 +49,9 @@ export default function FadeInView({
       className={classes}
       initial={from}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10% 0px" }}
+      /* Don't inset the top: nav jumps park the title on the alignment line,
+         which sits inside the old -10% top inset and never revealed. */
+      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
       transition={transition}
     >
       {children}
