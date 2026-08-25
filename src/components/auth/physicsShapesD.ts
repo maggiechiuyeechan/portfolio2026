@@ -50,7 +50,8 @@ export const SHAPES_D: ShapeDef[] = [
   },
 ];
 
-export const SHAPES_D_SPAWN = [...SHAPES_D, ...SHAPES_D];
+/** Palette only — ShapeDesk cycles this to a viewport-scaled count. */
+export const SHAPES_D_SPAWN = SHAPES_D;
 
 export const STATIC_SHAPE_POSES_D: StaticShapePose[] = [
   { shapeId: "shape-pill-blue", x: 0.2, y: 0.8, angle: 0.1 },

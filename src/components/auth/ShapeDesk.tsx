@@ -1,9 +1,9 @@
 /**
  * Draggable paper-desk — shapes splayed on a flat surface (no gravity).
  * Drag to move, scroll or use the handle to rotate, click to nudge rotation.
- * Initial placement keeps clear of the hero text, allows at most pairwise
- * overlaps of different shapes, and skips a piece rather than stacking it.
- * Drag freely afterward.
+ * Initial placement keeps clear of the hero text, spreads pieces evenly,
+ * allows at most pairwise overlaps, and skips a piece rather than stacking it.
+ * Count and size scale with the viewport. Drag freely afterward.
  * After 5s idle, one shape pulses to 1.075× every 5s as a gentle invite.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -25,41 +25,38 @@ const WHEEL_ROTATE = 0.004;
 const CLICK_MOVE_THRESHOLD = 5;
 const CLICK_ROTATE_RAD = (15 * Math.PI) / 180;
 /** Clearance around the hero text for initial placement. */
-const TEXT_PADDING = 64;
-const PLACE_ATTEMPTS = 220;
+const TEXT_PADDING = 28;
+/** Candidates per piece — pick the seat that spreads the field most. */
+const PLACE_CANDIDATES = 110;
 /** Bounding-circle shrink so light grazing doesn’t count as a stack. */
-const OVERLAP_RADIUS_FACTOR = 0.88;
+const OVERLAP_RADIUS_FACTOR = 0.92;
 /** Wider than overlap — keeps two legal pairs from sitting as one pile. */
-const CLUSTER_RADIUS_FACTOR = 1.5;
+const CLUSTER_RADIUS_FACTOR = 1.4;
 /** At most this many shapes may share an overlap (pairs only on first paint). */
 const MAX_INITIAL_STACK = 2;
 /** Single-column / mobile breakpoint (matches --single-column-break). */
 const MOBILE_MAX_WIDTH_PX = 660;
-const LARGE_DESKTOP_MIN_WIDTH_PX = 1920;
 
 /** Scale shape size from viewport — smaller on phones, larger on desktop. */
 function deskBaseSize(viewportWidth: number, viewportHeight: number) {
   const minDim = Math.min(viewportWidth, viewportHeight);
+  const desktop = viewportWidth > 1024;
+
+  if (desktop) {
+    const size = 250 + Math.max(0, (minDim - 800) / 640) * 80;
+    return Math.round(Math.min(size, viewportHeight * 0.28, viewportWidth * 0.22, 360));
+  }
 
   let size: number;
   if (minDim <= 480) {
-    // phone
-    size = minDim * 0.34;
+    size = minDim * 0.28;
   } else if (minDim <= 768) {
-    // large phone / small tablet
-    size = 164 + ((minDim - 480) / (768 - 480)) * (260 - 164);
-  } else if (minDim <= 1024) {
-    // tablet / laptop
-    size = 260 + ((minDim - 768) / (1024 - 768)) * (340 - 260);
+    size = 132 + ((minDim - 480) / (768 - 480)) * (180 - 132);
   } else {
-    // desktop
-    size = 340 + ((minDim - 1024) / 416) * 100;
+    size = 180 + ((minDim - 768) / (1024 - 768)) * (210 - 180);
   }
 
-  // Keep shapes from dominating short or narrow viewports
-  size = Math.min(size, viewportHeight * 0.29, viewportWidth * 0.44);
-
-  return Math.round(Math.max(104, Math.min(440, size)));
+  return Math.round(Math.max(88, Math.min(size, viewportHeight * 0.19, viewportWidth * 0.3, 220)));
 }
 
 function rotateHandleOffset(baseSize: number) {
@@ -149,52 +146,42 @@ function overlapsZone(
   pieceHeight: number,
   zones: Rect[],
 ) {
-  // Use the diagonal so rotated pieces still clear the text on first paint.
-  const radius = Math.hypot(pieceWidth, pieceHeight) / 2;
-  const left = x - radius;
-  const top = y - radius;
-  const right = x + radius;
-  const bottom = y + radius;
+  // Box, not circumcircle — the diagonal was eating the mid-field and
+  // parking every leftover on the clipped edge.
+  const pad = 10;
+  const left = x - pieceWidth / 2 - pad;
+  const top = y - pieceHeight / 2 - pad;
+  const right = x + pieceWidth / 2 + pad;
+  const bottom = y + pieceHeight / 2 + pad;
 
   return zones.some(
     (zone) => left < zone.right && right > zone.left && top < zone.bottom && bottom > zone.top,
   );
 }
 
-function randomEdgePosition(width: number, height: number, pieceSize: number) {
-  const inset = pieceSize * 0.35;
-  const band = Math.min(width, height) * 0.22;
-  const edge = Math.floor(Math.random() * 4);
-
-  const minX = inset;
-  const maxX = width - inset;
-  const minY = inset;
-  const maxY = height - inset;
-
-  switch (edge) {
-    case 0: // top
-      return { x: minX + Math.random() * (maxX - minX), y: inset + Math.random() * band };
-    case 1: // right
-      return { x: width - inset - Math.random() * band, y: minY + Math.random() * (maxY - minY) };
-    case 2: // bottom
-      return { x: minX + Math.random() * (maxX - minX), y: height - inset - Math.random() * band };
-    default: // left
-      return { x: inset + Math.random() * band, y: minY + Math.random() * (maxY - minY) };
-  }
-}
-
 function randomScatterPosition(width: number, height: number, pieceSize: number) {
-  const inset = pieceSize * 0.4;
+  // Keep the unrotated box on-screen so overflow:hidden doesn't swallow pieces.
+  const inset = pieceSize * 0.52;
   return {
     x: inset + Math.random() * Math.max(1, width - inset * 2),
     y: inset + Math.random() * Math.max(1, height - inset * 2),
   };
 }
 
-function randomDeskPosition(width: number, height: number, pieceSize: number) {
-  // Prefer the open field. Edge rolls used to park leftover pairs in corners.
-  if (Math.random() < 0.82) return randomScatterPosition(width, height, pieceSize);
-  return randomEdgePosition(width, height, pieceSize);
+/** Uniform sample in the open field (viewport minus hero text). */
+function randomFreePosition(
+  width: number,
+  height: number,
+  pieceWidth: number,
+  pieceHeight: number,
+  zones: Rect[],
+) {
+  const pieceSize = Math.max(pieceWidth, pieceHeight);
+  for (let attempt = 0; attempt < 24; attempt++) {
+    const spot = randomScatterPosition(width, height, pieceSize);
+    if (!overlapsZone(spot.x, spot.y, pieceWidth, pieceHeight, zones)) return spot;
+  }
+  return randomScatterPosition(width, height, pieceSize);
 }
 
 /**
@@ -226,7 +213,7 @@ function violatesStackLimit(
   const ownRadius = pieceRadius(pieceWidth, pieceHeight);
   for (const other of placed) {
     if (other.shapeId !== shapeId) continue;
-    const minDist = (ownRadius + pieceRadius(other.w, other.h)) * 1.4;
+    const minDist = (ownRadius + pieceRadius(other.w, other.h)) * 1.08;
     if (Math.hypot(x - other.x, y - other.y) < minDist) return true;
   }
 
@@ -243,26 +230,26 @@ function violatesStackLimit(
   return false;
 }
 
+function nearestPlacedDistance(x: number, y: number, width: number, height: number, placed: PlacedMeta[]) {
+  if (placed.length === 0) return Math.hypot(width, height);
+  return Math.min(...placed.map((other) => Math.hypot(x - other.x, y - other.y)));
+}
+
 function placementScore(
   x: number,
   y: number,
+  pieceWidth: number,
+  pieceHeight: number,
   width: number,
   height: number,
   placed: PlacedMeta[],
-  shapeId: string,
 ) {
-  const nearestPiece =
-    placed.length === 0
-      ? Math.hypot(x - width / 2, y - height / 2)
-      : Math.min(...placed.map((other) => Math.hypot(x - other.x, y - other.y)));
-  const distanceFromCenter = Math.hypot(x - width / 2, y - height / 2);
-  const sameShapes = placed.filter((other) => other.shapeId === shapeId);
-  const nearestSameShape =
-    sameShapes.length === 0
-      ? Math.hypot(width, height)
-      : Math.min(...sameShapes.map((other) => Math.hypot(x - other.x, y - other.y)));
-  const edgeDist = Math.min(x, y, width - x, height - y);
-  return nearestPiece + nearestSameShape * 0.6 + edgeDist * 0.2 - distanceFromCenter * 0.04;
+  const nearest = nearestPlacedDistance(x, y, width, height, placed);
+  const overlapping = placed.some((other) =>
+    piecesOverlap(x, y, pieceWidth, pieceHeight, other.x, other.y, other.w, other.h),
+  );
+  // Even spread first. Pairs only win when no isolated seat is left.
+  return overlapping ? nearest * 0.22 : nearest;
 }
 
 function considerSpot(
@@ -279,17 +266,17 @@ function considerSpot(
 ) {
   if (overlapsZone(x, y, pieceWidth, pieceHeight, zones)) return best;
   if (violatesStackLimit(x, y, pieceWidth, pieceHeight, placed, shapeId)) return best;
-  const score = placementScore(x, y, width, height, placed, shapeId);
+  const score = placementScore(x, y, pieceWidth, pieceHeight, width, height, placed);
   if (!best || score > best.score) return { x, y, score };
   return best;
 }
 
 function gridDeskPositions(width: number, height: number, pieceSize: number) {
-  const inset = pieceSize * 0.4;
+  const inset = pieceSize * 0.52;
   const usableW = Math.max(1, width - inset * 2);
   const usableH = Math.max(1, height - inset * 2);
-  const cols = 6;
-  const rows = 5;
+  const cols = 8;
+  const rows = 6;
   const spots: { x: number; y: number }[] = [];
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
@@ -314,14 +301,13 @@ function placeClearOfText(
   const pieceSize = Math.max(pieceWidth, pieceHeight);
   let best: { x: number; y: number; score: number } | null = null;
 
-  for (let attempt = 0; attempt < PLACE_ATTEMPTS; attempt++) {
-    const { x, y } = randomDeskPosition(width, height, pieceSize);
+  for (let attempt = 0; attempt < PLACE_CANDIDATES; attempt++) {
+    const { x, y } = randomFreePosition(width, height, pieceWidth, pieceHeight, zones);
     best = considerSpot(x, y, pieceWidth, pieceHeight, width, height, zones, placed, shapeId, best);
   }
 
   if (best) return { x: best.x, y: best.y };
 
-  // Random tries failed — walk a fixed grid, then corners, before giving up.
   for (const spot of gridDeskPositions(width, height, pieceSize)) {
     best = considerSpot(
       spot.x,
@@ -338,24 +324,11 @@ function placeClearOfText(
   }
   if (best) return { x: best.x, y: best.y };
 
-  const inset = pieceSize * 0.45;
-  const corners = [
-    { x: inset, y: inset },
-    { x: width - inset, y: inset },
-    { x: inset, y: height - inset },
-    { x: width - inset, y: height - inset },
-  ];
-  for (const corner of corners) {
-    if (overlapsZone(corner.x, corner.y, pieceWidth, pieceHeight, zones)) continue;
-    if (violatesStackLimit(corner.x, corner.y, pieceWidth, pieceHeight, placed, shapeId)) continue;
-    return corner;
-  }
-
-  // No legal pair-only seat — omit the piece instead of stacking it in a corner.
+  // No legal pair-only seat — omit the piece instead of stacking it.
   return null;
 }
 
-function shapesForViewport(shapes: ShapeDef[], width: number): ShapeDef[] {
+function uniqueShapes(shapes: ShapeDef[]): ShapeDef[] {
   const seen = new Set<string>();
   const unique: ShapeDef[] = [];
   for (const shape of shapes) {
@@ -363,12 +336,93 @@ function shapesForViewport(shapes: ShapeDef[], width: number): ShapeDef[] {
     seen.add(shape.id);
     unique.push(shape);
   }
-
-  // Large desktop: add a third set; regular desktop keeps the doubled spawn set.
-  if (width > LARGE_DESKTOP_MIN_WIDTH_PX) return [...shapes, ...unique];
-  if (width > MOBILE_MAX_WIDTH_PX) return shapes;
-  // Mobile: one of each shape (drop the doubled spawn set).
   return unique;
+}
+
+function shuffleInPlace<T>(items: T[]) {
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const current = items[i]!;
+    items[i] = items[j]!;
+    items[j] = current;
+  }
+  return items;
+}
+
+function deskTargetCount(width: number, height: number, baseSize: number, zones: Rect[]) {
+  const viewArea = width * height;
+  let blocked = 0;
+  for (const zone of zones) {
+    const w = Math.max(0, Math.min(zone.right, width) - Math.max(zone.left, 0));
+    const h = Math.max(0, Math.min(zone.bottom, height) - Math.max(zone.top, 0));
+    blocked += w * h;
+  }
+  const freeArea = Math.max(viewArea * 0.45, viewArea - blocked);
+  const byArea = Math.floor(freeArea / (baseSize * baseSize * 1.2));
+
+  let minCount: number;
+  let maxCount: number;
+  if (width <= MOBILE_MAX_WIDTH_PX) {
+    minCount = 6;
+    maxCount = 8;
+  } else if (width <= 1024) {
+    minCount = 14;
+    maxCount = 18;
+  } else if (width <= 1440) {
+    minCount = 20;
+    maxCount = 24;
+  } else if (width <= 1920) {
+    minCount = 24;
+    maxCount = 28;
+  } else {
+    minCount = 30;
+    maxCount = 38;
+  }
+
+  return Math.max(minCount, Math.min(maxCount, byArea));
+}
+
+function shapesForCount(palette: ShapeDef[], count: number): ShapeDef[] {
+  const unique = shuffleInPlace(uniqueShapes(palette));
+  if (unique.length === 0 || count <= 0) return [];
+  const out: ShapeDef[] = [];
+  for (let i = 0; i < count; i++) out.push(unique[i % unique.length]!);
+  return out;
+}
+
+function overlapDegree(index: number, meta: PlacedMeta[]) {
+  const self = meta[index]!;
+  let hits = 0;
+  for (let i = 0; i < meta.length; i++) {
+    if (i === index) continue;
+    const other = meta[i]!;
+    if (piecesOverlap(self.x, self.y, self.w, self.h, other.x, other.y, other.w, other.h)) {
+      hits += 1;
+    }
+  }
+  return hits;
+}
+
+/** Drop the newest piece in any 3+ overlap so pairs stay the maximum. */
+function cullTripleStacks(pieces: DeskPiece[], meta: PlacedMeta[]) {
+  let changed = true;
+  while (changed) {
+    changed = false;
+    let worst = -1;
+    let worstDegree = 1;
+    for (let i = 0; i < meta.length; i++) {
+      const degree = overlapDegree(i, meta);
+      if (degree > worstDegree || (degree > 1 && degree === worstDegree && i > worst)) {
+        worst = i;
+        worstDegree = degree;
+      }
+    }
+    if (worst >= 0 && worstDegree >= 2) {
+      pieces.splice(worst, 1);
+      meta.splice(worst, 1);
+      changed = true;
+    }
+  }
 }
 
 function createInitialPieces(
@@ -424,6 +478,7 @@ function createInitialPieces(
     });
   });
 
+  cullTripleStacks(pieces, placedMeta);
   return pieces;
 }
 
@@ -474,7 +529,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
       if (obstacleRefs.length > 0 && zones.length === 0) return false;
 
       const initial = createInitialPieces(
-        shapesForViewport(shapes, width),
+        shapesForCount(shapes, deskTargetCount(width, height, size, zones)),
         width,
         height,
         size,

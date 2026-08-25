@@ -120,7 +120,7 @@
   --single-column-break: 41.25rem;         /* 660px — break into single column */
   --nav-inset: 3rem;                       /* nav positioned 48px top/left, sticky */
   --nav-inset-md: 2rem;                    /* 32px at 13-14" frame */
-  --nav-logo-offset: 6px;                  /* .nav-desktop margin-top */
+  --nav-logo-offset: 6px;                  /* optical offset on the logo mark */
   /* Breathing room under the sticky chrome when jumping to a study anchor */
   --scroll-anchor-gap: 1rem;
   /* Align in-page anchor scroll with sticky nav logo top + gap */

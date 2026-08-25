@@ -3,11 +3,11 @@
  * Mobile matches Figma nodes 266:211521 (collapsed) and 266:211445 (expanded).
  */
 
-/* Desktop sidebar */
+/* Desktop sidebar. The 6px logo optical offset lives on the mark itself so
+   “Work” lines up with the intro lede while the logo slot is collapsed. */
 .nav-desktop {
   display: flex;
   flex-direction: column;
-  margin-top: 6px;
 }
 
 /* Collapsible logo row. Grid 0fr/1fr avoids Motion's height:auto measure,
@@ -26,6 +26,10 @@
 .nav-logo-slot.is-open {
   grid-template-rows: 1fr;
   opacity: 1;
+  /* Offset + gap live here so a closed slot is truly 0 tall.
+     Margins on the logo leaked through 0fr and shoved “Work” down. */
+  padding-top: var(--nav-logo-offset);
+  padding-bottom: var(--spacing-4);
 }
 
 .nav-logo-slot.is-instant {
@@ -38,7 +42,7 @@
 }
 
 .nav-logo-slot .nav-logo {
-  margin-bottom: var(--spacing-4);
+  margin: 0;
 }
 
 .nav-logo {
