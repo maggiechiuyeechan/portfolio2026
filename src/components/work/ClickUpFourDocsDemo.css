@@ -180,6 +180,11 @@
   color: #202020;
 }
 
+/* Baked SVG fills stay mid-grey; selected ink matches the label. */
+.cu4docs-side-item.is-selected .cu4docs-icon-13 img {
+  filter: brightness(0);
+}
+
 .cu4docs-side-item p {
   flex: 1 0 0;
   min-width: 1px;

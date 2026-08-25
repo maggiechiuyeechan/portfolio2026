@@ -28,11 +28,8 @@ export const site = {
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/mcychan" },
     { label: "X", href: "https://x.com/maggiechewychan" },
-    { label: "Email", href: "mailto:mach.sq@gmail.com" },
   ],
 } as const;
 
-/** Profile URLs for JSON-LD sameAs (excludes mailto). */
-export const siteProfileLinks = site.socials
-  .map(({ href }) => href)
-  .filter((href) => href.startsWith("http"));
+/** Profile URLs for JSON-LD sameAs. */
+export const siteProfileLinks = site.socials.map(({ href }) => href);

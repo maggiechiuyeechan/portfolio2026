@@ -10,9 +10,30 @@
   margin-top: 6px;
 }
 
-/* Collapsible logo row. Its spacing sits on the logo itself so a height of 0
-   takes the gap with it — see Nav.tsx. */
+/* Collapsible logo row. Grid 0fr/1fr avoids Motion's height:auto measure,
+   which called window.scrollTo and stole in-page nav jumps. Spacing lives
+   on the logo so a closed slot removes the mark and its gap together. */
 .nav-logo-slot {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-logo-slot.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.nav-logo-slot.is-instant {
+  transition: none;
+}
+
+.nav-logo-slot > * {
+  min-height: 0;
   overflow: hidden;
 }
 

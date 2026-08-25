@@ -51,11 +51,8 @@ let settle: { stop: () => void } | null = null;
 /**
  * Scroll so a study title sits on the nav alignment line.
  *
- * Demos below the fold (client:visible, --demo-scale) grow after we measure,
- * which used to leave the target hundreds of pixels short — Growth sat at the
- * bottom of the viewport after a click because ClickUp AI hadn't sized yet.
- * A short ResizeObserver on `.study` re-pins the target as that layout lands.
- * User input or 2s of quiet ends the watch so we don't steal the scroll.
+ * Re-pins for 2s (or until the user scrolls) so late layout — demo scale,
+ * logo slot opening — cannot leave the title short of the line.
  */
 export function scrollToStudyAnchor(
   anchorId: string,

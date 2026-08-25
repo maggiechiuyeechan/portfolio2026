@@ -57,7 +57,7 @@ export const resume = {
     ],
     [
       { label: "Based in San Francisco" },
-      { label: "mach.sq@gmail.com", href: "mailto:mach.sq@gmail.com" },
+      { label: "mach.sq@gmail.com" },
       { label: "412.298.2988" },
       {
         label: "linkedin.com/in/mcychan",

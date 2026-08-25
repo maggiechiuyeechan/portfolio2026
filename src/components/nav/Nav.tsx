@@ -292,16 +292,11 @@ export default function Nav({
 
   // Resume sits right under LinkedIn. It stays out of site.socials because that
   // list is also destructured for the hero links and feeds the JSON-LD profiles.
-  const navSocials: Link[] = [
-    { label: "Email", href: "mailto:mach.sq@gmail.com" },
-    ...socials
-      .filter((s) => !s.href.startsWith("mailto:"))
-      .flatMap((s) =>
-        s.href.includes("linkedin.com")
-          ? [s, { label: "Resume", href: "/resume/print" }]
-          : [s],
-      ),
-  ];
+  const navSocials: Link[] = socials.flatMap((s) =>
+    s.href.includes("linkedin.com")
+      ? [s, { label: "Resume", href: "/resume/print" }]
+      : [s],
+  );
 
   const logo = (
     <a
@@ -369,16 +364,24 @@ export default function Nav({
           The gap to the link list lives on the logo inside this slot, so
           collapsing the slot removes the logo and its spacing together.
         */}
-        <motion.div
-          className="nav-logo-slot"
-          initial={false}
-          animate={{ height: logoVisible ? "auto" : 0, opacity: logoVisible ? 1 : 0 }}
-          transition={reducedMotion ? { duration: 0 } : { duration: 0.3, ease: easeOut }}
+        {/*
+          CSS grid 0fr/1fr, not Motion height:"auto". Animating auto height
+          makes Motion measure keyframes via window.scrollTo, which overwrote
+          nav jumps (Growth clicks landed in the middle of ClickUp AI).
+        */}
+        <div
+          className={[
+            "nav-logo-slot",
+            logoVisible ? "is-open" : "",
+            reducedMotion ? "is-instant" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
           aria-hidden={!logoVisible}
           inert={!logoVisible}
         >
           {logo}
-        </motion.div>
+        </div>
         <NavMenu
           workLinks={workLinks}
           socials={navSocials}

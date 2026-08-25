@@ -41,7 +41,7 @@ export interface HeroShellProps {
   renderScene: (props: HeroSceneProps) => ReactNode;
 }
 
-const [linkedin, x, contact] = site.socials;
+const [linkedin, x] = site.socials;
 
 const container = {
   hidden: {},
@@ -226,10 +226,6 @@ export default function HeroShell({
           <span aria-hidden="true"> · </span>
           <AnimatedTextLink href={x.href} inline>
             {x.label}
-          </AnimatedTextLink>
-          <span aria-hidden="true"> · </span>
-          <AnimatedTextLink href={contact.href} inline>
-            {contact.label}
           </AnimatedTextLink>
           <span aria-hidden="true"> · </span>
           <AnimatedTextLink
