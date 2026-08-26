@@ -55,8 +55,7 @@ export interface HeroVariant {
    */
   desktopOnly?: boolean;
   /**
-   * Only reachable via "Surprise me", never on a natural first landing or
-   * bag rotation reload.
+   * Only reachable via "Surprise me", never on a sequenced hero visit.
    */
   surpriseOnly?: boolean;
   /**
@@ -179,6 +178,18 @@ export const HERO_VARIANTS: HeroVariant[] = [
     cursorLabel: "move around",
     load: () => import("../components/hero/scenes/MonstersScene"),
   },
+];
+
+/**
+ * First visit is Meadow; each later return to the hero walks this list, then wraps.
+ * Surprise-only variants are never included even if listed here.
+ */
+export const HERO_ROTATION_ORDER: HeroVariantId[] = [
+  "meadow",
+  "monsters",
+  "grid-sprinkle-i",
+  "editable-blobs",
+  "shapes-d-desk",
 ];
 
 const BY_ID = new Map(HERO_VARIANTS.map((v) => [v.id, v]));

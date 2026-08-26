@@ -7,44 +7,44 @@
  */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { motion } from "motion/react";
-import type { Variants } from "motion/react";
 import EditableBlob from "./EditableBlob";
 import { EDITABLE_BLOBS, type EditableBlobDef } from "./editableBlobs";
 import { cloneSubpaths } from "./blobPath";
 import { IDLE_NUDGE_SCALE } from "../../lib/idleNudgeScale";
 import { getSceneFrameBounds } from "../../lib/sceneFrame";
 import { useIdleNudge } from "../../lib/useIdleNudge";
+import { waveEnterDelayMs } from "../../lib/motion";
 
 const TEXT_PAD = 18;
 /**
- * Target fraction of the viewport covered by non-overlapping packing circles.
- * Kept moderate — circle packing without overlap can't fill the screen solid.
+ * Target fraction of the viewport covered by packing circles.
+ * Organic art is not a disk — a full circumcircle leaves a white halo around
+ * every coil and flower, so we pack a bit tighter than the art radius.
  */
 /** Baseline coverage at ~1280×800; large viewports scale up via viewportPackTargets. */
-const TARGET_COVERAGE = 0.58;
+const TARGET_COVERAGE = 0.56;
 const MIN_SCALE = 0.8;
 const MAX_SCALE = 2.9;
 const COMFORT_SCALE = 0.88;
 /** Uniform size boost applied to every shape on the initial layout (~2.5× art size). */
 const SIZE_MULTIPLIER = 2.5;
 const PACK_ITERS = 110;
-const CANDIDATES = 100;
+const CANDIDATES = 120;
 /**
  * Packing radius = art circumradius × scale × this.
- * Must stay ≥ 1 so initial draws never visually overlap; editing may still overlap.
+ * Below 1 lets concave silhouettes nest; the fill still never stacks.
  */
-const RADIUS_FACTOR = 1.02;
+const RADIUS_FACTOR = 0.9;
 /** Minimum gap between packing circles on the initial layout. */
-const GAP = 3;
+const GAP = 6;
 const MIN_PIECES = 10;
 /** Piece budget at the reference viewport (~1280×800). */
 const BASE_MAX_PIECES = 22;
 /** Hard cap so very wide monitors stay performant. */
 const ABSOLUTE_MAX_PIECES = 52;
 const REF_VIEWPORT_AREA = 1280 * 800;
-const REGULAR_DESKTOP_TEXT_PAD = 112;
-const LARGE_DESKTOP_TEXT_PAD = 168;
+const REGULAR_DESKTOP_TEXT_PAD = 52;
+const LARGE_DESKTOP_TEXT_PAD = 64;
 
 interface PackTargets {
   maxPieces: number;
@@ -60,25 +60,41 @@ function isLargeDesktopViewport(vw: number) {
   return vw > 1920;
 }
 
+function isNarrowViewport(vw: number) {
+  return vw < 960;
+}
+
+/** Smaller phones get a lower size boost so more pieces can actually sit. */
+function sizeMultiplierFor(vw: number) {
+  if (vw < 660) return 1.45;
+  if (vw < 960) return 1.85;
+  return SIZE_MULTIPLIER;
+}
+
+/** How much of a packing circle must stay on-canvas. Phones clip less. */
+function edgeKeepFor(vw: number) {
+  return vw < 660 ? 0.42 : 0.18;
+}
+
 /** Larger screens get more shapes and slightly higher coverage. */
 function viewportPackTargets(vw: number, vh: number): PackTargets {
   const areaRatio = (vw * vh) / REF_VIEWPORT_AREA;
   const isRegularDesktop = isRegularDesktopViewport(vw, vh);
   const isLargeDesktop = isLargeDesktopViewport(vw);
-  const extraPieces = isRegularDesktop ? 9 : isLargeDesktop ? 22 : 0;
+  const extraPieces = isRegularDesktop ? 5 : isLargeDesktop ? 14 : isNarrowViewport(vw) ? 6 : 2;
   const maxPieces = Math.min(
     ABSOLUTE_MAX_PIECES,
     Math.max(
       MIN_PIECES,
       EDITABLE_BLOBS.length + extraPieces,
-      Math.round(BASE_MAX_PIECES * Math.sqrt(areaRatio)),
+      Math.round(BASE_MAX_PIECES * Math.sqrt(Math.max(areaRatio, 0.45))),
     ),
   );
   const targetCoverage = Math.min(
-    isRegularDesktop ? 0.9 : isLargeDesktop ? 0.96 : 0.72,
+    isRegularDesktop ? 0.78 : isLargeDesktop ? 0.82 : 0.74,
     TARGET_COVERAGE +
-      0.14 * Math.min(1, (areaRatio - 1) / 1.5) +
-      (isRegularDesktop ? 0.3 : isLargeDesktop ? 0.24 : 0),
+      0.12 * Math.min(1, (areaRatio - 1) / 1.5) +
+      (isRegularDesktop ? 0.16 : isLargeDesktop ? 0.16 : 0.1),
   );
   return { maxPieces, targetCoverage, extraPieces };
 }
@@ -101,7 +117,6 @@ interface Placement {
 
 interface Props {
   obstacleRefs?: React.RefObject<HTMLElement | null>[];
-  variants?: Variants;
 }
 
 function measureZones(
@@ -196,10 +211,11 @@ function buildPool(
   vw: number,
   vh: number,
   targets: PackTargets,
+  sizeMultiplier: number,
 ): { def: EditableBlobDef; instanceId: string }[] {
   const avgR2 =
     EDITABLE_BLOBS.reduce((s, b) => s + b.radius * b.radius, 0) / EDITABLE_BLOBS.length;
-  const comfortR = Math.sqrt(avgR2) * COMFORT_SCALE * SIZE_MULTIPLIER * RADIUS_FACTOR;
+  const comfortR = Math.sqrt(avgR2) * COMFORT_SCALE * sizeMultiplier * RADIUS_FACTOR;
   const targetCount = Math.min(
     targets.maxPieces,
     Math.max(
@@ -233,7 +249,9 @@ function buildPool(
 function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
   const area = vw * vh;
   const targets = viewportPackTargets(vw, vh);
-  const pool = buildPool(vw, vh, targets);
+  const sizeMultiplier = sizeMultiplierFor(vw);
+  const edgeKeep = edgeKeepFor(vw);
+  const pool = buildPool(vw, vh, targets, sizeMultiplier);
   const sumR2 = pool.reduce((s, p) => s + p.def.radius * p.def.radius, 0);
   // Packing uses artRadius × scale × RADIUS_FACTOR; solve scale so circle coverage ≈ target.
   // Pool size already accounts for SIZE_MULTIPLIER, so shapes land at the boosted size.
@@ -250,8 +268,8 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
     localScale: number,
   ) => {
     const radius = def.radius * localScale * RADIUS_FACTOR;
-    if (cx < radius * 0.15 || cy < radius * 0.15) return false;
-    if (cx > vw - radius * 0.15 || cy > vh - radius * 0.15) return false;
+    if (cx < radius * edgeKeep || cy < radius * edgeKeep) return false;
+    if (cx > vw - radius * edgeKeep || cy > vh - radius * edgeKeep) return false;
     if (hitsText(cx, cy, radius, zones)) return false;
     if (overlapsAny(cx, cy, radius, placed)) return false;
     placed.push({ def, instanceId, cx, cy, scale: localScale, radius });
@@ -265,7 +283,7 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
     const randomCandidate = (): { cx: number; cy: number } => {
       const roll = Math.random();
 
-      if (placed.length > 0 && zones.length > 0 && roll < 0.16) {
+      if (placed.length > 0 && zones.length > 0 && roll < 0.22) {
         const zone = zones[Math.floor(Math.random() * zones.length)]!;
         const midX = (zone.left + zone.right) / 2;
         const midY = (zone.top + zone.bottom) / 2;
@@ -273,15 +291,15 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
         const nest =
           Math.max(zone.right - zone.left, zone.bottom - zone.top) * 0.42 +
           radius +
-          Math.random() * radius * 0.5;
+          Math.random() * radius * 0.35;
         return {
           cx: midX + Math.cos(angle) * nest,
           cy: midY + Math.sin(angle) * nest,
         };
       }
 
-      if (placed.length === 0 || roll < 0.56) {
-        const edgeInset = radius * 0.15;
+      if (placed.length === 0 || roll < 0.38) {
+        const edgeInset = radius * edgeKeep;
         return {
           cx: edgeInset + Math.random() * Math.max(1, vw - edgeInset * 2),
           cy: edgeInset + Math.random() * Math.max(1, vh - edgeInset * 2),
@@ -313,8 +331,13 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
                   radius,
               ),
             );
-      const distanceFromCenter = Math.hypot(candidate.cx - vw / 2, candidate.cy - vh / 2);
-      const score = nearestClearance + distanceFromCenter * 0.05;
+      // Prefer a snug nest (small positive clearance) over a wide empty halo.
+      const tightness =
+        nearestClearance < 0 ? -8 : Math.exp(-nearestClearance / Math.max(24, radius * 0.4));
+      const inward =
+        Math.min(candidate.cx, vw - candidate.cx) / (vw * 0.5) +
+        Math.min(candidate.cy, vh - candidate.cy) / (vh * 0.5);
+      const score = tightness * 10 + inward * 0.8;
 
       if (score > bestScore) {
         best = candidate;
@@ -371,7 +394,7 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
       : globalScale * 0.7;
   const used = new Set(best.map((p) => p.instanceId));
   let fillGuard = 0;
-  const fillTarget = Math.min(targets.maxPieces, pool.length);
+  const fillTarget = targets.maxPieces;
   while (best.length < fillTarget && fillGuard < fillTarget * 8) {
     fillGuard += 1;
     const def = EDITABLE_BLOBS[Math.floor(Math.random() * EDITABLE_BLOBS.length)]!;
@@ -428,8 +451,8 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
         }
       }
 
-      a.cx = Math.min(vw - a.radius * 0.15, Math.max(a.radius * 0.15, a.cx + fx));
-      a.cy = Math.min(vh - a.radius * 0.15, Math.max(a.radius * 0.15, a.cy + fy));
+      a.cx = Math.min(vw - a.radius * edgeKeep, Math.max(a.radius * edgeKeep, a.cx + fx));
+      a.cy = Math.min(vh - a.radius * edgeKeep, Math.max(a.radius * edgeKeep, a.cy + fy));
     }
   }
 
@@ -464,8 +487,8 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
         a.cx += (dx / dist) * 4;
         a.cy += (dy / dist) * 4;
       }
-      a.cx = Math.min(vw - a.radius * 0.15, Math.max(a.radius * 0.15, a.cx));
-      a.cy = Math.min(vh - a.radius * 0.15, Math.max(a.radius * 0.15, a.cy));
+      a.cx = Math.min(vw - a.radius * edgeKeep, Math.max(a.radius * edgeKeep, a.cx));
+      a.cy = Math.min(vh - a.radius * edgeKeep, Math.max(a.radius * edgeKeep, a.cy));
     }
   }
 
@@ -475,11 +498,6 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
     randomizedColors.push(...shuffle(palette));
   }
 
-  const visualScale = isRegularDesktopViewport(vw, vh)
-    ? 1.1
-    : isLargeDesktopViewport(vw)
-      ? 1.12
-      : 1;
   return placed.map((placement, index) => ({
     ...placement,
     def: rotateBlobDef(
@@ -487,7 +505,6 @@ function packBlobs(vw: number, vh: number, zones: Rect[]): Placement[] {
       Math.random() < 0.5 ? 0 : Math.PI,
       randomizedColors[index]!,
     ),
-    scale: placement.scale * visualScale,
   }));
 }
 
@@ -507,7 +524,7 @@ function nudgeablePlacementIds(placements: Placement[], vw: number, vh: number) 
   return (visible.length > 0 ? visible : placements).map((p) => p.instanceId);
 }
 
-export default function EditableBlobField({ obstacleRefs = [], variants }: Props) {
+export default function EditableBlobField({ obstacleRefs = [] }: Props) {
   const [mounted, setMounted] = useState(false);
   const [placements, setPlacements] = useState<Placement[]>([]);
   const layoutKey = useRef(0);
@@ -559,13 +576,13 @@ export default function EditableBlobField({ obstacleRefs = [], variants }: Props
 
   if (!mounted || placements.length === 0) return null;
 
+  const fieldWidth = typeof window === "undefined" ? 0 : window.innerWidth;
+  const fieldHeight = typeof window === "undefined" ? 0 : window.innerHeight;
+
   return createPortal(
-    <motion.div
+    <div
       className="editable-blob-field"
       aria-hidden="true"
-      variants={variants}
-      initial={false}
-      animate={variants ? "visible" : undefined}
       style={{
         position: "fixed",
         inset: 0,
@@ -576,7 +593,7 @@ export default function EditableBlobField({ obstacleRefs = [], variants }: Props
       }}
     >
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
-        {placements.map((placement, index) => (
+        {placements.map((placement) => (
           <EditableBlob
             key={`${layoutKey.current}-${placement.instanceId}`}
             id={placement.instanceId}
@@ -586,14 +603,13 @@ export default function EditableBlobField({ obstacleRefs = [], variants }: Props
             cx={placement.cx}
             cy={placement.cy}
             scale={placement.scale}
-            appearDelayMs={variants ? 0 : Math.min(index * 28, 700)}
-            skipAppear={!!variants}
+            appearDelayMs={waveEnterDelayMs(placement.cx, placement.cy, fieldWidth, fieldHeight)}
             nudged={nudgeId === placement.instanceId}
             onInteract={noteInteraction}
           />
         ))}
       </div>
-    </motion.div>,
+    </div>,
     document.body,
   );
 }

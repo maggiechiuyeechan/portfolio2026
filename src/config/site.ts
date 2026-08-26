@@ -17,7 +17,7 @@ export const site = {
    * keep the markup to plain anchors.
    */
   workIntroHtml: [
-    `I'm Maggie, VP of Design &amp; Research at <a href="https://clickup.com">ClickUp</a>, where I lead the org and stay close to the craft, often shipping features myself. Since 2023, I've shaped every major feature at ClickUp as the company grew from $150M to $360M+ ARR. Before that: self-driving at <a href="https://www.uber.com">Uber</a>, then <a href="https://www.bloomberg.com">Bloomberg</a>, <a href="https://www.headspace.com">Headspace</a>, and BlueDot.`,
+    `I'm Maggie, VP of Design &amp; Research at <a href="https://clickup.com">ClickUp</a>, where I lead the org and stay close to the craft, often shipping features myself. Since 2023, I've shaped every major feature at ClickUp as the company grew from $150M to $360M+ ARR. Before that: self-driving at <a href="https://www.uber.com">Uber</a>, <a href="https://www.bloomberg.com">Bloomberg</a>, <a href="https://www.headspace.com">Headspace</a>, and BlueDot.`,
   ],
   seoTitle: "Maggie Chan — VP of Design & Research @ ClickUp",
   seoDescription:
@@ -27,7 +27,6 @@ export const site = {
   passwordPlaceholder: "Enter password",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/mcychan" },
-    { label: "X", href: "https://x.com/maggiechewychan" },
   ],
 } as const;
 

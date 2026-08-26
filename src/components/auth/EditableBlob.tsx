@@ -114,9 +114,9 @@ export default function EditableBlob({
       setAppeared(true);
       return;
     }
-    const timer = window.setTimeout(() => setAppeared(true), appearDelayMs);
-    return () => window.clearTimeout(timer);
-  }, [appearDelayMs, reducedMotion, skipAppear]);
+    const id = window.requestAnimationFrame(() => setAppeared(true));
+    return () => window.cancelAnimationFrame(id);
+  }, [reducedMotion, skipAppear]);
 
   const bounds = pointsBounds(subpathsRef.current, PAD / scale);
   if (!anchorRef.current) {
@@ -392,9 +392,11 @@ export default function EditableBlob({
         top,
         overflow: "visible",
         opacity: appeared ? 1 : 0,
+        transform: appeared ? "scale(1)" : "scale(0.9)",
+        transformOrigin: "center",
         transition: reducedMotion
           ? undefined
-          : `opacity 420ms ease-out ${appearDelayMs}ms`,
+          : `opacity 560ms ease-out ${appearDelayMs}ms, transform 560ms ease-out ${appearDelayMs}ms`,
         pointerEvents: "none",
         mixBlendMode: "multiply",
         zIndex: dragging || activeNode != null ? 5 : 1,

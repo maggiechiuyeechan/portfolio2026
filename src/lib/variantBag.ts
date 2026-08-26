@@ -1,19 +1,16 @@
 /**
- * Shuffle-bag rotation for hero variants.
+ * Sequenced rotation for hero variants.
  *
- * Semantics: a new visitor sees Meadow first. Later visits use a shuffle bag,
- * so every visitor sees all N variants before any repeats. When the bag
- * empties it refills with a fresh shuffle, and the refill is biased so the new
- * cycle never opens with the variant that closed the previous one (otherwise
- * ~1-in-N of cycle boundaries look like a repeat).
+ * The first visit (no stored id) shows Meadow. Every later return to the hero
+ * — reload, back button, typed URL, link, new tab — advances to the next id
+ * in `HERO_ROTATION_ORDER`, then wraps. Variants marked `surpriseOnly` stay
+ * out of this sequence; "Surprise me" does not consume a slot.
  *
- * Variants marked `surpriseOnly` in the registry are excluded from the bag and
- * from the initial page load — they are only reachable via "Surprise me".
- *
- * State lives in localStorage so it survives tab closes. Every access is
- * wrapped — Safari private mode and hardened privacy settings throw on
- * localStorage access, and a hero that crashes because storage is unavailable
- * is a far worse outcome than a hero that just picks randomly.
+ * The last sequenced id lives in localStorage so a later visit can pick up
+ * where the previous one left off. Every access is wrapped — Safari private
+ * mode and hardened privacy settings throw on localStorage, and a hero that
+ * crashes because storage is unavailable is worse than one that just shows
+ * Meadow.
  *
  * This module is client-only and must be imported from an island, never from
  * a prerendered .astro frontmatter block.
@@ -21,66 +18,36 @@
 import {
   eligibleVariantIds,
   getVariant,
+  HERO_ROTATION_ORDER,
   type HeroVariantId,
 } from "../config/heroVariants";
 
-const STORAGE_KEY = "hero:bag:v1";
-const VISITED_STORAGE_KEY = "hero:visited:v1";
+const STORAGE_KEY = "hero:seq:v1";
 const NARROW_QUERY = "(max-width: 48rem)";
 
-interface BagState {
-  /** Ids not yet shown in the current cycle, in the order they'll appear. */
-  remaining: HeroVariantId[];
-  /** Last id actually shown — used to avoid a cycle-boundary repeat. */
+interface SeqState {
+  /** Last id shown by the sequence (not by Surprise me). */
   last: HeroVariantId | null;
 }
 
 /** In-memory fallback when localStorage is unavailable. */
-let memoryState: BagState | null = null;
-let memoryVisited = false;
+let memoryState: SeqState | null = null;
 
-function hasVisited(): boolean {
-  try {
-    return window.localStorage.getItem(VISITED_STORAGE_KEY) === "1" || memoryVisited;
-  } catch {
-    return memoryVisited;
-  }
-}
-
-function markVisited(): void {
-  memoryVisited = true;
-  try {
-    window.localStorage.setItem(VISITED_STORAGE_KEY, "1");
-  } catch {
-    /* private mode or storage disabled — memoryVisited carries this session */
-  }
-}
-
-function readState(): BagState | null {
+function readState(): SeqState | null {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return memoryState;
     const parsed = JSON.parse(raw) as unknown;
-    if (
-      !parsed ||
-      typeof parsed !== "object" ||
-      !Array.isArray((parsed as BagState).remaining)
-    ) {
-      return null;
-    }
-    const state = parsed as BagState;
-    // Drop ids that no longer exist in the registry (variant was deleted).
-    state.remaining = state.remaining.filter((id) => {
-      const variant = getVariant(id);
-      return variant && !variant.surpriseOnly;
-    });
-    return state;
+    if (!parsed || typeof parsed !== "object") return null;
+    const last = (parsed as SeqState).last;
+    if (last != null && !getVariant(last)) return { last: null };
+    return { last: last ?? null };
   } catch {
     return memoryState;
   }
 }
 
-function writeState(state: BagState): void {
+function writeState(state: SeqState): void {
   memoryState = state;
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -89,91 +56,48 @@ function writeState(state: BagState): void {
   }
 }
 
-/** Fisher–Yates, unbiased. */
-function shuffle<T>(input: readonly T[]): T[] {
-  const out = input.slice();
-  for (let i = out.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [out[i], out[j]] = [out[j]!, out[i]!];
-  }
-  return out;
-}
-
-/**
- * Build a fresh cycle. If `avoidFirst` would land in slot 0 and there is more
- * than one option, swap it with a random later slot so consecutive visits
- * never show the same variant twice.
- */
-function refill(pool: HeroVariantId[], avoidFirst: HeroVariantId | null): HeroVariantId[] {
-  const next = shuffle(pool);
-  if (avoidFirst && next.length > 1 && next[0] === avoidFirst) {
-    const swapWith = 1 + Math.floor(Math.random() * (next.length - 1));
-    [next[0], next[swapWith]] = [next[swapWith]!, next[0]!];
-  }
-  return next;
-}
-
-/**
- * Pick the variant for this page load and advance the bag.
- *
- * Call exactly once, at module scope inside the hero island, so the choice is
- * made synchronously before React's first render. Calling it twice (e.g. in a
- * component body that re-renders) burns two entries per visit.
- */
-export function takeVariant(): HeroVariantId {
+function currentPool(): HeroVariantId[] {
   const isNarrow =
     typeof window !== "undefined" && window.matchMedia(NARROW_QUERY).matches;
-  const pool = eligibleVariantIds(isNarrow);
+  const allowed = new Set(eligibleVariantIds(isNarrow));
+  const ordered = HERO_ROTATION_ORDER.filter((id) => allowed.has(id));
+  for (const id of allowed) {
+    if (!ordered.includes(id)) ordered.push(id);
+  }
+  return ordered;
+}
 
-  // Should never happen, but a registry misconfiguration shouldn't blank the page.
+function firstInSequence(pool: HeroVariantId[]): HeroVariantId {
+  if (pool.includes("meadow")) return "meadow";
+  return pool[0] ?? "meadow";
+}
+
+function nextInSequence(pool: HeroVariantId[], last: HeroVariantId | null): HeroVariantId {
+  if (!last) return firstInSequence(pool);
+  const index = pool.indexOf(last);
+  if (index === -1) return firstInSequence(pool);
+  return pool[(index + 1) % pool.length]!;
+}
+
+/**
+ * Pick the variant for this hero visit and advance the sequence.
+ *
+ * Call once per visit (memoised in the hero island) so React re-renders
+ * don't burn two entries. Browser-back from bfcache is a second visit —
+ * HeroRotator listens for `pageshow` and calls this again.
+ */
+export function takeVariant(): HeroVariantId {
+  const pool = currentPool();
   if (pool.length === 0) return "meadow";
 
-  const storedState = readState();
-  const state = storedState ?? { remaining: [], last: null };
-
-  // Existing bag state predates the explicit visit marker, so treat it as
-  // evidence of a returning visitor during migration.
-  const isFirstVisit = !hasVisited() && !storedState;
-  markVisited();
-
-  if (isFirstVisit) {
-    const picked = pool.includes("meadow") ? "meadow" : pool[0]!;
-    state.remaining = refill(
-      pool.filter((id) => id !== picked),
-      picked,
-    );
-    state.last = picked;
-    writeState(state);
-    return picked;
-  }
-
-  // Find the first entry that's eligible right now. A desktop-only variant
-  // already sitting in the bag is skipped over — not consumed — so it survives
-  // for a later wide-viewport visit instead of being wasted on a phone.
-  //
-  // Note the asymmetry: a bag REFILLED on a narrow viewport is built from the
-  // narrow pool, so it contains no desktop-only ids at all. Those reappear at
-  // the next refill that happens on a wide viewport. That's intentional — the
-  // alternative (carrying ineligible ids through every cycle) makes the phone
-  // rotation shorter in a way that's invisible and hard to reason about.
-  let index = state.remaining.findIndex((id) => pool.includes(id));
-
-  if (index === -1) {
-    state.remaining = refill(pool, state.last);
-    index = 0;
-  }
-
-  const picked = state.remaining[index]!;
-  state.remaining = state.remaining.filter((_, i) => i !== index);
-  state.last = picked;
-  writeState(state);
-
+  const picked = nextInSequence(pool, readState()?.last ?? null);
+  writeState({ last: picked });
   return picked;
 }
 
 /**
  * Pick a variant for "Surprise me" — includes surprise-only entries (e.g.
- * organic shapes) and never consumes a slot from the normal shuffle bag.
+ * organic shapes) and never consumes a slot from the visit sequence.
  */
 export function takeSurpriseVariant(exclude: HeroVariantId): HeroVariantId {
   const isNarrow =
@@ -185,31 +109,21 @@ export function takeSurpriseVariant(exclude: HeroVariantId): HeroVariantId {
 }
 
 /**
- * The variant queued for the visitor's NEXT load, if one is known.
+ * The variant queued for the visitor's NEXT hero visit, if one is known.
  * Used to emit <link rel="prefetch"> so the following visit is warm.
- * Returns null when the bag is empty (next visit triggers a reshuffle).
  */
 export function peekNextVariant(): HeroVariantId | null {
-  const isNarrow =
-    typeof window !== "undefined" && window.matchMedia(NARROW_QUERY).matches;
-  const pool = eligibleVariantIds(isNarrow);
-  const state = readState();
-  if (!state) return null;
-  return state.remaining.find((id) => pool.includes(id)) ?? null;
+  const pool = currentPool();
+  if (pool.length === 0) return null;
+  return nextInSequence(pool, readState()?.last ?? null);
 }
 
 /** Progress through the current cycle — handy for a dev-only HUD. */
 export function bagProgress(): { seen: number; total: number } {
-  const isNarrow =
-    typeof window !== "undefined" && window.matchMedia(NARROW_QUERY).matches;
-  // Compute the pool ONCE — this used to call eligibleVariantIds() inside the
-  // filter predicate, rebuilding the whole array for every remaining entry.
-  const pool = eligibleVariantIds(isNarrow);
-  const state = readState();
-  const remaining = state
-    ? state.remaining.filter((id) => pool.includes(id)).length
-    : pool.length;
-  return { seen: pool.length - remaining, total: pool.length };
+  const pool = currentPool();
+  const last = readState()?.last ?? null;
+  const index = last ? pool.indexOf(last) : -1;
+  return { seen: index + 1, total: pool.length };
 }
 
 /** Clear rotation history. Wire this to a dev-only keyboard shortcut. */
@@ -223,7 +137,7 @@ export function resetBag(): void {
 }
 
 /**
- * Force a specific variant for this load without touching the bag.
+ * Force a specific variant for this load without touching the sequence.
  * Reads `?v=<id>` from the URL — powers the /versions/[id] deep links and
  * lets you screenshot a specific hero without burning a rotation slot.
  */

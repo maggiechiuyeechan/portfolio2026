@@ -41,7 +41,7 @@ export interface HeroShellProps {
   renderScene: (props: HeroSceneProps) => ReactNode;
 }
 
-const [linkedin, x] = site.socials;
+const [linkedin] = site.socials;
 
 const container = {
   hidden: {},
@@ -121,10 +121,10 @@ export default function HeroShell({
   const fullCanvas = layout === "full-canvas";
   const motionState = exiting ? "exit" : "visible";
   const sceneVariants =
-    variantId === "meadow"
+    variantId === "meadow" || variantId === "monsters"
       ? sceneFade
-      : variantId === "editable-blobs" && !animateEntrance
-        ? sceneFade
+      : variantId === "editable-blobs"
+        ? undefined
         : animateEntrance
           ? item
           : undefined;
@@ -222,10 +222,6 @@ export default function HeroShell({
         >
           <AnimatedTextLink href={linkedin.href} inline>
             {linkedin.label}
-          </AnimatedTextLink>
-          <span aria-hidden="true"> · </span>
-          <AnimatedTextLink href={x.href} inline>
-            {x.label}
           </AnimatedTextLink>
           <span aria-hidden="true"> · </span>
           <AnimatedTextLink

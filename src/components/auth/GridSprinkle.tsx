@@ -4,7 +4,7 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { usePrefersReducedMotion } from "../../lib/motion";
+import { usePrefersReducedMotion, waveEnterDelayMs } from "../../lib/motion";
 import { playHeroSound, playHeroSoundOnClick } from "../../lib/heroSounds";
 import { acquireBodyFlag } from "../../lib/bodyFlag";
 import { idleNudgeScale } from "../../lib/idleNudgeScale";
@@ -25,9 +25,9 @@ const DOT_DIAMETER_REM = 1;
 const EXCLUSION_PAD = GRID_CELL * 2;
 const OUTER_EXCLUSION_PAD = GRID_CELL * 4;
 /** Per-dot ease-out duration when reshuffling. */
-const SPRINKLE_IN_MS = 380;
-/** Max random delay before a dot starts fading/scaling in. */
-const SPRINKLE_STAGGER_MS = 160;
+const SPRINKLE_IN_MS = 480;
+/** Max delay before the outermost dots start fading/scaling in. */
+const SPRINKLE_STAGGER_MS = 520;
 const SPRINKLE_FROM_SCALE = 0.35;
 /** Grid sprinkle idle nudge — one dot pulses to 1.75× (other variants use 1.075×). */
 const SPRINKLE_IDLE_NUDGE_SCALE = 1.75;
@@ -408,8 +408,12 @@ export default function GridSprinkle({
         return;
       }
 
+      const { width, height } = viewportRef.current;
       for (const dot of dots) {
-        dot.enterDelay = Math.random() * SPRINKLE_STAGGER_MS;
+        dot.enterDelay = Math.min(
+          SPRINKLE_STAGGER_MS,
+          waveEnterDelayMs(dot.nx * width, dot.ny * height, width, height) + Math.random() * 30,
+        );
       }
       sprinkleInRef.current = { start: performance.now() };
       ensureAnim();
@@ -448,10 +452,8 @@ export default function GridSprinkle({
         dotsPlacedRef.current = true;
         viewportRef.current = { width, height };
         syncDotIds();
-        if (forceReseed) {
-          animateSprinkleIn();
-          return;
-        }
+        animateSprinkleIn();
+        return;
       } else if (sizeChanged) {
         cancelAnim();
         sprinkleInRef.current = null;

@@ -4,7 +4,7 @@
  * The pick happens at MODULE SCOPE — synchronously, before React's first
  * render — so the very first paint already knows which layout to use. Doing it
  * in an effect would flash the wrong layout; doing it in the component body
- * would re-roll (and burn a bag entry) on every re-render.
+ * would re-roll (and burn a sequence slot) on every re-render.
  */
 import { lazy, useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import HeroShell from "./HeroShell";
@@ -44,8 +44,8 @@ const LAZY_SCENES: Record<string, ComponentType<HeroSceneProps>> =
  * ever read. /versions/<id> passes an explicit variantId and carries no `?v=`
  * param, so forcedVariant() returned null, takeVariant() ran anyway, and its
  * result was thrown away. Every visit to a versions page silently consumed a
- * bag slot and shortened the real rotation on /, directly contradicting the
- * doc comment on that route.
+ * sequence slot and shortened the real rotation on /, directly contradicting
+ * the doc comment on that route.
  *
  * Memoised so React StrictMode's double-invoke can't burn two slots either.
  */
@@ -100,6 +100,22 @@ export default function HeroRotator({ name, title, tagline, variantId }: Props) 
       swappingRef.current = false;
     };
   }, []);
+
+  // Back/forward can restore this page from bfcache without remounting, so
+  // takeVariant() would never run. Treat that restore as a new visit.
+  useEffect(() => {
+    if (variantId) return;
+    const onPageShow = (event: PageTransitionEvent) => {
+      if (!event.persisted) return;
+      const nextId = takeVariant();
+      memoisedRoll = nextId;
+      warmVariant(nextId);
+      setPlayEntrance(true);
+      setActiveId(nextId);
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, [variantId]);
 
   const handleSurprise = useCallback(async () => {
     if (swappingRef.current) return;

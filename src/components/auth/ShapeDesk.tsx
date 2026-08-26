@@ -8,7 +8,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { usePrefersReducedMotion } from "../../lib/motion";
+import { usePrefersReducedMotion, waveEnterDelayMs } from "../../lib/motion";
 import { playHeroSoundOnClick } from "../../lib/heroSounds";
 import { useIdleNudge } from "../../lib/useIdleNudge";
 import PhysicsShapeFace from "./PhysicsShapeFace";
@@ -27,11 +27,9 @@ const CLICK_ROTATE_RAD = (15 * Math.PI) / 180;
 /** Clearance around the hero text for initial placement. */
 const TEXT_PADDING = 28;
 /** Candidates per piece — pick the seat that spreads the field most. */
-const PLACE_CANDIDATES = 110;
-/** Bounding-circle shrink so light grazing doesn’t count as a stack. */
+const PLACE_CANDIDATES = 160;
+/** Bounding-box shrink so light grazing doesn’t count as a stack. */
 const OVERLAP_RADIUS_FACTOR = 0.92;
-/** Wider than overlap — keeps two legal pairs from sitting as one pile. */
-const CLUSTER_RADIUS_FACTOR = 1.4;
 /** At most this many shapes may share an overlap (pairs only on first paint). */
 const MAX_INITIAL_STACK = 2;
 /** Single-column / mobile breakpoint (matches --single-column-break). */
@@ -43,20 +41,21 @@ function deskBaseSize(viewportWidth: number, viewportHeight: number) {
   const desktop = viewportWidth > 1024;
 
   if (desktop) {
-    const size = 250 + Math.max(0, (minDim - 800) / 640) * 80;
-    return Math.round(Math.min(size, viewportHeight * 0.28, viewportWidth * 0.22, 360));
+    // Large enough to read as paper, sparse enough that the field stays airy.
+    const size = 275 + Math.max(0, (minDim - 800) / 640) * 75;
+    return Math.round(Math.min(size, viewportHeight * 0.31, viewportWidth * 0.23, 360));
   }
 
   let size: number;
   if (minDim <= 480) {
-    size = minDim * 0.28;
+    size = minDim * 0.34;
   } else if (minDim <= 768) {
-    size = 132 + ((minDim - 480) / (768 - 480)) * (180 - 132);
+    size = 162 + ((minDim - 480) / (768 - 480)) * (216 - 162);
   } else {
-    size = 180 + ((minDim - 768) / (1024 - 768)) * (210 - 180);
+    size = 216 + ((minDim - 768) / (1024 - 768)) * (250 - 216);
   }
 
-  return Math.round(Math.max(88, Math.min(size, viewportHeight * 0.19, viewportWidth * 0.3, 220)));
+  return Math.round(Math.max(104, Math.min(size, viewportHeight * 0.23, viewportWidth * 0.34, 260)));
 }
 
 function rotateHandleOffset(baseSize: number) {
@@ -122,10 +121,6 @@ function measureTextZones(refs: React.RefObject<HTMLElement | null>[]): Rect[] {
   return zones;
 }
 
-function pieceRadius(pieceWidth: number, pieceHeight: number) {
-  return (Math.hypot(pieceWidth, pieceHeight) / 2) * OVERLAP_RADIUS_FACTOR;
-}
-
 function piecesOverlap(
   ax: number,
   ay: number,
@@ -136,7 +131,12 @@ function piecesOverlap(
   bw: number,
   bh: number,
 ) {
-  return Math.hypot(ax - bx, ay - by) < pieceRadius(aw, ah) + pieceRadius(bw, bh);
+  // Axis-aligned boxes, not circumcircles. Circles treated 250px squares as
+  // overlapping when they still had a 70px gap, so most seats got rejected.
+  return (
+    Math.abs(ax - bx) < ((aw + bw) / 2) * OVERLAP_RADIUS_FACTOR &&
+    Math.abs(ay - by) < ((ah + bh) / 2) * OVERLAP_RADIUS_FACTOR
+  );
 }
 
 function overlapsZone(
@@ -146,13 +146,12 @@ function overlapsZone(
   pieceHeight: number,
   zones: Rect[],
 ) {
-  // Box, not circumcircle — the diagonal was eating the mid-field and
-  // parking every leftover on the clipped edge.
-  const pad = 10;
-  const left = x - pieceWidth / 2 - pad;
-  const top = y - pieceHeight / 2 - pad;
-  const right = x + pieceWidth / 2 + pad;
-  const bottom = y + pieceHeight / 2 + pad;
+  // Circumcircle so a rotated tile can’t swing a corner into the type.
+  const radius = Math.hypot(pieceWidth, pieceHeight) / 2;
+  const left = x - radius;
+  const top = y - radius;
+  const right = x + radius;
+  const bottom = y + radius;
 
   return zones.some(
     (zone) => left < zone.right && right > zone.left && top < zone.bottom && bottom > zone.top,
@@ -210,22 +209,12 @@ function violatesStackLimit(
   // Two of the same SVG on top of each other reads as a muddy stack.
   if (hits.some((i) => placed[i]!.shapeId === shapeId)) return true;
 
-  const ownRadius = pieceRadius(pieceWidth, pieceHeight);
+  const ownSpan = Math.max(pieceWidth, pieceHeight);
   for (const other of placed) {
     if (other.shapeId !== shapeId) continue;
-    const minDist = (ownRadius + pieceRadius(other.w, other.h)) * 1.08;
+    const minDist = (ownSpan + Math.max(other.w, other.h)) * 0.48;
     if (Math.hypot(x - other.x, y - other.y) < minDist) return true;
   }
-
-  // Two isolated pairs can still read as one pile if they sit in the same
-  // corner. Reject any seat that already has two neighbors in a wider radius.
-  const clusterRadius = pieceRadius(pieceWidth, pieceHeight) * CLUSTER_RADIUS_FACTOR;
-  let nearby = 0;
-  for (const other of placed) {
-    const otherRadius = pieceRadius(other.w, other.h) * CLUSTER_RADIUS_FACTOR;
-    if (Math.hypot(x - other.x, y - other.y) < clusterRadius + otherRadius) nearby += 1;
-  }
-  if (nearby >= MAX_INITIAL_STACK) return true;
 
   return false;
 }
@@ -233,6 +222,65 @@ function violatesStackLimit(
 function nearestPlacedDistance(x: number, y: number, width: number, height: number, placed: PlacedMeta[]) {
   if (placed.length === 0) return Math.hypot(width, height);
   return Math.min(...placed.map((other) => Math.hypot(x - other.x, y - other.y)));
+}
+
+/** 0 on the bezel, 1 toward the middle — stops max-min from filling only corners. */
+function inwardBias(x: number, y: number, width: number, height: number) {
+  const nx = Math.min(x, width - x) / (width * 0.5);
+  const ny = Math.min(y, height - y) / (height * 0.5);
+  return 0.5 + 0.5 * Math.min(1, Math.min(nx, ny) / 0.22);
+}
+
+function copyUnion(zones: Rect[]): Rect | null {
+  if (zones.length === 0) return null;
+  return {
+    left: Math.min(...zones.map((zone) => zone.left)),
+    top: Math.min(...zones.map((zone) => zone.top)),
+    right: Math.max(...zones.map((zone) => zone.right)),
+    bottom: Math.max(...zones.map((zone) => zone.bottom)),
+  };
+}
+
+/** Seats on rings around the hero copy — the band the rim-only packer skipped. */
+function haloPositions(zones: Rect[], pieceSize: number, gaps: number[]) {
+  const bounds = copyUnion(zones);
+  if (!bounds) return [];
+  const cx = (bounds.left + bounds.right) / 2;
+  const cy = (bounds.top + bounds.bottom) / 2;
+  const spots: { x: number; y: number }[] = [];
+  for (const gap of gaps) {
+    const rw = (bounds.right - bounds.left) / 2 + pieceSize * gap;
+    const rh = (bounds.bottom - bounds.top) / 2 + pieceSize * gap;
+    for (let i = 0; i < 24; i++) {
+      const t = ((i + Math.random() * 0.35) / 24) * Math.PI * 2;
+      spots.push({
+        x: cx + Math.cos(t) * rw + (Math.random() - 0.5) * pieceSize * 0.08,
+        y: cy + Math.sin(t) * rh + (Math.random() - 0.5) * pieceSize * 0.08,
+      });
+    }
+  }
+  return spots;
+}
+
+function angularGap(
+  x: number,
+  y: number,
+  zones: Rect[],
+  placed: PlacedMeta[],
+) {
+  const bounds = copyUnion(zones);
+  if (!bounds) return 0;
+  const cx = (bounds.left + bounds.right) / 2;
+  const cy = (bounds.top + bounds.bottom) / 2;
+  const angle = Math.atan2(y - cy, x - cx);
+  if (placed.length === 0) return Math.PI;
+  let nearest = Math.PI;
+  for (const other of placed) {
+    let delta = Math.abs(angle - Math.atan2(other.y - cy, other.x - cx));
+    if (delta > Math.PI) delta = 2 * Math.PI - delta;
+    nearest = Math.min(nearest, delta);
+  }
+  return nearest;
 }
 
 function placementScore(
@@ -249,7 +297,8 @@ function placementScore(
     piecesOverlap(x, y, pieceWidth, pieceHeight, other.x, other.y, other.w, other.h),
   );
   // Even spread first. Pairs only win when no isolated seat is left.
-  return overlapping ? nearest * 0.22 : nearest;
+  const spread = overlapping ? nearest * 0.5 : nearest;
+  return spread * inwardBias(x, y, width, height);
 }
 
 function considerSpot(
@@ -263,10 +312,12 @@ function considerSpot(
   placed: PlacedMeta[],
   shapeId: string,
   best: { x: number; y: number; score: number } | null,
+  score: number,
 ) {
+  if (x < pieceWidth * 0.18 || x > width - pieceWidth * 0.18) return best;
+  if (y < pieceHeight * 0.18 || y > height - pieceHeight * 0.18) return best;
   if (overlapsZone(x, y, pieceWidth, pieceHeight, zones)) return best;
   if (violatesStackLimit(x, y, pieceWidth, pieceHeight, placed, shapeId)) return best;
-  const score = placementScore(x, y, pieceWidth, pieceHeight, width, height, placed);
   if (!best || score > best.score) return { x, y, score };
   return best;
 }
@@ -275,8 +326,8 @@ function gridDeskPositions(width: number, height: number, pieceSize: number) {
   const inset = pieceSize * 0.52;
   const usableW = Math.max(1, width - inset * 2);
   const usableH = Math.max(1, height - inset * 2);
-  const cols = 8;
-  const rows = 6;
+  const cols = 10;
+  const rows = 8;
   const spots: { x: number; y: number }[] = [];
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
@@ -301,26 +352,29 @@ function placeClearOfText(
   const pieceSize = Math.max(pieceWidth, pieceHeight);
   let best: { x: number; y: number; score: number } | null = null;
 
+  const trySpot = (x: number, y: number, score: number) => {
+    best = considerSpot(x, y, pieceWidth, pieceHeight, width, height, zones, placed, shapeId, best, score);
+  };
+
+  // Necklace around the type — angular spacing, not max-min, so seats stay close in.
+  for (const spot of haloPositions(zones, pieceSize, [0.78, 0.94])) {
+    trySpot(spot.x, spot.y, angularGap(spot.x, spot.y, zones, placed));
+  }
+  if (best) return { x: best.x, y: best.y };
+
+  for (const spot of haloPositions(zones, pieceSize, [0.78, 0.94, 1.12])) {
+    trySpot(spot.x, spot.y, placementScore(spot.x, spot.y, pieceWidth, pieceHeight, width, height, placed));
+  }
+
   for (let attempt = 0; attempt < PLACE_CANDIDATES; attempt++) {
     const { x, y } = randomFreePosition(width, height, pieceWidth, pieceHeight, zones);
-    best = considerSpot(x, y, pieceWidth, pieceHeight, width, height, zones, placed, shapeId, best);
+    trySpot(x, y, placementScore(x, y, pieceWidth, pieceHeight, width, height, placed));
   }
 
   if (best) return { x: best.x, y: best.y };
 
   for (const spot of gridDeskPositions(width, height, pieceSize)) {
-    best = considerSpot(
-      spot.x,
-      spot.y,
-      pieceWidth,
-      pieceHeight,
-      width,
-      height,
-      zones,
-      placed,
-      shapeId,
-      best,
-    );
+    trySpot(spot.x, spot.y, placementScore(spot.x, spot.y, pieceWidth, pieceHeight, width, height, placed));
   }
   if (best) return { x: best.x, y: best.y };
 
@@ -357,8 +411,8 @@ function deskTargetCount(width: number, height: number, baseSize: number, zones:
     const h = Math.max(0, Math.min(zone.bottom, height) - Math.max(zone.top, 0));
     blocked += w * h;
   }
-  const freeArea = Math.max(viewArea * 0.45, viewArea - blocked);
-  const byArea = Math.floor(freeArea / (baseSize * baseSize * 1.2));
+  const freeArea = Math.max(viewArea * 0.5, viewArea - blocked);
+  const byArea = Math.floor(freeArea / (baseSize * baseSize * 1.15));
 
   let minCount: number;
   let maxCount: number;
@@ -366,17 +420,17 @@ function deskTargetCount(width: number, height: number, baseSize: number, zones:
     minCount = 6;
     maxCount = 8;
   } else if (width <= 1024) {
+    minCount = 10;
+    maxCount = 14;
+  } else if (width <= 1440) {
     minCount = 14;
     maxCount = 18;
-  } else if (width <= 1440) {
-    minCount = 20;
-    maxCount = 24;
   } else if (width <= 1920) {
-    minCount = 24;
-    maxCount = 28;
+    minCount = 16;
+    maxCount = 22;
   } else {
-    minCount = 30;
-    maxCount = 38;
+    minCount = 18;
+    maxCount = 26;
   }
 
   return Math.max(minCount, Math.min(maxCount, byArea));
@@ -496,6 +550,7 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
   const [baseSize, setBaseSize] = useState(360);
   const [pieces, setPieces] = useState<DeskPiece[]>([]);
+  const [entering, setEntering] = useState(true);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const { nudgeId, noteInteraction } = useIdleNudge(
     pieces.map((piece) => piece.id),
@@ -511,6 +566,16 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted || pieces.length === 0 || reducedMotion) {
+      setEntering(false);
+      return;
+    }
+    setEntering(true);
+    const timer = window.setTimeout(() => setEntering(false), 1300);
+    return () => window.clearTimeout(timer);
+  }, [mounted, pieces.length, reducedMotion]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -718,13 +783,18 @@ export default function ShapeDesk({ shapes = SHAPES_D_SPAWN, obstacleRefs = [] }
         const handleOffset = rotateHandleOffset(baseSize);
         const handleY = -height / 2 - handleOffset;
 
+        const enterDelay = reducedMotion
+          ? 0
+          : waveEnterDelayMs(piece.x, piece.y, viewport.width, viewport.height);
+
         return (
           <div
             key={piece.id}
-            className={`shape-desk-piece${isNudged ? " is-idle-nudge" : ""}`}
+            className={`shape-desk-piece${entering ? " is-entering" : ""}${isNudged ? " is-idle-nudge" : ""}`}
             onPointerDown={(event) => startMove(piece, event)}
             onWheel={(event) => onWheel(piece, event)}
             style={{
+              ["--desk-enter-delay" as string]: `${enterDelay}ms`,
               position: "absolute",
               left: 0,
               top: 0,

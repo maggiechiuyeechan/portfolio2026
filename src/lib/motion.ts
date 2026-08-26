@@ -5,11 +5,21 @@ export const easeOut = [0.25, 0.1, 0.25, 1] as const;
 /** Shared layout shift when hero variants swap copy position. */
 export const layoutShift = { duration: 0.55, ease: easeOut } as const;
 
-/** Scene entrance — opacity only (meadow, editable blobs). */
+/** Scene entrance — opacity only (meadow, monsters). */
 export const sceneFade = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.55, ease: easeOut } },
+  visible: { opacity: 1, transition: { duration: 0.8, ease: easeOut } },
 };
+
+/**
+ * Stagger delay so objects enter a few at a time, radiating from center.
+ * Snaps to 85ms bands so neighbors share a beat.
+ */
+export function waveEnterDelayMs(x: number, y: number, width: number, height: number) {
+  const dist = Math.hypot(x - width / 2, y - height / 2);
+  const maxDist = Math.max(1, Math.hypot(width / 2, height / 2));
+  return Math.round((dist / maxDist) * 480 / 85) * 85;
+}
 
 /** Media queries that drive hero/layout responsive changes across versions. */
 const HERO_BREAKPOINT_QUERIES = [
