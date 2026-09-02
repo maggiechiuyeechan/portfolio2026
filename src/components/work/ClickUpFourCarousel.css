@@ -1,4 +1,4 @@
-@import "../../styles/sf-pro-demo.css";
+@import "../../styles/inter-demo.css";
 
 .cu4-carousel {
   --cu4-cycle-duration: var(--cu4-cycle-ms, 6s);
@@ -143,8 +143,7 @@
 /* ---- Whiteboards demo (Figma 68:28756) ---------------------------------- */
 
 .cu4-wb {
-  --cu4-wb-font:
-    "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system, system-ui, "Helvetica Neue", Arial, sans-serif;
+  --cu4-wb-font: "Inter", system-ui, sans-serif;
   position: relative;
   overflow: hidden;
   /* The other three demos round their root's top-left by the same 10.2; the

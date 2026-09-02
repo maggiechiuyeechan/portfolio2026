@@ -1,13 +1,11 @@
-@import "../../styles/sf-pro-demo.css";
+@import "../../styles/inter-demo.css";
 
 /*
  * ClickUp 4.0 — Tasks slide (Figma frame 68:26758 "list", visible layer 68:27304 "Chats").
  * Built at exact 871x530; scaled by .cu4-demo-frame. All px values are Figma-exact.
  */
 .cu4t {
-  --cu4t-font:
-    "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-    "Segoe UI", Arial, sans-serif;
+  --cu4t-font: "Inter", system-ui, sans-serif;
   position: relative;
   width: 871px;
   height: 530px;

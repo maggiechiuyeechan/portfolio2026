@@ -1,4 +1,4 @@
-@import "../../styles/sf-pro-demo.css";
+@import "../../styles/inter-demo.css";
 
 /* Exact Figma frames 266:204372, 266:204939 and 266:205084. */
 .cua-demo-pair {
@@ -25,7 +25,7 @@
   width: 100%;
   overflow: hidden;
   color: #202020;
-  font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-optical-sizing: auto;
   font-synthesis: none;
   border-radius: var(--radius-2);
@@ -60,7 +60,7 @@
   overflow: hidden;
   border-radius: var(--radius-2);
   color: #202020;
-  font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
@@ -1078,7 +1078,7 @@
   border-radius: var(--radius-2);
   background: #e1e5d7;
   color: #202020;
-  font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-optical-sizing: auto;
   font-synthesis: none;
 }
@@ -1226,7 +1226,7 @@
   align-items: center;
   margin: 0;
   color: rgba(141, 141, 141, 0.76);
-  font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-optical-sizing: auto;
   font-synthesis: none;
   font-size: 10px;
@@ -1316,7 +1316,7 @@
   border-radius: 6.417px;
   background: #202020;
   color: #fff;
-  font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-optical-sizing: auto;
   font-synthesis: none;
   font-size: 12.833px;
@@ -1354,7 +1354,7 @@
 
 .cua-credits-widget-title {
   height: 16px;
-  font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-optical-sizing: auto;
   font-synthesis: none;
   font-size: 11px;
@@ -1392,7 +1392,7 @@
   align-items: center;
   justify-content: space-between;
   color: #8d8d8d;
-  font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-optical-sizing: auto;
   font-synthesis: none;
   font-size: 10px;

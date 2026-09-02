@@ -1,0 +1,12 @@
+/*
+ * Inter variable font — self-hosted subset for ClickUp work-study demos.
+ * Source: fonts-src/inter/InterVariable.woff2 (Inter 4, wght + opsz).
+ * Regenerate with scripts/subset-fonts.sh.
+ */
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter/InterVariable-subset.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

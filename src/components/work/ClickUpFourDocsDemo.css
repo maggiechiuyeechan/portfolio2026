@@ -1,4 +1,4 @@
-@import "../../styles/sf-pro-demo.css";
+@import "../../styles/inter-demo.css";
 
 /*
  * ClickUp 4.0 Docs demo (Figma node 68:31422, 871x530).
@@ -6,10 +6,8 @@
  * scaled by .cu4-demo-frame.
  */
 .cu4docs-root {
-  --cu4docs-font-text:
-    "SF Pro Text", "SF Pro", -apple-system, BlinkMacSystemFont, "Helvetica Neue", system-ui, Arial, sans-serif;
-  --cu4docs-font-display:
-    "SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, "Helvetica Neue", system-ui, Arial, sans-serif;
+  --cu4docs-font-text: "Inter", system-ui, sans-serif;
+  --cu4docs-font-display: "Inter", system-ui, sans-serif;
 
   position: relative;
   width: 871px;

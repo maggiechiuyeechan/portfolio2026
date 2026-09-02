@@ -1,10 +1,8 @@
-@import "../../styles/sf-pro-demo.css";
+@import "../../styles/inter-demo.css";
 
 /* Shared top chrome (Figma Gab, node ~68:27994 / 68:28683 / 68:31624) */
 .cu4-gab {
-  --cu4-gab-font:
-    "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", system-ui,
-    Arial, sans-serif;
+  --cu4-gab-font: "Inter", system-ui, sans-serif;
 
   position: absolute;
   top: 5.1px;

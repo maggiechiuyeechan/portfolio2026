@@ -1,4 +1,4 @@
-@import "../../styles/sf-pro-demo.css";
+@import "../../styles/inter-demo.css";
 
 /*
  * ClickUp 4.0 Calendar demo (Figma node 68:28067, 871x530).
@@ -6,9 +6,7 @@
  * by .cu4-demo-frame.
  */
 .cu4cal-root {
-  --cu4cal-font:
-    "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", system-ui,
-    Arial, sans-serif;
+  --cu4cal-font: "Inter", system-ui, sans-serif;
 
   position: relative;
   width: 871px;
