@@ -1,0 +1,5738 @@
+[
+  {
+    "id": "269:147992",
+    "number": 11,
+    "name": "11 Design Principles",
+    "layers": [
+      {
+        "id": "custom:design-principles-artwork",
+        "name": "Frame 2147237320",
+        "x": 653,
+        "y": 0,
+        "w": 1053,
+        "h": 1117,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/design-principles-artwork.png"
+      },
+      {
+        "id": "269:148554",
+        "name": "Frame 9896",
+        "x": 45,
+        "y": 392,
+        "w": 789,
+        "h": 437,
+        "kind": "group",
+        "fill": null,
+        "radius": 0,
+        "children": [
+          {
+            "id": "269:148555",
+            "name": "Frame 2087329157",
+            "x": 45,
+            "y": 392,
+            "w": 539,
+            "h": 92,
+            "kind": "group",
+            "fill": null,
+            "radius": 0,
+            "children": [
+              {
+                "id": "269:148556",
+                "name": "",
+                "x": 67,
+                "y": 392,
+                "w": 495,
+                "h": 92,
+                "kind": "text",
+                "text": "Processes and tools change, but a few things have stayed constant",
+                "align": "LEFT",
+                "segments": [
+                  {
+                    "text": "Processes and tools change, but a few things have stayed constant",
+                    "size": 34,
+                    "weight": 510,
+                    "font": "SF Pro",
+                    "line": {
+                      "unit": "PERCENT",
+                      "value": 135.0000023841858
+                    },
+                    "spacing": {
+                      "unit": "PERCENT",
+                      "value": 0
+                    },
+                    "color": "#000000",
+                    "decoration": "NONE",
+                    "list": {
+                      "type": "NONE"
+                    },
+                    "style": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "269:148557",
+            "name": "",
+            "x": 45,
+            "y": 507,
+            "w": 789,
+            "h": 322,
+            "kind": "text",
+            "text": "always be learning\nbe an owner\ncraft & aesthetics\ncustomer / user obsession\nrapid creation, testing & iteration\noutcomes oriented, shipping matters\nsystems + standards",
+            "align": "LEFT",
+            "segments": [
+              {
+                "text": "always be learning\nbe an owner\ncraft & aesthetics\ncustomer / user obsession\nrapid creation, testing & iteration\noutcomes oriented, shipping matters\nsystems + standards",
+                "size": 34,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 135.0000023841858
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#838383",
+                "decoration": "NONE",
+                "list": {
+                  "type": "UNORDERED"
+                },
+                "style": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "333:129512",
+    "number": 12,
+    "name": "12 Project 1 Multiplayer Artifacts",
+    "layers": [
+      {
+        "id": "333:129516",
+        "name": "CleanShot 2026-09-21 at 8.40.49 AM@2x 1",
+        "x": 64,
+        "y": 69,
+        "w": 989,
+        "h": 984,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/project-1-multiplayer-artifacts-v2.png",
+        "radius": 16,
+        "cropTransform": [
+          [
+            0.704423,
+            0,
+            0.295577
+          ],
+          [
+            0,
+            0.9997,
+            0.0001
+          ]
+        ]
+      },
+      {
+        "id": "333:129514",
+        "name": "",
+        "x": 1079,
+        "y": 420,
+        "w": 700,
+        "h": 138,
+        "kind": "text",
+        "text": "Project 1\nClickUp Multi-Player Artifacts\nA new way of working",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Project 1\nClickUp Multi-Player Artifacts\nA new way of working",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "333:129515",
+        "name": "",
+        "x": 1079,
+        "y": 597,
+        "w": 420,
+        "h": 336,
+        "kind": "text",
+        "text": "Timeline for v1: ~1 week\nTeam: CEO, 1 PM, 2 Eng leads \nResponsibility: IC Design, Rapid prototyping\nGoal: Get v1 to market ASAP\n\nA demonstration of how we use product design agentic workflows to ship 0-1 projects as quickly as possible - not perfecting it but learning from the created project.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Timeline for v1: ~1 week\nTeam: CEO, 1 PM, 2 Eng leads \nResponsibility: IC Design, Rapid prototyping\nGoal: Get v1 to market ASAP\n\nA demonstration of how we use product design agentic workflows to ship 0-1 projects as quickly as possible - not perfecting it but learning from the created project.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      }
+    ]
+  },
+  {
+    "id": "269:148616",
+    "number": 27,
+    "name": "27 Project 2 Super agents as teammates Overview",
+    "layers": [
+      {
+        "id": "269:148617",
+        "name": "Rectangle 1",
+        "x": 134.4,
+        "y": 100.675,
+        "w": 1459.2,
+        "h": 747.65,
+        "kind": "video",
+        "src": "/anthropicxmaggie/video/super-agents-demo.mp4",
+        "fit": "contain",
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148618",
+        "name": "",
+        "x": 64,
+        "y": 908,
+        "w": 700,
+        "h": 46,
+        "kind": "text",
+        "text": "Super agents as teammates",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Super agents as teammates",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148619",
+        "name": "",
+        "x": 381,
+        "y": 912,
+        "w": 422,
+        "h": 119,
+        "kind": "text",
+        "text": "Timeline: Initial release took ~3 months\nTeam: 2 designers, CEO, Head of Product Strategy, AI eng team \nRole: Design team lead",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Timeline: Initial release took ~3 months\nTeam: 2 designers, CEO, Head of Product Strategy, AI eng team \nRole: Design team lead",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148620",
+        "name": "",
+        "x": 827,
+        "y": 912,
+        "w": 431,
+        "h": 84,
+        "kind": "text",
+        "text": "Follow up growth experiments & improvements\nTeam: 2 designers, 3 Growth PMs, Eng team",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Follow up growth experiments & improvements\nTeam: 2 designers, 3 Growth PMs, Eng team",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148621",
+        "name": "",
+        "x": 1282,
+        "y": 912,
+        "w": 382,
+        "h": 84,
+        "kind": "text",
+        "text": "Shipping v1 quickly. Trying new UX patterns, and iterating incrementally after",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Shipping v1 quickly. Trying new UX patterns, and iterating incrementally after",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      }
+    ]
+  },
+  {
+    "id": "269:148622",
+    "number": 13,
+    "name": "13 Project 1 Artifact Direction",
+    "layers": [
+      {
+        "id": "269:148623",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 64,
+        "w": 991,
+        "h": 989,
+        "kind": "shape",
+        "fill": "#dedbd5",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148624",
+        "name": "Frame 2087328766",
+        "x": 1079,
+        "y": 584,
+        "w": 585,
+        "h": 469,
+        "kind": "group",
+        "fill": null,
+        "radius": 0,
+        "children": [
+          {
+            "id": "269:148625",
+            "name": "",
+            "x": 1079,
+            "y": 584,
+            "w": 585,
+            "h": 46,
+            "kind": "text",
+            "text": "Direction",
+            "align": "LEFT",
+            "segments": [
+              {
+                "text": "Direction",
+                "size": 34,
+                "weight": 510,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 135.0000023841858
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#000000",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 0
+              }
+            ],
+            "textCase": "ORIGINAL"
+          },
+          {
+            "id": "269:148626",
+            "name": "",
+            "x": 1079,
+            "y": 636,
+            "w": 585,
+            "h": 600,
+            "kind": "text",
+            "text": "Discovery thru Dogfooding: We dogfood our product daily as a company. We noticed that people were organically creating HTML artifacts with our ClickUp AI.   Ongoing customer need for customized dashboards and reporting: via GTM teams, we knew that customers have always wanted custom dashboards, and custom project management.  Competitive pressures: This need was not only seen internally but also externally via competitors such as Monday.com as they release vibe coded interface functionality.",
+            "align": "LEFT",
+            "segments": [
+              {
+                "text": "Discovery thru Dogfooding: ",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#202020",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 3
+              },
+              {
+                "text": "We dogfood our product daily as a company. We noticed that people were organically creating HTML artifacts with our ClickUp AI.   ",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#838383",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 2
+              },
+              {
+                "text": "Ongoing customer need for customized dashboards and reporting",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#202020",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 3
+              },
+              {
+                "text": ": via GTM teams, we knew that customers have always wanted custom dashboards, and custom project management.  ",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#838383",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 2
+              },
+              {
+                "text": "Competitive pressures:",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#202020",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 3
+              },
+              {
+                "text": " This need was not only seen internally but also externally via competitors such as Monday.com as they release vibe coded interface functionality.",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#838383",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 2
+              }
+            ],
+            "textCase": "ORIGINAL"
+          }
+        ]
+      },
+      {
+        "id": "269:148627",
+        "name": "CleanShot 2026-09-17 at 16.43.11@2x 1",
+        "x": 203,
+        "y": 475,
+        "w": 713,
+        "h": 221,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148627.png",
+        "radius": 13,
+        "elevation": 5
+      },
+      {
+        "id": "269:148628",
+        "name": "",
+        "x": 490,
+        "y": 708,
+        "w": 139,
+        "h": 22,
+        "kind": "text",
+        "text": "via Clickup Chat",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "via Clickup Chat",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 4
+          }
+        ],
+        "textCase": "UPPER"
+      }
+    ]
+  },
+  {
+    "id": "269:148631",
+    "number": 28,
+    "name": "28 Project 2 Agent Direction",
+    "layers": [
+      {
+        "id": "269:148632",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 64,
+        "w": 991,
+        "h": 989,
+        "kind": "shape",
+        "fill": "#b0b0a6",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148633",
+        "name": "image 52",
+        "x": 107.7554931640625,
+        "y": 176,
+        "w": 905,
+        "h": 767.5,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148633.png",
+        "radius": 16,
+        "elevation": 5
+      },
+      {
+        "id": "269:148634",
+        "name": "Frame 9897",
+        "x": 1079,
+        "y": 618,
+        "w": 568,
+        "h": 442,
+        "kind": "group",
+        "fill": null,
+        "radius": 0,
+        "children": [
+          {
+            "id": "269:148635",
+            "name": "",
+            "x": 1079,
+            "y": 618,
+            "w": 133,
+            "h": 46,
+            "kind": "text",
+            "text": "Direction",
+            "align": "CENTER",
+            "segments": [
+              {
+                "text": "Direction",
+                "size": 34,
+                "weight": 510,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 135.0000023841858
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#000000",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 0
+              }
+            ],
+            "textCase": "ORIGINAL"
+          },
+          {
+            "id": "269:148636",
+            "name": "",
+            "x": 1079,
+            "y": 670,
+            "w": 568,
+            "h": 390,
+            "kind": "text",
+            "text": "Existing “agents” was hard to use and too closely tied to automations legacy UI.\n\nFunctionalities missing: Permissions were limited to lists not able to operate throughout the whole Workspace. No concept of connectors, multiple triggers, we now had chat.\n\nTime to start from scratch and reimagine Agents and Teammates: the technology had progressed to the point we could really transform users workflows and interact with agents like coworkers in their workspace.",
+            "align": "LEFT",
+            "segments": [
+              {
+                "text": "Existing “agents” was hard to use and too closely tied to automations legacy UI.",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#202020",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 3
+              },
+              {
+                "text": "\n\n",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#838383",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 2
+              },
+              {
+                "text": "Functionalities missing",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#202020",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 3
+              },
+              {
+                "text": ": Permissions were limited to lists not able to operate throughout the whole Workspace. No concept of connectors, multiple triggers, we now had chat.\n\n",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#838383",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 2
+              },
+              {
+                "text": "Time to start from scratch and reimagine Agents and Teammates",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#202020",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 3
+              },
+              {
+                "text": ": the technology had progressed to the point we could really transform users workflows and interact with agents like coworkers in their workspace.",
+                "size": 20,
+                "weight": 400,
+                "font": "SF Pro",
+                "line": {
+                  "unit": "PERCENT",
+                  "value": 150
+                },
+                "spacing": {
+                  "unit": "PERCENT",
+                  "value": 0
+                },
+                "color": "#838383",
+                "decoration": "NONE",
+                "list": {
+                  "type": "NONE"
+                },
+                "style": 2
+              }
+            ],
+            "textCase": "ORIGINAL"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "269:148637",
+    "number": 29,
+    "name": "29 Project 2 V1 Learnings",
+    "layers": [
+      {
+        "id": "269:148638",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 64,
+        "w": 991,
+        "h": 989,
+        "kind": "shape",
+        "fill": "#e2e2e2",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148639",
+        "name": "CleanShot 2026-09-17 at 14.25.33@2x 1",
+        "x": 149.5,
+        "y": 246,
+        "w": 820,
+        "h": 585,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148639.png",
+        "radius": 12,
+        "elevation": 5
+      },
+      {
+        "id": "269:148640",
+        "name": "",
+        "x": 1079,
+        "y": 371,
+        "w": 585,
+        "h": 720,
+        "kind": "text",
+        "text": "Builder is Unintuitive: The builder design remains unintuitive, especially for new users. Core steps are often missed or misconfigured, and the added complexity of Agents makes this worse. (Not new, we see this when we test Automations)\n\nEntry Point Is Confusing: Confusion between Automate and Agents—those starting in Automations struggled more and rated the experience lower, highlighting a disconnect in navigation.\n\nAgent Setup Lacks Clarity: Users struggled with setup, always overlooked Add Tools, and were unsure what was needed from them in each section. The dense layout led to skipped steps and setup errors. We asked them what was confusing and these were some of their responses—watch clip.\n\nOverall, this tested pretty poorly—users consistently rated Ease of Use and Confidence pretty low, even after being walked through how to set things up.   I think the known challenges we have in the Automations builder greatly contribute to this, along with entry point confusion and an overwhelming amount of steps/info.\n",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Builder is Unintuitive",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#202020",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 3
+          },
+          {
+            "text": ": The builder design remains unintuitive, especially for new users. Core steps are often missed or misconfigured, and the added complexity of Agents makes this worse. (Not new, we see this when we test Automations)\n\n",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "Entry Point Is Confusing",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#202020",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 3
+          },
+          {
+            "text": ": Confusion between ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "Automate and Agents",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "UNDERLINE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 5
+          },
+          {
+            "text": "—those starting in Automations struggled more and rated the experience lower, highlighting a disconnect in navigation.\n\n",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "Agent Setup Lacks Clarity",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#202020",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 3
+          },
+          {
+            "text": ": Users struggled with setup, always ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "overlooked Add Tools",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "UNDERLINE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 5
+          },
+          {
+            "text": ", and were ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "unsure what was needed from them in each section",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "UNDERLINE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 5
+          },
+          {
+            "text": ". The dense layout led to skipped steps and setup errors. We asked them what was confusing and these were some of their responses—watch clip.\n\n",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "Overall, this tested pretty poorly",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#202020",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 3
+          },
+          {
+            "text": "—users consistently rated Ease of Use and Confidence pretty low, even after being walked through how to set things up.   I think the known challenges we have in the Automations builder greatly contribute to this, along with entry point confusion and an overwhelming amount of steps/info.\n",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148641",
+        "name": "",
+        "x": 1079,
+        "y": 233,
+        "w": 585,
+        "h": 60,
+        "kind": "text",
+        "text": "TL’DR: Reusing the automations UI was confusing, ppl did not know what an agent was vs an automation. Too many steps.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "TL’DR: Reusing the automations UI was confusing, ppl did not know what an agent was vs an automation. Too many steps.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#202020",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 3
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148642",
+        "name": "",
+        "x": 1079,
+        "y": 50,
+        "w": 520,
+        "h": 46,
+        "kind": "text",
+        "text": "Learnings from V1",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Learnings from V1",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "custom:v1-user-testing-caption",
+        "name": "User testing caption",
+        "x": 149.5,
+        "y": 843,
+        "w": 820,
+        "h": 22,
+        "kind": "text",
+        "text": "user testing the old experience",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "user testing the old experience",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 4
+          }
+        ],
+        "textCase": "UPPER"
+      }
+    ]
+  },
+  {
+    "id": "269:148643",
+    "number": 30,
+    "name": "30 Project 2 Agent Vision",
+    "layers": [
+      {
+        "id": "269:148644",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 585,
+        "h": 92,
+        "kind": "text",
+        "text": "Envisioning the next generation of Agents inside ClickUp w/ leadership",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Envisioning the next generation of Agents inside ClickUp w/ leadership",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148645",
+        "name": "",
+        "x": 673,
+        "y": 64,
+        "w": 991,
+        "h": 120,
+        "kind": "text",
+        "text": "Working with the CEO and a designer on my team, we brainstormed ideas for how we’d want to improve discoverability, setup, agent management and chatting. Ideas we brainstormed were: Agent “Hub” for sharing agents, chatting to setup, having an agent profile, chatting with the agent directly since that was an existing ux pattern we had for users. ",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Working with the CEO and a designer on my team, we brainstormed ideas for how we’d want to improve discoverability, setup, agent management and chatting. Ideas we brainstormed were: Agent “Hub” for sharing agents, chatting to setup, having an agent profile, chatting with the agent directly since that was an existing ux pattern we had for users. ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148646",
+        "name": "CleanShot 2026-09-19 at 07.05.46@2x 1",
+        "x": 64,
+        "y": 236,
+        "w": 1600,
+        "h": 816,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148646.png",
+        "preserveAspectRatio": true,
+        "radius": 18.028,
+        "borderElevation": 1
+      }
+    ]
+  },
+  {
+    "id": "269:148647",
+    "number": 31,
+    "name": "31 Project 2 Design Explorations",
+    "layers": [
+      {
+        "id": "269:148648",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 92,
+        "kind": "text",
+        "text": "Exploring different designs, layouts and UX",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Exploring different designs, layouts and UX",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ]
+      },
+      {
+        "id": "269:148649",
+        "name": "",
+        "x": 470,
+        "y": 64,
+        "w": 1114,
+        "h": 180,
+        "kind": "text",
+        "text": "I enlisted 2 designers to meet daily to iterate on options. Some examples of explorations: when does the profile get created? Is it an embedded card. How much do we inform the user of the whole setup process.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "I enlisted 2 designers to meet daily to iterate on options. Some examples of explorations: when does the profile get created? Is it an embedded card. How much do we inform the user of the whole setup process.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ]
+      },
+      {
+        "id": "269:148650",
+        "name": "Past work gallery",
+        "x": -435,
+        "y": 302,
+        "w": 4976.50830078125,
+        "h": 508.1728820800781,
+        "kind": "gallery",
+        "items": [
+          {
+            "src": "/anthropicxmaggie/media/I269-148650-269-78620.png",
+            "label": "Guided project manager agent creation"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148650-269-79210.png",
+            "label": "Conversational agent setup and preview"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148650-269-79515.png",
+            "label": "Agent profile, instructions and schedule"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148650-269-79833.png",
+            "label": "Agent chat with editable profile panel"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148650-269-80114.png",
+            "label": "Agent tools, knowledge and trigger settings"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148650-269-80540.png",
+            "label": "Instruction history with live agent testing"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "269:148651",
+    "number": 32,
+    "name": "32 Project 2 Continued Explorations",
+    "layers": [
+      {
+        "id": "269:148652",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "kind": "text",
+        "text": "Continued explorations",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Continued explorations",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ]
+      },
+      {
+        "id": "269:148653",
+        "name": "",
+        "x": 673,
+        "y": 64,
+        "w": 991,
+        "h": 180,
+        "kind": "text",
+        "text": "How do agents work with humans in a chat, how do we indicate that it’s an agent, “gamify” the agent runs. How do non-tech savvy understand what agents are - providing clear copywriting and titles.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "How do agents work with humans in a chat, how do we indicate that it’s an agent, “gamify” the agent runs. How do non-tech savvy understand what agents are - providing clear copywriting and titles.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ]
+      },
+      {
+        "id": "269:148654",
+        "name": "Past work gallery",
+        "x": -435,
+        "y": 302,
+        "w": 5652.20751953125,
+        "h": 508.1728820800781,
+        "kind": "gallery",
+        "items": [
+          {
+            "src": "/anthropicxmaggie/media/I269-148654-269-81025.png",
+            "label": "Agent profile and launch configuration"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148654-269-81485.png",
+            "label": "Agent profile card inside team chat"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148654-269-81563.png",
+            "label": "Personal agent profile and chat"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148654-269-81855.png",
+            "label": "Expanded agent profile inside team chat"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148654-269-81997.png",
+            "label": "Agent welcome screen with performance metrics"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148654-269-82373.png",
+            "label": "Agent marketplace profile and suggested actions"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148654-269-82620.png",
+            "label": "Visual agent workflow builder"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "269:148655",
+    "number": 33,
+    "name": "33 Project 2 Avatar Exploration",
+    "layers": [
+      {
+        "id": "269:148656",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 92,
+        "kind": "text",
+        "text": "Avatar jams - abstracting the visual identity",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Avatar jams - abstracting the visual identity",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ]
+      },
+      {
+        "id": "269:148658",
+        "name": "Past work gallery",
+        "x": -435,
+        "y": 302,
+        "w": 22292.1640625,
+        "h": 508.1728820800781,
+        "kind": "gallery",
+        "items": [
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-82785.png",
+            "label": "Agent avatar and identity exploration board"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-82786.png",
+            "label": "Friendly face-shaped avatar concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-82895.png",
+            "label": "Role-inspired character avatar concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-82971.png",
+            "label": "Generated agent names and profile photos"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-83556.png",
+            "label": "Flowing gradient character concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-83740.png",
+            "label": "Rotating gradient animal characters"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-83884.png",
+            "label": "Colorful sparkle character concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84032.png",
+            "label": "Circular gradient face concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84124.png",
+            "label": "Expressive gradient avatar concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84221.png",
+            "label": "Black-and-white face icon concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84292.png",
+            "label": "Simple gradient symbol concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84357.png",
+            "label": "Complex abstract symbol concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84427.png",
+            "label": "AI-generated profile portrait concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84495.png",
+            "label": "AI-generated 3D character concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84554.png",
+            "label": "Doodle-style agent illustrations"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84604.png",
+            "label": "Neon animal avatar concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84655.png",
+            "label": "Utility icon agent concepts"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84726.png",
+            "label": "Alternative utility icon agents"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84807.png",
+            "label": "Generated agent profile card in team chat"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-84885.png",
+            "label": "Personal agent profile and conversation"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-85177.png",
+            "label": "Expanded agent profile in team chat"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-85319.png",
+            "label": "Agent welcome screen and performance panel"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-85695.png",
+            "label": "Agent marketplace profile and action panel"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148658-269-85942.png",
+            "label": "Agent workflow map with triggers and tools"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "269:148659",
+    "number": 14,
+    "name": "14 Project 1 V1 Scope",
+    "layers": [
+      {
+        "id": "269:148660",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 64,
+        "w": 991,
+        "h": 989,
+        "kind": "shape",
+        "fill": "#9b8484",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148661",
+        "name": "CleanShot 2026-09-17 at 15.58.22@2x 1",
+        "x": 64,
+        "y": 158,
+        "w": 952,
+        "h": 802,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148661.png",
+        "radius": 0,
+        "elevation": 5
+      },
+      {
+        "id": "269:148662",
+        "name": "",
+        "x": 1079,
+        "y": 521,
+        "w": 520,
+        "h": 46,
+        "kind": "text",
+        "text": "Scope",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Scope",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148663",
+        "name": "",
+        "x": 1079,
+        "y": 573,
+        "w": 585,
+        "h": 480,
+        "kind": "text",
+        "text": "I worked out the scope directly with the CEO (he gave a PT)  Goal: Minimum Lovable Product, quick releases that are better than what’s current.  I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.\nMulti-player editing\nUsing existing components\nSimple versioning\nSimple permissioning (private, shareable to workspace or teams & individuals, public)",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "I worked out the scope directly with the CEO (he gave a PT)  Goal: Minimum Lovable Product, quick releases that are better than what’s current.  I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "Multi-player editing\nUsing existing components\nSimple versioning\nSimple permissioning (private, shareable to workspace or teams & individuals, public)",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "UNORDERED"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      }
+    ]
+  },
+  {
+    "id": "269:148664",
+    "number": 15,
+    "name": "15 Project 1 Adapting an Existing UX and Making Improvements Along the Way",
+    "layers": [
+      {
+        "id": "269:148665",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 209,
+        "w": 1600,
+        "h": 844,
+        "kind": "shape",
+        "fill": "#a7aebe",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148666",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 1100,
+        "h": 46,
+        "kind": "text",
+        "text": "Adapting an existing UX and making improvements along the way",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Adapting an existing UX and making improvements along the way",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148668",
+        "name": "",
+        "x": 431,
+        "y": 973,
+        "w": 946,
+        "h": 22,
+        "kind": "text",
+        "text": "legacy attachments modal that was to be reused. Wrong buttons, spacing, old comments panel.",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "legacy attachments modal that was to be reused. Wrong buttons, spacing, old comments panel.",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 4
+          }
+        ],
+        "textCase": "UPPER"
+      },
+      {
+        "id": "269:148669",
+        "name": "CleanShot 2026-09-19 at 5.54.46 AM@2x 1",
+        "x": 431,
+        "y": 307,
+        "w": 946,
+        "h": 654,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148669.png",
+        "radius": 12,
+        "elevation": 3
+      }
+    ]
+  },
+  {
+    "id": "269:148670",
+    "number": 17,
+    "name": "17 Project 1 Design Workflow",
+    "layers": [
+      {
+        "id": "269:148671",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 585,
+        "h": 92,
+        "kind": "text",
+        "text": "My design workflow has changed dramatically. A keeps changing weekly.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "My design workflow has changed dramatically. A keeps changing weekly.",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148672",
+        "name": "",
+        "x": 673,
+        "y": 64,
+        "w": 991,
+        "h": 145,
+        "kind": "text",
+        "text": "I prefer to use pen and pencil to sketch out quick flows. Figma to quickly draw out states, and pixels. And then put the ux together in Cursor. Then go thru a series of quick iterations, back and forths between Cursor and Figma as I find things to improve and test the flows. ",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "I prefer to use pen and pencil to sketch out quick flows. Figma to quickly draw out states, and pixels. And then put the ux together in Cursor. Then go thru a series of quick iterations, back and forths between Cursor and Figma as I find things to improve and test the flows. ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148673",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "radius": 16,
+        "fillToken": "--presentation-color-content-default",
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148674",
+        "name": "CleanShot 2026-09-17 at 16.14.53@2x 1",
+        "x": 138,
+        "y": 439,
+        "w": 949,
+        "h": 355,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148674.png",
+        "radius": 0
+      },
+      {
+        "id": "269:148675",
+        "name": "CleanShot 2026-09-17 at 16.14.53@2x 2",
+        "x": 1087,
+        "y": 560,
+        "w": 452,
+        "h": 162,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148675.png",
+        "radius": 0
+      }
+    ]
+  },
+  {
+    "id": "269:148676",
+    "number": 18,
+    "name": "18 Project 1 EPD Collaboration",
+    "layers": [
+      {
+        "id": "269:148677",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "kind": "text",
+        "text": "EPD Collaboration",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "EPD Collaboration",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148678",
+        "name": "",
+        "x": 673,
+        "y": 64,
+        "w": 991,
+        "h": 168,
+        "kind": "text",
+        "text": "Within the PM/Eng group, it’s become much more collaborative, in fact working with PM - we remix, branch and merge our changes into the prototype directly after we’ve discussed the changes we want to make.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Within the PM/Eng group, it’s become much more collaborative, in fact working with PM - we remix, branch and merge our changes into the prototype directly after we’ve discussed the changes we want to make.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148679",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "radius": 16,
+        "fillToken": "--presentation-color-panel-taupe",
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148680",
+        "name": "CleanShot 2026-09-18 at 13.38.55@2x 1",
+        "x": 322,
+        "y": 282,
+        "w": 1085,
+        "h": 771,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148680.png",
+        "radius": 0,
+        "elevation": 5,
+        "shadowClip": {
+          "x": 64,
+          "y": 233,
+          "w": 1600,
+          "h": 820,
+          "radius": 16
+        }
+      },
+      {
+        "id": "269:148681",
+        "name": "Star 1",
+        "x": 1217.7744140625,
+        "y": 868.3544921875,
+        "w": 19.451171875,
+        "h": 18.6474609375,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148681.png"
+      },
+      {
+        "id": "269:148682",
+        "name": "Star 2",
+        "x": 1217.7744140625,
+        "y": 914.3544921875,
+        "w": 19.451171875,
+        "h": 18.6474609375,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148682.png"
+      },
+      {
+        "id": "269:148683",
+        "name": "Star 3",
+        "x": 1217.7744140625,
+        "y": 960.3544921875,
+        "w": 19.451171875,
+        "h": 18.6474609375,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148683.png"
+      },
+      {
+        "id": "269:148684",
+        "name": "Star 4",
+        "x": 1217.7744140625,
+        "y": 825.3544921875,
+        "w": 19.451171875,
+        "h": 18.6474609375,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148684.png"
+      }
+    ]
+  },
+  {
+    "id": "269:148685",
+    "number": 35,
+    "name": "35 Project 2 Chat Setup",
+    "layers": [
+      {
+        "id": "269:148686",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 585,
+        "h": 46,
+        "kind": "text",
+        "text": "Deep dive: Chat setup",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Deep dive: Chat setup",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148687",
+        "name": "",
+        "x": 673,
+        "y": 64,
+        "w": 991,
+        "h": 145,
+        "kind": "text",
+        "text": "The initial chat experience of setting up felt off. There were a lot of back and forths, and the follow ups were tedious. As we got initial versions of the agent experience working in staging, we were able to work with engineers to refine the chat UX, include follow up UI, and find other UX issues like when the agent would insert links into the response that led users away from the setup experience. This stage was user tested heavily, still it can be tedious to setup and requires continued refinement.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "The initial chat experience of setting up felt off. There were a lot of back and forths, and the follow ups were tedious. As we got initial versions of the agent experience working in staging, we were able to work with engineers to refine the chat UX, include follow up UI, and find other UX issues like when the agent would insert links into the response that led users away from the setup experience. This stage was user tested heavily, still it can be tedious to setup and requires continued refinement.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148688",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "radius": 16,
+        "fillToken": "--presentation-color-content-default",
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148689",
+        "name": "Full screen chat turn taking once user presses send",
+        "x": 123,
+        "y": 341,
+        "w": 526.0800170898438,
+        "h": 640,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148689.png",
+        "radius": 15.359999656677246
+      },
+      {
+        "id": "269:148702",
+        "name": "",
+        "x": 1274,
+        "y": 514,
+        "w": 333,
+        "h": 484,
+        "kind": "text",
+        "text": "our prompt engineer proposed the ux here response: \nPhase 1 categorizes the user into low/medium/high opinion. \n\nPhase 2 is where the real iterative loop lives. The Builder calls a Draft Agent tool that writes a preliminary instruction set and simultaneously identifies placeholders for missing info. \n\nPhase 3 (Prompt Optimizer) runs as a sub-agent after creation to enrich the dry, logistical instructions with more human-like, integrative language for creative tasks.\n\nPost-creation, users can refine through DMs or @mentions per the Refine your Super Agent help article, and the agent updates its own config.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "our prompt engineer proposed the ux here response: \nPhase 1 categorizes the user into low/medium/high opinion. \n\nPhase 2 is where the real iterative loop lives. The Builder calls a Draft Agent tool that writes a preliminary instruction set and simultaneously identifies placeholders for missing info. \n\nPhase 3 (Prompt Optimizer) runs as a sub-agent after creation to enrich the dry, logistical instructions with more human-like, integrative language for creative tasks.\n\nPost-creation, users can refine through DMs or @mentions per the ",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#ffffff",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 6
+          },
+          {
+            "text": "Refine your Super Agent",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#ffffff",
+            "decoration": "UNDERLINE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 7
+          },
+          {
+            "text": " help article, and the agent updates its own config.",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#ffffff",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 6
+          }
+        ],
+        "textCase": "UPPER"
+      },
+      {
+        "id": "269:148703",
+        "name": "Star 19",
+        "x": 1560.861328125,
+        "y": 911.4716796875,
+        "w": 19.27734375,
+        "h": 18.5322265625,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148703.png"
+      }
+    ]
+  },
+  {
+    "id": "359:143669",
+    "number": 19,
+    "name": "19 Project 1 Agentic Testing",
+    "layers": [
+      {
+        "id": "359:143670",
+        "name": "Background panel",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "fill": "#dedbd7",
+        "radius": 16
+      },
+      {
+        "id": "269:148707",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 585,
+        "h": 92,
+        "kind": "text",
+        "text": "Internal reviews & using agents to help launch test quickly",
+        "align": "LEFT",
+        "segments": [{
+          "text": "Internal reviews & using agents to help launch test quickly",
+          "size": 34,
+          "weight": 510,
+          "font": "SF Pro",
+          "line": { "unit": "PERCENT", "value": 135.0000023841858 },
+          "spacing": { "unit": "PERCENT", "value": 0 },
+          "color": "#000000",
+          "decoration": "NONE",
+          "list": { "type": "NONE" },
+          "style": 0
+        }],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "359:143673",
+        "name": "CleanShot 2026-09-08 at 20.39.58@2x 1",
+        "x": 876,
+        "y": 393,
+        "w": 541,
+        "h": 525.119,
+        "kind": "image",
+        "src": "/presentation-shared/slide-19-test-results.png",
+        "radius": 12.705,
+        "cropTransform": [[0.513505, 0, 0.486495], [0, 0.9375, 0.0625]]
+      },
+      {
+        "id": "359:143674",
+        "name": "CleanShot 2026-09-18 at 13.49.09@2x 1",
+        "x": 303,
+        "y": 393,
+        "w": 506,
+        "h": 525,
+        "kind": "image",
+        "src": "/presentation-shared/slide-19-test-plan.png",
+        "radius": 12,
+        "cropTransform": [[0.864976, 0, 0.0615], [0, 0.966277, 0.00029]]
+      },
+      {
+        "id": "269:148711",
+        "name": "",
+        "x": 303,
+        "y": 930,
+        "w": 506,
+        "h": 22,
+        "kind": "text",
+        "text": "Test plan drafted w agent. approved by me",
+        "align": "CENTER",
+        "segments": [{
+          "text": "Test plan drafted w agent. approved by me",
+          "size": 11,
+          "weight": 400,
+          "font": "Geist Mono",
+          "line": { "unit": "PERCENT", "value": 200 },
+          "spacing": { "unit": "PERCENT", "value": 20 },
+          "color": "#000000",
+          "decoration": "NONE",
+          "list": { "type": "NONE" },
+          "style": 4
+        }],
+        "textCase": "UPPER"
+      },
+      {
+        "id": "269:148712",
+        "name": "",
+        "x": 876,
+        "y": 930,
+        "w": 541,
+        "h": 22,
+        "kind": "text",
+        "text": "Launched and synthesized via usertesting.com MCp. Test is double checked by UXR",
+        "align": "CENTER",
+        "segments": [{
+          "text": "Launched and synthesized via usertesting.com MCp. Test is double checked by UXR",
+          "size": 11,
+          "weight": 400,
+          "font": "Geist Mono",
+          "line": { "unit": "PERCENT", "value": 200 },
+          "spacing": { "unit": "PERCENT", "value": 20 },
+          "color": "#000000",
+          "decoration": "NONE",
+          "list": { "type": "NONE" },
+          "style": 4
+        }],
+        "textCase": "UPPER"
+      }
+    ]
+  },
+  {
+    "id": "269:148713",
+    "number": 36,
+    "name": "36 Project 2 Agent Launch",
+    "layers": [
+      {
+        "id": "269:148714",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "fill": "#cdd4d5",
+        "radius": 16
+      },
+      {
+        "id": "269:148715",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "kind": "text",
+        "text": "Launch",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Launch",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148716",
+        "name": "",
+        "x": 473,
+        "y": 64,
+        "w": 1191,
+        "h": 90,
+        "kind": "text",
+        "text": "Many agents were created internally with many broad ranging use cases including issue triaging, project updates, research agents. We used the same mechanisms to create external agents too for example the Cursor Cloud agent is used extensively to create PRs in the cloud based off ClickUp task descriptions.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Many agents were created internally with many broad ranging use cases including issue triaging, project updates, research agents. We used the same mechanisms to create external agents too for example the Cursor Cloud agent is used extensively to create PRs in the cloud based off ClickUp task descriptions.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148717",
+        "name": "",
+        "x": 1108.62890625,
+        "y": 938.1669921875,
+        "w": 84,
+        "h": 16,
+        "kind": "text",
+        "text": "Triage agents",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Triage agents",
+            "size": 8.231894493103027,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#525252",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 8
+          }
+        ],
+        "textCase": "UPPER"
+      },
+      {
+        "id": "269:148718",
+        "name": "",
+        "x": 595,
+        "y": 938.1669921875,
+        "w": 137,
+        "h": 16,
+        "kind": "text",
+        "text": "Project update agents",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Project update agents",
+            "size": 8.231894493103027,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#525252",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 8
+          }
+        ],
+        "textCase": "UPPER"
+      },
+      {
+        "id": "269:148719",
+        "name": "",
+        "x": 144,
+        "y": 938.1669921875,
+        "w": 150,
+        "h": 16,
+        "kind": "text",
+        "text": "3rd party coding agents",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "3rd party coding agents",
+            "size": 8.231894493103027,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#525252",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 8
+          }
+        ],
+        "textCase": "UPPER"
+      },
+      {
+        "id": "269:148720",
+        "name": "Frame 2147235199",
+        "x": 129,
+        "y": 332,
+        "w": 1469.8828125,
+        "h": 597.1865234375,
+        "kind": "group",
+        "fill": null,
+        "radius": 0,
+        "children": [
+          {
+            "id": "269:148721",
+            "name": "CleanShot 2026-09-19 at 1.46.00 PM@2x 1",
+            "x": 129,
+            "y": 332.09375,
+            "w": 440,
+            "h": 597,
+            "kind": "image",
+            "src": "/anthropicxmaggie/media/269-148721.png",
+            "radius": 16
+          },
+          {
+            "id": "269:148722",
+            "name": "CleanShot 2026-09-19 at 13.27.13@2x 1",
+            "x": 581,
+            "y": 332.0576171875,
+            "w": 492.5118713378906,
+            "h": 597.0714721679688,
+            "kind": "image",
+            "src": "/anthropicxmaggie/media/269-148722.png",
+            "radius": 11.973665237426758
+          },
+          {
+            "id": "269:148723",
+            "name": "CleanShot 2026-09-19 at 13.24.39@2x 1",
+            "x": 1085.51171875,
+            "y": 332,
+            "w": 513.3709106445312,
+            "h": 597.1865234375,
+            "kind": "image",
+            "src": "/anthropicxmaggie/media/269-148723.png",
+            "radius": 11.973665237426758
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "269:148724",
+    "number": 34,
+    "name": "34 Project 2 Onsite Decisions",
+    "layers": [
+      {
+        "id": "269:148725",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "kind": "text",
+        "text": "Onsite to finalize",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Onsite to finalize",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ]
+      },
+      {
+        "id": "269:148726",
+        "name": "",
+        "x": 473,
+        "y": 64,
+        "w": 1191,
+        "h": 114,
+        "kind": "text",
+        "text": "At and onsite, the CEO, head of product strategy and I took the design options and solidified it into final decisions. Many decisions were made with the main goal of simplifying the experience and the engineering of the v1. After this, I needed to lean on the lead product designer to take it to execution as I focused on other initiatives. A few decisions outlined that were made, these were continued to be user tested as implementation started:",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "At and onsite, the CEO, head of product strategy and I took the design options and solidified it into final decisions. Many decisions were made with the main goal of simplifying the experience and the engineering of the v1. After this, I needed to lean on the lead product designer to take it to execution as I focused on other initiatives. A few decisions outlined that were made, these were continued to be user tested as implementation started:",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ]
+      },
+      {
+        "id": "269:148727",
+        "name": "Past work gallery",
+        "x": 0.015625,
+        "y": 278,
+        "w": 22311.146484375,
+        "h": 500.5533752441406,
+        "kind": "gallery",
+        "items": [
+          {
+            "src": "/anthropicxmaggie/media/I269-148727-269-86107.png",
+            "label": "Create-agent hub with recommendations"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148727-269-86284.png",
+            "label": "Guided agent setup conversation"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148727-269-86298.png",
+            "label": "Completed agent profile and configuration"
+          },
+          {
+            "src": "/anthropicxmaggie/media/I269-148727-269-86368.png",
+            "label": "Agent instructions editor"
+          },
+          {
+            "src": "/anthropicxmaggie/media/project-2-agent-tools-knowledge-triggers.png",
+            "label": "Agent tools, knowledge, triggers and permissions"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "custom:superagents-trimmed",
+    "number": 34.1,
+    "name": "34 Project 2 SuperAgents Demo",
+    "layers": [
+      {
+        "id": "custom:superagents-trimmed-video",
+        "name": "SuperAgents trimmed demo",
+        "x": 64,
+        "y": 64,
+        "w": 1600,
+        "h": 989,
+        "kind": "video",
+        "src": "/anthropicxmaggie/video/superagents-trimmed.mp4",
+        "fit": "contain",
+        "radius": 12,
+        "playbackRate": 3
+      }
+    ]
+  },
+  {
+    "id": "269:148728",
+    "number": 37,
+    "name": "37 Project 2 Iterations Feedback",
+    "layers": [
+      {
+        "id": "269:148729",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "fill": "#e7e7e7",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148730",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "kind": "text",
+        "text": "Iterations and feedback",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Iterations and feedback",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148732",
+        "name": "CleanShot 2026-09-19 at 13.47.57@2x 1",
+        "x": 155,
+        "y": 359,
+        "w": 659,
+        "h": 553,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148732.png",
+        "radius": 16,
+        "elevation": 5
+      },
+      {
+        "id": "269:148733",
+        "name": "Frame 2087328767",
+        "x": 916,
+        "y": 438,
+        "w": 663,
+        "h": 400,
+        "kind": "group",
+        "fill": null,
+        "radius": 0,
+        "children": [
+          {
+            "id": "269:148734",
+            "name": "Frame 2087328767",
+            "x": 916,
+            "y": 438,
+            "w": 663,
+            "h": 194,
+            "kind": "group",
+            "fill": null,
+            "radius": 0,
+            "children": [
+              {
+                "id": "269:148735",
+                "name": "",
+                "x": 916,
+                "y": 438,
+                "w": 663,
+                "h": 30,
+                "kind": "text",
+                "text": "Theme 1: Confusing credit system",
+                "align": "LEFT",
+                "segments": [
+                  {
+                    "text": "Theme 1: Confusing credit system",
+                    "size": 20,
+                    "weight": 400,
+                    "font": "SF Pro",
+                    "line": {
+                      "unit": "PERCENT",
+                      "value": 150
+                    },
+                    "spacing": {
+                      "unit": "PERCENT",
+                      "value": 0
+                    },
+                    "color": "#000000",
+                    "decoration": "NONE",
+                    "list": {
+                      "type": "NONE"
+                    },
+                    "style": 9
+                  }
+                ],
+                "textCase": "ORIGINAL"
+              },
+              {
+                "id": "269:148736",
+                "name": "Frame 2147237318",
+                "x": 916,
+                "y": 488,
+                "w": 663,
+                "h": 144,
+                "kind": "group",
+                "fill": null,
+                "radius": 0,
+                "children": [
+                  {
+                    "id": "269:148737",
+                    "name": "",
+                    "x": 916,
+                    "y": 480,
+                    "w": 601,
+                    "h": 90,
+                    "kind": "text",
+                    "text": "“the usage economics isn’t clear to me. I was sure the automation credits are the same the Brain credits, a very mixed delivery on the marketing side.”",
+                    "align": "LEFT",
+                    "segments": [
+                      {
+                        "text": "“the usage economics isn’t clear to me. I was sure the automation credits are the same the Brain credits, a very mixed delivery on the marketing side.”",
+                        "size": 20,
+                        "weight": 400,
+                        "font": "SF Pro",
+                        "line": {
+                          "unit": "PERCENT",
+                          "value": 150
+                        },
+                        "spacing": {
+                          "unit": "PERCENT",
+                          "value": 0
+                        },
+                        "color": "#838383",
+                        "decoration": "NONE",
+                        "list": {
+                          "type": "NONE"
+                        },
+                        "style": 2
+                      }
+                    ],
+                    "textCase": "ORIGINAL"
+                  },
+                  {
+                    "id": "269:148738",
+                    "name": "",
+                    "x": 916,
+                    "y": 594,
+                    "w": 663,
+                    "h": 30,
+                    "kind": "text",
+                    "text": "“Visualization of used credits by the Agents”",
+                    "align": "LEFT",
+                    "segments": [
+                      {
+                        "text": "“Visualization of used credits by the Agents”",
+                        "size": 20,
+                        "weight": 400,
+                        "font": "SF Pro",
+                        "line": {
+                          "unit": "PERCENT",
+                          "value": 150
+                        },
+                        "spacing": {
+                          "unit": "PERCENT",
+                          "value": 0
+                        },
+                        "color": "#838383",
+                        "decoration": "NONE",
+                        "list": {
+                          "type": "NONE"
+                        },
+                        "style": 2
+                      }
+                    ],
+                    "textCase": "ORIGINAL"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "269:148739",
+            "name": "Frame 2087328767",
+            "x": 916,
+            "y": 676,
+            "w": 576,
+            "h": 162,
+            "kind": "group",
+            "fill": null,
+            "radius": 0,
+            "children": [
+              {
+                "id": "269:148740",
+                "name": "",
+                "x": 916,
+                "y": 676,
+                "w": 576,
+                "h": 30,
+                "kind": "text",
+                "text": "Theme 2: Cold start, Setup difficulty",
+                "align": "LEFT",
+                "segments": [
+                  {
+                    "text": "Theme 2: Cold start, Setup difficulty",
+                    "size": 20,
+                    "weight": 400,
+                    "font": "SF Pro",
+                    "line": {
+                      "unit": "PERCENT",
+                      "value": 150
+                    },
+                    "spacing": {
+                      "unit": "PERCENT",
+                      "value": 0
+                    },
+                    "color": "#000000",
+                    "decoration": "NONE",
+                    "list": {
+                      "type": "NONE"
+                    },
+                    "style": 9
+                  }
+                ],
+                "textCase": "ORIGINAL"
+              },
+              {
+                "id": "269:148741",
+                "name": "Frame 2147237317",
+                "x": 916,
+                "y": 726,
+                "w": 576,
+                "h": 112,
+                "kind": "group",
+                "fill": null,
+                "radius": 0,
+                "children": [
+                  {
+                    "id": "269:148742",
+                    "name": "",
+                    "x": 916,
+                    "y": 718,
+                    "w": 576,
+                    "h": 30,
+                    "kind": "text",
+                    "text": "“I would love to be able to have an easier set up process.”",
+                    "align": "LEFT",
+                    "segments": [
+                      {
+                        "text": "“I would love to be able to have an easier set up process.”",
+                        "size": 20,
+                        "weight": 400,
+                        "font": "SF Pro",
+                        "line": {
+                          "unit": "PERCENT",
+                          "value": 150
+                        },
+                        "spacing": {
+                          "unit": "PERCENT",
+                          "value": 0
+                        },
+                        "color": "#838383",
+                        "decoration": "NONE",
+                        "list": {
+                          "type": "NONE"
+                        },
+                        "style": 2
+                      }
+                    ],
+                    "textCase": "ORIGINAL"
+                  },
+                  {
+                    "id": "269:148743",
+                    "name": "",
+                    "x": 916,
+                    "y": 759,
+                    "w": 576,
+                    "h": 30,
+                    "kind": "text",
+                    "text": "“I need more ideas on how to use them.”",
+                    "align": "LEFT",
+                    "segments": [
+                      {
+                        "text": "“I need more ideas on how to use them.”",
+                        "size": 20,
+                        "weight": 400,
+                        "font": "SF Pro",
+                        "line": {
+                          "unit": "PERCENT",
+                          "value": 150
+                        },
+                        "spacing": {
+                          "unit": "PERCENT",
+                          "value": 0
+                        },
+                        "color": "#838383",
+                        "decoration": "NONE",
+                        "list": {
+                          "type": "NONE"
+                        },
+                        "style": 2
+                      }
+                    ],
+                    "textCase": "ORIGINAL"
+                  },
+                  {
+                    "id": "269:148744",
+                    "name": "",
+                    "x": 916,
+                    "y": 796,
+                    "w": 576,
+                    "h": 30,
+                    "kind": "text",
+                    "text": "“more suggestions please”",
+                    "align": "LEFT",
+                    "segments": [
+                      {
+                        "text": "“more suggestions please”",
+                        "size": 20,
+                        "weight": 400,
+                        "font": "SF Pro",
+                        "line": {
+                          "unit": "PERCENT",
+                          "value": 150
+                        },
+                        "spacing": {
+                          "unit": "PERCENT",
+                          "value": 0
+                        },
+                        "color": "#838383",
+                        "decoration": "NONE",
+                        "list": {
+                          "type": "NONE"
+                        },
+                        "style": 2
+                      }
+                    ],
+                    "textCase": "ORIGINAL"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "269:148746",
+    "number": 38,
+    "name": "38 Project 2 Credit Clarifications",
+    "layers": [
+      {
+        "id": "269:148747",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "fillToken": "--presentation-color-panel",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148748",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "kind": "text",
+        "text": "Credit clarifications",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Credit clarifications",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148749",
+        "name": "",
+        "x": 473,
+        "y": 64,
+        "w": 1191,
+        "h": 60,
+        "kind": "text",
+        "text": "Led our Growth Designer on creating AI credit usage dashboards. She took the lead here while I guided design reviews - information architecture, content, testing methods, consistency with rest of app.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Led our Growth Designer on creating AI credit usage dashboards. She took the lead here while I guided design reviews - information architecture, content, testing methods, consistency with rest of app.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148750",
+        "name": "CleanShot 2026-09-19 at 7.47.46 PM 1",
+        "x": 332.6838602812501,
+        "y": 289.08185681250006,
+        "w": 1095.6322794374998,
+        "h": 763.9181431874999,
+        "kind": "video",
+        "src": "/anthropicxmaggie/video/project-2-credit-clarifications.mp4",
+        "fit": "fill",
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0.9949071407318115,
+            5.137338121130597e-06
+          ]
+        ],
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "radius": 0,
+        "radiusTop": 16,
+        "elevation": 5,
+        "shadowClip": {
+          "x": 64,
+          "y": 233,
+          "w": 1600,
+          "h": 820,
+          "radius": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "269:148751",
+    "number": 39,
+    "name": "39 Project 2 Agent Growth",
+    "layers": [
+      {
+        "id": "269:148752",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "fill": "#828783",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148753",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 92,
+        "kind": "text",
+        "text": "Continued iteration & agent growth",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Continued iteration & agent growth",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148754",
+        "name": "",
+        "x": 473,
+        "y": 64,
+        "w": 1191,
+        "h": 145,
+        "kind": "text",
+        "text": "Going off the feedback of better agent suggestions - precanned and strategically placed agent suggestions would help Growth and ease of setup for users. I co-ordinated different stakeholders including Growth PMs, PMM, Core PMs, needed to identify where were the natural parts of the app that pre-templated agents could offer value. We prioritized some experiments to run.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Going off the feedback of better agent suggestions - precanned and strategically placed agent suggestions would help Growth and ease of setup for users. I co-ordinated different stakeholders including Growth PMs, PMM, Core PMs, needed to identify where were the natural parts of the app that pre-templated agents could offer value. We prioritized some experiments to run.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148755",
+        "name": "CleanShot 2026-09-18 at 17.35.58@2x 1",
+        "x": 664,
+        "y": 378,
+        "w": 935,
+        "h": 540,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148755.png",
+        "radius": 16,
+        "elevation": 5
+      },
+      {
+        "id": "269:148756",
+        "name": "CleanShot 2026-09-18 at 17.36.21@2x 1",
+        "x": 129,
+        "y": 378,
+        "w": 520,
+        "h": 540,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148756.png",
+        "radius": 16,
+        "elevation": 5
+      }
+    ]
+  },
+  {
+    "id": "269:148757",
+    "number": 40,
+    "name": "40 Project 2 Onboarding Experiment",
+    "layers": [
+      {
+        "id": "269:148758",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 272,
+        "w": 1600,
+        "h": 781,
+        "kind": "shape",
+        "fill": "#2b2b2b",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:148759",
+        "name": "Default",
+        "x": 402,
+        "y": 324,
+        "w": 940,
+        "h": 691.9444580078125,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-148759.png",
+        "radius": 12
+      },
+      {
+        "id": "269:149130",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 240,
+        "h": 46,
+        "kind": "text",
+        "text": "Experiment one",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Experiment one",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149131",
+        "name": "",
+        "x": 473,
+        "y": 64,
+        "w": 1191,
+        "h": 168,
+        "kind": "text",
+        "text": "Onboarding agent. The team had an idea to provide an onboarding agent that users can ask questions to new workspaces for easier setup. Retention: D1 +4.8% & W0 +3.3%, +133% chat engagement via DM'ing the agent, ~10x more users (7.5%) manually trigger an agent - when there's one pre-built to use.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Onboarding agent. The team had an idea to provide an onboarding agent that users can ask questions to new workspaces for easier setup. ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "Retention: D1 +4.8% & W0 +3.3%",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#30a46c",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 10
+          },
+          {
+            "text": ", ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "+133% chat engagement ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#30a46c",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 10
+          },
+          {
+            "text": "via DM'ing the agent, ~10x more users (7.5%) manually trigger an agent - when there's one pre-built to use.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      }
+    ]
+  },
+  {
+    "id": "269:149133",
+    "number": 41,
+    "name": "41 Project 2 Sidebar Experiment",
+    "layers": [
+      {
+        "id": "269:149134",
+        "name": "Frame 2147237298",
+        "type": "FRAME",
+        "x": 64,
+        "y": 345,
+        "w": 1600,
+        "h": 708,
+        "radius": 16,
+        "clip": true,
+        "render": {
+          "x": 25337,
+          "y": 14443,
+          "width": 1604,
+          "height": 712
+        },
+        "kind": "group",
+        "children": [
+          {
+            "id": "269:149135",
+            "name": "Rectangle 1",
+            "type": "RECTANGLE",
+            "x": 64,
+            "y": 272,
+            "w": 1600,
+            "h": 781,
+            "radius": 16,
+            "render": {
+              "x": 25339,
+              "y": 14444,
+              "width": 1600,
+              "height": 708
+            },
+            "kind": "shape",
+            "fillToken": "--presentation-color-panel-gray"
+          },
+          {
+            "id": "269:149137",
+            "name": "app",
+            "type": "FRAME",
+            "x": 362,
+            "y": 128,
+            "w": 1762,
+            "h": 1297.02783203125,
+            "radius": 0,
+            "clip": true,
+            "render": {
+              "x": 25637,
+              "y": 14444,
+              "width": 1302,
+              "height": 708
+            },
+            "kind": "image",
+            "src": "/anthropicxmaggie/media/269-149137.png"
+          },
+          {
+            "id": "269:149596",
+            "name": "Rectangle 240665229",
+            "type": "RECTANGLE",
+            "x": 1059,
+            "y": 243,
+            "w": 724,
+            "h": 847,
+            "radius": 0,
+            "render": {
+              "x": 26334,
+              "y": 14444,
+              "width": 605,
+              "height": 708
+            },
+            "kind": "shape",
+            "fillToken": "--presentation-panel-fade"
+          }
+        ]
+      },
+      {
+        "id": "269:149597",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 240,
+        "h": 46,
+        "kind": "text",
+        "text": "Experiment two",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Experiment two",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149598",
+        "name": "",
+        "x": 473,
+        "y": 64,
+        "w": 1191,
+        "h": 240,
+        "kind": "text",
+        "text": "Sidebar suggestions proved demand (5.1% CTR on a passive surface, strong template preference signal), but produced no incremental agent creation, engagement, retention, or conversion lift. Everything is flat. Main cause was once users got brought into the builder, they quickly lost interest. A follow experiment to be relaunched after agent templates are implemented.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Sidebar suggestions ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "proved demand",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#202020",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 3
+          },
+          {
+            "text": " (5.1% CTR on a passive surface, strong template preference signal), ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          },
+          {
+            "text": "but produced no incremental agent creation, engagement, retention, or conversion lift.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#202020",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 3
+          },
+          {
+            "text": " Everything is flat. Main cause was once users got brought into the builder, they quickly lost interest. A follow experiment to be relaunched after agent templates are implemented.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      }
+    ]
+  },
+  {
+    "id": "269:149599",
+    "number": 42,
+    "name": "42 Project 2 SuperAgents Results",
+    "layers": [
+      {
+        "id": "269:149600",
+        "name": "",
+        "x": 64,
+        "y": 223,
+        "w": 691,
+        "h": 92,
+        "kind": "text",
+        "text": "Results \nSuper Agents v1 was launched Dec 2025",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Results \nSuper Agents v1 was launched Dec 2025",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149602",
+        "name": "",
+        "x": 64,
+        "y": 402,
+        "w": 345,
+        "h": 30,
+        "kind": "text",
+        "text": "Positive Traction",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Positive Traction",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 9
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149603",
+        "name": "card",
+        "x": 64,
+        "y": 444,
+        "w": 345,
+        "h": 120,
+        "kind": "group",
+        "fill": "#ffffff",
+        "radius": 16,
+        "borderElevation": 1,
+        "children": []
+      },
+      {
+        "id": "269:149603-label",
+        "name": "",
+        "x": 80,
+        "y": 460,
+        "w": 313,
+        "h": 16,
+        "kind": "text",
+        "text": "CSAT",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "CSAT",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149603-value",
+        "name": "",
+        "x": 80,
+        "y": 480,
+        "w": 313,
+        "h": 40,
+        "kind": "text",
+        "text": "72%",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "72%",
+            "size": 32,
+            "weight": 700,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 125
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0.42
+            },
+            "color": "#202020",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 12
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149603-date",
+        "name": "",
+        "x": 80,
+        "y": 532,
+        "w": 313,
+        "h": 16,
+        "kind": "text",
+        "text": "Aug 2026",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Aug 2026",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149608",
+        "name": "tag",
+        "x": 257,
+        "y": 458,
+        "w": 136,
+        "h": 20,
+        "kind": "group",
+        "fill": "#f2fcf5",
+        "radius": 666,
+        "borderElevation": 0,
+        "children": []
+      },
+      {
+        "id": "I269:149608;11:651",
+        "name": "",
+        "x": 263,
+        "y": 460,
+        "w": 124,
+        "h": 16,
+        "kind": "text",
+        "text": "+12% since launch",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "+12% since launch",
+            "size": 14,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": -0.15
+            },
+            "color": "#30a46c",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 13
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149609",
+        "name": "card",
+        "x": 64,
+        "y": 576,
+        "w": 345,
+        "h": 120,
+        "kind": "group",
+        "fill": "#ffffff",
+        "radius": 16,
+        "borderElevation": 1,
+        "children": []
+      },
+      {
+        "id": "269:149609-label",
+        "name": "",
+        "x": 80,
+        "y": 592,
+        "w": 313,
+        "h": 16,
+        "kind": "text",
+        "text": "Manually triggered agents have a good retention rate",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Manually triggered agents have a good retention rate",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149609-value",
+        "name": "",
+        "x": 80,
+        "y": 612,
+        "w": 313,
+        "h": 40,
+        "kind": "text",
+        "text": "45%",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "45%",
+            "size": 32,
+            "weight": 700,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 125
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0.42
+            },
+            "color": "#30a46c",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 14
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149609-date",
+        "name": "",
+        "x": 80,
+        "y": 664,
+        "w": 313,
+        "h": 16,
+        "kind": "text",
+        "text": "w1 retention rate, w4 holds at ~35%",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "w1 retention rate, w4 holds at ~35%",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149614",
+        "name": "card",
+        "x": 64,
+        "y": 708,
+        "w": 345,
+        "h": 120,
+        "kind": "group",
+        "fill": "#ffffff",
+        "radius": 16,
+        "borderElevation": 1,
+        "children": []
+      },
+      {
+        "id": "269:149614-label",
+        "name": "",
+        "x": 80,
+        "y": 724,
+        "w": 313,
+        "h": 16,
+        "kind": "text",
+        "text": "Overall # of Super Agents created",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Overall # of Super Agents created",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149614-value",
+        "name": "",
+        "x": 80,
+        "y": 744,
+        "w": 313,
+        "h": 40,
+        "kind": "text",
+        "text": "274k",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "274k",
+            "size": 32,
+            "weight": 700,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 125
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0.42
+            },
+            "color": "#30a46c",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 14
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149614-date",
+        "name": "",
+        "x": 80,
+        "y": 796,
+        "w": 313,
+        "h": 16,
+        "kind": "text",
+        "text": "since Dec 17",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "since Dec 17",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149625",
+        "name": "",
+        "x": 470,
+        "y": 402,
+        "w": 345,
+        "h": 90,
+        "kind": "text",
+        "text": "Only a small segment of very engaged users (hypothesis: power users, admins)",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Only a small segment of very engaged users (hypothesis: power users, admins)",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 9
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149626",
+        "name": "card",
+        "x": 470,
+        "y": 504,
+        "w": 356,
+        "h": 120,
+        "kind": "group",
+        "fill": "#ffffff",
+        "radius": 16,
+        "borderElevation": 1,
+        "children": []
+      },
+      {
+        "id": "269:149626-label",
+        "name": "",
+        "x": 486,
+        "y": 520,
+        "w": 324,
+        "h": 16,
+        "kind": "text",
+        "text": "MAU who created a super agent",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "MAU who created a super agent",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149626-value",
+        "name": "",
+        "x": 486,
+        "y": 540,
+        "w": 324,
+        "h": 40,
+        "kind": "text",
+        "text": "3.9%",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "3.9%",
+            "size": 32,
+            "weight": 700,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 125
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0.42
+            },
+            "color": "#f76808",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 15
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149626-date",
+        "name": "",
+        "x": 486,
+        "y": 592,
+        "w": 324,
+        "h": 16,
+        "kind": "text",
+        "text": "Jan - Sep 2026",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Jan - Sep 2026",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "333:129524",
+        "name": "card",
+        "x": 470,
+        "y": 636,
+        "w": 345,
+        "h": 120,
+        "kind": "group",
+        "fill": "#ffffff",
+        "radius": 16,
+        "borderElevation": 1,
+        "children": []
+      },
+      {
+        "id": "333:129524-label",
+        "name": "",
+        "x": 486,
+        "y": 652,
+        "w": 313,
+        "h": 16,
+        "kind": "text",
+        "text": "Overall # of Super Agents runs",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Overall # of Super Agents runs",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "333:129524-value",
+        "name": "",
+        "x": 486,
+        "y": 672,
+        "w": 313,
+        "h": 40,
+        "kind": "text",
+        "text": "15.2M",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "15.2M",
+            "size": 32,
+            "weight": 700,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 125
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0.42
+            },
+            "color": "#30a46c",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 14
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "333:129524-date",
+        "name": "",
+        "x": 486,
+        "y": 724,
+        "w": 313,
+        "h": 16,
+        "kind": "text",
+        "text": "since Dec 17",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "since Dec 17",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149633",
+        "name": "",
+        "x": 876,
+        "y": 402,
+        "w": 356,
+        "h": 30,
+        "kind": "text",
+        "text": "Setup is the biggest friction",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Setup is the biggest friction",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 9
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149634",
+        "name": "card",
+        "x": 876,
+        "y": 444,
+        "w": 356,
+        "h": 120,
+        "kind": "group",
+        "fill": "#ffffff",
+        "radius": 16,
+        "borderElevation": 1,
+        "children": []
+      },
+      {
+        "id": "269:149634-label",
+        "name": "",
+        "x": 892,
+        "y": 460,
+        "w": 324,
+        "h": 16,
+        "kind": "text",
+        "text": "% of people who finish setup flow on WS setup",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "% of people who finish setup flow on WS setup",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149634-value",
+        "name": "",
+        "x": 892,
+        "y": 480,
+        "w": 324,
+        "h": 40,
+        "kind": "text",
+        "text": "~10%",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "~10%",
+            "size": 32,
+            "weight": 700,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 125
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0.42
+            },
+            "color": "#f76808",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 15
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149634-date",
+        "name": "",
+        "x": 892,
+        "y": 532,
+        "w": 324,
+        "h": 16,
+        "kind": "text",
+        "text": "Jan - Sep 2026",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Jan - Sep 2026",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "333:129530",
+        "name": "card",
+        "x": 876,
+        "y": 576,
+        "w": 356,
+        "h": 120,
+        "kind": "group",
+        "fill": "#ffffff",
+        "radius": 16,
+        "borderElevation": 1,
+        "children": []
+      },
+      {
+        "id": "333:129530-label",
+        "name": "",
+        "x": 892,
+        "y": 592,
+        "w": 324,
+        "h": 16,
+        "kind": "text",
+        "text": "Avg time to setup",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Avg time to setup",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "333:129530-value",
+        "name": "",
+        "x": 892,
+        "y": 612,
+        "w": 324,
+        "h": 40,
+        "kind": "text",
+        "text": "7",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "7",
+            "size": 32,
+            "weight": 700,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 125
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0.42
+            },
+            "color": "#f76808",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 15
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "333:129530-date",
+        "name": "",
+        "x": 892,
+        "y": 664,
+        "w": 324,
+        "h": 16,
+        "kind": "text",
+        "text": "Jan - Sep 2026",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Jan - Sep 2026",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149639",
+        "name": "card",
+        "x": 876,
+        "y": 708,
+        "w": 356,
+        "h": 120,
+        "kind": "group",
+        "fill": "#ffffff",
+        "radius": 16,
+        "borderElevation": 1,
+        "children": []
+      },
+      {
+        "id": "269:149639-label",
+        "name": "",
+        "x": 892,
+        "y": 724,
+        "w": 324,
+        "h": 16,
+        "kind": "text",
+        "text": "Deliberate entry point conversion rate",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Deliberate entry point conversion rate",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149639-value",
+        "name": "",
+        "x": 892,
+        "y": 744,
+        "w": 324,
+        "h": 40,
+        "kind": "text",
+        "text": "~44%",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "~44%",
+            "size": 32,
+            "weight": 700,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 125
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0.42
+            },
+            "color": "#202020",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 12
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149639-date",
+        "name": "",
+        "x": 892,
+        "y": 796,
+        "w": 324,
+        "h": 16,
+        "kind": "text",
+        "text": "Jan - Sep 2026",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Jan - Sep 2026",
+            "size": 12,
+            "weight": 500,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PIXELS",
+              "value": 16
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 0
+            },
+            "color": "#8d8d8d",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 11
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149646",
+        "name": "",
+        "x": 1282,
+        "y": 402,
+        "w": 356,
+        "h": 30,
+        "kind": "text",
+        "text": "Potential next steps",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Potential next steps",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 9
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149647",
+        "name": "",
+        "x": 1282,
+        "y": 440,
+        "w": 356,
+        "h": 150,
+        "kind": "text",
+        "text": "One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149648",
+        "name": "",
+        "x": 79,
+        "y": 1053,
+        "w": 420,
+        "h": 22,
+        "kind": "text",
+        "text": "BASED ON AMPLITUDE DATA (09/2026)",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "BASED ON AMPLITUDE DATA (09/2026)",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PIXELS",
+              "value": 2.2
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 4
+          }
+        ],
+        "textCase": "UPPER"
+      }
+    ]
+  },
+  {
+    "id": "269:149649",
+    "number": 22,
+    "name": "22 Project 1 Internal Launch",
+    "layers": [
+      {
+        "id": "269:149650",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 184,
+        "w": 1600,
+        "h": 869,
+        "kind": "shape",
+        "fill": "#655d41",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:149651",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "kind": "text",
+        "text": "Launched internally",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Launched internally",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149652",
+        "name": "CleanShot 2026-09-19 at 10.17.42 1",
+        "x": 211,
+        "y": 209,
+        "w": 1306,
+        "h": 819,
+        "kind": "video",
+        "src": "/anthropicxmaggie/video/project-1-agentic-testing-figma.mp4",
+        "fit": "fill",
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "radius": 16,
+        "playbackRate": 2
+      },
+      {
+        "id": "269:149653",
+        "name": "",
+        "x": 673,
+        "y": 64,
+        "w": 991,
+        "h": 84,
+        "kind": "text",
+        "text": "Internally testing now. Working on an alternative layout where AI is side by side with the artifact, very rough form.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Internally testing now. Working on an alternative layout where AI is side by side with the artifact, very rough form.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      }
+    ]
+  },
+  {
+    "id": "269:149654",
+    "number": 21,
+    "name": "21 Project 1 Generated Content",
+    "layers": [
+      {
+        "id": "269:149655",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 142,
+        "w": 1600,
+        "h": 911,
+        "kind": "shape",
+        "fill": "#d3ccbf",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:149656",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 923,
+        "h": 46,
+        "kind": "text",
+        "text": "Explicit call out of generated content",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Explicit call out of generated content",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149657",
+        "name": "CleanShot 2026-09-19 at 07.29.14@2x 1",
+        "x": 147,
+        "y": 209,
+        "w": 1434,
+        "h": 769,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-149657.png",
+        "radius": 12
+      }
+    ]
+  },
+  {
+    "id": "269:149658",
+    "number": 23,
+    "name": "23 Project 1 UX Prototyping",
+    "layers": [
+      {
+        "id": "269:149659-video-2",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "kind": "text",
+        "text": "Rapid prototyping details",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Rapid prototyping details",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149661",
+        "name": "CleanShot 2026-09-19 at 10.33.32 AM 1",
+        "x": 410.9,
+        "y": 229,
+        "w": 906.2,
+        "h": 800,
+        "kind": "video",
+        "src": "/anthropicxmaggie/video/project-1-ux-prototyping-left.mp4",
+        "radius": 0,
+        "preserveAspectRatio": true,
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "269:149658-video-2",
+    "number": 23.1,
+    "name": "23 Project 1 UX Prototyping — Video 2",
+    "layers": [
+      {
+        "id": "269:149659-video-2",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "kind": "text",
+        "text": "Rapid prototyping details",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Rapid prototyping details",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149662-video-2",
+        "name": "CleanShot 2026-09-19 at 10.36.44 AM 1",
+        "x": 406.875,
+        "y": 233,
+        "w": 914.25,
+        "h": 736,
+        "kind": "video",
+        "src": "/anthropicxmaggie/video/project-1-ux-prototyping-right.mp4",
+        "radius": 0,
+        "preserveAspectRatio": true,
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0.852,
+            0
+          ]
+        ],
+        "playbackRate": 2
+      }
+    ]
+  },
+  {
+    "id": "269:149663",
+    "number": 24,
+    "name": "24 Project 1 Marketing Prototyping",
+    "layers": [
+      {
+        "id": "269:149664",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "kind": "text",
+        "text": "Rapid prototyping details",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Rapid prototyping details",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149665",
+        "name": "",
+        "x": 673,
+        "y": 64,
+        "w": 988,
+        "h": 84,
+        "kind": "text",
+        "text": "This is an example of using coding tools to quickly generate different options and templates for in-app product marketing announcements. Helping different stakeholders see the results of different designs quickly between marketing, PMM, leadership, product, design, engineering. ",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "This is an example of using coding tools to quickly generate different options and templates for in-app product marketing announcements. Helping different stakeholders see the results of different designs quickly between marketing, PMM, leadership, product, design, engineering. ",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149666",
+        "name": "CleanShot 2026-09-19 at 10.42.15 AM 1",
+        "x": 64,
+        "y": 216,
+        "w": 1597,
+        "h": 837,
+        "kind": "video",
+        "src": "/anthropicxmaggie/video/project-1-marketing-prototyping.mp4",
+        "fit": "fill",
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "radius": 16
+      }
+    ]
+  },
+  {
+    "id": "269:149667",
+    "number": 25,
+    "name": "25 Project 1 Coding Contributions",
+    "layers": [
+      {
+        "id": "269:149668",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 184,
+        "w": 1600,
+        "h": 869,
+        "kind": "shape",
+        "fill": "#c5bfb9",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "269:149669",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 510,
+        "h": 46,
+        "kind": "text",
+        "text": "Getting into code",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Getting into code",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149670",
+        "name": "",
+        "x": 673,
+        "y": 64,
+        "w": 1004,
+        "h": 113,
+        "kind": "text",
+        "text": "For simple CSS based things, I’ve used coding agents to push code. I create a skill in ClickUp to evoke cursor cloud agents so I can run many agents at once and format the prompt appropriately. I contribute especially to any component updates that are required and work closely with our UI team & Design system lead.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "For simple CSS based things, I’ve used coding agents to push code. I create a skill in ClickUp to evoke cursor cloud agents so I can run many agents at once and format the prompt appropriately. I contribute especially to any component updates that are required and work closely with our UI team & Design system lead.",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149671",
+        "name": "CleanShot 2026-08-27 at 15.29.18@2x 1",
+        "x": 122,
+        "y": 324,
+        "w": 1012,
+        "h": 584,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-149671.png",
+        "radius": 16,
+        "elevation": 5
+      },
+      {
+        "id": "269:149672",
+        "name": "CleanShot 2026-08-27 at 15.29.39@2x 1",
+        "x": 1152,
+        "y": 324,
+        "w": 453,
+        "h": 584,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-149672.png",
+        "radius": 16,
+        "elevation": 5
+      }
+    ]
+  },
+  {
+    "id": "269:149673",
+    "number": 26,
+    "name": "26 Project 1 AI Design Lessons",
+    "layers": [
+      {
+        "id": "269:149674",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 900,
+        "h": 138,
+        "kind": "text",
+        "text": "Some things that are working and some things that are not",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Some things that are working and some things that are not",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149675",
+        "name": "",
+        "x": 64,
+        "y": 320,
+        "w": 740,
+        "h": 733,
+        "kind": "text",
+        "text": "DO fast track execution & rapid prototyping\nDO build it, dogfood it\nDO use AI to brainstorm options\nDO use AI to fast track testing & synthesis methods\nDO create AI systems that set standards at scale\nDO create agents that are concise\nDO build systems that learn\nDO build alignment via prototyping\n\n...and a lot more to learn",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "DO fast track execution & rapid prototyping\nDO build it, dogfood it\nDO use AI to brainstorm options\nDO use AI to fast track testing & synthesis methods\nDO create AI systems that set standards at scale\nDO create agents that are concise\nDO build systems that learn\nDO build alignment via prototyping\n\n...and a lot more to learn",
+            "size": 28,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 16
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149675-donts",
+        "name": "Don'ts",
+        "x": 876,
+        "y": 320,
+        "w": 788,
+        "h": 360,
+        "kind": "text",
+        "text": "DON’T offload the thinking\nDON’T let it replace customer understanding\nDON’T trust results blindly; double-check the results",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "DON’T offload the thinking\nDON’T let it replace customer understanding\nDON’T trust results blindly; double-check the results",
+            "size": 28,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 16
+          }
+        ],
+        "textCase": "ORIGINAL"
+      }
+    ]
+  },
+  {
+    "id": "269:149677",
+    "number": 20,
+    "name": "20 Project 1 Publishing Test",
+    "layers": [
+      {
+        "id": "269:149678",
+        "name": "Artifacts sharing user test",
+        "x": 64,
+        "y": 64,
+        "w": 1600,
+        "h": 988,
+        "kind": "video",
+        "src": "/anthropicxmaggie/video/project-1-publishing-user-test.mp4",
+        "radius": 16,
+        "playbackRate": 1
+      },
+      {
+        "id": "269:149679",
+        "name": "CleanShot 2026-09-18 at 1.57.26 PM@2x 1",
+        "x": 346,
+        "y": 810,
+        "w": 1036,
+        "h": 109,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/269-149679.png",
+        "radius": 12
+      }
+    ]
+  },
+  {
+    "id": "269:149680",
+    "number": 16,
+    "name": "16 Project 1 Annual Review",
+    "layers": [
+      {
+        "id": "269:149681",
+        "name": "CleanShot 2026-09-19 at 9.44.14 AM 1",
+        "x": 64,
+        "y": 64,
+        "w": 1600,
+        "h": 989,
+        "kind": "video",
+        "src": "/anthropicxmaggie/video/project-1-rapid-prototyping.mp4",
+        "radius": 16,
+        "playbackRate": 2
+      }
+    ]
+  }
+]

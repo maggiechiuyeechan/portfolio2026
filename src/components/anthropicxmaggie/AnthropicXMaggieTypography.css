@@ -1,0 +1,77 @@
+/* Figma text styles and paints for the native presentation slides. */
+.axm-native-slide {
+  --presentation-paint-0: var(--color-black);
+  --presentation-paint-1: var(--presentation-color-secondary);
+  --presentation-paint-2: var(--presentation-color-panel);
+  --presentation-paint-3: #dedbd5;
+  --presentation-paint-4: var(--presentation-color-content-default);
+  --presentation-paint-5: #b0b0a6;
+  --presentation-paint-6: #e2e2e2;
+  --presentation-paint-7: #9b8484;
+  --presentation-paint-8: #a7aebe;
+  --presentation-paint-9: var(--color-white);
+  --presentation-paint-10: #dedbd7;
+  --presentation-paint-11: #cdd4d5;
+  --presentation-paint-12: #525252;
+  --presentation-paint-13: #e7e7e7;
+  --presentation-paint-14: #828783;
+  --presentation-paint-15: #2b2b2b;
+  --presentation-paint-16: #30a46c;
+  --presentation-paint-17: var(--color-gray-9);
+  --presentation-paint-18: #f2fcf5;
+  --presentation-paint-19: #f76808;
+  --presentation-paint-20: #655d41;
+  --presentation-paint-21: #d3ccbf;
+  --presentation-paint-22: #c5bfb9;
+  --presentation-type-0: 510 1.9675925925925926cqw/1.350000023841858 var(--presentation-font-family);
+  --presentation-type-1: 400 1.9675925925925926cqw/1.350000023841858 var(--presentation-font-family);
+  --presentation-type-2: 400 1.1574074074074074cqw/1.5 var(--presentation-font-family);
+  --presentation-type-3: 400 1.1574074074074074cqw/1.5 var(--presentation-font-family);
+  --presentation-type-4: 400 0.6365740740740741cqw/2 var(--font-mono);
+  --presentation-type-5: 400 1.1574074074074074cqw/1.5 var(--presentation-font-family);
+  --presentation-type-6: 400 0.6365740740740741cqw/2 var(--font-mono);
+  --presentation-type-7: 400 0.6365740740740741cqw/2 var(--font-mono);
+  --presentation-type-8: 400 0.4763827831656845cqw/2 var(--font-mono);
+  --presentation-type-9: 400 1.1574074074074074cqw/1.5 var(--presentation-font-family);
+  --presentation-type-10: 400 1.1574074074074074cqw/1.5 var(--presentation-font-family);
+  --presentation-type-11: 500 0.6944444444444444cqw/1.3333333333333333 var(--presentation-font-family);
+  --presentation-type-12: 700 1.8518518518518516cqw/1.25 var(--presentation-font-family);
+  --presentation-type-13: 500 0.8101851851851851cqw/1.1428571428571428 var(--presentation-font-family);
+  --presentation-type-14: 700 1.8518518518518516cqw/1.25 var(--presentation-font-family);
+  --presentation-type-15: 700 1.8518518518518516cqw/1.25 var(--presentation-font-family);
+  --presentation-type-16: 400 1.6203703703703702cqw/1.5 var(--presentation-font-family);
+}
+.axm-native-type-0 { font: var(--presentation-type-0); color: var(--presentation-paint-0); letter-spacing: 0em; text-decoration: none; }
+.axm-native-type-1 { font: var(--presentation-type-1); color: var(--presentation-paint-1); letter-spacing: 0em; text-decoration: none; }
+.axm-native-type-2 { font: var(--presentation-type-2); color: var(--presentation-paint-1); letter-spacing: 0em; text-decoration: none; }
+.axm-native-type-3 { font: var(--presentation-type-3); color: var(--presentation-paint-4); letter-spacing: 0em; text-decoration: none; }
+.axm-native-type-4 { font: var(--presentation-type-4); color: var(--presentation-paint-0); letter-spacing: 0.2em; text-decoration: none; }
+.axm-native-type-5 { font: var(--presentation-type-5); color: var(--presentation-paint-1); letter-spacing: 0em; text-decoration: underline; }
+.axm-native-type-6 { font: var(--presentation-type-6); color: var(--presentation-paint-9); letter-spacing: 0.2em; text-decoration: none; }
+.axm-native-type-7 { font: var(--presentation-type-7); color: var(--presentation-paint-9); letter-spacing: 0.2em; text-decoration: underline; }
+.axm-native-type-8 { font: var(--presentation-type-8); color: var(--presentation-paint-12); letter-spacing: 0.2em; text-decoration: none; }
+.axm-native-type-9 { font: var(--presentation-type-9); color: var(--presentation-paint-0); letter-spacing: 0em; text-decoration: none; }
+.axm-native-type-10 { font: var(--presentation-type-10); color: var(--presentation-paint-16); letter-spacing: 0em; text-decoration: none; }
+.axm-native-type-11 { font: var(--presentation-type-11); color: var(--presentation-paint-17); letter-spacing: 0em; text-decoration: none; }
+.axm-native-type-12 { font: var(--presentation-type-12); color: var(--presentation-paint-4); letter-spacing: 0.013124999590218067em; text-decoration: none; }
+.axm-native-type-13 { font: var(--presentation-type-13); color: var(--presentation-paint-16); letter-spacing: -0.010714286140033178em; text-decoration: none; }
+.axm-native-type-14 { font: var(--presentation-type-14); color: var(--presentation-paint-16); letter-spacing: 0.013124999590218067em; text-decoration: none; }
+.axm-native-type-15 { font: var(--presentation-type-15); color: var(--presentation-paint-19); letter-spacing: 0.013124999590218067em; text-decoration: none; }
+.axm-native-type-16 { font: var(--presentation-type-16); color: var(--presentation-paint-1); letter-spacing: 0em; text-decoration: none; }
+.axm-native-type-0 { font-optical-sizing: none; font-variation-settings: "wght" 510, "wdth" 100, "opsz" 28; }
+.axm-native-type-1 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 28; }
+.axm-native-type-2 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 20; }
+.axm-native-type-3 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 20; }
+.axm-native-type-4 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 17; }
+.axm-native-type-5 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 20; }
+.axm-native-type-6 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 17; }
+.axm-native-type-7 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 17; }
+.axm-native-type-8 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 17; }
+.axm-native-type-9 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 20; }
+.axm-native-type-10 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 20; }
+.axm-native-type-11 { font-optical-sizing: none; font-variation-settings: "wght" 500, "wdth" 100, "opsz" 17; }
+.axm-native-type-12 { font-optical-sizing: none; font-variation-settings: "wght" 700, "wdth" 100, "opsz" 28; }
+.axm-native-type-13 { font-optical-sizing: none; font-variation-settings: "wght" 500, "wdth" 100, "opsz" 17; }
+.axm-native-type-14 { font-optical-sizing: none; font-variation-settings: "wght" 700, "wdth" 100, "opsz" 28; }
+.axm-native-type-15 { font-optical-sizing: none; font-variation-settings: "wght" 700, "wdth" 100, "opsz" 28; }
+.axm-native-type-16 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 28; }

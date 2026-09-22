@@ -113,6 +113,60 @@
   --font-weight-bagoss-light: 320; /* Standard Light — reference only */
   --font-weight-aguzzo-display: 300; /* Aguzzo VF Trial — hero h1 */
 
+  /* ------ Open AI presentation / Figma deck ------ */
+  --presentation-canvas-width: 1728px;
+  --presentation-canvas-height: 1117px;
+  --presentation-min-viewport-width: 1280px;
+  --presentation-min-viewport-height: 720px;
+  --presentation-arrow-size: 22px;
+  --presentation-page-control-gap: 11px;
+  --presentation-page-tick-spacing: 4px;
+  --presentation-page-tick-expanded-spacing: 12px;
+  --presentation-page-tick-spacing-duration: 350ms;
+  --presentation-page-tick-spacing-ease: cubic-bezier(.22, 1, .36, 1);
+  --presentation-page-tick-width: 1px;
+  --presentation-page-tick-height: 8px;
+  --presentation-page-tick-target-height: 32px;
+  --presentation-viewport-padding-block: clamp(3rem, 7dvh, 5rem);
+  --presentation-viewport-padding-inline: clamp(.75rem, 4vw, 4rem);
+  --presentation-gallery-switcher-gap: 10px;
+  --presentation-gallery-button-gap: 2px;
+  --presentation-gallery-edge-fade-width: calc(96 / 1728 * 100cqw);
+  --presentation-gallery-edge-blur: 50px;
+  --presentation-gallery-caption-size: 11px;
+  --presentation-gallery-caption-tracking: .2em;
+  --presentation-gallery-caption-line-height: 2;
+  --presentation-gallery-timer-duration: 3s;
+  --presentation-arrow-icon-size: 16px;
+  --presentation-arrow-icon-optical-offset-x: 0.75px;
+  --presentation-arrow-icon-optical-offset-y: 0.25px;
+  --presentation-arrow-shadow: 0 0 1px 0 rgb(0 0 0 / 26.67%), 0 1px 2px 0 rgb(0 0 0 / 5%);
+  --presentation-color-panel: #c6d3ca;
+  --presentation-color-panel-taupe: #a7a39c;
+  --presentation-color-panel-gray: #cecece;
+  --presentation-color-project-1-background: #9b9ba3;
+  --presentation-panel-fade: linear-gradient(to right, transparent 3.20127%, var(--presentation-color-panel-gray) 83.07932%);
+  --presentation-color-secondary: var(--color-gray-10);
+  --presentation-color-tertiary: var(--color-gray-8);
+  --presentation-color-content-default: var(--color-gray-12);
+  --presentation-color-content-secondary: var(--color-gray-11);
+  --presentation-color-content-tertiary: #bbbbbb;
+  --presentation-color-menu: var(--color-white);
+  --presentation-color-pink: #ff375f;
+  --presentation-color-orange: #ff9230;
+  --presentation-color-green: #30d158;
+  --presentation-color-brown: #b78a66;
+  --presentation-color-blue: #0091ff;
+  --presentation-color-indigo: #6d7cff;
+  --presentation-font-family: "SF Pro", var(--font-sans), sans-serif;
+  --presentation-font-lead: 34px;
+  --presentation-font-body: 20px;
+  --presentation-font-card-title: 28px;
+  --presentation-font-caption: 11px;
+  --presentation-radius-card: 16px;
+  --presentation-radius-image: var(--radius-3);
+  --presentation-color-survey-panel: #b9c0b8;
+
   /* ------ Layout (Figma grid annotations) ------ */
   --grid-columns: 8;
   --grid-gutter: var(--spacing-3);         /* 12px gutters */

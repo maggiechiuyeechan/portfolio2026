@@ -1,0 +1,182 @@
+{
+  "Nuffsaid Experience": [
+    {
+      "src": "/anthropicxmaggie/gallery/email-templates-ux.png",
+      "label": "Email template editor and preview",
+      "figmaNode": "I269:148559;172:34700;269:140884",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/data-import-ux.png",
+      "label": "CSV field-mapping workflow",
+      "figmaNode": "I269:148559;172:34700;269:141300",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/concept-testing.png",
+      "label": "Customer test of bulk messaging concepts",
+      "figmaNode": "I269:148559;172:34700;167:28385",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/co-creation-dashboard.png",
+      "label": "Customer co-creation prioritization workshop",
+      "figmaNode": "I269:148559;172:34700;167:28387",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/synthesizing-jobs.png",
+      "label": "Customer success job stories",
+      "figmaNode": "I269:148559;172:34700;167:28976",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/grouping-insights.png",
+      "label": "Research synthesis by value and pain points",
+      "figmaNode": "I269:148559;172:34700;167:28389",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/167-28391.png",
+      "label": "Survey insight comparison cards",
+      "figmaNode": "I269:148559;172:34700;167:28391",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/design-system.png",
+      "label": "Design system list-item states",
+      "figmaNode": "I269:148559;172:34700;169:29720",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/sitemap.png",
+      "label": "Customer survey sitemap",
+      "figmaNode": "I269:148559;172:34700;167:28978",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/dashboard-spec.png",
+      "label": "Dashboard interaction specification",
+      "figmaNode": "I269:148559;172:34700;167:28979",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/survey-response.png",
+      "label": "Survey response dashboard",
+      "figmaNode": "I269:148559;172:34700;188:52848",
+      "elevation": false
+    }
+  ],
+  "Uber Experience": [
+    {
+      "src": "/anthropicxmaggie/video/uber.mp4",
+      "label": "Autonomous vehicle rider experience demo",
+      "figmaNode": "I269:148561;172:34700;269:77779",
+      "media": "video"
+    },
+    {
+      "src": "/images/casestudies/HUD.png",
+      "label": "Dashboards for mission specialists and triage engineers",
+      "figmaNode": "I269:148561;172:34700;269:77599",
+      "media": "uber-dashboard",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-77868.png",
+      "label": "Mission specialist vehicle dashboard concepts",
+      "figmaNode": "I269:148561;172:34700;269:77868",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-77869.png",
+      "label": "Robot Studio perception measurement tools",
+      "figmaNode": "I269:148561;172:34700;269:77869",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-77870.png",
+      "label": "On-road policy metrics review",
+      "figmaNode": "I269:148561;172:34700;269:77870",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-77871.png",
+      "label": "Research opportunities and improvement roadmap",
+      "figmaNode": "I269:148561;172:34700;269:77871",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-77872.png",
+      "label": "Map Operations workflow ecosystem",
+      "figmaNode": "I269:148561;172:34700;269:77872",
+      "elevation": false
+    }
+  ],
+  "Headspace Experience": [
+    {
+      "src": "/anthropicxmaggie/video/headspace-study.mp4",
+      "label": "Mindfulness app weekend reflection flow",
+      "media": "video",
+      "figmaNode": "I269:148563;172:34700;269:77874",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-78609.png",
+      "label": "Headspace prototype shown on a phone",
+      "figmaNode": "I269:148563;172:34700;269:78609",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-78610.png",
+      "label": "Recruitment survey findings",
+      "figmaNode": "I269:148563;172:34700;269:78610",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-78611.png",
+      "label": "User interview and emotion mapping",
+      "figmaNode": "I269:148563;172:34700;269:78611",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-78612.png",
+      "label": "Weekend reflection concept sketches",
+      "figmaNode": "I269:148563;172:34700;269:78612",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-78613.png",
+      "label": "Wearable and mobile recap concepts",
+      "figmaNode": "I269:148563;172:34700;269:78613",
+      "elevation": false
+    }
+  ],
+  "User Research": [
+    {
+      "src": "/anthropicxmaggie/video/bloomberg.mp4",
+      "label": "Bloomberg machine learning platform demo",
+      "media": "video",
+      "figmaNode": "I269:148565;172:34700;269:78615",
+      "elevation": false,
+      "borderElevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/bloomberg-terminal-workflow.png",
+      "label": "NLP entity extraction in Bloomberg Terminal",
+      "figmaNode": "I269:148565;172:34700;269:78616",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-78617.png",
+      "label": "Collaborative workflow-mapping workshop",
+      "figmaNode": "I269:148565;172:34700;269:78617",
+      "elevation": false
+    },
+    {
+      "src": "/anthropicxmaggie/gallery/269-78618.png",
+      "label": "Machine learning annotation workflow map",
+      "figmaNode": "I269:148565;172:34700;269:78618",
+      "elevation": false
+    }
+  ]
+}

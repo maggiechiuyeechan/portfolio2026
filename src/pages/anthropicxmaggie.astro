@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AnthropicXMaggiePresentation from "../components/anthropicxmaggie/AnthropicXMaggiePresentation";
+import "../components/anthropicxmaggie/AnthropicXMaggiePresentation.css";
+
+export const prerender = true;
+---
+
+<BaseLayout title="Anthropic x Maggie — Maggie Chan" description="Maggie Chan's Anthropic x Maggie portfolio presentation" noindex>
+  <AnthropicXMaggiePresentation client:load />
+</BaseLayout>
+
+<style is:global>
+  html:has(.axm-presentation), html:has(.axm-presentation) body { overflow: hidden; }
+</style>
