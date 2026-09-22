@@ -5698,10 +5698,9 @@
         "y": 64,
         "w": 1600,
         "h": 988,
-        "kind": "video",
-        "src": "/anthropicxmaggie/video/project-1-publishing-user-test.mp4",
-        "radius": 16,
-        "playbackRate": 1
+        "kind": "iframe",
+        "src": "/anthropicxmaggie/prototypes/sharing-artifacts-user-testing/index.html",
+        "radius": 16
       },
       {
         "id": "269:149679",

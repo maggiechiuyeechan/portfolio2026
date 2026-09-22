@@ -39,6 +39,17 @@ function renderLayer(n: Layer, parent = stage): React.ReactNode {
     </div>;
   }
   if (n.kind === "gallery") return <div key={n.id} style={{position:"absolute",left:0,top:n.y/1117*100+"%",width:"100%"}}><PresentationGallery items={n.items!} /></div>;
+  if (n.kind === "iframe") {
+    return <div key={n.id} data-figma-node={n.id}
+      style={{...box(n, parent), overflow:"hidden", borderRadius:(n.radius||0)/1728*100+"cqw", boxShadow:mediaShadow(n), background:"#262626"}}>
+      <iframe
+        src={n.src}
+        title={n.name || "Interactive presentation demo"}
+        allow="clipboard-write"
+        style={{display:"block", width:"100%", height:"100%", border:0, background:"#262626"}}
+      />
+    </div>;
+  }
   if ((n.kind === "image" || n.kind === "video") && n.shadowClip) {
     const clip = n.shadowClip;
     const unclipped = { ...n, shadowClip: undefined };
