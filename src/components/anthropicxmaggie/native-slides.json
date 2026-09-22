@@ -1776,11 +1776,11 @@
         "w": 585,
         "h": 480,
         "kind": "text",
-        "text": "I worked out the scope directly with the CEO (he gave a PT)  Goal: Minimum Lovable Product, quick releases that are better than what’s current.  I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.\nMulti-player editing\nUsing existing components\nSimple versioning\nSimple permissioning (private, shareable to workspace or teams & individuals, public)",
+        "text": "Priority was set by our CEO to start  Goal: Minimum Lovable Product, quick releases that are better than what’s current.  I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.\nMulti-player editing\nUsing existing components\nSimple versioning\nSimple permissioning (private, shareable to workspace or teams & individuals, public)",
         "align": "LEFT",
         "segments": [
           {
-            "text": "I worked out the scope directly with the CEO (he gave a PT)  Goal: Minimum Lovable Product, quick releases that are better than what’s current.  I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.",
+            "text": "Priority was set by our CEO to start  Goal: Minimum Lovable Product, quick releases that are better than what’s current.  I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -2179,184 +2179,19 @@
     ]
   },
   {
-    "id": "269:148685",
+    "id": "269:76412",
     "number": 35,
     "name": "35 Project 2 Chat Setup",
     "layers": [
       {
-        "id": "269:148686",
-        "name": "",
-        "x": 64,
-        "y": 64,
-        "w": 585,
-        "h": 46,
-        "kind": "text",
-        "text": "Deep dive: Chat setup",
-        "align": "LEFT",
-        "segments": [
-          {
-            "text": "Deep dive: Chat setup",
-            "size": 34,
-            "weight": 510,
-            "font": "SF Pro",
-            "line": {
-              "unit": "PERCENT",
-              "value": 135.0000023841858
-            },
-            "spacing": {
-              "unit": "PERCENT",
-              "value": 0
-            },
-            "color": "#000000",
-            "decoration": "NONE",
-            "list": {
-              "type": "NONE"
-            },
-            "style": 0
-          }
-        ],
-        "textCase": "ORIGINAL"
-      },
-      {
-        "id": "269:148687",
-        "name": "",
-        "x": 673,
-        "y": 64,
-        "w": 991,
-        "h": 145,
-        "kind": "text",
-        "text": "The initial chat experience of setting up felt off. There were a lot of back and forths, and the follow ups were tedious. As we got initial versions of the agent experience working in staging, we were able to work with engineers to refine the chat UX, include follow up UI, and find other UX issues like when the agent would insert links into the response that led users away from the setup experience. This stage was user tested heavily, still it can be tedious to setup and requires continued refinement.",
-        "align": "LEFT",
-        "segments": [
-          {
-            "text": "The initial chat experience of setting up felt off. There were a lot of back and forths, and the follow ups were tedious. As we got initial versions of the agent experience working in staging, we were able to work with engineers to refine the chat UX, include follow up UI, and find other UX issues like when the agent would insert links into the response that led users away from the setup experience. This stage was user tested heavily, still it can be tedious to setup and requires continued refinement.",
-            "size": 20,
-            "weight": 400,
-            "font": "SF Pro",
-            "line": {
-              "unit": "PERCENT",
-              "value": 150
-            },
-            "spacing": {
-              "unit": "PERCENT",
-              "value": 0
-            },
-            "color": "#838383",
-            "decoration": "NONE",
-            "list": {
-              "type": "NONE"
-            },
-            "style": 2
-          }
-        ],
-        "textCase": "ORIGINAL"
-      },
-      {
-        "id": "269:148688",
-        "name": "Rectangle 1",
-        "x": 64,
-        "y": 233,
-        "w": 1600,
-        "h": 820,
-        "kind": "shape",
-        "radius": 16,
-        "fillToken": "--presentation-color-content-default",
-        "borderElevation": 1
-      },
-      {
-        "id": "269:148689",
-        "name": "Full screen chat turn taking once user presses send",
-        "x": 123,
-        "y": 341,
-        "w": 526.0800170898438,
-        "h": 640,
+        "id": "269:76412",
+        "name": "Deep dive: Chat setup",
+        "x": 0,
+        "y": 0,
+        "w": 1728,
+        "h": 1117,
         "kind": "image",
-        "src": "/anthropicxmaggie/media/269-148689.png",
-        "radius": 15.359999656677246
-      },
-      {
-        "id": "269:148702",
-        "name": "",
-        "x": 1274,
-        "y": 514,
-        "w": 333,
-        "h": 484,
-        "kind": "text",
-        "text": "our prompt engineer proposed the ux here response: \nPhase 1 categorizes the user into low/medium/high opinion. \n\nPhase 2 is where the real iterative loop lives. The Builder calls a Draft Agent tool that writes a preliminary instruction set and simultaneously identifies placeholders for missing info. \n\nPhase 3 (Prompt Optimizer) runs as a sub-agent after creation to enrich the dry, logistical instructions with more human-like, integrative language for creative tasks.\n\nPost-creation, users can refine through DMs or @mentions per the Refine your Super Agent help article, and the agent updates its own config.",
-        "align": "LEFT",
-        "segments": [
-          {
-            "text": "our prompt engineer proposed the ux here response: \nPhase 1 categorizes the user into low/medium/high opinion. \n\nPhase 2 is where the real iterative loop lives. The Builder calls a Draft Agent tool that writes a preliminary instruction set and simultaneously identifies placeholders for missing info. \n\nPhase 3 (Prompt Optimizer) runs as a sub-agent after creation to enrich the dry, logistical instructions with more human-like, integrative language for creative tasks.\n\nPost-creation, users can refine through DMs or @mentions per the ",
-            "size": 11,
-            "weight": 400,
-            "font": "Geist Mono",
-            "line": {
-              "unit": "PERCENT",
-              "value": 200
-            },
-            "spacing": {
-              "unit": "PERCENT",
-              "value": 20
-            },
-            "color": "#ffffff",
-            "decoration": "NONE",
-            "list": {
-              "type": "NONE"
-            },
-            "style": 6
-          },
-          {
-            "text": "Refine your Super Agent",
-            "size": 11,
-            "weight": 400,
-            "font": "Geist Mono",
-            "line": {
-              "unit": "PERCENT",
-              "value": 200
-            },
-            "spacing": {
-              "unit": "PERCENT",
-              "value": 20
-            },
-            "color": "#ffffff",
-            "decoration": "UNDERLINE",
-            "list": {
-              "type": "NONE"
-            },
-            "style": 7
-          },
-          {
-            "text": " help article, and the agent updates its own config.",
-            "size": 11,
-            "weight": 400,
-            "font": "Geist Mono",
-            "line": {
-              "unit": "PERCENT",
-              "value": 200
-            },
-            "spacing": {
-              "unit": "PERCENT",
-              "value": 20
-            },
-            "color": "#ffffff",
-            "decoration": "NONE",
-            "list": {
-              "type": "NONE"
-            },
-            "style": 6
-          }
-        ],
-        "textCase": "UPPER"
-      },
-      {
-        "id": "269:148703",
-        "name": "Star 19",
-        "x": 1560.861328125,
-        "y": 911.4716796875,
-        "w": 19.27734375,
-        "h": 18.5322265625,
-        "kind": "image",
-        "src": "/anthropicxmaggie/media/269-148703.png"
+        "src": "/anthropicxmaggie/slides/slide-35-chat-setup.png"
       }
     ]
   },
@@ -5700,6 +5535,7 @@
         "h": 988,
         "kind": "iframe",
         "src": "/anthropicxmaggie/prototypes/sharing-artifacts-user-testing/index.html",
+        "poster": "/anthropicxmaggie/prototypes/sharing-artifacts-user-testing/poster.png",
         "radius": 16
       },
       {

@@ -31,7 +31,7 @@ const experienceCopy: Record<string, ExperienceCopy> = {
   },
 };
 
-type Slide = { number: number; name: string; kind: "about" | "career" | "why-anthropic" | "overview" | "figma-frame" | "project-overview" | "divider" | "appendix" | "responsibilities" | "gallery" | "placeholder"; previewNumber?: number; previewSrc?: string; videoSrc?: string; imageSrc?: string };
+type Slide = { number: number; name: string; kind: "about" | "career" | "why-anthropic" | "overview" | "figma-frame" | "project-overview" | "divider" | "appendix" | "responsibilities" | "gallery" | "combined-study" | "placeholder"; previewNumber?: number; previewSrc?: string; videoSrc?: string; imageSrc?: string };
 
 const slides: Slide[] = [
   { number: 1, name: "About Maggie", kind: "about" },
@@ -43,8 +43,7 @@ const slides: Slide[] = [
   { number: 5.1, name: "Why Anthropic?", kind: "why-anthropic" },
   { number: 6, name: "Nuffsaid Experience", kind: "gallery" },
   { number: 7, name: "Uber Experience", kind: "gallery" },
-  { number: 9, name: "Headspace Experience", kind: "gallery" },
-  { number: 10, name: "User Research", kind: "gallery" },
+  { number: 7.1, name: "Headspace & Bloomberg Experience", kind: "combined-study" },
   { number: 11, name: "Design Principles", kind: "placeholder" },
   { number: 12, name: "Project 1: ClickUp Multi-Player Artifacts", kind: "overview", previewNumber: 3, imageSrc: "/anthropicxmaggie/slides/slide-12-project-artifacts.png" },
   ...[
@@ -61,6 +60,7 @@ const slides: Slide[] = [
     [39, "Project 2 Agent Growth"], [40, "Project 2 Onboarding Experiment"], [41, "Project 2 Sidebar Experiment"],
     [42, "Project 2 SuperAgents Results"],
     [42.1, "Appendix"],
+    [9, "Headspace Experience"], [10, "User Research"],
     [15, "Project 1 Adapting an Existing UX and Making Improvements Along the Way"],
     [26, "Project 1 AI Design Lessons"],
     [5, "Leadership Responsibilities"],
@@ -68,7 +68,7 @@ const slides: Slide[] = [
   ].map(([number, name]) => ({
     number: number as number,
     name: name as string,
-    kind: number === 27 ? "project-overview" as const : number === 42.1 ? "appendix" as const : number === 5 ? "responsibilities" as const : "placeholder" as const,
+    kind: number === 27 ? "project-overview" as const : number === 42.1 ? "appendix" as const : number === 9 || number === 10 ? "gallery" as const : number === 5 ? "responsibilities" as const : "placeholder" as const,
     previewNumber: number === 23.1 ? 23 : number === 34.1 ? 34 : undefined,
     videoSrc: number === 27 ? "/anthropicxmaggie/video/super-agents-demo.mp4" : undefined,
   })),
@@ -134,6 +134,21 @@ function GallerySlide({ title }: { title: string }) {
       </div>
     </div>
   );
+}
+
+function CombinedStudySlide() {
+  return <div className="axm-combined-study" data-node-id="360:35185">
+    <video className="axm-combined-study-media axm-combined-study-media--headspace"
+      src="/anthropicxmaggie/video/headspace-study.mp4" aria-label="Headspace mindfulness app prototype"
+      autoPlay loop muted playsInline preload="auto" />
+    <video className="axm-combined-study-media axm-combined-study-media--bloomberg"
+      src="/anthropicxmaggie/video/bloomberg.mp4" aria-label="Bloomberg machine learning platform prototype"
+      autoPlay loop muted playsInline preload="auto" />
+    <div className="axm-combined-study-caption">
+      <p className="axm-combined-study-title">2019 Headspace &amp; Bloomberg during MHCI at Carnegie Mellon. Team of 5</p>
+      <p className="axm-combined-study-subtitle">Design challenge: Generative research, prototyping, consumer app</p>
+    </div>
+  </div>;
 }
 
 function ClickUpOverviewCaption({ title, projectSubtitle = false }: { title?: string; projectSubtitle?: boolean }) {
@@ -247,6 +262,7 @@ function SlideContent({ slide }: { slide: Slide }) {
     );
   }
   if (slide.kind === "gallery") return <GallerySlide title={slide.name} />;
+  if (slide.kind === "combined-study") return <CombinedStudySlide />;
   return <NativeSlide number={slide.number} />;
 }
 
@@ -255,6 +271,37 @@ export default function AnthropicXMaggiePresentation() {
   const [index, setIndex] = useState(0);
   const slide = slides[index];
   const go = useCallback((direction: number) => setIndex((value) => (value + direction + slides.length) % slides.length), []);
+
+  useEffect(() => {
+    const prototypeBase = "/anthropicxmaggie/prototypes/sharing-artifacts-user-testing/";
+    const resources = [
+      { href: `${prototypeBase}poster.png`, rel: "preload", as: "image" },
+      { href: `${prototypeBase}index.html`, rel: "prefetch", as: "document" },
+      { href: `${prototypeBase}styles-LFJD6OZF.css`, rel: "prefetch", as: "style" },
+      { href: `${prototypeBase}chunk-SVJC2ZTZ.js`, rel: "modulepreload", as: "script" },
+      { href: `${prototypeBase}chunk-D5ZYZPND.js`, rel: "modulepreload", as: "script" },
+      { href: `${prototypeBase}polyfills-PZSJNBYU.js`, rel: "modulepreload", as: "script" },
+      { href: `${prototypeBase}main-SCJCN423.js`, rel: "modulepreload", as: "script" },
+    ];
+    const links: HTMLLinkElement[] = [];
+    const preload = () => resources.forEach((resource) => {
+        const link = document.createElement("link");
+        link.href = resource.href;
+        link.rel = resource.rel;
+        link.as = resource.as;
+        document.head.appendChild(link);
+        links.push(link);
+      });
+    let idleId: number | undefined;
+    let timeoutId: number | undefined;
+    if ("requestIdleCallback" in window) idleId = window.requestIdleCallback(preload, { timeout: 1500 });
+    else timeoutId = window.setTimeout(preload, 500);
+    return () => {
+      if (idleId !== undefined) window.cancelIdleCallback(idleId);
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      links.forEach((link) => link.remove());
+    };
+  }, []);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {

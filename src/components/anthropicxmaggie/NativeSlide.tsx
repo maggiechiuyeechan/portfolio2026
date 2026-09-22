@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import slides from "./native-slides.json";
 import PresentationGallery from "./PresentationGallery";
 import "./AnthropicXMaggieTypography.css";
@@ -10,6 +10,7 @@ type Layer = {
   fill?: string | null; radius?: number; radiusTop?: number; src?: string; align?: string;
   fillToken?: string; clip?: boolean; textCase?: string; elevation?: number; borderElevation?: number;
   playbackRate?: number;
+  poster?: string;
   preserveAspectRatio?: boolean;
   fit?: CSSProperties["objectFit"];
   cropTransform?: [[number, number, number], [number, number, number]];
@@ -26,6 +27,40 @@ const mediaShadow = (n: Layer) => n.borderElevation
   ? `var(--elevation-border-${n.borderElevation})`
   : n.elevation ? `var(--elevation-${n.elevation})` : undefined;
 
+function InteractiveDemo({ layer, parent }: { layer: Layer; parent: typeof stage }) {
+  const [loaded, setLoaded] = useState(false);
+  const borderRadius = (layer.radius || 0) / 1728 * 100 + "cqw";
+
+  return <div data-figma-node={layer.id}
+    style={{
+      ...box(layer, parent),
+      overflow: "hidden",
+      borderRadius,
+      boxShadow: mediaShadow(layer),
+      background: layer.poster ? `#262626 url(${layer.poster}) center / cover no-repeat` : "#262626",
+    }}>
+    <iframe
+      src={layer.src}
+      title={layer.name || "Interactive presentation demo"}
+      allow="clipboard-write"
+      onLoad={(event) => {
+        const frameWindow = event.currentTarget.contentWindow;
+        const schedule = frameWindow?.requestAnimationFrame.bind(frameWindow) ?? window.requestAnimationFrame.bind(window);
+        schedule(() => schedule(() => setLoaded(true)));
+      }}
+      style={{
+        display: "block",
+        width: "100%",
+        height: "100%",
+        border: 0,
+        background: "#262626",
+        opacity: loaded ? 1 : 0,
+        transition: "opacity 100ms linear",
+      }}
+    />
+  </div>;
+}
+
 function renderLayer(n: Layer, parent = stage): React.ReactNode {
   if (n.kind === "text") {
     const segments = n.segments!;
@@ -39,17 +74,7 @@ function renderLayer(n: Layer, parent = stage): React.ReactNode {
     </div>;
   }
   if (n.kind === "gallery") return <div key={n.id} style={{position:"absolute",left:0,top:n.y/1117*100+"%",width:"100%"}}><PresentationGallery items={n.items!} /></div>;
-  if (n.kind === "iframe") {
-    return <div key={n.id} data-figma-node={n.id}
-      style={{...box(n, parent), overflow:"hidden", borderRadius:(n.radius||0)/1728*100+"cqw", boxShadow:mediaShadow(n), background:"#262626"}}>
-      <iframe
-        src={n.src}
-        title={n.name || "Interactive presentation demo"}
-        allow="clipboard-write"
-        style={{display:"block", width:"100%", height:"100%", border:0, background:"#262626"}}
-      />
-    </div>;
-  }
+  if (n.kind === "iframe") return <InteractiveDemo key={n.id} layer={n} parent={parent} />;
   if ((n.kind === "image" || n.kind === "video") && n.shadowClip) {
     const clip = n.shadowClip;
     const unclipped = { ...n, shadowClip: undefined };
