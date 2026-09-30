@@ -10,6 +10,9 @@ import islandPreload from "./island-preload.mjs";
 // opt out with `export const prerender = false` and render on Vercel.
 export default defineConfig({
   site: "https://www.maggiechan.io",
+  devToolbar: {
+    enabled: false,
+  },
   adapter: vercel(),
   integrations: [
     react(),

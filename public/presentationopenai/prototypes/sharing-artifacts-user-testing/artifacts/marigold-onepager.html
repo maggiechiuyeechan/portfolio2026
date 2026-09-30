@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marigold — The Year of Making</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;700;800&family=Source+Serif+4:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#faf6ef;--ink:#2c2416;--gold:#d4a012;--gold-soft:#f0d878;
+  --warm-grey:#a89a85;--card-bg:#f2ece2;--border:#e0d5c4;
+  --bg:var(--cream);--fg:var(--ink);
+}
+[data-theme="dark"]{
+  --bg:#1a1612;--fg:#ede6d8;--card-bg:#251f18;--border:#3a3228;
+  --warm-grey:#8a7e6d;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:'Bricolage Grotesque',sans-serif;background:var(--bg);color:var(--fg);
+  line-height:1.6;transition:background .4s,color .4s;overflow-x:hidden;
+}
+
+/* DUST MOTES */
+.dust-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+.page{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 2rem}
+
+/* HERO */
+.hero{padding:5rem 0 3rem;text-align:center;position:relative}
+.sun{
+  width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle,var(--gold-soft) 0%,var(--gold) 60%,transparent 70%);
+  margin:0 auto 2rem;opacity:.7;
+}
+.hero-eyebrow{
+  font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem;
+}
+.hero h1{
+  font-family:'Source Serif 4',serif;font-size:3.2rem;font-weight:700;
+  line-height:1.15;letter-spacing:-.02em;max-width:600px;margin:0 auto;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{
+  font-size:1rem;color:var(--warm-grey);margin-top:1rem;
+  font-weight:300;max-width:500px;margin-left:auto;margin-right:auto;
+}
+
+.divider{
+  width:60px;height:2px;background:var(--gold);margin:3rem auto;opacity:.5;
+}
+
+/* INTRO */
+.intro{
+  max-width:620px;margin:0 auto;text-align:center;
+  font-family:'Source Serif 4',serif;font-size:1.1rem;
+  line-height:1.8;color:var(--warm-grey);padding-bottom:3rem;
+}
+.intro strong{color:var(--fg)}
+
+/* STATS */
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);margin-bottom:3rem;
+}
+.stat{background:var(--bg);padding:2rem;text-align:center}
+.stat-value{
+  font-size:2.8rem;font-weight:800;line-height:1;color:var(--gold);
+}
+.stat-label{
+  font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--warm-grey);margin-top:.5rem;font-weight:700;
+}
+
+/* SECTION */
+.section{padding:2.5rem 0;border-top:1px solid var(--border)}
+.section-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.75rem;
+}
+.section h2{
+  font-family:'Source Serif 4',serif;font-size:1.8rem;font-weight:700;
+  margin-bottom:1rem;line-height:1.2;
+}
+
+/* FEATURE CARDS */
+.features{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.5rem}
+.feature{
+  background:var(--card-bg);border-radius:12px;padding:1.75rem;
+  border:1px solid var(--border);
+}
+.feature-icon{font-size:1.5rem;margin-bottom:.75rem}
+.feature h3{font-size:.95rem;font-weight:800;margin-bottom:.5rem}
+.feature p{font-size:.82rem;color:var(--warm-grey);line-height:1.6}
+
+/* QUOTE */
+.quote-block{
+  padding:2.5rem;background:var(--card-bg);border-radius:12px;
+  border-left:4px solid var(--gold);margin:2.5rem 0;
+}
+.quote-text{
+  font-family:'Source Serif 4',serif;font-style:italic;font-size:1.2rem;
+  line-height:1.6;margin-bottom:1rem;
+}
+.quote-attr{font-size:.75rem;color:var(--warm-grey);font-weight:700;letter-spacing:.05em}
+
+/* TIMELINE */
+.timeline-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem}
+.tl-item{text-align:center;padding:1.25rem}
+.tl-dot{
+  width:10px;height:10px;border-radius:50%;background:var(--gold);
+  margin:0 auto .75rem;
+}
+.tl-month{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.25rem}
+.tl-desc{font-size:.8rem;color:var(--warm-grey)}
+
+/* FOOTER */
+.footer{
+  text-align:center;padding:3rem 0 2rem;
+  font-size:.7rem;color:var(--warm-grey);letter-spacing:.1em;
+}
+.footer span{color:var(--gold)}
+
+/* TOGGLE */
+.toggle{
+  position:fixed;top:1rem;right:1rem;z-index:10000;
+  width:36px;height:36px;border-radius:50%;border:2px solid var(--gold);
+  background:var(--bg);color:var(--gold);font-weight:800;font-size:.75rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-family:'Bricolage Grotesque',sans-serif;transition:all .3s;
+}
+.toggle:hover{background:var(--gold);color:var(--bg)}
+</style>
+</head>
+<body>
+<button class="toggle" onclick="toggle()" title="Press T">T</button>
+<canvas class="dust-canvas" id="dust"></canvas>
+
+<div class="page">
+  <div class="hero">
+    <div class="sun"></div>
+    <div class="hero-eyebrow">Annual Review 2026</div>
+    <h1>The Year of <em>Making</em></h1>
+    <p class="hero-sub">How a small team shipped more by doing less, and why craft still matters.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="intro">
+    We started the year with a simple belief: <strong>fewer projects, deeper work, better outcomes.</strong> This is the story of what happened when we stopped chasing volume and started chasing resonance.
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value">12</div>
+      <div class="stat-label">Projects Shipped</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">93%</div>
+      <div class="stat-label">Team Satisfaction</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">2.4x</div>
+      <div class="stat-label">Revenue per Project</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">What We Built</div>
+    <h2>Four pillars, one philosophy</h2>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">✦</div>
+        <h3>Design System v3</h3>
+        <p>Unified tokens, components, and patterns across web and mobile. Reduced design-to-dev handoff time by 60%.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">◐</div>
+        <h3>Intelligence Layer</h3>
+        <p>ML-powered suggestions woven into every workflow. Not a chatbot, an invisible hand that makes the product smarter.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">△</div>
+        <h3>Platform APIs</h3>
+        <p>Public API coverage went from 40% to 95%. Third-party integrations tripled. Ecosystem is now self-sustaining.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">◇</div>
+        <h3>Craft Culture</h3>
+        <p>Weekly craft reviews, no-meeting Wednesdays, and a "ship it beautiful" standard. Morale is the highest it's been in three years.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <div class="quote-text">"We didn't need more people. We needed more focus. The moment we said no to half our roadmap, everything we said yes to got dramatically better."</div>
+    <div class="quote-attr">— VP of Product, Q2 All-Hands</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Looking Ahead</div>
+    <h2>The road from here</h2>
+    <div class="timeline-row">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">May</div>
+        <div class="tl-desc">Design System v3.1 with motion tokens</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">July</div>
+        <div class="tl-desc">Intelligence Layer GA rollout</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">Sept</div>
+        <div class="tl-desc">Platform marketplace launch</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">Nov</div>
+        <div class="tl-desc">Annual summit + open source release</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>❋</span> Marigold — Made with warmth
+  </div>
+</div>
+
+<script>
+function toggle(){document.documentElement.toggleAttribute('data-theme',document.documentElement.getAttribute('data-theme')!=='dark')}
+document.addEventListener('keydown',e=>{if(e.key.toLowerCase()==='t')toggle()});
+
+// Dust motes
+const c=document.getElementById('dust'),ctx=c.getContext('2d');
+let W,H,motes=[];
+function resize(){W=c.width=innerWidth;H=c.height=innerHeight}
+resize();window.addEventListener('resize',resize);
+for(let i=0;i<40;i++){
+  motes.push({x:Math.random()*2000,y:Math.random()*2000,r:Math.random()*2+0.5,
+    vx:(Math.random()-.5)*.15,vy:Math.random()*-.1-.02,
+    o:Math.random()*.3+.05,phase:Math.random()*Math.PI*2});
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  const col=isDark?'235,220,190':'180,150,100';
+  const t=Date.now()*.001;
+  motes.forEach(m=>{
+    m.x+=m.vx;m.y+=m.vy;
+    if(m.x<0)m.x=W;if(m.x>W)m.x=0;if(m.y<0)m.y=H;if(m.y>H)m.y=0;
+    const flicker=Math.sin(t+m.phase)*.15+.85;
+    ctx.beginPath();ctx.arc(m.x,m.y,m.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${col},${m.o*flicker})`;ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>

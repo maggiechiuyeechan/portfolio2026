@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import OpenAIPresentation from "../components/presentationopenai/OpenAIPresentation";
+import "../components/presentationopenai/OpenAIPresentation.css";
+
+export const prerender = true;
+---
+
+<BaseLayout title="OpenAI — Maggie Chan" description="Maggie Chan's OpenAI portfolio presentation" noindex>
+  <OpenAIPresentation client:load />
+</BaseLayout>
+
+<style is:global>
+  html:has(.oai-presentation), html:has(.oai-presentation) body { overflow: hidden; }
+</style>

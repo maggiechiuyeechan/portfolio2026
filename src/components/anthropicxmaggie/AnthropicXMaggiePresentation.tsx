@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
-import PresentationGallery from "./PresentationGallery";
+import PresentationGallery, { type PresentationGalleryItem } from "./PresentationGallery";
 import experienceGalleries from "./experience-galleries.json";
 import NativeSlide from "./NativeSlide";
 import PageNavigator from "./PageNavigator";
@@ -40,11 +40,11 @@ const slides: Slide[] = [
   { number: 3.1, name: "ClickUp Editor Toolbar Exploration", kind: "figma-frame", imageSrc: "/anthropicxmaggie/slides/slide-after-03.png", previewSrc: "/anthropicxmaggie/slides/slide-after-03-preview.png" },
   { number: 4, name: "Section Divider", kind: "divider" },
   { number: 4.1, name: "ClickUp Overview", kind: "overview", previewNumber: 3, videoSrc: "/anthropicxmaggie/video/slide-05-clickup.mp4" },
-  { number: 5.1, name: "Why Anthropic?", kind: "why-anthropic" },
   { number: 6, name: "Nuffsaid Experience", kind: "gallery" },
   { number: 7, name: "Uber Experience", kind: "gallery" },
   { number: 7.1, name: "Headspace & Bloomberg Experience", kind: "combined-study" },
   { number: 11, name: "Design Principles", kind: "placeholder" },
+  { number: 5.1, name: "Why Anthropic?", kind: "why-anthropic" },
   { number: 12, name: "Project 1: ClickUp Multi-Player Artifacts", kind: "overview", previewNumber: 3, imageSrc: "/anthropicxmaggie/slides/slide-12-project-artifacts.png" },
   ...[
     [13, "Project 1 Artifact Direction"], [14, "Project 1 V1 Scope"],
@@ -123,7 +123,7 @@ const responsibilityCards = [
 
 function GallerySlide({ title }: { title: string }) {
   const copy = experienceCopy[title];
-  const galleryItems = experienceGalleries[title as keyof typeof experienceGalleries];
+  const galleryItems = experienceGalleries[title as keyof typeof experienceGalleries] as PresentationGalleryItem[];
 
   return (
     <div className="axm-gallery-slide">
@@ -179,7 +179,7 @@ function ClickUpDesignSystemCaption() {
 
 function SlideContent({ slide }: { slide: Slide }) {
   if (slide.kind === "about") {
-    return <div className="axm-about"><div className="axm-about-photo"><img src="/anthropicxmaggie/maggie.png" alt="Maggie Chan" /></div><h1>Maggie Chan</h1><p>Currently: VP of Design and Research at ClickUp<br />Lives in Bay Area (San Ramon)<br />From Toronto, ON<br /><br /><span>Work Experience · 10 minutes<br />Project 1 · 10 minutes<br />Project 2 · 10 minutes</span></p></div>;
+    return <div className="axm-about"><div className="axm-about-photo"><img src="/anthropicxmaggie/maggie.png" alt="Maggie Chan" /></div><h1>Maggie Chan</h1><p>Latest: VP of Design and Research at ClickUp<br />Lives in Bay Area (San Ramon)<br />From Toronto, ON<br /><br /><span>Work Experience · 10 minutes<br />Project 1 · 10 minutes<br />Project 2 · 10 minutes</span></p></div>;
   }
   if (slide.kind === "career") return <CareerSequence />;
   if (slide.kind === "why-anthropic") {
@@ -293,12 +293,12 @@ export default function AnthropicXMaggiePresentation() {
         links.push(link);
       });
     let idleId: number | undefined;
-    let timeoutId: number | undefined;
+    let timeoutId: ReturnType<typeof globalThis.setTimeout> | undefined;
     if ("requestIdleCallback" in window) idleId = window.requestIdleCallback(preload, { timeout: 1500 });
-    else timeoutId = window.setTimeout(preload, 500);
+    else timeoutId = globalThis.setTimeout(preload, 500);
     return () => {
       if (idleId !== undefined) window.cancelIdleCallback(idleId);
-      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      if (timeoutId !== undefined) globalThis.clearTimeout(timeoutId);
       links.forEach((link) => link.remove());
     };
   }, []);

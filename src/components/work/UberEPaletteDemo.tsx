@@ -16,7 +16,7 @@ function sourceSet(format: "avif" | "webp") {
 const WARM_MARGIN = "800px";
 const PLAY_MARGIN = "100px";
 
-export default function UberEPaletteDemo() {
+export default function UberEPaletteDemo({ autoPlay = false }: { autoPlay?: boolean } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -29,7 +29,7 @@ export default function UberEPaletteDemo() {
     let visible = false;
 
     const syncPlayback = () => {
-      if (visible && !reducedMotion.matches) {
+      if (visible && (autoPlay || !reducedMotion.matches)) {
         void video.play().catch(() => undefined);
       } else {
         video.pause();
@@ -46,7 +46,7 @@ export default function UberEPaletteDemo() {
      * Reduced-motion visitors never play the loop, so they never pay for it.
      */
     const warm = () => {
-      if (reducedMotion.matches) return;
+      if (!autoPlay && reducedMotion.matches) return;
       video.preload = "auto";
       video.load();
     };
@@ -68,8 +68,14 @@ export default function UberEPaletteDemo() {
       { rootMargin: PLAY_MARGIN },
     );
 
-    warmObserver.observe(root);
-    observer.observe(root);
+    if (autoPlay) {
+      visible = true;
+      warm();
+      syncPlayback();
+    } else {
+      warmObserver.observe(root);
+      observer.observe(root);
+    }
     reducedMotion.addEventListener("change", syncPlayback);
     video.addEventListener("loadedmetadata", syncPlayback);
     return () => {
@@ -79,7 +85,7 @@ export default function UberEPaletteDemo() {
       video.removeEventListener("loadedmetadata", syncPlayback);
       video.pause();
     };
-  }, []);
+  }, [autoPlay]);
 
   return (
     // The wrapper carries the size container: the frame cannot query itself,
@@ -126,7 +132,8 @@ export default function UberEPaletteDemo() {
               muted
               loop
               playsInline
-              preload="none"
+              autoPlay={autoPlay}
+              preload={autoPlay ? "auto" : "none"}
               aria-hidden="true"
             >
               <source

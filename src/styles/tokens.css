@@ -138,6 +138,7 @@
   --presentation-gallery-caption-line-height: 2;
   --presentation-gallery-timer-duration: 3s;
   --presentation-arrow-icon-size: 16px;
+  --presentation-company-logo-mark-ratio: 52%;
   --presentation-arrow-icon-optical-offset-x: 0.75px;
   --presentation-arrow-icon-optical-offset-y: 0.25px;
   --presentation-arrow-shadow: 0 0 1px 0 rgb(0 0 0 / 26.67%), 0 1px 2px 0 rgb(0 0 0 / 5%);
