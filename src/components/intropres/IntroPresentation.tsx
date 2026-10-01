@@ -221,8 +221,8 @@ function SlideContent({ slide }: { slide: Slide }) {
   if (slide.kind === "project-overview") {
     return (
       <div className="intro-overview">
-        <div className="intro-green-panel">
-          <video className="intro-overview-video" src={slide.videoSrc} aria-label="SuperAgents as Teammates" autoPlay loop muted playsInline preload="auto" />
+        <div className="intro-green-panel intro-green-panel--slide-27">
+          <video className="intro-overview-video intro-overview-video--slide-27" src={slide.videoSrc} aria-label="SuperAgents as Teammates" autoPlay loop muted playsInline preload="auto" />
         </div>
         <p className="intro-overview-headline"><span>SuperAgents as Teammates</span></p>
       </div>
