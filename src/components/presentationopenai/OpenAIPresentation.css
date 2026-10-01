@@ -148,6 +148,15 @@
 .oai-combined-study-caption p { margin: 0; }
 .oai-combined-study-title { color: var(--presentation-color-content-default); }
 .oai-combined-study-subtitle { color: var(--presentation-color-secondary); }
+.oai-use-cases { position: absolute; inset: 0; background: var(--color-background-main); font-family: var(--presentation-font-family); color: var(--presentation-color-content-default); }
+.oai-use-cases h1 { position: absolute; left: calc(64 / 1728 * 100%); top: calc(64 / 1117 * 100%); width: calc(382 / 1728 * 100%); margin: 0; font-size: var(--presentation-font-lead); line-height: 1.35; font-weight: 510; font-variation-settings: "wght" 510, "wdth" 100; }
+.oai-use-cases-grid { position: absolute; inset: 0; }
+.oai-use-case-card { position: absolute; margin: 0; overflow: hidden; border-radius: var(--presentation-radius-use-case); box-shadow: var(--elevation-border-1); background: var(--color-background-main); }
+.oai-use-case-card:nth-child(1) { left: calc(64 / 1728 * 100%); top: calc(144 / 1117 * 100%); width: calc(790 / 1728 * 100%); height: calc(445 / 1117 * 100%); }
+.oai-use-case-card:nth-child(2) { left: calc(873 / 1728 * 100%); top: calc(144 / 1117 * 100%); width: calc(791 / 1728 * 100%); height: calc(445 / 1117 * 100%); }
+.oai-use-case-card:nth-child(3) { left: calc(64 / 1728 * 100%); top: calc(608 / 1117 * 100%); width: calc(790 / 1728 * 100%); height: calc(445 / 1117 * 100%); }
+.oai-use-case-card:nth-child(4) { left: calc(874 / 1728 * 100%); top: calc(609 / 1117 * 100%); width: calc(790 / 1728 * 100%); height: calc(444 / 1117 * 100%); }
+.oai-use-case-card img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 0 !important; }
 .oai-native-image[data-figma-node="269:148661"] { border-radius: 0 var(--presentation-radius-image) var(--presentation-radius-image) 0 !important; }
 .oai-native-video-crop[data-figma-node="269:149661"] .oai-native-video { top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.92); transform-origin: center; }
 .oai-native-video-crop[data-figma-node="269:149662-video-2"] .oai-native-video { top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) scale(1.53065); transform-origin: center; }

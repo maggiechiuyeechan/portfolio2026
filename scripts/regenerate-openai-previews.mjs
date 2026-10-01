@@ -1,7 +1,7 @@
 import { chromium } from "playwright";
 
 const base = process.argv[2] ?? "http://127.0.0.1:4323";
-const total = 48;
+const total = 49;
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1728, height: 1117 } });
 
@@ -21,7 +21,7 @@ for (let index = 0; index < total; index += 1) {
     pageNumber,
   );
   await page.waitForTimeout(index === 0 ? 600 : 460);
-  if (index === 40) movedDocsLabel = await page.locator(".oai-slide").getAttribute("aria-label") ?? "";
+  if (index === 41) movedDocsLabel = await page.locator(".oai-slide").getAttribute("aria-label") ?? "";
   await page.locator(".oai-stage").screenshot({
     path: `public/presentationopenai/previews/slide-${pageNumber}.png`,
     animations: "disabled",
@@ -31,8 +31,8 @@ for (let index = 0; index < total; index += 1) {
 
 console.log(JSON.stringify({
   total,
-  appendix: 39,
-  movedDocsSlide: 41,
+  appendix: 40,
+  movedDocsSlide: 42,
   movedDocsLabel,
 }));
 

@@ -166,6 +166,7 @@
   --presentation-font-caption: 11px;
   --presentation-radius-card: 16px;
   --presentation-radius-image: var(--radius-3);
+  --presentation-radius-use-case: var(--radius-2);
   --presentation-color-survey-panel: #b9c0b8;
 
   /* ------ Layout (Figma grid annotations) ------ */

@@ -31,7 +31,7 @@ const experienceCopy: Record<string, ExperienceCopy> = {
   },
 };
 
-type Slide = { number: number; name: string; kind: "about" | "career" | "why-openai" | "overview" | "figma-frame" | "project-overview" | "divider" | "appendix" | "responsibilities" | "gallery" | "combined-study" | "placeholder"; previewNumber?: number; previewSrc?: string; videoSrc?: string; imageSrc?: string };
+type Slide = { number: number; name: string; kind: "about" | "career" | "why-openai" | "overview" | "figma-frame" | "project-overview" | "divider" | "appendix" | "responsibilities" | "gallery" | "combined-study" | "use-cases" | "placeholder"; previewNumber?: number; previewSrc?: string; videoSrc?: string; imageSrc?: string };
 
 const slides: Slide[] = [
   { number: 1, name: "About Maggie", kind: "about" },
@@ -50,7 +50,7 @@ const slides: Slide[] = [
     [13, "Project 1 Artifact Direction"], [14, "Project 1 V1 Scope"],
     [16, "Project 1 Annual Review"],
     [18, "Project 1 EPD Collaboration"], [19, "Project 1 Agentic Testing"], [20, "Project 1 Publishing Test"],
-    [22, "Project 1 Internal Launch"], [23, "Project 1 UX Prototyping"],
+    [22, "Project 1 Internal Launch"], [22.1, "Project 1 Use Cases"], [23, "Project 1 UX Prototyping"],
     [23.1, "Project 1 UX Prototyping · Video 2"],
     [24, "Project 1 Marketing Prototyping"], [25, "Project 1 Coding Contributions"],
     [27, "Project 2 Super agents as teammates Overview"], [28, "Project 2 Agent Direction"],
@@ -69,7 +69,7 @@ const slides: Slide[] = [
   ].map(([number, name]) => ({
     number: number as number,
     name: name as string,
-    kind: number === 27 ? "project-overview" as const : number === 42.1 ? "appendix" as const : number === 3.1 ? "figma-frame" as const : number === 9 || number === 10 ? "gallery" as const : number === 5 ? "responsibilities" as const : "placeholder" as const,
+    kind: number === 27 ? "project-overview" as const : number === 42.1 ? "appendix" as const : number === 22.1 ? "use-cases" as const : number === 3.1 ? "figma-frame" as const : number === 9 || number === 10 ? "gallery" as const : number === 5 ? "responsibilities" as const : "placeholder" as const,
     previewNumber: number === 23.1 ? 23 : number === 34.1 ? 34 : undefined,
     previewSrc: number === 3.1 ? "/presentationopenai/slides/slide-after-03-preview.png" : undefined,
     videoSrc: number === 27 ? "/presentationopenai/video/super-agents-demo.mp4" : undefined,
@@ -154,6 +154,28 @@ function CombinedStudySlide() {
   </div>;
 }
 
+const useCaseImages = [
+  { src: "/presentationopenai/use-cases/cadence-smart-scheduling.png", alt: "Cadence smart scheduling dashboard" },
+  { src: "/presentationopenai/use-cases/q3-revenue-pipeline.png", alt: "Q3 revenue pipeline dashboard" },
+  { src: "/presentationopenai/use-cases/halyard-executive-overview.png", alt: "Halyard executive overview dashboard" },
+  { src: "/presentationopenai/use-cases/the-forge-plot-engine.png", alt: "The Forge plot engine dashboard" },
+] as const;
+
+function UseCasesSlide() {
+  return (
+    <div className="oai-use-cases" data-node-id="370:35455">
+      <h1 data-node-id="370:35457">Use cases</h1>
+      <div className="oai-use-cases-grid">
+        {useCaseImages.map(({ src, alt }, index) => (
+          <figure className="oai-use-case-card" key={src} data-card-index={index + 1}>
+            <img src={src} alt={alt} />
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ClickUpOverviewCaption({ title, projectSubtitle = false }: { title?: string; projectSubtitle?: boolean }) {
   return (
     <>
@@ -189,7 +211,7 @@ function SlideContent({ slide }: { slide: Slide }) {
     return <div className="oai-why-openai" data-node-id="357:143638">
       <div className="oai-why-openai-logo" data-node-id="357:143660"><img src="/presentationopenai/slides/why-openai-logo.svg" alt="OpenAI" /></div>
       <div className="oai-why-openai-copy" data-node-id="357:143656">
-        <p><strong>Why OpenAI?</strong><br /><span>Building broadly useful AI, a mission I can get behind<br />Massive change<br />Closer to model development, not just a layer on top<br />Builder first role<br />ChatGPT is something I use</span></p>
+        <p><strong>Why OpenAI?</strong><br /><span>Building beneficial AI<br />Closer to model development, not just a layer on top<br />Working in a talent dense environment<br />ChatGPT is something I use</span></p>
       </div>
     </div>;
   }
@@ -266,6 +288,7 @@ function SlideContent({ slide }: { slide: Slide }) {
   }
   if (slide.kind === "gallery") return <GallerySlide title={slide.name} />;
   if (slide.kind === "combined-study") return <CombinedStudySlide />;
+  if (slide.kind === "use-cases") return <UseCasesSlide />;
   return <NativeSlide number={slide.number} />;
 }
 

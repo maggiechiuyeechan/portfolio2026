@@ -3094,11 +3094,11 @@
         "w": 1191,
         "h": 60,
         "kind": "text",
-        "text": "Led our Growth Designer on creating AI credit usage dashboards. She took the lead here while I guided design reviews - information architecture, content, testing methods, consistency with rest of app.",
+        "text": "Led our Growth Designer on creating AI credit usage dashboards. She took the lead here while I guided design reviews - information architecture, content, testing methods, consistency with rest of app. We wanted to contextualize credit usage with value generated, or time saved. We created time benchmark formulas associated with tasks created.",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Led our Growth Designer on creating AI credit usage dashboards. She took the lead here while I guided design reviews - information architecture, content, testing methods, consistency with rest of app.",
+            "text": "Led our Growth Designer on creating AI credit usage dashboards. She took the lead here while I guided design reviews - information architecture, content, testing methods, consistency with rest of app. We wanted to contextualize credit usage with value generated, or time saved. We created time benchmark formulas associated with tasks created.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -4827,11 +4827,11 @@
         "w": 356,
         "h": 150,
         "kind": "text",
-        "text": "One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.",
+        "text": "• One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.\n• Investigate AHA moment for those already using agents",
         "align": "LEFT",
         "segments": [
           {
-            "text": "One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.",
+            "text": "• One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.\n• Investigate AHA moment for those already using agents",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -4902,7 +4902,7 @@
         "w": 1600,
         "h": 869,
         "kind": "shape",
-        "fill": "#655d41",
+        "fill": "#dedbd7",
         "radius": 16,
         "borderElevation": 1
       },
@@ -4914,11 +4914,11 @@
         "w": 382,
         "h": 46,
         "kind": "text",
-        "text": "Launched internally",
+        "text": "Launched last week",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Launched internally",
+            "text": "Launched last week",
             "size": 34,
             "weight": 510,
             "font": "SF Pro",
@@ -4948,7 +4948,7 @@
         "w": 1306,
         "h": 819,
         "kind": "video",
-        "src": "/presentationopenai/video/project-1-agentic-testing-figma.mp4",
+        "src": "/presentationopenai/video/slide-19-artifact.mp4",
         "fit": "fill",
         "cropTransform": [
           [
@@ -4966,7 +4966,7 @@
         "loop": true,
         "muted": true,
         "radius": 16,
-        "playbackRate": 2
+        "playbackRate": 2.5
       },
       {
         "id": "269:149653",
@@ -4976,11 +4976,11 @@
         "w": 991,
         "h": 84,
         "kind": "text",
-        "text": "Internally testing now. Working on an alternative layout where AI is side by side with the artifact, very rough form.",
+        "text": "Tested internally for ~3 weeks launched v1.",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Internally testing now. Working on an alternative layout where AI is side by side with the artifact, very rough form.",
+            "text": "Tested internally for ~3 weeks launched v1.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
