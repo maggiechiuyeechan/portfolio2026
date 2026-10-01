@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import IntroPresentation from "../components/intropres/IntroPresentation";
+import "../components/intropres/IntroPresentation.css";
+
+export const prerender = true;
+---
+
+<BaseLayout title="Intro — Maggie Chan" description="Maggie Chan's introduction portfolio presentation" noindex>
+  <IntroPresentation client:load />
+</BaseLayout>
+
+<style is:global>
+  html:has(.intro-presentation), html:has(.intro-presentation) body { overflow: hidden; }
+</style>
