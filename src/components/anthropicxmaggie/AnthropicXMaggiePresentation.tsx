@@ -48,7 +48,7 @@ const slides: Slide[] = [
   { number: 12, name: "Project 1: ClickUp Multi-Player Artifacts", kind: "overview", previewNumber: 3, imageSrc: "/anthropicxmaggie/slides/slide-12-project-artifacts.png" },
   ...[
     [13, "Project 1 Artifact Direction"], [14, "Project 1 V1 Scope"],
-    [16, "Project 1 Annual Review"], [17, "Project 1 Design Workflow"],
+    [16, "Project 1 Annual Review"],
     [18, "Project 1 EPD Collaboration"], [19, "Project 1 Agentic Testing"], [20, "Project 1 Publishing Test"],
     [22, "Project 1 Internal Launch"], [23, "Project 1 UX Prototyping"],
     [23.1, "Project 1 UX Prototyping · Video 2"],
@@ -62,6 +62,7 @@ const slides: Slide[] = [
     [42.1, "Appendix"],
     [9, "Headspace Experience"], [10, "User Research"],
     [15, "Project 1 Adapting an Existing UX and Making Improvements Along the Way"],
+    [17, "Project 1 Design Workflow"],
     [26, "Project 1 AI Design Lessons"],
     [5, "Leadership Responsibilities"],
     [21, "Project 1 Generated Content"], [29, "Project 2 V1 Learnings"], [35, "Project 2 Chat Setup"],
