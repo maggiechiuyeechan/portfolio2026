@@ -8,7 +8,7 @@ if (!Number.isInteger(slideNumber) || slideNumber < 1) {
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1728, height: 1117 } });
-await page.goto(`${base}/intropres`, { waitUntil: "networkidle" });
+await page.goto(`${base}/introsamsara`, { waitUntil: "networkidle" });
 await page.evaluate(() => document.fonts.ready);
 await page.waitForFunction(() => getComputedStyle(document.querySelector(".intro-stage-viewport")).visibility === "visible");
 

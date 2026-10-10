@@ -435,7 +435,7 @@
             "w": 585,
             "h": 600,
             "kind": "text",
-            "text": "Discovery thru Dogfooding: We dogfood our product daily as a company. We noticed that people were organically creating HTML artifacts with our ClickUp AI.   Ongoing customer need for customized dashboards and reporting: via GTM teams, we knew that customers have always wanted custom dashboards, and custom project management.  Competitive pressures: This need was not only seen internally but also externally via competitors such as Monday.com as they release vibe coded interface functionality.",
+            "text": "Discovery thru Dogfooding: We dogfood our product daily as a company. We noticed that people were organically creating HTML artifacts with our ClickUp AI. \u2028\u2028Ongoing customer need for customized dashboards and reporting: via GTM teams, we knew that customers have always wanted custom dashboards, and custom project management.\u2028\u2028Competitive pressures: This need was not only seen internally but also externally via competitors such as Monday.com as they release vibe coded interface functionality.",
             "align": "LEFT",
             "segments": [
               {
@@ -459,7 +459,7 @@
                 "style": 3
               },
               {
-                "text": "We dogfood our product daily as a company. We noticed that people were organically creating HTML artifacts with our ClickUp AI.   ",
+                "text": "We dogfood our product daily as a company. We noticed that people were organically creating HTML artifacts with our ClickUp AI. \u2028\u2028",
                 "size": 20,
                 "weight": 400,
                 "font": "SF Pro",
@@ -499,7 +499,7 @@
                 "style": 3
               },
               {
-                "text": ": via GTM teams, we knew that customers have always wanted custom dashboards, and custom project management.  ",
+                "text": ": via GTM teams, we knew that customers have always wanted custom dashboards, and custom project management.\u2028\u2028",
                 "size": 20,
                 "weight": 400,
                 "font": "SF Pro",
@@ -693,11 +693,11 @@
             "w": 568,
             "h": 390,
             "kind": "text",
-            "text": "Existing “agents” was hard to use and too closely tied to automations legacy UI.\n\nFunctionalities missing: Permissions were limited to lists not able to operate throughout the whole Workspace. No concept of connectors, multiple triggers, we now had chat.\n\nTime to start from scratch and reimagine Agents and Teammates: the technology had progressed to the point we could really transform users workflows and interact with agents like coworkers in their workspace.",
+            "text": "Existing \u201cagents\u201d was hard to use and too closely tied to automations legacy UI.\n\nFunctionalities missing: Permissions were limited to lists not able to operate throughout the whole Workspace. No concept of connectors, multiple triggers, we now had chat.\n\nTime to start from scratch and reimagine Agents and Teammates: the technology had progressed to the point we could really transform users workflows and interact with agents like coworkers in their workspace.",
             "align": "LEFT",
             "segments": [
               {
-                "text": "Existing “agents” was hard to use and too closely tied to automations legacy UI.",
+                "text": "Existing \u201cagents\u201d was hard to use and too closely tied to automations legacy UI.",
                 "size": 20,
                 "weight": 400,
                 "font": "SF Pro",
@@ -860,7 +860,7 @@
         "w": 585,
         "h": 720,
         "kind": "text",
-        "text": "Builder is Unintuitive: The builder design remains unintuitive, especially for new users. Core steps are often missed or misconfigured, and the added complexity of Agents makes this worse. (Not new, we see this when we test Automations)\n\nEntry Point Is Confusing: Confusion between Automate and Agents—those starting in Automations struggled more and rated the experience lower, highlighting a disconnect in navigation.\n\nAgent Setup Lacks Clarity: Users struggled with setup, always overlooked Add Tools, and were unsure what was needed from them in each section. The dense layout led to skipped steps and setup errors. We asked them what was confusing and these were some of their responses—watch clip.\n\nOverall, this tested pretty poorly—users consistently rated Ease of Use and Confidence pretty low, even after being walked through how to set things up.   I think the known challenges we have in the Automations builder greatly contribute to this, along with entry point confusion and an overwhelming amount of steps/info.\n",
+        "text": "Builder is Unintuitive: The builder design remains unintuitive, especially for new users. Core steps are often missed or misconfigured, and the added complexity of Agents makes this worse. (Not new, we see this when we test Automations)\n\nEntry Point Is Confusing: Confusion between Automate and Agents\u2014those starting in Automations struggled more and rated the experience lower, highlighting a disconnect in navigation.\n\nAgent Setup Lacks Clarity: Users struggled with setup, always overlooked Add Tools, and were unsure what was needed from them in each section. The dense layout led to skipped steps and setup errors. We asked them what was confusing and these were some of their responses\u2014watch clip.\n\nOverall, this tested pretty poorly\u2014users consistently rated Ease of Use and Confidence pretty low, even after being walked through how to set things up. \u2028\u2028I think the known challenges we have in the Automations builder greatly contribute to this, along with entry point confusion and an overwhelming amount of steps/info.\n",
         "align": "LEFT",
         "segments": [
           {
@@ -964,7 +964,7 @@
             "style": 5
           },
           {
-            "text": "—those starting in Automations struggled more and rated the experience lower, highlighting a disconnect in navigation.\n\n",
+            "text": "\u2014those starting in Automations struggled more and rated the experience lower, highlighting a disconnect in navigation.\n\n",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -1084,7 +1084,7 @@
             "style": 5
           },
           {
-            "text": ". The dense layout led to skipped steps and setup errors. We asked them what was confusing and these were some of their responses—watch clip.\n\n",
+            "text": ". The dense layout led to skipped steps and setup errors. We asked them what was confusing and these were some of their responses\u2014watch clip.\n\n",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -1124,7 +1124,7 @@
             "style": 3
           },
           {
-            "text": "—users consistently rated Ease of Use and Confidence pretty low, even after being walked through how to set things up.   I think the known challenges we have in the Automations builder greatly contribute to this, along with entry point confusion and an overwhelming amount of steps/info.\n",
+            "text": "\u2014users consistently rated Ease of Use and Confidence pretty low, even after being walked through how to set things up. \u2028\u2028I think the known challenges we have in the Automations builder greatly contribute to this, along with entry point confusion and an overwhelming amount of steps/info.\n",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -1154,11 +1154,11 @@
         "w": 585,
         "h": 60,
         "kind": "text",
-        "text": "TL’DR: Reusing the automations UI was confusing, ppl did not know what an agent was vs an automation. Too many steps.",
+        "text": "TL\u2019DR: Reusing the automations UI was confusing, ppl did not know what an agent was vs an automation. Too many steps.",
         "align": "LEFT",
         "segments": [
           {
-            "text": "TL’DR: Reusing the automations UI was confusing, ppl did not know what an agent was vs an automation. Too many steps.",
+            "text": "TL\u2019DR: Reusing the automations UI was confusing, ppl did not know what an agent was vs an automation. Too many steps.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -1297,11 +1297,11 @@
         "w": 991,
         "h": 120,
         "kind": "text",
-        "text": "Working with the CEO and a designer on my team, we brainstormed ideas for how we’d want to improve discoverability, setup, agent management and chatting. Ideas we brainstormed were: Agent “Hub” for sharing agents, chatting to setup, having an agent profile, chatting with the agent directly since that was an existing ux pattern we had for users. ",
+        "text": "Working with the CEO and a designer on my team, we brainstormed ideas for how we\u2019d want to improve discoverability, setup, agent management and chatting.\u2028Ideas we brainstormed were: Agent \u201cHub\u201d for sharing agents, chatting to setup, having an agent profile, chatting with the agent directly since that was an existing ux pattern we had for users. ",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Working with the CEO and a designer on my team, we brainstormed ideas for how we’d want to improve discoverability, setup, agent management and chatting. Ideas we brainstormed were: Agent “Hub” for sharing agents, chatting to setup, having an agent profile, chatting with the agent directly since that was an existing ux pattern we had for users. ",
+            "text": "Working with the CEO and a designer on my team, we brainstormed ideas for how we\u2019d want to improve discoverability, setup, agent management and chatting.\u2028Ideas we brainstormed were: Agent \u201cHub\u201d for sharing agents, chatting to setup, having an agent profile, chatting with the agent directly since that was an existing ux pattern we had for users. ",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -1492,11 +1492,11 @@
         "w": 991,
         "h": 180,
         "kind": "text",
-        "text": "How do agents work with humans in a chat, how do we indicate that it’s an agent, “gamify” the agent runs. How do non-tech savvy understand what agents are - providing clear copywriting and titles.",
+        "text": "How do agents work with humans in a chat, how do we indicate that it\u2019s an agent, \u201cgamify\u201d the agent runs. How do non-tech savvy understand what agents are - providing clear copywriting and titles.",
         "align": "LEFT",
         "segments": [
           {
-            "text": "How do agents work with humans in a chat, how do we indicate that it’s an agent, “gamify” the agent runs. How do non-tech savvy understand what agents are - providing clear copywriting and titles.",
+            "text": "How do agents work with humans in a chat, how do we indicate that it\u2019s an agent, \u201cgamify\u201d the agent runs. How do non-tech savvy understand what agents are - providing clear copywriting and titles.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -1776,11 +1776,11 @@
         "w": 585,
         "h": 480,
         "kind": "text",
-        "text": "Priority was set by our CEO to start  Goal: Minimum Lovable Product, quick releases that are better than what’s current.  I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.\nMulti-player editing\nUsing existing components\nSimple versioning\nSimple permissioning (private, shareable to workspace or teams & individuals, public)",
+        "text": "Priority was set by our CEO to start\u2028\u2028Goal: Minimum Lovable Product, quick releases that are better than what\u2019s current.\u2028\u2028I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.\nMulti-player editing\nUsing existing components\nSimple versioning\nSimple permissioning (private, shareable to workspace or teams & individuals, public)",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Priority was set by our CEO to start  Goal: Minimum Lovable Product, quick releases that are better than what’s current.  I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.",
+            "text": "Priority was set by our CEO to start\u2028\u2028Goal: Minimum Lovable Product, quick releases that are better than what\u2019s current.\u2028\u2028I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -2079,11 +2079,11 @@
         "w": 991,
         "h": 168,
         "kind": "text",
-        "text": "Within the PM/Eng group, it’s become much more collaborative, in fact working with PM - we remix, branch and merge our changes into the prototype directly after we’ve discussed the changes we want to make.",
+        "text": "Within the PM/Eng group, it\u2019s become much more collaborative, in fact working with PM - we remix, branch and merge our changes into the prototype directly after we\u2019ve discussed the changes we want to make.",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Within the PM/Eng group, it’s become much more collaborative, in fact working with PM - we remix, branch and merge our changes into the prototype directly after we’ve discussed the changes we want to make.",
+            "text": "Within the PM/Eng group, it\u2019s become much more collaborative, in fact working with PM - we remix, branch and merge our changes into the prototype directly after we\u2019ve discussed the changes we want to make.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -2204,9 +2204,9 @@
         "id": "359:143670",
         "name": "Background panel",
         "x": 64,
-        "y": 233,
+        "y": 64,
         "w": 1600,
-        "h": 820,
+        "h": 720,
         "kind": "shape",
         "fill": "#dedbd7",
         "radius": 16
@@ -2215,96 +2215,148 @@
         "id": "269:148707",
         "name": "",
         "x": 64,
-        "y": 64,
-        "w": 585,
+        "y": 835,
+        "w": 1600,
         "h": 92,
         "kind": "text",
-        "text": "Internal reviews & using agents to help launch test quickly",
-        "align": "LEFT",
-        "segments": [{
-          "text": "Internal reviews & using agents to help launch test quickly",
-          "size": 34,
-          "weight": 510,
-          "font": "SF Pro",
-          "line": { "unit": "PERCENT", "value": 135.0000023841858 },
-          "spacing": { "unit": "PERCENT", "value": 0 },
-          "color": "#000000",
-          "decoration": "NONE",
-          "list": { "type": "NONE" },
-          "style": 0
-        }],
+        "text": "Stood up Agentic research system, via agents, skills, MCPs reducing time to simple research test protocol creation, launch, analysis to hours instead of +weeks. (Usability testing and surveys)",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "Stood up Agentic research system, via agents, skills, MCPs reducing time to simple research test protocol creation, launch, analysis to hours instead of +weeks. (Usability testing and surveys)",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
         "textCase": "ORIGINAL"
       },
       {
         "id": "359:143673",
         "name": "CleanShot 2026-09-08 at 20.39.58@2x 1",
         "x": 876,
-        "y": 393,
+        "y": 164,
         "w": 541,
         "h": 525.119,
         "kind": "image",
         "src": "/presentation-shared/slide-19-test-results.png",
         "radius": 12.705,
-        "cropTransform": [[0.513505, 0, 0.486495], [0, 0.9375, 0.0625]]
+        "cropTransform": [
+          [
+            0.513505,
+            0,
+            0.486495
+          ],
+          [
+            0,
+            0.9375,
+            0.0625
+          ]
+        ]
       },
       {
         "id": "359:143674",
         "name": "CleanShot 2026-09-18 at 13.49.09@2x 1",
         "x": 303,
-        "y": 393,
+        "y": 164,
         "w": 506,
         "h": 525,
         "kind": "image",
         "src": "/presentation-shared/slide-19-test-plan.png",
         "radius": 12,
-        "cropTransform": [[0.864976, 0, 0.0615], [0, 0.966277, 0.00029]]
+        "cropTransform": [
+          [
+            0.864976,
+            0,
+            0.0615
+          ],
+          [
+            0,
+            0.966277,
+            0.00029
+          ]
+        ]
       },
       {
         "id": "269:148711",
         "name": "",
         "x": 303,
-        "y": 930,
+        "y": 701,
         "w": 506,
         "h": 22,
         "kind": "text",
         "text": "Test plan drafted w agent. approved by me",
         "align": "CENTER",
-        "segments": [{
-          "text": "Test plan drafted w agent. approved by me",
-          "size": 11,
-          "weight": 400,
-          "font": "Geist Mono",
-          "line": { "unit": "PERCENT", "value": 200 },
-          "spacing": { "unit": "PERCENT", "value": 20 },
-          "color": "#000000",
-          "decoration": "NONE",
-          "list": { "type": "NONE" },
-          "style": 4
-        }],
+        "segments": [
+          {
+            "text": "Test plan drafted w agent. approved by me",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 4
+          }
+        ],
         "textCase": "UPPER"
       },
       {
         "id": "269:148712",
         "name": "",
         "x": 876,
-        "y": 930,
+        "y": 701,
         "w": 541,
         "h": 22,
         "kind": "text",
         "text": "Launched and synthesized via usertesting.com MCp. Test is double checked by UXR",
         "align": "CENTER",
-        "segments": [{
-          "text": "Launched and synthesized via usertesting.com MCp. Test is double checked by UXR",
-          "size": 11,
-          "weight": 400,
-          "font": "Geist Mono",
-          "line": { "unit": "PERCENT", "value": 200 },
-          "spacing": { "unit": "PERCENT", "value": 20 },
-          "color": "#000000",
-          "decoration": "NONE",
-          "list": { "type": "NONE" },
-          "style": 4
-        }],
+        "segments": [
+          {
+            "text": "Launched and synthesized via usertesting.com MCp. Test is double checked by UXR",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 4
+          }
+        ],
         "textCase": "UPPER"
       }
     ]
@@ -2805,11 +2857,11 @@
                     "w": 601,
                     "h": 90,
                     "kind": "text",
-                    "text": "“the usage economics isn’t clear to me. I was sure the automation credits are the same the Brain credits, a very mixed delivery on the marketing side.”",
+                    "text": "\u201cthe usage economics isn\u2019t clear to me. I was sure the automation credits are the same the Brain credits, a very mixed delivery on the marketing side.\u201d",
                     "align": "LEFT",
                     "segments": [
                       {
-                        "text": "“the usage economics isn’t clear to me. I was sure the automation credits are the same the Brain credits, a very mixed delivery on the marketing side.”",
+                        "text": "\u201cthe usage economics isn\u2019t clear to me. I was sure the automation credits are the same the Brain credits, a very mixed delivery on the marketing side.\u201d",
                         "size": 20,
                         "weight": 400,
                         "font": "SF Pro",
@@ -2839,11 +2891,11 @@
                     "w": 663,
                     "h": 30,
                     "kind": "text",
-                    "text": "“Visualization of used credits by the Agents”",
+                    "text": "\u201cVisualization of used credits by the Agents\u201d",
                     "align": "LEFT",
                     "segments": [
                       {
-                        "text": "“Visualization of used credits by the Agents”",
+                        "text": "\u201cVisualization of used credits by the Agents\u201d",
                         "size": 20,
                         "weight": 400,
                         "font": "SF Pro",
@@ -2933,11 +2985,11 @@
                     "w": 576,
                     "h": 30,
                     "kind": "text",
-                    "text": "“I would love to be able to have an easier set up process.”",
+                    "text": "\u201cI would love to be able to have an easier set up process.\u201d",
                     "align": "LEFT",
                     "segments": [
                       {
-                        "text": "“I would love to be able to have an easier set up process.”",
+                        "text": "\u201cI would love to be able to have an easier set up process.\u201d",
                         "size": 20,
                         "weight": 400,
                         "font": "SF Pro",
@@ -2967,11 +3019,11 @@
                     "w": 576,
                     "h": 30,
                     "kind": "text",
-                    "text": "“I need more ideas on how to use them.”",
+                    "text": "\u201cI need more ideas on how to use them.\u201d",
                     "align": "LEFT",
                     "segments": [
                       {
-                        "text": "“I need more ideas on how to use them.”",
+                        "text": "\u201cI need more ideas on how to use them.\u201d",
                         "size": 20,
                         "weight": 400,
                         "font": "SF Pro",
@@ -3001,11 +3053,11 @@
                     "w": 576,
                     "h": 30,
                     "kind": "text",
-                    "text": "“more suggestions please”",
+                    "text": "\u201cmore suggestions please\u201d",
                     "align": "LEFT",
                     "segments": [
                       {
-                        "text": "“more suggestions please”",
+                        "text": "\u201cmore suggestions please\u201d",
                         "size": 20,
                         "weight": 400,
                         "font": "SF Pro",
@@ -4827,11 +4879,11 @@
         "w": 356,
         "h": 150,
         "kind": "text",
-        "text": "• One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.\n• Investigate AHA moment for those already using agents",
+        "text": "\u2022 One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.\n\u2022 Investigate AHA moment for those already using agents",
         "align": "LEFT",
         "segments": [
           {
-            "text": "• One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.\n• Investigate AHA moment for those already using agents",
+            "text": "\u2022 One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.\n\u2022 Investigate AHA moment for those already using agents",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -5136,7 +5188,7 @@
   {
     "id": "269:149658-video-2",
     "number": 23.1,
-    "name": "23 Project 1 UX Prototyping — Video 2",
+    "name": "23 Project 1 UX Prototyping \u2014 Video 2",
     "layers": [
       {
         "id": "269:149659-video-2",
@@ -5212,11 +5264,11 @@
         "w": 382,
         "h": 46,
         "kind": "text",
-        "text": "Rapid prototyping details",
+        "text": "Sample prototype",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Rapid prototyping details",
+            "text": "Sample prototype",
             "size": 34,
             "weight": 510,
             "font": "SF Pro",
@@ -5297,7 +5349,8 @@
         "autoplay": true,
         "loop": true,
         "muted": true,
-        "radius": 16
+        "radius": 16,
+        "playbackRate": 1.5
       }
     ]
   },
@@ -5360,11 +5413,11 @@
         "w": 1004,
         "h": 113,
         "kind": "text",
-        "text": "For simple CSS based things, I’ve used coding agents to push code. I create a skill in ClickUp to evoke cursor cloud agents so I can run many agents at once and format the prompt appropriately. I contribute especially to any component updates that are required and work closely with our UI team & Design system lead.",
+        "text": "For low risk items, I\u2019ve used coding agents to push code. I create a skill in ClickUp to evoke cursor cloud agents so I can run many agents at once and format the prompt appropriately. I contribute especially to any component updates that are required and work closely with our UI team & Design system lead.",
         "align": "LEFT",
         "segments": [
           {
-            "text": "For simple CSS based things, I’ve used coding agents to push code. I create a skill in ClickUp to evoke cursor cloud agents so I can run many agents at once and format the prompt appropriately. I contribute especially to any component updates that are required and work closely with our UI team & Design system lead.",
+            "text": "For low risk items, I\u2019ve used coding agents to push code. I create a skill in ClickUp to evoke cursor cloud agents so I can run many agents at once and format the prompt appropriately. I contribute especially to any component updates that are required and work closely with our UI team & Design system lead.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -5493,11 +5546,11 @@
         "w": 788,
         "h": 360,
         "kind": "text",
-        "text": "DON’T offload the thinking\nDON’T let it replace customer understanding\nDON’T trust results blindly; double-check the results",
+        "text": "DON\u2019T offload the thinking\nDON\u2019T let it replace customer understanding\nDON\u2019T trust results blindly; double-check the results",
         "align": "LEFT",
         "segments": [
           {
-            "text": "DON’T offload the thinking\nDON’T let it replace customer understanding\nDON’T trust results blindly; double-check the results",
+            "text": "DON\u2019T offload the thinking\nDON\u2019T let it replace customer understanding\nDON\u2019T trust results blindly; double-check the results",
             "size": 28,
             "weight": 400,
             "font": "SF Pro",
@@ -5567,6 +5620,336 @@
         "src": "/intropres/video/project-1-rapid-prototyping.mp4",
         "radius": 16,
         "playbackRate": 2
+      }
+    ]
+  },
+  {
+    "id": "intro:screenshot-1",
+    "number": 101,
+    "name": "Screenshot 1",
+    "layers": [
+      {
+        "id": "intro:screenshot-1-title",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 1600,
+        "h": 46,
+        "kind": "text",
+        "text": "Sample rules (beta) ~mid Sept 2026. Collaborated with 2 design eng. Mined frm codebase.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Sample rules (beta) ~mid Sept 2026. Collaborated with 2 design eng. Mined frm codebase.",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "intro:screenshot-1-panel",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "radius": 16,
+        "fillToken": "--presentation-color-panel-taupe",
+        "borderElevation": 1
+      },
+      {
+        "id": "intro:screenshot-1-image",
+        "name": "Screenshot 1",
+        "kind": "image",
+        "x": 245.0967741935483,
+        "y": 280.99999999999994,
+        "w": 1237.8064516129034,
+        "h": 724.0000000000001,
+        "src": "/intropres/media/ruleset-screenshot-01.png",
+        "radius": 12,
+        "preserveAspectRatio": true,
+        "fit": "contain"
+      }
+    ]
+  },
+  {
+    "id": "intro:screenshot-2",
+    "number": 102,
+    "name": "Screenshot 2",
+    "layers": [
+      {
+        "id": "intro:screenshot-2-title",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 1600,
+        "h": 46,
+        "kind": "text",
+        "text": "Sample commands (beta) ~mid Sept 2026. Collaborated with 2 design eng.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Sample commands (beta) ~mid Sept 2026. Collaborated with 2 design eng.",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "intro:screenshot-2-panel",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "radius": 16,
+        "fillToken": "--presentation-color-panel-taupe",
+        "borderElevation": 1
+      },
+      {
+        "id": "intro:screenshot-2-image",
+        "name": "Screenshot 2",
+        "kind": "image",
+        "x": 244.37412095639934,
+        "y": 281.0,
+        "w": 1239.2517580872013,
+        "h": 724.0,
+        "src": "/intropres/media/ruleset-screenshot-02.png",
+        "radius": 12,
+        "preserveAspectRatio": true,
+        "fit": "contain"
+      }
+    ]
+  },
+  {
+    "id": "intro:screenshot-3",
+    "number": 103,
+    "name": "Screenshot 3",
+    "layers": [
+      {
+        "id": "intro:screenshot-3-title",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 1600,
+        "h": 46,
+        "kind": "text",
+        "text": "Detailed rule definitions",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Detailed rule definitions",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "intro:screenshot-3-panel",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "radius": 16,
+        "fillToken": "--presentation-color-panel-taupe",
+        "borderElevation": 1
+      },
+      {
+        "id": "intro:screenshot-3-image",
+        "name": "Screenshot 3",
+        "kind": "image",
+        "x": 244.88326300984522,
+        "y": 281.0,
+        "w": 1238.2334739803096,
+        "h": 724.0,
+        "src": "/intropres/media/ruleset-screenshot-03.png",
+        "radius": 12,
+        "preserveAspectRatio": true,
+        "fit": "contain"
+      }
+    ]
+  },
+  {
+    "id": "intro:screenshot-4",
+    "number": 104,
+    "name": "Screenshot 4",
+    "layers": [
+      {
+        "id": "intro:screenshot-4-title",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 1600,
+        "h": 46,
+        "kind": "text",
+        "text": "Sample design system health score",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Sample design system health score",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "intro:screenshot-4-panel",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "radius": 16,
+        "fillToken": "--presentation-color-panel-taupe",
+        "borderElevation": 1
+      },
+      {
+        "id": "intro:screenshot-4-image",
+        "name": "Screenshot 4",
+        "kind": "image",
+        "x": 285.76820208023776,
+        "y": 281.0,
+        "w": 1156.4635958395245,
+        "h": 724.0,
+        "src": "/intropres/media/ruleset-screenshot-04.png",
+        "radius": 12,
+        "preserveAspectRatio": true,
+        "fit": "contain"
+      }
+    ]
+  },
+  {
+    "id": "intro:screenshot-5",
+    "number": 105,
+    "name": "Screenshot 5",
+    "layers": [
+      {
+        "id": "intro:screenshot-5-title",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 1600,
+        "h": 46,
+        "kind": "text",
+        "text": "Sample violations (beta) ~mid Sept 2026. Collaborated with 2 design eng.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Sample violations (beta) ~mid Sept 2026. Collaborated with 2 design eng.",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "intro:screenshot-5-panel",
+        "name": "Rectangle 1",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "kind": "shape",
+        "radius": 16,
+        "fillToken": "--presentation-color-panel-taupe",
+        "borderElevation": 1
+      },
+      {
+        "id": "intro:screenshot-5-image",
+        "name": "Screenshot 5",
+        "kind": "image",
+        "x": 341.3943661971831,
+        "y": 281.0,
+        "w": 1045.2112676056338,
+        "h": 724.0,
+        "src": "/intropres/media/ruleset-screenshot-05.png",
+        "radius": 12,
+        "preserveAspectRatio": true,
+        "fit": "contain"
       }
     ]
   }

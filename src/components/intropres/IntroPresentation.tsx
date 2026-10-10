@@ -18,7 +18,7 @@ const experienceCopy: Record<string, ExperienceCopy> = {
     secondary: "Design challenge: Seed stage, 0-1, Finding PM fit, Design system",
   },
   "Uber Experience": {
-    primary: "2019 - ‘22 Uber Self Driving Cars Sr. Product Designer",
+    primary: "2019 - ‘22 Uber Self Driving/Aurora (acq.) Sr. Product Designer",
     secondary: "Design challenge: Technical workflows, e2e research and design, roadmap definition",
   },
   "Headspace Experience": {
@@ -39,22 +39,33 @@ const slides: Slide[] = [
   { number: 3, name: "ClickUp Overview", kind: "overview" },
   { number: 4, name: "Section Divider", kind: "divider" },
   { number: 27, name: "Project 2 Super agents as teammates Overview", kind: "project-overview", videoSrc: "/intropres/video/super-agents-demo.mp4" },
-  { number: 4.1, name: "ClickUp Overview", kind: "overview", previewNumber: 3, videoSrc: "/intropres/video/slide-05-clickup.mp4" },
+  { number: 113, name: "Design System", kind: "overview", videoSrc: "/intropres/video/design-system.mp4" },
+  { number: 112, name: "PT Gallery", kind: "overview", videoSrc: "/intropres/video/pt-gallery.mp4" },
+  { number: 24, name: "Project 1 Marketing Prototyping", kind: "placeholder" },
+  { number: 111, name: "Rulesets", kind: "overview", videoSrc: "/intropres/video/rulesets.mp4" },
+  { number: 25, name: "Project 1 Coding Contributions", kind: "placeholder" },
+  { number: 19, name: "Project 1 Agentic Testing", kind: "placeholder" },
+  { number: 20, name: "Project 1 Publishing Test", kind: "placeholder" },
   { number: 5, name: "Leadership Responsibilities", kind: "responsibilities" },
   { number: 6, name: "Nuffsaid Experience", kind: "gallery" },
   { number: 7, name: "Uber Experience", kind: "gallery" },
   { number: 9, name: "Headspace Experience", kind: "gallery" },
   { number: 10, name: "User Research", kind: "gallery" },
   { number: 42.1, name: "Appendix", kind: "appendix" },
+  { number: 101, name: "Screenshot 1", kind: "placeholder" },
+  { number: 102, name: "Screenshot 2", kind: "placeholder" },
+  { number: 103, name: "Screenshot 3", kind: "placeholder" },
+  { number: 104, name: "Screenshot 4", kind: "placeholder" },
+  { number: 105, name: "Screenshot 5", kind: "placeholder" },
   { number: 11, name: "Design Principles", kind: "placeholder" },
   { number: 12, name: "Project 1: ClickUp Multi-Player Artifacts", kind: "overview", previewNumber: 3, imageSrc: "/intropres/slides/slide-12-project-artifacts.png" },
   ...[
     [13, "Project 1 Artifact Direction"], [14, "Project 1 V1 Scope"],
     [16, "Project 1 Annual Review"],
-    [18, "Project 1 EPD Collaboration"], [19, "Project 1 Agentic Testing"], [20, "Project 1 Publishing Test"],
+    [18, "Project 1 EPD Collaboration"],
+
     [22, "Project 1 Internal Launch"], [22.1, "Project 1 Use Cases"], [23, "Project 1 UX Prototyping"],
     [23.1, "Project 1 UX Prototyping · Video 2"],
-    [24, "Project 1 Marketing Prototyping"], [25, "Project 1 Coding Contributions"],
     [28, "Project 2 Agent Direction"],
     [30, "Project 2 Agent Vision"], [31, "Project 2 Design Explorations"], [32, "Project 2 Continued Explorations"],
     [33, "Project 2 Avatar Exploration"], [34, "Project 2 Onsite Decisions"], [34.1, "Project 2 SuperAgents Demo"],
@@ -187,7 +198,7 @@ function ClickUpOverviewCaption({ title, projectSubtitle = false }: { title?: st
         </p>
       ) : (
         <>
-          <p className="intro-overview-role-subtitle">Joined as an IC - now player coach to 5 designers &amp; 2 researchers. Leading the team and shipping features myself.</p>
+          <p className="intro-overview-role-subtitle">Joined as an IC. At height, led team of 18 designers, 4 researchers. Latest, player coach of 5 designers &amp; 2 researchers after reorg. Directly under the CEO. Style: leading the team and shipping features myself.</p>
         </>
       )}
     </>
@@ -199,7 +210,7 @@ function ClickUpGrowthCaption() {
 }
 
 function ClickUpDesignSystemCaption() {
-  return <p className="intro-overview-growth-copy">Led 1 designer, 1 design engineer to create our first ever design system Kora. With this team we created vibe coding prototype library for the whole org to prototype with, and rulesets to evaluate vibecoded PRs.</p>;
+  return <><p className="intro-overview-growth-copy">Design infrastructure team: rulesets for coding agents. Mining our coding activity to define a baseline set of rules that "self-improves". Code is now our source of truth.</p><p className="intro-overview-role-subtitle">Rulesets are versioned, multiple rulesets eg. marketing vs in app, different product lines. Self improves: suggests violations, suggests improvements based on corrections, human in the loop evaluations.</p></>;
 }
 
 function SlideContent({ slide }: { slide: Slide }) {
@@ -220,16 +231,16 @@ function SlideContent({ slide }: { slide: Slide }) {
   }
   if (slide.kind === "project-overview") {
     return (
-      <div className="intro-overview">
+      <div className="intro-overview intro-project-overview">
         <div className="intro-green-panel intro-green-panel--slide-27">
           <video className="intro-overview-video intro-overview-video--slide-27" src={slide.videoSrc} aria-label="SuperAgents as Teammates" autoPlay loop muted playsInline preload="auto" />
         </div>
-        <p className="intro-overview-headline"><span>SuperAgents as Teammates</span></p>
+        <p className="intro-overview-headline"><span>AI transformation: Agents as teammates (launched Dec. 2025)</span></p>
       </div>
     );
   }
   if (slide.kind === "overview") {
-    return <div className="intro-overview"><div className={`intro-green-panel${slide.videoSrc ? " intro-green-panel--slide-05" : ""}${slide.number === 12 ? " intro-green-panel--slide-12" : ""}`}>{slide.imageSrc ? <img className="intro-overview-video intro-overview-image" src={slide.imageSrc} alt="ClickUp Multi-Player Artifacts" /> : <video className={`intro-overview-video${slide.videoSrc ? " intro-overview-video--slide-05" : ""}`} src={slide.videoSrc ?? "/intropres/video/clickup-demo.mp4"} aria-label="ClickUp product demo" autoPlay loop muted playsInline preload="auto" onLoadedMetadata={event => { event.currentTarget.playbackRate = slide.videoSrc ? 3 : 1; }} />}</div>{slide.videoSrc ? <ClickUpDesignSystemCaption /> : <ClickUpOverviewCaption title={slide.number === 12 ? "Project 1: ClickUp Multi-Player Artifacts" : undefined} projectSubtitle={slide.number === 12} />}</div>;
+    return <div className="intro-overview"><div className={`intro-green-panel${slide.videoSrc ? " intro-green-panel--slide-05" : ""}${slide.number === 12 ? " intro-green-panel--slide-12" : ""}`}>{slide.imageSrc ? <img className="intro-overview-video intro-overview-image" src={slide.imageSrc} alt="ClickUp Multi-Player Artifacts" /> : <video className={`intro-overview-video${slide.videoSrc ? " intro-overview-video--slide-05" : ""}`} src={slide.videoSrc ?? "/intropres/video/clickup-demo.mp4"} aria-label="ClickUp product demo" autoPlay loop muted playsInline preload="auto" onLoadedMetadata={event => { event.currentTarget.playbackRate = 1; }} />}</div>{slide.videoSrc ? (slide.number === 113 ? <p className="intro-overview-growth-copy">Design infrastructure team: stood it up 0-1. Staffing it with 1 lead designer &amp; 2 design engineers. Kora design system and its UI.</p> : slide.number === 112 ? <p className="intro-overview-growth-copy">Design infrastructure team: prototyping playground enabled org (leaders, PMs, marketing team, CFO, etc.) to vibecode share, remix, branch high fidelity prototypes.</p> : <ClickUpDesignSystemCaption />) : <ClickUpOverviewCaption title={slide.number === 12 ? "Project 1: ClickUp Multi-Player Artifacts" : undefined} projectSubtitle={slide.number === 12} />}</div>;
   }
   if (slide.kind === "divider") {
     return (

@@ -44,12 +44,12 @@
 .intro-page-tick:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
 .intro-page-section { width: auto; white-space: nowrap; }
 
-.intro-about { position: absolute; inset: 0; font-size: var(--presentation-font-lead); line-height: 1.35; }
-.intro-about-photo { position: absolute; left: 38.95%; top: 31.07%; width: 11.57%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; }
+.intro-about { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); display: grid; grid-template-columns: 25.4% 13.55% 61.05%; row-gap: var(--spacing-6); font-size: var(--presentation-font-lead); line-height: 1.35; }
+.intro-about-photo { grid-column: 3; grid-row: 1; width: calc(11.57 / 61.05 * 100%); aspect-ratio: 1; border-radius: 50%; overflow: hidden; }
 /* Crop the baked-in dark surround from the exported portrait. */
 .intro-about-photo img { width: 100%; height: 100%; object-fit: cover; transform: translateY(-1%) scale(1.055); }
-.intro-about h1 { position: absolute; left: 25.4%; top: 38.2%; margin: 0; font-size: inherit; font-weight: 510; }
-.intro-about p { position: absolute; left: 38.95%; top: 52.55%; margin: 0; color: var(--intro-secondary); }
+.intro-about h1 { grid-column: 2; grid-row: 1; align-self: center; margin: 0; font-size: inherit; font-weight: 510; }
+.intro-about p { grid-column: 3; grid-row: 2; margin: 0; color: var(--intro-secondary); }
 .intro-about p span { color: var(--intro-tertiary); }
 .intro-career { position: absolute; inset: 0; font-family: var(--presentation-font-family); font-size: calc(28 / 1728 * 100cqw); line-height: 1.5; font-weight: 400; font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 28; }
 .intro-career-logos { position: absolute; left: calc(762 / 1728 * 100%); top: calc(362 / 1117 * 100%); display: flex; align-items: center; gap: calc(19 / 1728 * 100cqw); }
@@ -177,7 +177,7 @@
 .intro-page-preview > span { display: block; padding: 8px 12px; }
 
 .intro-overview p.intro-overview-metrics { color: var(--color-typography-content-secondary); max-width: 100%; margin-top: calc(12 / 1728 * 100cqw); font-family: var(--presentation-font-family); font-size: calc(var(--presentation-font-body) / 1728px * 100cqw); line-height: 1.5; font-weight: 400; font-variation-settings: "wght" 400, "wdth" 100; }
-.intro-overview p.intro-overview-role-subtitle { max-width: 92%; margin-top: calc(12 / 1728 * 100cqw); color: var(--color-typography-content-secondary); font-family: var(--presentation-font-family); font-size: calc(var(--presentation-font-body) / 1728px * 100cqw); line-height: 1.5; font-weight: 400; font-variation-settings: "wght" 400, "wdth" 100; }
+.intro-overview p.intro-overview-role-subtitle { max-width: 70%; margin-top: calc(12 / 1728 * 100cqw); color: var(--color-typography-content-secondary); font-family: var(--presentation-font-family); font-size: calc(var(--presentation-font-body) / 1728px * 100cqw); line-height: 1.5; font-weight: 400; font-variation-settings: "wght" 400, "wdth" 100; }
 .intro-overview p.intro-overview-project-subtitle { max-width: 92%; }
 .intro-overview-project-subtitle > span { display: block; }
 .intro-overview-project-subtitle > span + span { margin-top: calc(4 / 1728 * 100cqw); }
@@ -233,6 +233,12 @@
   max-width: 78%;
 }
 
+.intro-native-text[data-figma-node="269:148707"] {
+  font-size: var(--presentation-font-lead);
+  line-height: 1.35;
+  font-weight: 510;
+}
+
 .intro-overview-video--slide-05 {
   box-shadow: var(--elevation-border-3);
 }
@@ -252,17 +258,35 @@
 
 .intro-green-panel--slide-27 {
   background: transparent;
+  width: 100%;
+  height: 86%;
+}
+
+.intro-project-overview {
+  padding: var(--spacing-4);
+}
+
+.intro-project-overview > p.intro-overview-headline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(88% - 10px);
+  margin: 0 auto;
+  transform: translateY(-50%);
 }
 
 .intro-overview-video--slide-27 {
-  inset: 0;
-  transform: none;
-  width: 100%;
-  height: 100%;
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  height: auto;
+  max-height: 100%;
   background: transparent;
   border-radius: var(--presentation-radius-image);
   box-shadow: none;
-  clip-path: inset(0 0 1px 0 round var(--presentation-radius-image));
+  clip-path: inset(0 0 var(--spacing-2) 0 round var(--presentation-radius-image));
 }
 
 .intro-overview p.intro-overview-super-agents-subtitle {
