@@ -126,6 +126,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version F — draggable paper desk, multiply blend (node 327:60168).",
     layout: "full-canvas",
     sceneFrame: true,
+    surpriseOnly: true,
     cursorLabel: "Drag & click on shapes",
     load: () => import("../components/hero/scenes/ShapeDeskScene"),
   },
@@ -135,6 +136,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version I — 28px grid, sprinkled multiply dots (node 354:82).",
     layout: "full-canvas",
     sceneFrame: true,
+    surpriseOnly: true,
     earlyBackdrop: "grid",
     cursorLabel: "hover on dots, click to reload",
     load: () => import("../components/hero/scenes/GridSprinkleScene"),
@@ -166,6 +168,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version N — non-overlapping organic shapes, editable nodes on hover.",
     layout: "full-canvas",
     sceneFrame: true,
+    surpriseOnly: true,
     cursorLabel: "Drag and edit shapes",
     load: () => import("../components/hero/scenes/EditableBlobsScene"),
   },
@@ -181,15 +184,12 @@ export const HERO_VARIANTS: HeroVariant[] = [
 ];
 
 /**
- * First visit is Meadow; each later return to the hero walks this list, then wraps.
+ * First visit is Meadow; returning visitors alternate between Meadow and Monsters.
  * Surprise-only variants are never included even if listed here.
  */
 export const HERO_ROTATION_ORDER: HeroVariantId[] = [
   "meadow",
   "monsters",
-  "grid-sprinkle-i",
-  "editable-blobs",
-  "shapes-d-desk",
 ];
 
 const BY_ID = new Map(HERO_VARIANTS.map((v) => [v.id, v]));

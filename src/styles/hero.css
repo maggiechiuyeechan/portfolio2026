@@ -26,20 +26,12 @@
   justify-content: center;
   position: relative;
   z-index: 10;
-  /* Tall viewports: sit slightly below true center. */
-  transform: translateY(2rem);
+  /* Tall viewports: original 32px offset plus a 48px lower copy position. */
+  transform: translateY(calc(var(--spacing-4) * 2 + var(--spacing-5) * 2));
 }
 
 .hero-name {
   margin-top: var(--spacing-2); /* 8px */
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero-inner {
-    transition:
-      transform 0.55s cubic-bezier(0.25, 0.1, 0.25, 1),
-      margin-top 0.55s cubic-bezier(0.25, 0.1, 0.25, 1);
-  }
 }
 
 /*

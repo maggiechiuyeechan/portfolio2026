@@ -44,8 +44,8 @@ export interface HeroShellProps {
 const [linkedin] = site.socials;
 
 const container = {
-  hidden: {},
-  visible: { transition: { delayChildren: 0.15, staggerChildren: 0.08 } },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { delay: 0.15, duration: 0.5, ease: easeOut } },
   exit: { opacity: 0, y: -8, transition: { duration: 0.25, ease: easeOut } },
 };
 
@@ -53,8 +53,8 @@ const container = {
 const HERO_PAGE_EXIT_MS = 400;
 
 const item = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOut } },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.5, ease: easeOut } },
 };
 
 const heroContent: React.CSSProperties = {
