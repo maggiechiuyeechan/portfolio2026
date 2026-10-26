@@ -97,7 +97,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     note: "Version O — halftone WebGL ripple over the grass video.",
     layout: "full-canvas",
     cursorLabel: "click on image",
-    assets: ["/images/meadow.mp4", "/images/meadow-poster.webp"],
+    assets: ["/images/meadow-pingpong.mp4", "/images/meadow-pingpong-poster.webp"],
     load: () => import("../components/hero/scenes/MeadowScene"),
   },
   {

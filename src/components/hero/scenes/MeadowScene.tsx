@@ -13,8 +13,8 @@ import { useBandCenterAnchor } from "../../../lib/useBandCenterAnchor";
 import { useSceneAnchor } from "../../../lib/useSceneAnchor";
 import type { HeroSceneProps } from "../../../config/heroVariants";
 
-const SRC = "/images/meadow.mp4";
-const POSTER = "/images/meadow-poster.webp";
+const SRC = "/images/meadow-pingpong.mp4";
+const POSTER = "/images/meadow-pingpong-poster.webp";
 const ALT = "Golden-green meadow grass swaying in slow motion";
 /** Matches hero-content gap / short-viewport band floor (--spacing-5). */
 const NAME_GAP_PX = 24;
