@@ -28,7 +28,7 @@ import sideTeamPlumAsset from "../../assets/clickup-four-demo/tasks-sidebar-team
 import sideDotBgAsset from "../../assets/clickup-four-demo/tasks-sidebar-bg.svg";
 import sideDotAsset from "../../assets/clickup-four-demo/tasks-sidebar-indicator.svg";
 import avatarStephAsset from "../../assets/clickup-four-demo/tasks-sidebar-steph.jpg";
-import avatarAgent7Asset from "../../assets/clickup-four-demo/tasks-sidebar-agent7.jpg";
+import avatarAgent7Asset from "../../assets/clickup-ai-demo/chat-avatar-campaign-teal.webp";
 import avatarIgorAsset from "../../assets/clickup-four-demo/tasks-sidebar-igor.jpg";
 
 // Breadcrumb + views
