@@ -1,4 +1,7 @@
 import "./ClickUpAIDemo.css";
+import projectManager from "../../assets/clickup-ai-demo/agent-avatar-project-manager-yellow.webp";
+import personalAssistant from "../../assets/clickup-ai-demo/agent-avatar-personal-assistant-purple.webp";
+import meetingsManager from "../../assets/clickup-ai-demo/agent-avatar-meetings-manager-blue.webp";
 
 export default function ClickUpAIAgentsDemo() {
   return (
@@ -23,6 +26,24 @@ export default function ClickUpAIAgentsDemo() {
           alt="ClickUp Super Agents menu with Project Manager recommendations"
         />
       </picture>
+      {/* Positions follow the 1387 × 1500 source image so the avatars scale with it. */}
+      {[projectManager, personalAssistant, meetingsManager].map((avatar, index) => (
+        <img
+          key={avatar.src}
+          src={avatar.src}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          style={{
+            position: "absolute",
+            left: `${315 / 1387 * 100}%`,
+            top: `${[784, 882, 980][index] / 1500 * 100}%`,
+            width: `${67 / 1387 * 100}%`,
+            height: `${67 / 1500 * 100}%`,
+            clipPath: "circle(50%)",
+          }}
+        />
+      ))}
     </div>
   );
 }
