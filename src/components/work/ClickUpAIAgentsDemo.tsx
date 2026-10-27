@@ -1,7 +1,7 @@
 import "./ClickUpAIDemo.css";
-import projectManager from "../../assets/clickup-ai-demo/agent-avatar-project-manager-yellow.webp";
-import personalAssistant from "../../assets/clickup-ai-demo/agent-avatar-personal-assistant-purple.webp";
-import meetingsManager from "../../assets/clickup-ai-demo/agent-avatar-meetings-manager-blue.webp";
+import projectManager from "../../assets/clickup-ai-demo/agent-avatar-project-manager-yellow-grey.webp";
+import personalAssistant from "../../assets/clickup-ai-demo/agent-avatar-personal-assistant-purple-grey.webp";
+import meetingsManager from "../../assets/clickup-ai-demo/agent-avatar-meetings-manager-blue-grey.webp";
 
 export default function ClickUpAIAgentsDemo() {
   return (
@@ -40,7 +40,8 @@ export default function ClickUpAIAgentsDemo() {
             top: `${[784, 882, 980][index] / 1500 * 100}%`,
             width: `${67 / 1387 * 100}%`,
             height: `${67 / 1500 * 100}%`,
-            clipPath: "circle(50%)",
+            clipPath: "circle(40%)",
+            transform: "scale(1.25)",
           }}
         />
       ))}

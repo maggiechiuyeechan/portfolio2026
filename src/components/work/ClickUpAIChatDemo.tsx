@@ -3,10 +3,10 @@ import { usePrefersReducedMotion } from "../../lib/motion";
 import ivan from "../../assets/clickup-ai-demo/chat-avatar-ivan.png";
 import sara from "../../assets/clickup-ai-demo/chat-avatar-sara.png";
 import calvin from "../../assets/clickup-ai-demo/chat-avatar-calvin.png";
-import prioritizer from "../../assets/clickup-ai-demo/chat-avatar-prioritizer-yellow.webp";
+import prioritizer from "../../assets/clickup-ai-demo/chat-avatar-prioritizer-yellow-grey.webp";
 import mykyta from "../../assets/clickup-ai-demo/chat-avatar-mykyta.png";
 import jony from "../../assets/clickup-ai-demo/chat-avatar-jony.png";
-import campaign from "../../assets/clickup-ai-demo/chat-avatar-campaign-teal.webp";
+import campaign from "../../assets/clickup-ai-demo/chat-avatar-campaign-teal-grey.webp";
 import paintbrush from "../../assets/clickup-ai-demo/chat-paintbrush.svg";
 import navAdd from "../../assets/clickup-ai-demo/chat-nav-add.svg";
 import chevron from "../../assets/clickup-ai-demo/chat-chevron.svg";
@@ -27,7 +27,7 @@ import close from "../../assets/clickup-ai-demo/chat-thread-close.svg";
 import progressRing from "../../assets/clickup-ai-demo/chat-status-progress.svg";
 import progressDot from "../../assets/clickup-ai-demo/chat-status-dot.svg";
 import milestone from "../../assets/clickup-ai-demo/chat-status-milestone.svg";
-import statusAgent from "../../assets/clickup-ai-demo/chat-status-agent-purple-yellow.webp";
+import statusAgent from "../../assets/clickup-ai-demo/chat-status-agent-purple-yellow-grey.webp";
 import "./ClickUpAIDemo.css";
 
 const PROMPT = "What are the top design priorities this week for the Agent status project?";
@@ -88,7 +88,8 @@ function frameAt(ms: number): ChatFrame {
 }
 
 function Avatar({ src }: { src: string }) {
-  return <img className="cua-chat-avatar" src={src} alt="" />;
+  const isAgent = src === campaign.src || src === prioritizer.src;
+  return <img className={`cua-chat-avatar${isAgent ? " is-agent-avatar" : ""}`} src={src} alt="" />;
 }
 
 function ReplyAvatars({ replyCount }: { replyCount: number }) {
@@ -303,7 +304,7 @@ function AgentStatus({ visible }: { visible: boolean }) {
   return (
     <div className={`cua-chat-agent-status${visible ? " is-visible" : ""}`}>
       <span>
-        <img src={statusAgent.src} alt="" />
+        <img className="is-agent-avatar" src={statusAgent.src} alt="" />
         <span className="cua-chat-status-dots"><i /><i /><i /></span>
       </span>
       <p>Checking 3 calendars</p>

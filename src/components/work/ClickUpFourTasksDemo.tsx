@@ -28,7 +28,7 @@ import sideTeamPlumAsset from "../../assets/clickup-four-demo/tasks-sidebar-team
 import sideDotBgAsset from "../../assets/clickup-four-demo/tasks-sidebar-bg.svg";
 import sideDotAsset from "../../assets/clickup-four-demo/tasks-sidebar-indicator.svg";
 import avatarStephAsset from "../../assets/clickup-four-demo/tasks-sidebar-steph.jpg";
-import avatarAgent7Asset from "../../assets/clickup-ai-demo/chat-avatar-campaign-teal.webp";
+import avatarAgent7Asset from "../../assets/clickup-ai-demo/chat-avatar-campaign-teal-grey.webp";
 import avatarIgorAsset from "../../assets/clickup-four-demo/tasks-sidebar-igor.jpg";
 
 // Breadcrumb + views
@@ -230,7 +230,7 @@ function SideRow({
 function PersonIcon({ src }: { src?: string }) {
   return (
     <span className="cu4t-avatar" aria-hidden="true">
-      {src ? <img src={src} alt="" /> : <span className="cu4t-avatar-fill" />}
+      {src ? <img className={src === avatarAgent7 ? "is-agent-avatar" : undefined} src={src} alt="" /> : <span className="cu4t-avatar-fill" />}
       <span className="cu4t-avatar-dot">
         <img src={sideDotBg} alt="" />
         <img src={sideDot} alt="" />

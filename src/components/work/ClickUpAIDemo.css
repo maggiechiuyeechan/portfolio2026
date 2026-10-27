@@ -448,6 +448,12 @@
   object-fit: cover;
 }
 
+/* Zoom the artwork while keeping the visible circle at its original size. */
+.is-agent-avatar {
+  transform: scale(1.25);
+  clip-path: circle(40%);
+}
+
 .cua-chat-message-exact {
   position: relative;
   display: flex;
