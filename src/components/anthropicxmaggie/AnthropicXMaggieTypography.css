@@ -23,10 +23,10 @@
   --presentation-paint-20: #655d41;
   --presentation-paint-21: #d3ccbf;
   --presentation-paint-22: #c5bfb9;
-  --presentation-type-0: 510 1.9675925925925926cqw/1.350000023841858 var(--presentation-font-family);
+  --presentation-type-0: var(--presentation-trial-weight) var(--presentation-font-lead)/1.35 var(--presentation-font-about-family);
   --presentation-type-1: 400 1.9675925925925926cqw/1.350000023841858 var(--presentation-font-family);
-  --presentation-type-2: 400 1.1574074074074074cqw/1.5 var(--presentation-font-family);
-  --presentation-type-3: 400 1.1574074074074074cqw/1.5 var(--presentation-font-family);
+  --presentation-type-2: var(--presentation-font-body-style);
+  --presentation-type-3: var(--presentation-font-body-style);
   --presentation-type-4: 400 0.6365740740740741cqw/2 var(--font-mono);
   --presentation-type-5: 400 1.1574074074074074cqw/1.5 var(--presentation-font-family);
   --presentation-type-6: 400 0.6365740740740741cqw/2 var(--font-mono);
@@ -75,3 +75,32 @@
 .axm-native-type-14 { font-optical-sizing: none; font-variation-settings: "wght" 700, "wdth" 100, "opsz" 28; }
 .axm-native-type-15 { font-optical-sizing: none; font-variation-settings: "wght" 700, "wdth" 100, "opsz" 28; }
 .axm-native-type-16 { font-optical-sizing: none; font-variation-settings: "wght" 400, "wdth" 100, "opsz" 28; }
+
+.axm-native-type-17 { font: 400 calc(var(--presentation-font-annotation) / 1728px * 100cqw)/1.2 var(--presentation-font-body-family); color: var(--presentation-color-content-default); }
+
+.axm-native-type-18, .axm-native-type-19 {
+  font: var(--presentation-font-body-style);
+  font-family: var(--presentation-font-original);
+  color: var(--presentation-color-content-default);
+  letter-spacing: 0;
+}
+.axm-presentation .axm-slide .axm-native-type-18 {
+  font-weight: 400 !important;
+  font-variation-settings: "wght" 400, "wdth" 100, "opsz" 20 !important;
+}
+.axm-presentation .axm-slide .axm-native-type-19 {
+  font-weight: 700 !important;
+  font-variation-settings: "wght" 700, "wdth" 100, "opsz" 20 !important;
+}
+
+.axm-presentation .axm-slide [data-figma-node="269:149131"] .axm-native-type-10 {
+  font-family: var(--presentation-font-original);
+  font-weight: var(--presentation-font-body-weight) !important;
+  font-variation-settings: "wght" var(--presentation-font-body-weight), "wdth" 100, "opsz" 20 !important;
+}
+
+.axm-native-type-20, .axm-native-type-21 {
+  font: var(--presentation-trial-weight) calc(var(--presentation-font-lead) / 1728px * 100cqw)/1.35 var(--presentation-font-family);
+  color: var(--presentation-paint-0);
+}
+.axm-native-type-21 { color: var(--presentation-color-epilogue-muted); }

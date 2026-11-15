@@ -7,10 +7,16 @@ import "./BlueDotDemo.css";
  * and stack on narrow screens. Plain divs + container-query scale — not SVG
  * foreignObject — so iOS Safari doesn't lay out the stage at 1:1 px and clip.
  */
-export default function BlueDotHeroDemo() {
+export default function BlueDotHeroDemo({
+  stackOnMobile = true,
+  sparseChart = false,
+}: {
+  stackOnMobile?: boolean;
+  sparseChart?: boolean;
+}) {
   return (
     <div
-      className="bluedot-hero-demo study-image"
+      className={`bluedot-hero-demo study-image${stackOnMobile ? " is-stackable" : ""}`}
       role="group"
       aria-label="BlueDot disease surveillance mobile alerts"
     >
@@ -18,7 +24,7 @@ export default function BlueDotHeroDemo() {
           see src/lib/demoScale.ts */}
       <div className="bluedot-hero-pane is-report">
         <div className="bluedot-hero-stage" suppressHydrationWarning>
-          <BlueDotDiseaseReportDemo />
+          <BlueDotDiseaseReportDemo sparseChart={sparseChart} />
         </div>
       </div>
       <div className="bluedot-hero-pane is-flight">

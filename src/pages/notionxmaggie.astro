@@ -3,12 +3,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import AnthropicXMaggiePresentation from "../components/anthropicxmaggie/AnthropicXMaggiePresentation";
 import "../components/anthropicxmaggie/AnthropicXMaggiePresentation.css";
 
+import "../components/presenter/audience.css";
+
 export const prerender = true;
 ---
 
-<BaseLayout title="Anthropic x Maggie — Maggie Chan" description="Maggie Chan's Anthropic x Maggie portfolio presentation" noindex>
+<BaseLayout title="Notion × Maggie — Maggie Chan" description="Maggie Chan's Notion × Maggie portfolio presentation" noindex>
   <AnthropicXMaggiePresentation client:load />
 </BaseLayout>
+
+<script>
+  import "../components/presenter/audience.js";
+</script>
 
 <style is:global>
   html:has(.axm-presentation), html:has(.axm-presentation) body { overflow: hidden; }

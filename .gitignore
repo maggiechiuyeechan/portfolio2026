@@ -2,6 +2,7 @@
 dist/
 .vercel/
 .astro/
+.speaker-notes/
 
 # dependencies
 node_modules/

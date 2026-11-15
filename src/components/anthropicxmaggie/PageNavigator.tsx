@@ -33,7 +33,7 @@ export default function PageNavigator({ pages, index, onSelect }: {
         initial={{ opacity: 0, y: reducedMotion ? 0 : 8, scale: reducedMotion ? 1 : .94 }}
         animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0 }}
         transition={{ duration: reducedMotion ? 0 : .16 }}>
-        <img key={pages[hovered].number} src={pages[hovered].previewSrc ?? `/anthropicxmaggie/previews/slide-${String(hovered + 1).padStart(2, "0")}.png`} alt="" />
+        <img key={pages[hovered].number} src={`/anthropicxmaggie/previews/slide-${String(hovered + 1).padStart(2, "0")}.png`} alt="" />
         <span className="text-caption">{String(hovered + 1).padStart(2, "0")} · {pages[hovered].name}</span>
       </motion.div>}
     </AnimatePresence>

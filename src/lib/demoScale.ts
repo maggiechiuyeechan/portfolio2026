@@ -13,28 +13,32 @@
 type ScalerEntry = {
   selector: string;
   designWidth: number | ((node: HTMLElement) => number);
+  measureWidth?: (container: HTMLElement) => number;
+};
+
+const chatScaler: ScalerEntry = {
+  // The presentation already scales its fixed canvas, so measure only standalone demos.
+  selector: ".cua-chat-demo:not(.cua-chat-demo--fixed) > .cua-chat-scaler",
+  // Narrow frames crop a 680px-wide slice starting at 230px — see ClickUpAIDemo.css.
+  designWidth: () => (window.matchMedia("(max-width: 30rem)").matches ? 680 : 936.667),
 };
 
 const SCALERS: ScalerEntry[] = [
   { selector: ".cu4-demo-frame", designWidth: 871 },
-  { selector: ".hsd-pane", designWidth: 430 },
+  { selector: ".hsd-pane", designWidth: 430, measureWidth: (container) => parseFloat(getComputedStyle(container).width) },
   { selector: ".bluedot-hero-pane.is-report .bluedot-hero-stage", designWidth: 580.917 },
   { selector: ".bluedot-hero-pane.is-flight .bluedot-hero-stage", designWidth: 343.75 },
-  {
-    // Narrow frames crop a 680px-wide slice starting at 230px — see ClickUpAIDemo.css.
-    selector: ".cua-chat-scaler",
-    designWidth: () => (window.matchMedia("(max-width: 30rem)").matches ? 680 : 936.667),
-  },
+  chatScaler,
   { selector: ".cua-credits-scaler", designWidth: 462.333 },
 ];
 
 const bound = new WeakMap<HTMLElement, () => void>();
 
-function applyScale(node: HTMLElement, designWidth: number) {
+function applyScale(node: HTMLElement, designWidth: number, measureWidth?: ScalerEntry["measureWidth"]) {
   const container = node.parentElement;
   if (!container || !designWidth) return;
 
-  const width = container.getBoundingClientRect().width;
+  const width = measureWidth?.(container) ?? container.getBoundingClientRect().width;
   node.style.setProperty("--demo-scale", String(width / designWidth));
 }
 
@@ -47,7 +51,7 @@ function bindScaler(node: HTMLElement, entry: ScalerEntry) {
   const update = () => {
     const designWidth =
       typeof entry.designWidth === "function" ? entry.designWidth(node) : entry.designWidth;
-    applyScale(node, designWidth);
+    applyScale(node, designWidth, entry.measureWidth);
   };
 
   const ro = new ResizeObserver(update);
@@ -69,12 +73,9 @@ function scan(root: ParentNode) {
 }
 
 function refreshChatScalers() {
-  const entry = SCALERS.find((item) => item.selector === ".cua-chat-scaler");
-  if (!entry) return;
-
-  document.querySelectorAll<HTMLElement>(".cua-chat-scaler").forEach((node) => {
+  document.querySelectorAll<HTMLElement>(chatScaler.selector).forEach((node) => {
     const designWidth =
-      typeof entry.designWidth === "function" ? entry.designWidth(node) : entry.designWidth;
+      typeof chatScaler.designWidth === "function" ? chatScaler.designWidth(node) : chatScaler.designWidth;
     applyScale(node, designWidth);
   });
 }

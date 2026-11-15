@@ -54,6 +54,8 @@
 }
 
 .cua-chat-stage {
+  --cua-chat-avatar-size: 24.435px;
+  --cua-chat-message-gap: 6.109px;
   position: relative;
   width: 936.667px;
   height: 500px;
@@ -441,8 +443,8 @@
 }
 
 .cua-chat-avatar {
-  width: 24.435px;
-  height: 24.435px;
+  width: var(--cua-chat-avatar-size);
+  height: var(--cua-chat-avatar-size);
   flex: none;
   border-radius: 50%;
   object-fit: cover;
@@ -459,7 +461,7 @@
   display: flex;
   width: 100%;
   min-width: 0;
-  gap: 6.109px;
+  gap: var(--cua-chat-message-gap);
   padding: 6.109px 18.326px 6.109px 12.218px;
   font-size: 10.69px;
   letter-spacing: -0.244px;
@@ -790,10 +792,11 @@
 
 .cua-chat-thread-exact > header img { width: 5.2px; height: 5.2px; }
 .cua-chat-thread-body-exact {
+  --cua-chat-thread-padding: 12px;
   position: relative;
   width: 230px;
   margin-top: 7.187px;
-  padding: 12px;
+  padding: var(--cua-chat-thread-padding);
 }
 
 .cua-chat-thread-exact .cua-chat-message-exact {
@@ -853,7 +856,7 @@
 .cua-chat-blockers-exact {
   position: absolute;
   top: 168.328px;
-  left: 41px;
+  left: calc(var(--cua-chat-thread-padding) + var(--cua-chat-avatar-size) + var(--cua-chat-message-gap));
   display: grid;
   gap: 3.303px;
   padding: 0;
@@ -1464,7 +1467,7 @@
  * exactly as it does at full width.
  */
 @media (max-width: 30rem) {
-  .cua-chat-demo {
+  .cua-chat-demo:not(.cua-chat-demo--fixed) {
     aspect-ratio: 680 / 580;
   }
 
@@ -1476,11 +1479,11 @@
    * and sidebar square off there rather than following the app's rounded corners,
    * so the composition is built to be cropped, exactly as it is at full width.
    */
-  .cua-chat-stage {
+  .cua-chat-demo:not(.cua-chat-demo--fixed) .cua-chat-stage {
     height: 580px;
   }
 
-  .cua-chat-scaler {
+  .cua-chat-demo:not(.cua-chat-demo--fixed) .cua-chat-scaler {
     /* Scale about the top-left, then pull the crop line to the frame's edge.
        --demo-scale resolves against 680 here (see src/lib/demoScale.ts). */
     transform-origin: 0 0;

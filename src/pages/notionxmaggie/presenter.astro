@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../components/presenter/presenter.css";
+
+export const prerender = true;
+---
+<BaseLayout title="Notion × Maggie — Presenter view" noindex>
+  <p>Opening Presenter view…</p>
+  <noscript>Enable JavaScript to edit speaker notes and sync slides.</noscript>
+</BaseLayout>
+<script>
+  import "../../components/presenter/presenter-entry.js";
+</script>

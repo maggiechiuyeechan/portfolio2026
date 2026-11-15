@@ -1,0 +1,195 @@
+.axm-leadership {
+  position: absolute;
+  inset: 0;
+  color: var(--presentation-color-content-default);
+  font-family: "SF Pro Display", var(--presentation-font-original);
+  font-size: var(--presentation-font-body);
+  line-height: var(--presentation-font-body-line-height);
+}
+.axm-leadership p { margin: 0; }
+.axm-presentation .axm-slide .axm-leadership h1 {
+  position: absolute;
+  left: calc(66 / 1728 * 100%);
+  top: calc(170 / 1117 * 100%);
+  margin: 0;
+  color: var(--color-black);
+  font-family: var(--presentation-font-about-family);
+  font-size: var(--presentation-font-lead);
+  line-height: 1.35;
+  font-variation-settings: normal !important;
+}
+.axm-presentation .axm-slide .axm-leadership p {
+  font-weight: var(--presentation-font-body-weight) !important;
+  font-variation-settings: "wdth" 100, "opsz" 28 !important;
+}
+.axm-presentation .axm-slide .axm-leadership .axm-leadership-bold { font-weight: 700 !important; }
+.axm-leadership-muted { color: var(--presentation-color-secondary); }
+
+.axm-presentation .axm-slide .axm-leadership-summary h1 {
+  left: calc(64 / 1728 * 100%);
+  top: calc(172 / 1117 * 100%);
+}
+.axm-leadership-cards {
+  position: absolute;
+  inset: 0;
+}
+.axm-leadership-card {
+  position: absolute;
+  top: calc(var(--card-y) / 1117 * 100%);
+  left: calc(var(--card-x) / 1728 * 100%);
+  width: calc(var(--card-width) / 1728 * 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: var(--spacing-5);
+  border-radius: var(--presentation-radius-card);
+  background: var(--presentation-color-menu);
+  box-shadow: var(--elevation-border-1);
+}
+.axm-leadership-card:nth-child(1) { --card-x: 64; --card-y: 571; --card-width: 513; }
+.axm-leadership-card:nth-child(2) { --card-x: 607; --card-y: 571; --card-width: 514; }
+.axm-leadership-card:nth-child(3) { --card-x: 1151; --card-y: 571; --card-width: 513; }
+.axm-leadership-card:nth-child(4) { --card-x: 64; --card-y: 769; --card-width: 512; }
+.axm-leadership-card:nth-child(5) { --card-x: 606; --card-y: 769; --card-width: 512; }
+.axm-leadership-card:nth-child(6) { --card-x: 1148; --card-y: 769; --card-width: 513; }
+.axm-leadership-card p {
+  font-family: var(--presentation-font-original);
+  font-size: var(--presentation-font-card-title);
+  line-height: 1.35;
+}
+.axm-leadership-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: calc(60 / 1728 * 100cqw);
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.axm-leadership-team {
+  position: absolute;
+  top: calc(366 / 1117 * 100%);
+  left: calc(66 / 1728 * 100%);
+  display: grid;
+  grid-template-columns: repeat(5, 270px);
+  gap: var(--presentation-about-gap) 54px;
+}
+.axm-leadership-team article {
+  display: grid;
+  gap: var(--spacing-3);
+}
+.axm-leadership-team img {
+  display: block;
+  width: 102px;
+  height: 102px;
+  border-radius: var(--presentation-radius-card);
+  object-fit: cover;
+}
+.axm-leadership-team p { height: 28px; }
+
+.axm-leadership-week {
+  position: absolute;
+  top: calc(509 / 1117 * 100%);
+  left: calc(69 / 1728 * 100%);
+  display: grid;
+  grid-template-columns: repeat(5, 324px);
+}
+.axm-leadership-week article { position: relative; }
+.axm-leadership-week article + article::before {
+  position: absolute;
+  top: 7px;
+  left: -14px;
+  width: 1px;
+  height: 488px;
+  background: var(--color-border-default);
+  content: "";
+}
+.axm-leadership-ritual {
+  width: 270px;
+  margin-top: 285px;
+}
+.axm-leadership-ritual > p:first-child,
+.axm-leadership-ritual > p:nth-child(2) { height: 28px; }
+.axm-leadership-ritual > .axm-leadership-muted { margin-top: var(--spacing-3); }
+.axm-leadership-week article:nth-child(2) .axm-leadership-ritual { width: 290px; }
+.axm-leadership-week article:nth-child(4) .axm-leadership-muted { width: 257px; }
+.axm-leadership-week article:nth-child(5) .axm-leadership-ritual { width: 293px; }
+.axm-leadership-week article:nth-child(5) .axm-leadership-muted { width: 284px; }
+.axm-leadership-week article:is(:nth-child(2), :nth-child(3)) .axm-leadership-ritual { color: var(--presentation-color-optional-ritual); }
+
+.axm-leadership-layer {
+  position: absolute;
+  left: calc(var(--layer-x) / 1728 * 100%);
+  top: calc(var(--layer-y) / 1117 * 100%);
+  width: calc(var(--layer-width) / 1728 * 100%);
+  height: calc(var(--layer-height) / 1117 * 100%);
+  display: grid;
+  place-items: center;
+}
+.axm-leadership-artwork {
+  position: relative;
+  width: calc(var(--art-width) / 1728 * 100cqw);
+  height: calc(var(--art-height) / 1728 * 100cqw);
+  overflow: hidden;
+  border-radius: var(--radius-6);
+  transform: rotate(var(--art-angle));
+}
+.axm-leadership-artwork img {
+  position: absolute;
+  left: var(--image-x, 0);
+  top: var(--image-y, 0);
+  width: var(--image-width, 100%);
+  height: var(--image-height, 100%);
+  max-width: none;
+  object-fit: var(--image-fit, cover);
+}
+.axm-leadership-photos .axm-leadership-layer:first-child {
+  --layer-x: 330; --layer-y: 180; --layer-width: 645.603; --layer-height: 814.255;
+  --art-width: 568; --art-height: 758; --art-angle: -6.12deg;
+}
+.axm-leadership-photos .axm-leadership-layer:nth-child(2) {
+  --layer-x: 882.95; --layer-y: 240.7567; --layer-width: 466.934; --layer-height: 595.843;
+  --art-width: 422; --art-height: 563; --art-angle: 4.72deg;
+}
+.axm-leadership-documents .axm-leadership-artwork { box-shadow: var(--elevation-border-2); }
+.axm-leadership-documents .axm-leadership-layer:first-child {
+  --layer-x: 193; --layer-y: 130; --layer-width: 1024.294; --layer-height: 834.841;
+  --art-width: 910.611; --art-height: 668.976; --art-angle: -11.33deg;
+  --image-x: -1.46%; --image-width: 101.46%; --image-fit: fill;
+}
+.axm-leadership-documents .axm-leadership-layer:nth-child(2) {
+  --layer-x: 789; --layer-y: 159; --layer-width: 789.154; --layer-height: 776.972;
+  --art-width: 752.103; --art-height: 739.243; --art-angle: 2.95deg;
+  --image-y: -4.51%; --image-width: 189.42%; --image-height: 104.51%; --image-fit: fill;
+}
+.axm-leadership-documents .axm-leadership-layer:nth-child(2) .axm-leadership-artwork { box-shadow: var(--elevation-border-3); }
+.axm-leadership-documents .axm-leadership-layer:nth-child(3) {
+  --layer-x: 391; --layer-y: 76; --layer-width: 754.477; --layer-height: 888.571;
+  --art-width: 666.273; --art-height: 818.544; --art-angle: -6.49deg;
+}
+.axm-leadership-documents .axm-leadership-layer:nth-child(4) {
+  --layer-x: 693; --layer-y: 93; --layer-width: 727.939; --layer-height: 881.883;
+  --art-width: 681.146; --art-height: 844.621; --art-angle: 3.25deg;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .axm-leadership-collage,
+  .axm-feedback-collage {
+    --axm-image-first-delay: 120ms;
+    --axm-image-entrance-gap: 900ms;
+    --axm-image-fade-duration: 560ms;
+  }
+
+  .axm-image-entrances > div {
+    --axm-image-entrance-index: 0;
+    animation: axm-image-fade-in var(--axm-image-fade-duration) ease-in-out both;
+    animation-delay: calc(var(--axm-image-first-delay) + var(--axm-image-entrance-index) * var(--axm-image-entrance-gap));
+  }
+  .axm-image-entrances > div:nth-child(2) { --axm-image-entrance-index: 1; }
+  .axm-image-entrances > div:nth-child(3) { --axm-image-entrance-index: 2; }
+  .axm-image-entrances > div:nth-child(4) { --axm-image-entrance-index: 3; }
+}
+
+@keyframes axm-image-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

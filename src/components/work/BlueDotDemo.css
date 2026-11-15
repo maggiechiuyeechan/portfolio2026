@@ -65,7 +65,7 @@
 }
 
 @media (max-width: 41.25rem) {
-  .bluedot-hero-demo {
+  .bluedot-hero-demo.is-stackable {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--grid-gutter, 16px);
   }

@@ -10,6 +10,8 @@ type Layer = {
   fill?: string | null; radius?: number; radiusTop?: number; src?: string; align?: string;
   fillToken?: string; clip?: boolean; textCase?: string; elevation?: number; borderElevation?: number;
   playbackRate?: number;
+  controlsOnHover?: boolean;
+  startTime?: number;
   poster?: string;
   preserveAspectRatio?: boolean;
   fit?: CSSProperties["objectFit"];
@@ -73,7 +75,16 @@ function renderLayer(n: Layer, parent = stage): React.ReactNode {
         : <span key={i} className={`axm-native-type-${s.style}`}>{s.text.replace(/\u2028/g, "\n")}</span>)}
     </div>;
   }
-  if (n.kind === "gallery") return <div key={n.id} style={{position:"absolute",left:0,top:n.y/1117*100+"%",width:"100%"}}><PresentationGallery items={n.items!} /></div>;
+  if (n.kind === "gallery") {
+    const style = {
+      "--axm-gallery-top": `${n.y}px`,
+      position: "absolute",
+      left: 0,
+      top: "var(--axm-gallery-top)",
+      width: "100%",
+    } as CSSProperties;
+    return <div key={n.id} data-figma-node={n.id} style={style}><PresentationGallery items={n.items!} /></div>;
+  }
   if (n.kind === "iframe") return <InteractiveDemo key={n.id} layer={n} parent={parent} />;
   if ((n.kind === "image" || n.kind === "video") && n.shadowClip) {
     const clip = n.shadowClip;
@@ -93,16 +104,22 @@ function renderLayer(n: Layer, parent = stage): React.ReactNode {
         ? `${n.radiusTop/1728*100}cqw ${n.radiusTop/1728*100}cqw 0 0`
         : (n.radius||0)/1728*100+"cqw";
       return <div key={n.id} data-figma-node={n.id} style={{...box(n, parent), overflow:"hidden", borderRadius, boxShadow:mediaShadow(n)}} className="axm-native-video-crop">
-        <video src={n.src} aria-label={n.name || "Presentation video"} autoPlay loop muted playsInline preload="metadata"
-          onLoadedMetadata={(event) => { event.currentTarget.playbackRate = n.playbackRate ?? 1; }}
+        <video src={n.src} aria-label={n.name || "Presentation video"} autoPlay loop={!n.startTime} muted playsInline preload="metadata"
+          onPointerEnter={n.controlsOnHover ? (event) => { event.currentTarget.controls = true; } : undefined}
+          onPointerLeave={n.controlsOnHover ? (event) => { event.currentTarget.controls = false; } : undefined}
+          onLoadedMetadata={(event) => { event.currentTarget.playbackRate = n.playbackRate ?? 1; if (n.startTime) event.currentTarget.currentTime = n.startTime; }}
+          onEnded={(event) => { if (n.startTime) { event.currentTarget.currentTime = n.startTime; void event.currentTarget.play().catch(() => {}); } }}
           style={n.preserveAspectRatio
             ? { position:"absolute", top:0, left:0, display:"block", width:"100%", height:"auto", maxWidth:"none", maxHeight:"none" }
             : { position:"absolute", display:"block", maxWidth:"none", width:100/scaleX+"%", height:100/scaleY+"%", left:-translateX/scaleX*100+"%", top:-translateY/scaleY*100+"%", objectFit:"fill" }} className="axm-native-video" />
       </div>;
     }
     return <video key={n.id} data-figma-node={n.id} src={n.src} aria-label={n.name || "Presentation video"}
-      autoPlay loop muted playsInline preload="metadata"
-      onLoadedMetadata={(event) => { event.currentTarget.playbackRate = n.playbackRate ?? 1; }}
+      autoPlay loop={!n.startTime} muted playsInline preload="metadata"
+          onPointerEnter={n.controlsOnHover ? (event) => { event.currentTarget.controls = true; } : undefined}
+          onPointerLeave={n.controlsOnHover ? (event) => { event.currentTarget.controls = false; } : undefined}
+      onLoadedMetadata={(event) => { event.currentTarget.playbackRate = n.playbackRate ?? 1; if (n.startTime) event.currentTarget.currentTime = n.startTime; }}
+          onEnded={(event) => { if (n.startTime) { event.currentTarget.currentTime = n.startTime; void event.currentTarget.play().catch(() => {}); } }}
       style={{...box(n, parent), display:"block", objectFit:n.fit || "cover", objectPosition:"center", borderRadius:(n.radius||0)/1728*100+"cqw", boxShadow:mediaShadow(n)}} className="axm-native-video" />;
   }
   if (n.kind === "image") {
@@ -116,7 +133,7 @@ function renderLayer(n: Layer, parent = stage): React.ReactNode {
         <img src={n.src} alt={n.name} style={{position:"absolute", display:"block", maxWidth:"none", width:100/scaleX+"%", height:100/scaleY+"%", left:-translateX/scaleX*100+"%", top:-translateY/scaleY*100+"%", objectFit:"fill"}} className="axm-native-image" />
       </div>;
     }
-    return <img key={n.id} data-figma-node={n.id} src={n.src} alt={n.name} style={{...box(n, parent), height:n.preserveAspectRatio ? "auto" : box(n, parent).height, borderRadius:n.src?.endsWith(".png") ? "var(--presentation-radius-image)" : (n.radius||0)/1728*100+"cqw", boxShadow:mediaShadow(n)}} className="axm-native-image" />;
+    return <img key={n.id} data-figma-node={n.id} src={n.src} alt={n.name} style={{...box(n, parent), height:n.preserveAspectRatio ? "auto" : box(n, parent).height, objectFit:n.fit, borderRadius:n.src?.endsWith(".png") ? "var(--presentation-radius-image)" : (n.radius||0)/1728*100+"cqw", boxShadow:mediaShadow(n)}} className="axm-native-image" />;
   }
   if (n.clip) return <div key={n.id} data-figma-node={n.id} style={{...box(n,parent), overflow:"hidden", borderRadius:(n.radius||0)/1728*100+"cqw"}}>{n.children?.map(child => renderLayer(child,n))}</div>;
   const isColoredContainer = parent === stage && n.w >= 900 && n.h >= 500 && Boolean(n.fill || n.fillToken);
@@ -126,7 +143,11 @@ function renderLayer(n: Layer, parent = stage): React.ReactNode {
   </div>;
 }
 
-export default function NativeSlide({ number }: { number: number }) {
+export default function NativeSlide({ number, layerId }: { number: number; layerId?: string }) {
   const slide = slides.find(s => s.number === number);
-  return <div className="axm-native-slide">{(slide?.layers as Layer[] | undefined)?.map(layer => renderLayer(layer))}</div>;
+  const layers = slide?.layers as Layer[] | undefined;
+  const selectedLayer = layers?.find(layer => layer.id === layerId);
+  return <div className="axm-native-slide" data-slide-number={number}>
+    {layerId ? selectedLayer && renderLayer(selectedLayer, selectedLayer) : layers?.map(layer => renderLayer(layer))}
+  </div>;
 }

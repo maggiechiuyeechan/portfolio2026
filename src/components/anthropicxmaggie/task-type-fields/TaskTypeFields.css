@@ -1,0 +1,4620 @@
+.axm-task-type-fields {
+  position: absolute;
+  inset: 0;
+  background: var(--color-background-main);
+  color: var(--color-typography-content-default);
+  font-family: var(--presentation-font-original);
+}
+.axm-presentation .axm-slide .axm-task-type-fields * { font-variation-settings: normal !important; }
+.axm-task-type-fields :where(p, ul) { margin: 0; }
+.axm-task-type-fields :where(img) { display: block; }
+
+.axm-task-type-fields .axm-fields-layer-1 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background-main);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-2 {
+  position: absolute;
+  top: calc(58.33% - 117.58px);
+  left: calc(50% + 0.5px);
+  --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+  translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+  text-align: center;
+  font-family: var(--presentation-font-about-family);
+  font-size: var(--presentation-font-lead);
+  --tw-leading: 0;
+  line-height: 0;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--color-typography-content-default);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-3 {
+  margin-bottom: 0px;
+  --tw-leading: 1.35;
+  line-height: 1.35;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-4 {
+  --tw-leading: 1.35;
+  line-height: 1.35;
+}
+
+.axm-task-type-fields .axm-fields-layer-5 {
+  position: relative;
+  width: 43.2px;
+  height: 43.2px;
+}
+
+.axm-task-type-fields .axm-fields-layer-6 {
+  position: absolute;
+  inset: 0px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.axm-task-type-fields .axm-fields-layer-7 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 54px;
+  border-radius: var(--radius\/4,16px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/50,rgba(0,0,0,0.01));
+  background-color: var(--color-background-main);
+  padding: var(--6,36px);
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 1px 1.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 0px 0.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.27)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-8 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-9 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.axm-task-type-fields .axm-fields-layer-10 {
+  position: relative;
+  width: 43.2px;
+  height: 43.2px;
+  flex-shrink: 0;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-11 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: 28px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  font-weight: var(--presentation-font-body-weight) !important;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--color-black);
+}
+
+.axm-task-type-fields .axm-fields-layer-12 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: var(--spacing\/5,20px);
+  font-size: 20px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: nowrap;
+}
+
+.axm-task-type-fields .axm-fields-layer-13 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 11px;
+  border-radius: var(--radius\/3,12px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/100,rgba(0,0,0,0.02));
+  background-color: #ebf4fe;
+  padding: var(--spacing\/5,20px);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-14 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-weight: 590 !important;
+  color: var(--color-black);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-15 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 5px;
+  font-family: var(--presentation-font-original);
+  font-weight: var(--presentation-font-body-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-16 {
+  position: relative;
+  height: 30px;
+  width: 285px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-17 {
+  position: absolute;
+  inset: 0 77.89% 0 0;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-18 {
+  position: absolute;
+  inset: 0 6.39% 0 50.81%;
+  color: #0352a7;
+}
+
+.axm-task-type-fields .axm-fields-layer-19 {
+  position: absolute;
+  inset: 0 69.47% 0 0;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-20 {
+  position: absolute;
+  inset: 0 23.93% 0 50.81%;
+  color: #0352a7;
+}
+
+.axm-task-type-fields .axm-fields-layer-21 {
+  position: absolute;
+  inset: 0 73.33% 0 0;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-22 {
+  position: absolute;
+  inset: 0 4.28% 0 50.81%;
+  color: #0352a7;
+}
+
+.axm-task-type-fields .axm-fields-layer-23 {
+  position: absolute;
+  inset: 0 71.23% 0 0;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-24 {
+  position: absolute;
+  inset: 0 22.88% 0 50.81%;
+  color: #0352a7;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-25 {
+  position: absolute;
+  top: 86px;
+  left: 64px;
+  height: 123px;
+  width: 929px;
+  font-family: var(--presentation-font-about-family);
+  font-size: 0px;
+  --tw-leading: 0;
+  line-height: 0;
+  word-break: break-word;
+  color: var(--color-black);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-26 {
+  margin-bottom: 0px;
+  font-size: 36px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-27 {
+  font-family: var(--presentation-font-about-family);
+  --tw-leading: 1.35;
+  line-height: 1.35;
+  word-break: break-word;
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-28 {
+  font-size: 36px;
+  --tw-leading: 1.35;
+  line-height: 1.35;
+}
+
+.axm-task-type-fields .axm-fields-layer-29 {
+  position: absolute;
+  top: calc(16.67% + 46.83px);
+  left: 64px;
+  height: 840px;
+  width: 1600px;
+  overflow: clip;
+  border-radius: var(--radius\/4,16px);
+  background-color: var(--color-background-hover);
+}
+
+.axm-task-type-fields .axm-fields-layer-30 {
+  position: absolute;
+  top: calc(50% - 0.4px);
+  left: calc(1 / 2 * 100%);
+  display: flex;
+  --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+  translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+  --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
+  align-content: stretch;
+  align-items: center;
+  gap: 48px;
+}
+
+.axm-task-type-fields .axm-fields-layer-31 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 54px;
+  border-radius: var(--radius\/4,16px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/50,rgba(0,0,0,0.01));
+  background-color: var(--color-background-main);
+  padding: var(--6,36px);
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 1px 1.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 0px 0.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.27)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-32 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 11px;
+  border-radius: var(--radius\/3,12px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/100,rgba(0,0,0,0.02));
+  background-color: #eff6f0;
+  padding: var(--spacing\/5,20px);
+}
+
+.axm-task-type-fields .axm-fields-layer-33 {
+  position: absolute;
+  inset: 0 18.32% 0 50.81%;
+  color: #017611;
+}
+
+.axm-task-type-fields .axm-fields-layer-34 {
+  position: absolute;
+  inset: 0 65.61% 0 0;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-35 {
+  position: absolute;
+  inset: 0 20.77% 0 50.81%;
+  color: #017611;
+}
+
+.axm-task-type-fields .axm-fields-layer-36 {
+  position: absolute;
+  inset: 0 61.05% 0 0;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-37 {
+  position: absolute;
+  inset: 0 6.74% 0 50.81%;
+  color: #017611;
+}
+
+.axm-task-type-fields .axm-fields-layer-38 {
+  position: absolute;
+  inset: 0 81.05% 0 0;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-39 {
+  position: absolute;
+  inset: 0 17.26% 0 50.81%;
+  color: #017611;
+}
+
+.axm-task-type-fields .axm-fields-layer-40 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 11px;
+  border-radius: var(--radius\/3,12px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/100,rgba(0,0,0,0.02));
+  background-color: #f4f2fb;
+  padding: var(--spacing\/5,20px);
+}
+
+.axm-task-type-fields .axm-fields-layer-41 {
+  position: absolute;
+  inset: 0 71.58% 0 0;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-42 {
+  position: absolute;
+  inset: 0 17.61% 0 50.81%;
+  color: #1e0d7e;
+}
+
+.axm-task-type-fields .axm-fields-layer-43 {
+  position: absolute;
+  inset: 0 67.72% 0 0;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-44 {
+  position: absolute;
+  inset: 0 28.14% 0 50.81%;
+  color: #1e0d7e;
+}
+
+.axm-task-type-fields .axm-fields-layer-45 {
+  position: absolute;
+  inset: 0 85.61% 0 0;
+  color: var(--presentation-color-secondary);
+}
+
+.axm-task-type-fields .axm-fields-layer-46 {
+  position: absolute;
+  inset: 0 9.9% 0 50.81%;
+  color: #1e0d7e;
+}
+
+.axm-task-type-fields .axm-fields-layer-47 {
+  position: absolute;
+  inset: 0 3.58% 0 50.81%;
+  color: #1e0d7e;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-48 {
+  position: absolute;
+  top: 86px;
+  left: 64px;
+  height: 84px;
+  width: 929px;
+  font-family: var(--presentation-font-about-family);
+  font-size: var(--presentation-font-lead);
+  --tw-leading: 1.35;
+  line-height: 1.35;
+  word-break: break-word;
+  color: var(--color-black);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-49 {
+  position: absolute;
+  top: calc(16.67% + 46.83px);
+  left: 64px;
+  height: 820px;
+  width: 1600px;
+  overflow: clip;
+  border-radius: var(--radius\/4,16px);
+  background-color: var(--color-background-hover);
+}
+
+.axm-task-type-fields .axm-fields-layer-50 {
+  position: absolute;
+  top: 409px;
+  left: 1025px;
+  height: 125px;
+  width: 368px;
+}
+
+.axm-task-type-fields .axm-fields-layer-51 {
+  position: absolute;
+  inset: 0 -0.11% -0.72% -0.11%;
+}
+
+.axm-task-type-fields .axm-fields-layer-52 {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.axm-task-type-fields .axm-fields-layer-53 {
+  position: absolute;
+  top: 409px;
+  left: 225px;
+  height: 125px;
+  width: 368px;
+}
+
+.axm-task-type-fields .axm-fields-layer-54 {
+  position: absolute;
+  top: 212px;
+  left: 395px;
+  height: 82px;
+  width: 808px;
+}
+
+.axm-task-type-fields .axm-fields-layer-55 {
+  position: absolute;
+  inset: -0.61% 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-56 {
+  position: absolute;
+  top: 100px;
+  left: 630px;
+  display: flex;
+  width: 340px;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: var(--radius\/3,12px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/100,rgba(0,0,0,0.02));
+  background-color: var(--color-background-main);
+  padding: 16px;
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, rgba(0,0,0,0.05))) drop-shadow(0px 0px 0.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.27)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-57 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 11px;
+}
+
+.axm-task-type-fields .axm-fields-layer-58 {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-59 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: 20px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  font-weight: 590 !important;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--color-black);
+}
+
+.axm-task-type-fields .axm-fields-layer-60 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.axm-task-type-fields .axm-fields-layer-61 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/50,rgba(0,0,0,0.01));
+  background-color: var(--alphagrey\/50,rgba(0,0,0,0.01));
+  padding-inline: 6px;
+  padding-block: 2px;
+  font-size: 20px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: nowrap;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-62 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-weight: 590 !important;
+  color: var(--colors\/teal\/1000,#067a6f);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-63 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-weight: 276.30999755859375 !important;
+  color: var(--presentation-color-secondary);
+  font-style: italic;
+}
+
+.axm-task-type-fields .axm-fields-layer-64 {
+  position: absolute;
+  top: 537px;
+  left: 60px;
+  display: contents;
+}
+
+.axm-task-type-fields .axm-fields-layer-65 {
+  position: absolute;
+  top: 537px;
+  left: 60px;
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  gap: 20px;
+}
+
+.axm-task-type-fields .axm-fields-layer-66 {
+  position: relative;
+  display: flex;
+  width: 340px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: var(--radius\/3,12px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/100,rgba(0,0,0,0.02));
+  background-color: var(--color-background-main);
+  padding: 16px;
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, rgba(0,0,0,0.05))) drop-shadow(0px 0px 0.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.27)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-67 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 20px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: nowrap;
+}
+
+.axm-task-type-fields .axm-fields-layer-68 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/50,rgba(0,0,0,0.01));
+  background-color: var(--colors\/teal\/100,#f1fcfa);
+  padding-inline: 6px;
+  padding-block: 2px;
+  color: var(--colors\/teal\/1000,#067a6f);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-69 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-weight: 590 !important;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-70 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-weight: var(--presentation-font-body-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-71 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/50,rgba(0,0,0,0.01));
+  background-color: var(--colors\/neonblue\/100,#f8faff);
+  padding-inline: 6px;
+  padding-block: 2px;
+  color: var(--colors\/neonblue\/1000,#3451b2);
+}
+
+.axm-task-type-fields .axm-fields-layer-72 {
+  position: absolute;
+  top: 537px;
+  left: 860px;
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  gap: 20px;
+}
+
+.axm-task-type-fields .axm-fields-layer-73 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/50,rgba(0,0,0,0.01));
+  background-color: var(--colors\/violet\/100,#fff8ff);
+  padding-inline: 6px;
+  padding-block: 2px;
+  color: var(--colors\/violet\/1000,#9c2bad);
+}
+
+.axm-task-type-fields .axm-fields-layer-74 {
+  position: absolute;
+  top: 297px;
+  left: 230px;
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  gap: 460px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-75 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-weight: 590 !important;
+  color: var(--colors\/neonblue\/1000,#3451b2);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-76 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-weight: 590 !important;
+  color: var(--colors\/violet\/1000,#9c2bad);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-77 {
+  position: absolute;
+  top: 64px;
+  left: 64px;
+  height: 97px;
+  width: 929px;
+  font-family: var(--presentation-font-about-family);
+  font-size: 0px;
+  --tw-leading: 0;
+  line-height: 0;
+  word-break: break-word;
+  color: var(--color-black);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-78 {
+  margin-bottom: 0px;
+  font-size: 36px;
+  --tw-leading: 1.35;
+  line-height: 1.35;
+}
+
+.axm-task-type-fields .axm-fields-layer-79 {
+  position: absolute;
+  top: 728px;
+  left: 426px;
+  width: 100px;
+  height: 100px;
+}
+
+.axm-task-type-fields .axm-fields-layer-80 {
+  position: absolute;
+  top: calc(50% + 44.5px);
+  left: calc(1 / 2 * 100%);
+  display: flex;
+  --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+  translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+  --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
+  align-content: stretch;
+  align-items: center;
+  gap: 48px;
+}
+
+.axm-task-type-fields .axm-fields-layer-81 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 24px;
+  border-radius: var(--radius\/4,16px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/50,rgba(0,0,0,0.01));
+  background-color: var(--color-background-main);
+  padding: var(--6,36px);
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 1px 1.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 0px 0.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.27)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-82 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-end;
+}
+
+.axm-task-type-fields .axm-fields-layer-83 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: var(--spacing\/5,20px);
+}
+
+.axm-task-type-fields .axm-fields-layer-84 {
+  position: relative;
+  display: flex;
+  width: 340px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: var(--radius\/3,12px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/100,rgba(0,0,0,0.02));
+  background-color: var(--colors\/azureblue\/100,#f5faff);
+  padding: 16px;
+}
+
+.axm-task-type-fields .axm-fields-layer-85 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 20px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--color-typography-content-default);
+}
+
+.axm-task-type-fields .axm-fields-layer-86 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/200,rgba(0,0,0,0.06));
+  background-color: var(--alphagrey\/100,rgba(0,0,0,0.02));
+  padding-inline: 6px;
+  padding-block: 2px;
+}
+
+.axm-task-type-fields .axm-fields-layer-87 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/200,rgba(0,0,0,0.06));
+  background-color: var(--alphagrey\/100,rgba(0,0,0,0.02));
+  padding-inline: 6px;
+  padding-block: 2px;
+  font-size: 20px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--color-typography-content-default);
+}
+
+.axm-task-type-fields .axm-fields-layer-88 {
+  position: absolute;
+  top: 26px;
+  left: 35px;
+  display: flex;
+  width: 340px;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: var(--radius\/3,12px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/100,rgba(0,0,0,0.02));
+  background-color: rgba(255,255,255,0.97);
+  padding: 16px;
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, rgba(0,0,0,0.05))) drop-shadow(0px 0px 0.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.27)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-89 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--alphagrey\/50,rgba(0,0,0,0.01));
+  background-color: var(--alphagrey\/100,rgba(0,0,0,0.02));
+  padding-inline: 6px;
+  padding-block: 2px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-90 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-weight: 590 !important;
+  color: var(--color-typography-content-default);
+}
+
+.axm-task-type-fields .axm-fields-layer-91 {
+  position: absolute;
+  top: 64px;
+  left: calc(50% - 12px);
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  border-radius: var(--radius\/3,12px);
+  background-color: var(--color-background-main);
+  padding: var(--spacing\/3,12px);
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 1px 1.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 0px 0.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.27)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-92 {
+  position: relative;
+  height: 844px;
+  width: 652px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-93 {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  overflow: hidden;
+}
+
+.axm-task-type-fields .axm-fields-layer-94 {
+  position: absolute;
+  top: -1.21%;
+  left: -50.61%;
+  height: 114.26%;
+  width: 153.07%;
+  max-width: none;
+}
+
+.axm-task-type-fields .axm-fields-layer-95 {
+  position: absolute;
+  top: calc(50% + 95.5px);
+  left: calc(62.5% + 89px);
+  display: flex;
+  width: 495px;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  border-radius: 16px;
+  background-color: var(--color-background-main);
+  padding: 12px;
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 1px 1.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 0px 0.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.27)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-96 {
+  position: relative;
+  aspect-ratio: 1352/1076;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-97 {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-98 {
+  position: absolute;
+  top: calc(16.67% + 174.83px);
+  left: 64px;
+  width: 620px;
+  font-family: "Aguzzo Italic Preview", Georgia, serif;
+  font-size: 49px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  word-break: break-word;
+  color: var(--color-typography-content-default);
+  font-style: italic;
+  font-weight: var(--font-weight-aguzzo-display) !important;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-99 {
+  position: absolute;
+  top: 70px;
+  left: 139px;
+  width: 382px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  --tw-leading: 2;
+  line-height: 2;
+  font-weight: var(--presentation-font-body-weight) !important;
+  --tw-tracking: 2.2px;
+  letter-spacing: 2.2px;
+  word-break: break-word;
+  color: var(--color-typography-content-default);
+  text-transform: uppercase;
+}
+
+.axm-customer-feedback-badges {
+  position: absolute;
+  top: 64px;
+  left: 64px;
+  display: flex;
+  gap: var(--spacing-05);
+}
+
+.axm-customer-feedback-badges img {
+  width: calc(2 * var(--spacing-4));
+  height: calc(2 * var(--spacing-4));
+  border-radius: var(--presentation-radius-image);
+  object-fit: cover;
+}
+
+.axm-task-type-fields .axm-fields-layer-104 {
+  position: absolute;
+  top: 69px;
+  left: calc(50% - 6px);
+  height: 484px;
+  width: 773px;
+  border-radius: 9.447px;
+}
+
+.axm-task-type-fields .axm-fields-layer-105 {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border-radius: 9.447px;
+  object-fit: cover;
+}
+
+.axm-task-type-fields .axm-fields-layer-106 {
+  position: absolute;
+  top: calc(50% + 10.5px);
+  left: 59px;
+  height: 484px;
+  width: 774px;
+  border-radius: 9.447px;
+}
+
+.axm-task-type-fields .axm-fields-layer-107 {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  overflow: hidden;
+  border-radius: 9.447px;
+}
+
+.axm-task-type-fields .axm-fields-layer-108 {
+  position: absolute;
+  top: 0px;
+  left: -0.05%;
+  height: 100.21%;
+  width: 100.09%;
+  max-width: none;
+}
+
+.axm-task-type-fields .axm-fields-layer-109 {
+  position: absolute;
+  top: calc(50% + 10.5px);
+  left: calc(50% - 6px);
+  height: 484px;
+  width: 774px;
+  border-radius: 9.447px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-110 {
+  position: absolute;
+  top: calc(16.67% + 46.83px);
+  left: 64px;
+  font-family: var(--presentation-font-about-family);
+  font-size: var(--presentation-font-lead);
+  --tw-leading: 1.35;
+  line-height: 1.35;
+  word-break: break-word;
+  white-space: pre;
+  color: var(--color-black);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-111 {
+  position: absolute;
+  top: 64px;
+  left: 64px;
+  width: 382px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  --tw-leading: 2;
+  line-height: 2;
+  font-weight: var(--presentation-font-body-weight) !important;
+  --tw-tracking: 2.2px;
+  letter-spacing: 2.2px;
+  word-break: break-word;
+  color: var(--color-typography-content-default);
+  text-transform: uppercase;
+}
+
+.axm-task-type-fields .axm-fields-layer-112 {
+  position: absolute;
+  top: 171px;
+  left: calc(37.5% + 59px);
+  height: 845px;
+  width: 469px;
+  border-radius: 12px;
+  --tw-shadow: 0px 1px 2px -1px var(--tw-shadow-color, rgba(0,0,0,0.11)), 0px 1px 3px 0px var(--tw-shadow-color, rgba(0,0,0,0.11));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-113 {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.axm-task-type-fields .axm-fields-layer-114 {
+  position: absolute;
+  top: -0.01%;
+  left: -5.54%;
+  height: 109.97%;
+  width: 298.08%;
+  max-width: none;
+}
+
+.axm-task-type-fields .axm-fields-layer-115 {
+  position: absolute;
+  top: 171px;
+  left: calc(62.5% + 123px);
+  height: 845px;
+  width: 461px;
+  border-radius: 12px;
+  --tw-shadow: 0px 1px 2px -1px var(--tw-shadow-color, rgba(0,0,0,0.11)), 0px 1px 3px 0px var(--tw-shadow-color, rgba(0,0,0,0.11));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-116 {
+  position: absolute;
+  top: -0.02%;
+  left: -15.18%;
+  height: 133.64%;
+  width: 368.55%;
+  max-width: none;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-117 {
+  position: absolute;
+  top: calc(16.67% + 46.83px);
+  left: 64px;
+  font-family: var(--presentation-font-about-family);
+  font-size: var(--presentation-font-lead);
+  --tw-leading: 0;
+  line-height: 0;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--color-black);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-118 {
+  margin-bottom: 0px;
+  --tw-leading: 1.35;
+  line-height: 1.35;
+}
+
+.axm-task-type-fields .axm-fields-layer-119 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-120 {
+  position: absolute;
+  top: 111px;
+  left: 64px;
+  font-family: var(--presentation-font-about-family);
+  font-size: var(--presentation-font-lead);
+  --tw-leading: 1.35;
+  line-height: 1.35;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-121 {
+  position: absolute;
+  top: 233px;
+  left: 64px;
+  height: 820px;
+  width: 720px;
+}
+
+.axm-task-type-fields .axm-fields-layer-122 {
+  position: absolute;
+  top: 233px;
+  left: 806px;
+  height: 820px;
+  width: 865px;
+}
+
+.axm-task-type-fields .axm-fields-layer-123 {
+  position: absolute;
+  top: 350px;
+  left: 264px;
+  height: 521px;
+  width: 309px;
+}
+
+.axm-task-type-fields .axm-fields-layer-124 {
+  position: absolute;
+  top: 384px;
+  left: 896px;
+  height: 448px;
+  width: 320px;
+}
+
+.axm-task-type-fields .axm-fields-layer-125 {
+  position: absolute;
+  top: 260px;
+  left: 1262px;
+  height: 750px;
+  width: 320px;
+}
+
+.axm-task-type-fields .axm-fields-layer-126 {
+  position: absolute;
+  top: 791px;
+  left: 231px;
+  height: 1px;
+  width: 33px;
+}
+
+.axm-task-type-fields .axm-fields-layer-127 {
+  position: absolute;
+  top: 772px;
+  left: 573px;
+  height: 1px;
+  width: 33px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-128 {
+  position: absolute;
+  top: 762px;
+  left: 134px;
+  width: 86px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  --tw-leading: 2;
+  line-height: 2;
+  --tw-tracking: 2.2px;
+  letter-spacing: 2.2px;
+  color: var(--color-gray-9);
+  text-transform: uppercase;
+  font-weight: var(--presentation-font-body-weight) !important;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-129 {
+  position: absolute;
+  top: 762px;
+  left: 619px;
+  width: 95px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  --tw-leading: 2;
+  line-height: 2;
+  --tw-tracking: 2.2px;
+  letter-spacing: 2.2px;
+  color: var(--color-gray-9);
+  text-transform: uppercase;
+  font-weight: var(--presentation-font-body-weight) !important;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-130 {
+  position: absolute;
+  top: 284px;
+  left: 332px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  --tw-leading: 2;
+  line-height: 2;
+  --tw-tracking: 2.2px;
+  letter-spacing: 2.2px;
+  color: var(--color-gray-9);
+  text-transform: uppercase;
+  font-weight: var(--presentation-font-body-weight) !important;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-131 {
+  position: absolute;
+  top: 284px;
+  left: 897px;
+  width: 260px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  --tw-leading: 2;
+  line-height: 2;
+  --tw-tracking: 2.2px;
+  letter-spacing: 2.2px;
+  color: var(--color-gray-9);
+  text-transform: uppercase;
+  font-weight: var(--presentation-font-body-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-132 {
+  position: relative;
+}
+
+.axm-task-type-fields .axm-fields-layer-133 {
+  width: 16px;
+  height: 16px;
+}
+
+.axm-task-type-fields .axm-fields-layer-134 {
+  border-radius: 32px;
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--cu-border\/input,#cecece);
+  background-color: var(--color-background-main);
+}
+
+.axm-task-type-fields .axm-fields-layer-135 {
+  position: relative;
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  border-radius: 4px;
+  background-color: var(--cu\/background\/primary-subtle,#f5f2ff);
+  padding-inline: 6px;
+  padding-block: 2px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-136 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: 12px;
+  --tw-leading: 16px;
+  line-height: 16px;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu\/content\/primary,#5746af);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-137 {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-2,4px);
+}
+
+.axm-task-type-fields .axm-fields-layer-138 {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: calc(1 / 2 * 100%);
+  aspect-ratio: 14/14;
+  --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+  translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+  border-radius: var(--radius-2,4px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--cu-border\/input,#cecece);
+  background-color: var(--color-background-main);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-139 {
+  position: absolute;
+  top: 111px;
+  left: 64px;
+  width: 1177px;
+  font-family: var(--presentation-font-about-family);
+  font-size: var(--presentation-font-lead);
+  --tw-leading: 1.35;
+  line-height: 1.35;
+  word-break: break-word;
+  color: var(--color-black);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-140 {
+  position: absolute;
+  top: calc(16.67% + 46.83px);
+  left: 64px;
+  height: 820px;
+  width: 788px;
+  border-radius: 12px;
+  background-color: var(--color-background-hover);
+}
+
+.axm-task-type-fields .axm-fields-layer-141 {
+  position: absolute;
+  top: calc(16.67% + 164.83px);
+  left: 199px;
+  display: flex;
+  width: 309px;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  overflow: clip;
+  border-radius: var(--radius-6,12px);
+  background-color: var(--cu-background\/menu,white);
+  --tw-shadow: 0px 0px 1px 0px var(--tw-shadow-color, var(--cu\/alphagrey\/700,rgba(0,0,0,0.27))), 0px 10px 15px -3px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1))), 0px 4px 6px -4px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1)));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-142 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--cu-size-2,8px);
+  padding-right: var(--cu-size-4,16px);
+  padding-left: var(--cu-size-3,12px);
+}
+
+.axm-task-type-fields .axm-fields-layer-143 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+}
+
+.axm-task-type-fields .axm-fields-layer-144 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cu-size-1,4px);
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  padding: 6px;
+}
+
+.axm-task-type-fields .axm-fields-layer-145 {
+  position: relative;
+  width: 15.999px;
+  height: 15.999px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-146 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cu-size-1,4px);
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  padding-block: 6px;
+  padding-right: var(--cu-size-2,8px);
+  padding-left: 6px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-147 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-task-type-fields .axm-fields-layer-148 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.axm-task-type-fields .axm-fields-layer-149 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  padding-block: var(--spacing-sm,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-150 {
+  position: relative;
+  height: 1px;
+  min-width: 1px;
+  flex: 1 0 0;
+  background-color: var(--app\/border\/default,#ebebeb);
+}
+
+.axm-task-type-fields .axm-fields-layer-151 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-end;
+  padding-inline: var(--size-4,16px);
+}
+
+.axm-task-type-fields .axm-fields-layer-152 {
+  position: relative;
+  display: flex;
+  height: 28px;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: var(--cu-size-2,8px);
+  padding-block: var(--cu-size-1,4px);
+}
+
+.axm-task-type-fields .axm-fields-layer-153 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-154 {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border-radius: var(--radius-2,4px);
+}
+
+.axm-task-type-fields .axm-fields-layer-155 {
+  position: absolute;
+  inset: 0px;
+  border-radius: var(--radius-2,4px);
+  background-color: var(--cu-background\/primary,#6647f0);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-156 {
+  position: relative;
+  min-width: 1px;
+  flex: 1 0 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-semibold,600) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-157 {
+  position: relative;
+  display: flex;
+  width: 253px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-158 {
+  position: relative;
+  margin-bottom: -2px;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-159 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-160 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+}
+
+.axm-task-type-fields .axm-fields-layer-161 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: var(--size-2,8px);
+  padding-block: 6px;
+}
+
+.axm-task-type-fields .axm-fields-layer-162 {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 32px;
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--cu-border\/input,#cecece);
+  background-color: var(--color-background-main);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-163 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/tertiary,#838383);
+}
+
+.axm-task-type-fields .axm-fields-layer-164 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cu-size-1,4px);
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  padding-block: 6px;
+  padding-right: var(--cu-size-2,8px);
+  padding-left: var(--cu-size-1,4px);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-165 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/disabled,#bbb);
+}
+
+.axm-task-type-fields .axm-fields-layer-166 {
+  position: relative;
+  display: flex;
+  height: 28px;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-167 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: var(--size-2,8px);
+  padding-top: 6px;
+}
+
+.axm-task-type-fields .axm-fields-layer-168 {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-169 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-170 {
+  position: relative;
+  display: flex;
+  height: 26px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 4px;
+  padding-top: 2px;
+}
+
+.axm-task-type-fields .axm-fields-layer-171 {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-end;
+  justify-content: center;
+  padding-inline: 8px;
+}
+
+.axm-task-type-fields .axm-fields-layer-172 {
+  position: relative;
+  height: 24px;
+  width: 0px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-173 {
+  position: absolute;
+  inset: 0 -0.5px;
+}
+
+.axm-task-type-fields .axm-fields-layer-174 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cu-size-1,4px);
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  padding-inline: var(--cu-size-1,4px);
+  padding-block: 6px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-175 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-background\/primary,#6647f0);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-176 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-177 {
+  position: relative;
+  height: 26px;
+  width: 0px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-178 {
+  position: relative;
+  display: flex;
+  width: 249.997px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+}
+
+.axm-task-type-fields .axm-fields-layer-179 {
+  position: relative;
+  display: flex;
+  width: 86px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cu-size-1,4px);
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  padding-block: 6px;
+  padding-right: 6px;
+  padding-left: var(--cu-size-1,4px);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-180 {
+  position: relative;
+  min-width: 1px;
+  flex: 1 0 0;
+  overflow: hidden;
+  font-family: var(--presentation-font-original);
+  font-size: 14px;
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-181 {
+  position: relative;
+  display: flex;
+  height: 24px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 4px;
+  padding-top: 4px;
+}
+
+.axm-task-type-fields .axm-fields-layer-182 {
+  position: relative;
+  height: 12px;
+  width: 16px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-183 {
+  position: absolute;
+  inset: -116.67% 0 0 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-184 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  padding-inline: var(--cu-size-4,16px);
+  padding-block: var(--spacing-sm,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-185 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  padding-inline: var(--size-4,16px);
+}
+
+.axm-task-type-fields .axm-fields-layer-186 {
+  position: relative;
+  display: flex;
+  height: 28px;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: var(--cu-size-2,8px);
+  padding-block: 4px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-187 {
+  position: relative;
+  min-width: 1px;
+  flex: 1 0 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-semibold,600) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-task-type-fields .axm-fields-layer-188 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-189 {
+  position: relative;
+  width: 253px;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/xsmall-font-size,12px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: var(--12px,0px);
+  letter-spacing: var(--12px,0px);
+  word-break: break-word;
+  color: var(--cu-content\/placeholder,#8d8d8d);
+}
+
+.axm-task-type-fields .axm-fields-layer-190 {
+  position: relative;
+  height: 2px;
+  width: 288px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-191 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  padding-inline: 16px;
+  padding-bottom: 8px;
+}
+
+.axm-task-type-fields .axm-fields-layer-192 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: var(--radius-6,12px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--cu-border\/low-contrast,#f0f0f0);
+  background-color: var(--cu-background\/main-dark,#f9f9f9);
+  padding-inline: 16px;
+  padding-block: 8px;
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, var(--cu\/overlays\/black-a\/1,rgba(0,0,0,0.05))));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-193 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 4px;
+  padding-bottom: 1px;
+}
+
+.axm-task-type-fields .axm-fields-layer-194 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cu-size-3,12px);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-195 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/xsmall-font-size,12px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-semibold,600) !important;
+  --tw-tracking: var(--12px,0px);
+  letter-spacing: var(--12px,0px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-196 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  border-radius: 4px;
+  background-color: var(--cu\/background\/primary-subtle,#f5f2ff);
+  padding-inline: 6px;
+  padding-block: 2px;
+  opacity: 0%;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-197 {
+  position: relative;
+  display: block;
+  width: min-content;
+  min-width: 100%;
+  flex-shrink: 0;
+  list-style-type: disc;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-paragraph\/medium-font-size,14px);
+  --tw-leading: 0;
+  line-height: 0;
+  font-weight: var(--cu-paragraph\/weight-regular,400) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  color: var(--cu-content\/tertiary,#838383);
+}
+
+.axm-task-type-fields .axm-fields-layer-198 {
+  margin-inline-start: 21px;
+  margin-bottom: 0px;
+}
+
+.axm-task-type-fields .axm-fields-layer-199 {
+  --tw-leading: 1.5;
+  line-height: 1.5;
+}
+
+.axm-task-type-fields .axm-fields-layer-200 {
+  margin-inline-start: 21px;
+}
+
+.axm-task-type-fields .axm-fields-layer-201 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.axm-task-type-fields .axm-fields-layer-202 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  padding-block: 7px;
+}
+
+.axm-task-type-fields .axm-fields-layer-203 {
+  position: relative;
+  height: 1px;
+  min-width: 1px;
+  flex: 1 0 0;
+  background-color: var(--cu-border\/low-contrast,#f0f0f0);
+}
+
+.axm-task-type-fields .axm-fields-layer-204 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: var(--cu-size-1,4px);
+  padding-right: var(--cu-size-4,16px);
+  padding-bottom: var(--cu-size-3,12px);
+  padding-left: var(--cu-size-2,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-205 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 8px;
+}
+
+.axm-task-type-fields .axm-fields-layer-206 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cu-size-1,4px);
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  padding-inline: var(--cu-size-2,8px);
+  padding-block: 6px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-207 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-task-type-fields .axm-fields-layer-208 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cu-size-1,4px);
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  background-color: var(--color-typography-content-default);
+  padding-inline: var(--cu-size-2,8px);
+  padding-block: 6px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-209 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/on-primary,white);
+}
+
+.axm-task-type-fields .axm-fields-layer-210 {
+  position: absolute;
+  top: calc(66.67% + 70.33px);
+  left: calc(25% + 60px);
+  display: flex;
+  height: 0px;
+  width: 46px;
+  align-items: center;
+  justify-content: center;
+}
+
+.axm-task-type-fields .axm-fields-layer-211 {
+  flex: none;
+  rotate: 90deg;
+}
+
+.axm-task-type-fields .axm-fields-layer-212 {
+  position: relative;
+  height: 46px;
+  width: 0px;
+}
+
+.axm-task-type-fields .axm-fields-layer-213 {
+  position: absolute;
+  inset: 0 -2.89px -6.28% -2.89px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-214 {
+  position: absolute;
+  top: calc(66.67% + 59.33px);
+  left: calc(25% + 120px);
+  width: 210px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  --tw-leading: 2;
+  line-height: 2;
+  font-weight: var(--presentation-font-body-weight) !important;
+  --tw-tracking: 2.2px;
+  letter-spacing: 2.2px;
+  word-break: break-word;
+  color: var(--cu-content\/placeholder,#8d8d8d);
+  text-transform: uppercase;
+}
+
+.axm-task-type-fields .axm-fields-layer-215 {
+  position: absolute;
+  top: calc(16.67% + 46.83px);
+  left: calc(50% + 12px);
+  height: 820px;
+  width: 788px;
+  border-radius: 12px;
+  background-color: var(--color-background-hover);
+}
+
+.axm-task-type-fields .axm-fields-layer-216 {
+  position: absolute;
+  top: calc(33.33% + 150.67px);
+  left: calc(75% - 25.5px);
+  display: flex;
+  width: 309px;
+  --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+  translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  overflow: clip;
+  border-radius: var(--radius-6,12px);
+  background-color: var(--cu-background\/menu,white);
+  --tw-shadow: 0px 0px 1px 0px var(--tw-shadow-color, var(--cu\/alphagrey\/700,rgba(0,0,0,0.27))), 0px 10px 15px -3px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1))), 0px 4px 6px -4px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1)));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-217 {
+  position: relative;
+  display: flex;
+  height: 44px;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--cu-size-2,8px);
+  padding-right: var(--cu-size-4,16px);
+  padding-left: var(--cu-size-3,12px);
+}
+
+.axm-task-type-fields .axm-fields-layer-218 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 8px;
+  padding-bottom: var(--cu-size-2,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-219 {
+  position: relative;
+  display: flex;
+  width: 309px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  padding-inline: var(--size-4,16px);
+}
+
+.axm-task-type-fields .axm-fields-layer-220 {
+  position: relative;
+  margin-bottom: -2px;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  cursor: pointer;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-221 {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 32px;
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--cu-border\/input,#cecece);
+  background-color: var(--color-background-main);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-222 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: left;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-223 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: left;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-224 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: 14px;
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--font-weight-medium) !important;
+  --tw-tracking: -0.15px;
+  letter-spacing: -0.15px;
+  word-break: break-word;
+  white-space: nowrap;
+  color: #6647f0;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-225 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-226 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: 14px;
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--font-weight-medium) !important;
+  --tw-tracking: -0.15px;
+  letter-spacing: -0.15px;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-227 {
+  position: relative;
+  height: 1px;
+  width: 16px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-228 {
+  position: absolute;
+  inset: -2500% 0 0 0;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-229 {
+  position: absolute;
+  top: calc(16.67% + 149.83px);
+  left: calc(50% + 85px);
+  width: 357px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  --tw-leading: 0;
+  line-height: 0;
+  font-weight: var(--presentation-font-body-weight) !important;
+  --tw-tracking: 2.2px;
+  letter-spacing: 2.2px;
+  word-break: break-word;
+  color: var(--cu-content\/placeholder,#8d8d8d);
+  text-transform: uppercase;
+}
+
+.axm-task-type-fields .axm-fields-layer-230 {
+  margin-bottom: 0px;
+  --tw-leading: 2;
+  line-height: 2;
+}
+
+.axm-task-type-fields .axm-fields-layer-231 {
+  list-style-type: disc;
+}
+
+.axm-task-type-fields .axm-fields-layer-232 {
+  margin-inline-start: 16.5px;
+  margin-bottom: 0px;
+}
+
+.axm-task-type-fields .axm-fields-layer-233 {
+  --tw-leading: 2;
+  line-height: 2;
+}
+
+.axm-task-type-fields .axm-fields-layer-234 {
+  margin-inline-start: 16.5px;
+}
+
+.axm-task-type-fields .axm-fields-layer-235 {
+  position: absolute;
+  top: calc(33.33% + 90.67px);
+  left: calc(62.5% - 1.72px);
+  height: 269.412px;
+  width: 345.022px;
+  border-radius: 10.429px;
+  background-color: var(--color-background-main);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-236 {
+  position: absolute;
+  top: calc(33.33% + 25.67px);
+  left: calc(12.5% + 83px);
+  font-family: var(--presentation-font-original);
+  font-size: 20px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  font-weight: var(--presentation-font-body-weight) !important;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--color-black);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-237 {
+  position: absolute;
+  top: calc(33.33% + 25.67px);
+  left: calc(62.5% + 7px);
+  font-family: var(--presentation-font-original);
+  font-size: 20px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  font-weight: var(--presentation-font-body-weight) !important;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--color-black);
+}
+
+.axm-task-type-fields .axm-fields-layer-238 {
+  position: absolute;
+  top: calc(33.33% + 140.67px);
+  left: calc(12.5% + 60.95px);
+  height: 407.919px;
+  width: 370.73px;
+  border-radius: 13.946px;
+}
+
+.axm-task-type-fields .axm-fields-layer-239 {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  overflow: hidden;
+  border-radius: 13.946px;
+}
+
+.axm-task-type-fields .axm-fields-layer-240 {
+  position: absolute;
+  top: -0.28%;
+  left: -0.31%;
+  height: 100.28%;
+  width: 100.31%;
+  max-width: none;
+}
+
+.axm-task-type-fields .axm-fields-layer-241 {
+  position: absolute;
+  top: calc(66.67% + 92.58px);
+  left: 220px;
+  height: 148.757px;
+  width: 476.486px;
+  --tw-gradient-position: to bottom in oklab;
+  background-image: linear-gradient(var(--tw-gradient-stops));
+  --tw-gradient-from: rgba(249,249,249,0);
+  --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  --tw-gradient-to: #f9f9f9;
+  --tw-gradient-to-position: 60.547%;
+}
+
+.axm-task-type-fields .axm-fields-layer-242 {
+  position: absolute;
+  top: calc(50% + 92.22px);
+  left: calc(50% + 163px);
+  height: 129.28px;
+  width: 414.101px;
+  --tw-gradient-position: to bottom in oklab;
+  background-image: linear-gradient(var(--tw-gradient-stops));
+  --tw-gradient-from: rgba(249,249,249,0);
+  --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  --tw-gradient-to: #f9f9f9;
+  --tw-gradient-to-position: 60.547%;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-243 {
+  position: absolute;
+  top: calc(33.33% + 58.67px);
+  left: calc(12.5% + 83px);
+  width: 345px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  --tw-leading: 2;
+  line-height: 2;
+  font-weight: var(--presentation-font-body-weight) !important;
+  --tw-tracking: 2.2px;
+  letter-spacing: 2.2px;
+  word-break: break-word;
+  color: #16c0a4;
+  text-transform: uppercase;
+}
+
+.axm-task-type-fields .axm-fields-layer-244 {
+  position: absolute;
+  top: calc(33.33% + 115.87px);
+  left: calc(62.5% + 22.61px);
+  display: flex;
+  width: 387.061px;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-245 {
+  position: relative;
+  margin-bottom: -2.795px;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-246 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 11.179px;
+  padding-block: 8.384px;
+}
+
+.axm-task-type-fields .axm-fields-layer-247 {
+  position: relative;
+  display: block;
+  width: 22.357px;
+  height: 22.357px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 44.715px;
+  border-style: solid;
+  border-width: 1.397px;
+  --tw-border-style: solid;
+  border-color: var(--cu-border\/input,#cecece);
+  background-color: var(--color-background-main);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-248 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: 19.563px;
+  --tw-leading: 22.357px;
+  line-height: 22.357px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: -0.2096px;
+  letter-spacing: -0.2096px;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-task-type-fields .axm-fields-layer-249 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: 5.589px;
+  overflow: clip;
+  border-radius: var(--radius-3-5,9.781px);
+  padding-inline: 5.589px;
+  padding-block: 8.384px;
+}
+
+.axm-task-type-fields .axm-fields-layer-250 {
+  position: relative;
+  width: 22.355px;
+  height: 22.355px;
+  flex-shrink: 0;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-251 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: 19.563px;
+  --tw-leading: 22.357px;
+  line-height: 22.357px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: -0.2096px;
+  letter-spacing: -0.2096px;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-task-type-fields .axm-fields-layer-252 {
+  position: relative;
+  display: flex;
+  height: 39.125px;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-253 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 11.179px;
+  padding-top: 8.384px;
+}
+
+.axm-task-type-fields .axm-fields-layer-254 {
+  position: relative;
+  display: block;
+  width: 22.357px;
+  height: 22.357px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-255 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: 19.563px;
+  --tw-leading: 22.357px;
+  line-height: 22.357px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: -0.2096px;
+  letter-spacing: -0.2096px;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-256 {
+  position: relative;
+  display: flex;
+  height: 33.536px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 5.589px;
+}
+
+.axm-task-type-fields .axm-fields-layer-257 {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-end;
+  justify-content: center;
+  padding-inline: 11.179px;
+}
+
+.axm-task-type-fields .axm-fields-layer-258 {
+  position: relative;
+  height: 33.536px;
+  width: 0px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-259 {
+  position: absolute;
+  inset: 0 -0.7px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-260 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: 19.563px;
+  --tw-leading: 22.357px;
+  line-height: 22.357px;
+  font-weight: var(--font-weight-medium) !important;
+  --tw-tracking: -0.2096px;
+  letter-spacing: -0.2096px;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-background\/primary,#6647f0);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-261 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: 19.563px;
+  --tw-leading: 22.357px;
+  line-height: 22.357px;
+  font-weight: var(--font-weight-medium) !important;
+  --tw-tracking: -0.2096px;
+  letter-spacing: -0.2096px;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-262 {
+  position: relative;
+  display: flex;
+  height: 33.536px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 5.589px;
+  padding-top: 5.589px;
+}
+
+.axm-task-type-fields .axm-fields-layer-263 {
+  position: relative;
+  height: 1.397px;
+  width: 22.357px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-264 {
+  position: absolute;
+  top: calc(66.67% + 68.33px);
+  left: calc(50% + 125px);
+  display: flex;
+  width: 578px;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: var(--radius-6,12px);
+  background-color: var(--cu-background\/main-dark,#f9f9f9);
+  padding-top: 12px;
+  padding-bottom: 16px;
+  padding-left: 12px;
+}
+
+.axm-task-type-fields .axm-fields-layer-265 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+.axm-task-type-fields .axm-fields-layer-266 {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 999px;
+}
+
+.axm-task-type-fields .axm-fields-layer-267 {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.axm-task-type-fields .axm-fields-layer-268 {
+  position: relative;
+  display: flex;
+  min-width: 1px;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 2px;
+  padding-right: 16px;
+}
+
+.axm-task-type-fields .axm-fields-layer-269 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-270 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  font-family: var(--presentation-font-original);
+  font-size: 16px;
+  --tw-leading: 0;
+  line-height: 0;
+  font-weight: 590 !important;
+  --tw-tracking: -0.4px;
+  letter-spacing: -0.4px;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--app\/content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-271 {
+  overflow: hidden;
+  --tw-leading: 22px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+}
+
+.axm-task-type-fields .axm-fields-layer-272 {
+  position: relative;
+  height: 20.952px;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-273 {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: 0px;
+  --tw-leading: 0;
+  line-height: 0;
+  font-weight: var(--cu-label\/weight-semibold,400) !important;
+  --tw-tracking: -0.4px;
+  letter-spacing: -0.4px;
+  word-break: break-word;
+  white-space: pre-wrap;
+  color: var(--app\/content\/default,#202020);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-274 {
+  font-size: 18px;
+  --tw-leading: 24px;
+  line-height: 24px;
+  font-weight: var(--presentation-font-body-weight) !important;
+  --tw-tracking: -0.45px;
+  letter-spacing: -0.45px;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: from-font;
+  text-decoration-skip-ink: none;
+  text-underline-position: from-font;
+}
+
+.axm-task-type-fields .axm-fields-layer-275 {
+  font-size: 17px;
+  --tw-leading: 24px;
+  line-height: 24px;
+}
+
+.axm-task-type-fields .axm-fields-layer-276 {
+  position: absolute;
+  top: calc(33.33% + 80.67px);
+  left: 231px;
+  display: flex;
+  width: 444.145px;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  overflow: clip;
+  border-radius: 18.506px;
+  background-color: var(--cu-background\/menu,white);
+  padding-block: 12.337px;
+  --tw-shadow: 0px 0px 1.542px 0px var(--tw-shadow-color, var(--cu\/alphagrey\/700,rgba(0,0,0,0.27))), 0px 6.169px 9.253px -1.542px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1))), 0px 3.084px 6.169px -3.084px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1)));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-277 {
+  position: relative;
+  display: flex;
+  width: 444.144px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 8px;
+  padding-block: 1.542px;
+  padding-right: 12.337px;
+  padding-left: 19px;
+}
+
+.axm-task-type-fields .axm-fields-layer-278 {
+  position: relative;
+  width: 22.357px;
+  height: 22.357px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-279 {
+  position: relative;
+  display: flex;
+  min-width: 1px;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 3.084px;
+  border-radius: 10.795px;
+  padding-inline: 12.337px;
+  padding-block: 9.253px;
+}
+
+.axm-task-type-fields .axm-fields-layer-280 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 12.337px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-281 {
+  position: relative;
+  min-width: 1px;
+  flex: 1 0 0;
+  overflow: hidden;
+  font-family: var(--presentation-font-original);
+  font-size: 21.59px;
+  --tw-leading: 24.675px;
+  line-height: 24.675px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: -0.2313px;
+  letter-spacing: -0.2313px;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-282 {
+  position: relative;
+  min-width: 1px;
+  flex: 1 0 0;
+  font-family: var(--presentation-font-original);
+  font-size: 18.506px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  font-weight: var(--cu-paragraph\/weight-regular,400) !important;
+  word-break: break-word;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-task-type-fields .axm-fields-layer-283 {
+  position: relative;
+  width: 22.357px;
+  height: 22.357px;
+  flex-shrink: 0;
+  border-radius: 44.715px;
+  border-style: solid;
+  border-width: 1.397px;
+  --tw-border-style: solid;
+  border-color: var(--cu-border\/input,#cecece);
+  background-color: var(--color-background-main);
+}
+
+.axm-task-type-fields .axm-fields-layer-284 {
+  position: absolute;
+  top: calc(33.33% + 80.67px);
+  left: calc(68.75% + 66.07px);
+  display: flex;
+  width: 444.145px;
+  --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+  translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  overflow: clip;
+  border-radius: 18.506px;
+  background-color: var(--cu-background\/menu,white);
+  padding-block: 12.337px;
+  --tw-shadow: 0px 0px 1.542px 0px var(--tw-shadow-color, var(--cu\/alphagrey\/700,rgba(0,0,0,0.27))), 0px 6.169px 9.253px -1.542px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1))), 0px 3.084px 6.169px -3.084px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1)));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-285 {
+  position: relative;
+  display: flex;
+  width: 444.144px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 8px;
+  padding-block: 1.542px;
+  padding-right: 12.337px;
+  padding-left: 29px;
+}
+
+.axm-task-type-fields .axm-fields-layer-286 {
+  position: relative;
+  width: 21.875px;
+  height: 21.875px;
+  flex-shrink: 0;
+  border-radius: var(--radius-2,6.25px);
+}
+
+.axm-task-type-fields .axm-fields-layer-287 {
+  position: absolute;
+  inset: 0px;
+  border-radius: var(--radius-2,6.25px);
+  background-color: var(--cu\/background\/primary,#6647f0);
+}
+
+.axm-task-type-fields .axm-fields-layer-288 {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: calc(50% + 0.06px);
+  aspect-ratio: 14/14;
+  --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+  translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+  border-radius: var(--radius-2,6.25px);
+  border-style: solid;
+  border-width: 1.563px;
+  --tw-border-style: solid;
+  border-color: var(--cu\/border\/input,#cecece);
+  background-color: var(--color-background-main);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-289 {
+  position: absolute;
+  top: calc(66.67% + 82.33px);
+  left: calc(50% + 168px);
+  width: 522px;
+  font-family: var(--presentation-font-original);
+  font-size: 28px;
+  --tw-leading: 0;
+  line-height: 0;
+  font-weight: var(--presentation-font-body-weight) !important;
+  word-break: break-word;
+  color: var(--color-black);
+}
+
+.axm-task-type-fields .axm-fields-layer-290 {
+  margin-bottom: 0px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+}
+
+.axm-task-type-fields .axm-fields-layer-291 {
+  margin-bottom: 0px;
+  list-style-type: disc;
+}
+
+.axm-task-type-fields .axm-fields-layer-292 {
+  margin-inline-start: 42px;
+  margin-bottom: 0px;
+}
+
+.axm-task-type-fields .axm-fields-layer-293 {
+  margin-inline-start: 42px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-294 {
+  position: absolute;
+  top: calc(66.67% + 82.33px);
+  left: 231px;
+  width: 454px;
+  font-family: var(--presentation-font-original);
+  font-size: 28px;
+  --tw-leading: 0;
+  line-height: 0;
+  font-weight: var(--presentation-font-body-weight) !important;
+  word-break: break-word;
+  color: var(--color-black);
+}
+
+.axm-task-type-fields .axm-fields-layer-295 {
+  margin-bottom: 0px;
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.axm-task-type-fields .axm-fields-layer-296 {
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-297 {
+  position: absolute;
+  top: calc(50% + 0.5px);
+  left: calc(25% + 144px);
+  width: 1177px;
+  font-family: var(--presentation-font-about-family);
+  font-size: var(--presentation-font-lead);
+  --tw-leading: 1.35;
+  line-height: 1.35;
+  word-break: break-word;
+  color: var(--color-black);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-298 {
+  position: absolute;
+  top: calc(16.67% + 85.83px);
+  left: 41px;
+  display: flex;
+  height: 466.903px;
+  width: 879.102px;
+  align-items: center;
+  justify-content: center;
+}
+
+.axm-task-type-fields .axm-fields-layer-299 {
+  flex: none;
+  rotate: -9.81deg;
+}
+
+.axm-task-type-fields .axm-fields-layer-300 {
+  position: relative;
+  height: 329.479px;
+  width: 835.191px;
+  border-radius: 12px;
+  --tw-shadow: 0px 1px 2px -1px var(--tw-shadow-color, rgba(0,0,0,0.1)), 0px 1px 3px 0px var(--tw-shadow-color, rgba(0,0,0,0.1)), 0px 0px 1px 0px var(--tw-shadow-color, rgba(0,0,0,0.27));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-301 {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.axm-task-type-fields .axm-fields-layer-302 {
+  position: absolute;
+  top: calc(16.67% + 81.83px);
+  left: calc(50% + 56px);
+  display: flex;
+  height: 560.66px;
+  width: 754.404px;
+  align-items: center;
+  justify-content: center;
+}
+
+.axm-task-type-fields .axm-fields-layer-303 {
+  flex: none;
+  rotate: 5.18deg;
+}
+
+.axm-task-type-fields .axm-fields-layer-304 {
+  position: relative;
+  height: 498.355px;
+  width: 712.3px;
+  border-radius: 12px;
+  --tw-shadow: 0px 1px 2px -1px var(--tw-shadow-color, rgba(0,0,0,0.1)), 0px 1px 3px 0px var(--tw-shadow-color, rgba(0,0,0,0.1)), 0px 0px 1px 0px var(--tw-shadow-color, rgba(0,0,0,0.27));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-305 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100.25%;
+  width: 100%;
+  max-width: none;
+}
+
+.axm-task-type-fields .axm-fields-layer-306 {
+  position: absolute;
+  top: 151.27px;
+  left: calc(12.5% + 121.58px);
+  display: flex;
+  height: 707.42px;
+  width: 716.837px;
+  align-items: center;
+  justify-content: center;
+}
+
+.axm-task-type-fields .axm-fields-layer-307 {
+  flex: none;
+  rotate: -3.44deg;
+}
+
+.axm-task-type-fields .axm-fields-layer-308 {
+  position: relative;
+  display: flex;
+  width: 678px;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  border-radius: 12px;
+  background-color: var(--color-background-main);
+  padding-inline: 29px;
+  padding-block: 28px;
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 1px 1.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 0px 0.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.27)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-309 {
+  position: relative;
+  aspect-ratio: 1080/1066;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-310 {
+  position: absolute;
+  top: 124.49px;
+  left: calc(37.5% + 134.65px);
+  display: flex;
+  height: 832.312px;
+  width: 613.63px;
+  align-items: center;
+  justify-content: center;
+}
+
+.axm-task-type-fields .axm-fields-layer-311 {
+  flex: none;
+  rotate: 3.33deg;
+}
+
+.axm-task-type-fields .axm-fields-layer-312 {
+  position: relative;
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  border-radius: 12px;
+  background-color: var(--color-background-main);
+  padding-block: 17.933px;
+  padding-right: 30.591px;
+  padding-left: 20.57px;
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 1px 1.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.1))) drop-shadow(0px 0px 0.5px var(--tw-drop-shadow-color, rgba(0,0,0,0.27)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-313 {
+  position: relative;
+  height: 673px;
+  width: 455px;
+  flex-shrink: 0;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-314 {
+  position: absolute;
+  top: 74px;
+  left: calc(50% + 0.5px);
+  --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+  translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+  text-align: center;
+  font-family: var(--presentation-font-about-family);
+  font-size: var(--presentation-font-lead);
+  --tw-leading: 1.35;
+  line-height: 1.35;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--color-black);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-315 {
+  position: absolute;
+  top: 166px;
+  left: calc(50% + 0.5px);
+  height: 986px;
+  width: 1265px;
+  --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+  translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+}
+
+.axm-task-type-fields .axm-fields-layer-316 {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.axm-task-type-fields .axm-fields-layer-317 {
+  position: absolute;
+  top: 166px;
+  left: 232px;
+  height: 1988px;
+  width: 1265px;
+}
+
+.axm-task-type-fields .axm-fields-layer-318 {
+  position: absolute;
+  top: 166px;
+  left: calc(50% + 0.5px);
+  height: 4096px;
+  width: 1265px;
+  --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+  translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+}
+
+.axm-task-type-fields .axm-fields-layer-319 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: clip;
+  border-radius: 12px;
+  background-color: var(--color-background-hover);
+}
+
+.axm-task-type-fields .axm-fields-layer-320 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  overflow: clip;
+  border-radius: var(--radius-6,12px);
+  background-color: var(--cu\/background\/menu,white);
+  padding-bottom: var(--cu-size-1,4px);
+  --tw-shadow: 0px 0px 1px 0px var(--tw-shadow-color, var(--cu\/alpha-grey\/700,rgba(0,0,0,0.27))), 0px 4px 6px -1px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1))), 0px 2px 4px -2px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1)));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-321 {
+  position: relative;
+  display: flex;
+  width: 309px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--cu\/background\/menu,white);
+  padding-top: var(--cu-size-3,12px);
+  padding-right: 8px;
+  padding-bottom: var(--cu-size-1,4px);
+}
+
+.axm-task-type-fields .axm-fields-layer-322 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: center;
+  gap: var(--cu-size-3,12px);
+  padding-inline: var(--cu-size-2,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-323 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 2px;
+  border-radius: var(--radius-3-5,7px);
+  padding-inline: var(--cu-size-2,8px);
+  padding-block: 6px;
+}
+
+.axm-task-type-fields .axm-fields-layer-324 {
+  position: relative;
+  display: flex;
+  height: 16px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: var(--cu-size-2,8px);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-325 {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  font-family: var(--presentation-font-original);
+  font-size: 14px;
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-326 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.axm-task-type-fields .axm-fields-layer-327 {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-328 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--font-size-6,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--font-weight-medium,510) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu\/content\/secondary,#646464);
+}
+
+.axm-task-type-fields .axm-fields-layer-329 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 16px;
+  overflow: clip;
+  background-color: var(--color-background-main);
+  padding-top: var(--cu-size-2,8px);
+  padding-bottom: 16px;
+}
+
+.axm-task-type-fields .axm-fields-layer-330 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  padding-inline: var(--cu-size-4,16px);
+}
+
+.axm-task-type-fields .axm-fields-layer-331 {
+  position: relative;
+  display: flex;
+  height: 28px;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  padding-block: 6px;
+}
+
+.axm-task-type-fields .axm-fields-layer-332 {
+  position: relative;
+  display: flex;
+  min-width: 1px;
+  flex: 1 0 0;
+  align-content: stretch;
+  align-items: center;
+  word-break: break-word;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-333 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/xsmall-font-size,12px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--12px,0px);
+  letter-spacing: var(--12px,0px);
+  white-space: nowrap;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-334 {
+  position: relative;
+  display: flex;
+  height: 16px;
+  width: 8px;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: 12px;
+  --tw-leading: 0;
+  line-height: 0;
+  color: var(--cu-content\/danger,#c62a2f);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-335 {
+  font-size: 7.74px;
+  --tw-leading: 12px;
+  line-height: 12px;
+}
+
+.axm-task-type-fields .axm-fields-layer-336 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--cu-border\/default,#e8e8e8);
+  background-color: var(--color-background-main);
+  padding-inline: var(--cu-size-2,8px);
+  padding-block: 6px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-337 {
+  position: relative;
+  min-width: 1px;
+  flex: 1 0 0;
+  overflow: hidden;
+  font-family: var(--presentation-font-original);
+  font-size: 14px;
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-338 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 6px;
+  padding-inline: var(--cu-size-4,16px);
+}
+
+.axm-task-type-fields .axm-fields-layer-339 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-340 {
+  position: relative;
+  display: flex;
+  height: 28px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  padding-block: 6px;
+}
+
+.axm-task-type-fields .axm-fields-layer-341 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  word-break: break-word;
+}
+
+.axm-task-type-fields .axm-fields-layer-342 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  padding-block: 6px;
+  padding-right: var(--cu-size-2,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-343 {
+  position: absolute;
+  inset: -25%;
+}
+
+.axm-task-type-fields .axm-fields-layer-344 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  background-color: var(--color-background-main);
+  padding-block: 6px;
+}
+
+.axm-task-type-fields .axm-fields-layer-345 {
+  position: relative;
+  display: flex;
+  min-width: 1px;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-346 {
+  position: relative;
+  min-width: 1px;
+  flex: 1 0 0;
+  overflow: hidden;
+  font-family: var(--presentation-font-original);
+  font-size: 14px;
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #8d8d8d;
+}
+
+.axm-task-type-fields .axm-fields-layer-347 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: var(--color-white);
+  padding-inline: var(--cu-size-4,16px);
+  padding-bottom: var(--size-0,0px);
+}
+
+.axm-task-type-fields .axm-fields-layer-348 {
+  position: relative;
+  display: flex;
+  min-width: 1px;
+  flex: 1 0 0;
+  align-content: stretch;
+  align-items: center;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-349 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/xsmall-font-size,12px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--12px,0px);
+  letter-spacing: var(--12px,0px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-task-type-fields .axm-fields-layer-350 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  border-radius: var(--radius-3,6px);
+  background-color: var(--cu\/background\/on-main,rgba(0,0,0,0.06));
+  padding: 2px;
+}
+
+.axm-task-type-fields .axm-fields-layer-351 {
+  position: absolute;
+  inset: 2px;
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+}
+
+.axm-task-type-fields .axm-fields-layer-352 {
+  position: relative;
+  height: 100%;
+  min-width: 1px;
+  flex: 1 0 0;
+  border-radius: var(--radius-2,4px);
+  background-color: var(--color-background-main);
+  --tw-shadow: 0px 1px 2px 0px var(--tw-shadow-color, var(--core\/overlays\/black-a\/3,rgba(0,0,0,0.05)));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-353 {
+  position: relative;
+  height: 100%;
+  min-width: 1px;
+  flex: 1 0 0;
+  border-radius: var(--radius-3,6px);
+  --tw-drop-shadow-size: drop-shadow(0px 1px 1px var(--tw-drop-shadow-color, var(--core\/overlays\/black-a\/3,rgba(0,0,0,0.05))));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+
+.axm-task-type-fields .axm-fields-layer-354 {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
+}
+
+.axm-task-type-fields .axm-fields-layer-355 {
+  position: relative;
+  display: flex;
+  height: 100%;
+  min-width: 1px;
+  flex: 1 0 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cu-size-1,4px);
+  overflow: clip;
+  border-radius: var(--radius-2-5,5px);
+  padding-inline: var(--cu-size-2,8px);
+  padding-block: var(--cu-size-1,4px);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-356 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: 14px;
+  --tw-leading: 16px;
+  line-height: 16px;
+  --tw-tracking: -0.15px;
+  letter-spacing: -0.15px;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu\/content\/secondary,#646464);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-357 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: 14px;
+  --tw-leading: 16px;
+  line-height: 16px;
+  --tw-tracking: -0.15px;
+  letter-spacing: -0.15px;
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--core\/text\/tertiary,#838383);
+  font-style: normal;
+  font-weight: var(--presentation-trial-weight) !important;
+}
+
+.axm-task-type-fields .axm-fields-layer-358 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: center;
+  gap: var(--cu-size-3,12px);
+  padding-inline: var(--cu-size-2,8px);
+  padding-block: var(--size-1,4px);
+}
+
+.axm-task-type-fields .axm-fields-layer-359 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 2px;
+  border-radius: var(--radius-3-5,7px);
+  padding-inline: var(--cu-size-2,8px);
+  padding-block: 6px;
+}
+
+.axm-task-type-fields .axm-fields-layer-360 {
+  position: relative;
+  display: flex;
+  height: 16px;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: var(--cu-size-2,8px);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-361 {
+  position: relative;
+  min-width: 1px;
+  flex: 1 0 0;
+  overflow: hidden;
+  font-family: var(--presentation-font-original);
+  font-size: 14px;
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--cu-content\/default,#202020);
+}
+
+.axm-task-type-fields .axm-fields-layer-362 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: var(--cu-size-2,8px);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-363 {
+  position: relative;
+  min-width: 1px;
+  flex: 1 0 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-paragraph\/small-font-size,12px);
+  --tw-leading: 1.5;
+  line-height: 1.5;
+  font-weight: var(--cu-paragraph\/weight-regular,400) !important;
+  --tw-tracking: var(--12px,0px);
+  letter-spacing: var(--12px,0px);
+  word-break: break-word;
+  color: var(--cu-content\/placeholder,#8d8d8d);
+}
+
+.axm-task-type-fields .axm-fields-layer-364 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  overflow: clip;
+  border-radius: var(--radius\/3,12px);
+  background-color: var(--color-background-main);
+  padding-top: var(--cu-size-3,12px);
+  --tw-shadow: 0px 2px 4px -2px var(--tw-shadow-color, rgba(0,0,0,0.11)), 0px 4px 6px -1px var(--tw-shadow-color, rgba(0,0,0,0.11));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-365 {
+  position: relative;
+  display: flex;
+  height: 674px;
+  width: 100%;
+  min-width: 320px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  overflow: clip;
+  background-color: var(--color-background-main);
+}
+
+.axm-task-type-fields .axm-fields-layer-366 {
+  position: relative;
+  display: flex;
+  height: 36px;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: var(--cu-size-4,16px);
+  padding-bottom: 4px;
+  padding-left: var(--cu-size-5,20px);
+}
+
+.axm-task-type-fields .axm-fields-layer-367 {
+  position: relative;
+  display: inline-grid;
+  flex-shrink: 0;
+  grid-template-columns: max-content;
+  grid-template-rows: max-content;
+  place-items: start;
+  --tw-leading: 0;
+  line-height: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-368 {
+  position: relative;
+  grid-column: 1;
+  grid-row: 1;
+  margin-top: 8px;
+  margin-left: 0px;
+  width: 16px;
+  height: 16px;
+}
+
+.axm-task-type-fields .axm-fields-layer-369 {
+  position: relative;
+  grid-column: 1;
+  grid-row: 1;
+  margin-top: 0px;
+  margin-left: 20px;
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  overflow: clip;
+  border-radius: var(--radius-4,8px);
+  padding-block: var(--cu-size-2,8px);
+  padding-right: var(--cu-size-2,8px);
+  padding-left: 10px;
+}
+
+.axm-task-type-fields .axm-fields-layer-370 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  overflow: clip;
+  border-radius: var(--radius-4,8px);
+  padding: var(--cu-size-2,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-371 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  padding-block: var(--cu-size-2,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-372 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 12px;
+  overflow: clip;
+  background-color: var(--color-background-main);
+  padding-top: var(--cu-size-2,8px);
+  padding-bottom: var(--spacing\/2,8px);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-373 {
+  position: relative;
+  flex-shrink: 0;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/xsmall-font-size,12px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--12px,0px);
+  letter-spacing: var(--12px,0px);
+  white-space: nowrap;
+  color: var(--cu-content\/secondary,#646464);
+}
+
+.axm-task-type-fields .axm-fields-layer-374 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 2px;
+  padding-inline: var(--cu-size-4,16px);
+}
+
+.axm-task-type-fields .axm-fields-layer-375 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.axm-task-type-fields .axm-fields-layer-376 {
+  position: relative;
+  display: flex;
+  height: 28px;
+  width: 288px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 6px;
+  overflow: clip;
+  border-radius: var(--radius-3-5,7px);
+  padding-block: 6px;
+  padding-right: var(--cu-size-2,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-377 {
+  position: relative;
+  display: flex;
+  width: 288px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-378 {
+  position: relative;
+  display: flex;
+  height: 28px;
+  width: 288px;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-379 {
+  position: relative;
+  display: flex;
+  width: 320px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: center;
+  gap: var(--cu-size-3,12px);
+  padding-inline: var(--cu-size-2,8px);
+  padding-top: 2px;
+  padding-bottom: 1px;
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-380 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: right;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/xsmall-font-size,12px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-regular,400) !important;
+  --tw-tracking: var(--12px,0px);
+  letter-spacing: var(--12px,0px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/placeholder,#8d8d8d);
+}
+
+.axm-task-type-fields .axm-fields-layer-381 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: center;
+  gap: var(--cu-size-3,12px);
+  padding-inline: var(--cu-size-2,8px);
+  padding-block: 1px;
+}
+
+.axm-task-type-fields .axm-fields-layer-382 {
+  position: relative;
+  height: 16px;
+  width: 39.997px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-383 {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  overflow: clip;
+  border-radius: var(--radius-3,6px);
+  padding: 5px;
+}
+
+.axm-task-type-fields .axm-fields-layer-384 {
+  position: relative;
+  width: 13.999px;
+  height: 13.999px;
+  flex-shrink: 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-385 {
+  position: absolute;
+  top: -4px;
+  left: 20px;
+  display: flex;
+  width: 23.999px;
+  height: 23.999px;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  overflow: clip;
+  border-radius: var(--radius-3,6px);
+  padding: 4px;
+}
+
+.axm-task-type-fields .axm-fields-layer-386 {
+  position: relative;
+  height: 100%;
+  min-width: 1px;
+  flex: 1 0 0;
+}
+
+.axm-task-type-fields .axm-fields-layer-387 {
+  position: relative;
+  display: flex;
+  min-height: 1px;
+  width: 100%;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.axm-task-type-fields .axm-fields-layer-388 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  --tw-border-style: solid;
+  border-style: solid;
+  border-color: var(--cu-border\/default,#e8e8e8);
+  padding: 16px;
+}
+
+.axm-task-type-fields .axm-fields-layer-389 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: 4px;
+  overflow: clip;
+  border-radius: var(--radius-4,8px);
+  border-style: solid;
+  border-width: 1px;
+  --tw-border-style: solid;
+  border-color: var(--cu-border\/default,#e8e8e8);
+  background-color: var(--color-background-main);
+  padding-inline: 10px;
+  padding-block: var(--cu-size-2,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-390 {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  gap: var(--cu-size-1,4px);
+  overflow: clip;
+  border-radius: var(--radius-4,8px);
+  background-color: var(--color-typography-content-default);
+  padding-inline: 10px;
+  padding-block: var(--cu-size-2,8px);
+}
+
+.axm-presentation .axm-slide .axm-task-type-fields .axm-fields-layer-391 {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--presentation-font-original);
+  font-size: var(--cu-label\/small-font-size,14px);
+  --tw-leading: 16px;
+  line-height: 16px;
+  font-weight: var(--cu-label\/weight-medium,500) !important;
+  --tw-tracking: var(--14px,-0.15px);
+  letter-spacing: var(--14px,-0.15px);
+  word-break: break-word;
+  white-space: nowrap;
+  color: var(--cu-content\/on-dark,white);
+}
+
+.axm-task-type-fields .axm-fields-layer-392 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  overflow: clip;
+  border-radius: var(--radius-6,12px);
+  background-color: var(--color-background-main);
+  padding-bottom: var(--cu-size-1,4px);
+  --tw-shadow: 0px 0px 1px 0px var(--tw-shadow-color, var(--cu\/alphagrey\/700,rgba(0,0,0,0.27))), 0px 4px 6px -1px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1))), 0px 2px 4px -2px var(--tw-shadow-color, var(--cu\/overlays\/black-a\/2,rgba(0,0,0,0.1)));
+  box-shadow: var(--tw-shadow);
+}
+
+.axm-task-type-fields .axm-fields-layer-393 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--cu-background\/menu,white);
+  padding-top: var(--cu-size-3,12px);
+  padding-right: 8px;
+  padding-bottom: var(--cu-size-1,4px);
+}
+
+.axm-task-type-fields .axm-fields-layer-394 {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 12px;
+  overflow: clip;
+  background-color: var(--color-background-main);
+  padding-top: var(--cu-size-2,8px);
+}
+
+.axm-task-type-fields .axm-fields-layer-395 {
+  position: relative;
+  display: flex;
+  width: 320px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: center;
+  gap: var(--cu-size-3,12px);
+  padding-inline: var(--cu-size-2,8px);
+  padding-top: var(--cu-size-1,4px);
+  padding-bottom: 1px;
+}
+
+.axm-task-type-fields .axm-fields-layer-396 {
+  position: absolute;
+  inset: 0 -2.89px -8.75% -2.89px;
+}
+
+.axm-task-type-fields [data-node-id="515:9899"]::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: var(--spacing-6);
+  background: linear-gradient(to bottom, transparent, var(--color-background-main));
+  pointer-events: none;
+}
+
+.axm-task-type-fields--highlight-left [data-node-id="522:12928"] {
+  border: var(--spacing-05) solid var(--color-black);
+}
+
+.axm-task-type-fields > :is(
+  [data-node-id="523:14150"],
+  [data-node-id="523:14156"],
+  [data-node-id="523:14140"]
+)::after {
+  --white-footer: calc(var(--presentation-page-tick-target-height) + 2 * var(--presentation-page-control-gap) + var(--spacing-2) + 2 * var(--spacing-5));
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: calc(var(--white-footer) + var(--spacing-15));
+  background: linear-gradient(to top, var(--color-white) var(--white-footer), transparent);
+  pointer-events: none;
+}
+
+.axm-company-meeting-avatar {
+  position: absolute;
+  left: calc(3067 / 4095 * 100%);
+  width: calc(54 / 4095 * 100%);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.axm-company-doc-icon {
+  position: absolute;
+  left: calc(3067 / 4095 * 100%);
+  translate: -50% -50%;
+  font: 14px/1 "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  pointer-events: none;
+}
+
+.axm-task-layout-frame {
+  overflow: hidden;
+  border-radius: var(--presentation-radius-card);
+  background: var(--color-background-main);
+  box-shadow: var(--elevation-border-2);
+}
+
+.axm-task-layout-content {
+  position: absolute;
+  /* Bring the screenshot's original outer edge outside the CSS frame. */
+  inset: calc(-1 * var(--spacing-1)) calc(-1 * var(--spacing-2));
+}
+
+.axm-task-specs-image {
+  position: absolute;
+  inset-inline: 0;
+  top: calc(178 / 1117 * 100%);
+  width: 100%;
+  height: auto;
+}
+
+.axm-feedback-collage,
+.axm-feedback-cards {
+  position: absolute;
+  inset: 0;
+}
+
+.axm-feedback-card {
+  position: absolute;
+  overflow: hidden;
+  background: var(--color-background-main);
+  border-radius: var(--presentation-radius-image);
+  box-shadow: var(--elevation-border-2);
+}
+
+.axm-feedback-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.axm-feedback-card[data-node-id="533:14179"] { padding: 28px 29px; }
+.axm-feedback-card[data-node-id="533:14181"] { padding: 20px 34px 20px 23px; }
+
+.axm-feedback-quotes {
+  position: absolute;
+  inset: 0 0 0 calc(902 / 1728 * 100%);
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent, black 81px, black calc(100% - 146px), transparent calc(100% - 66px));
+}
+
+.axm-presentation .axm-slide .axm-feedback-quote-track {
+  position: absolute;
+  top: calc(529 / 1117 * 100%);
+  left: calc(70 / 826 * 100%);
+  width: calc(648 / 826 * 100%);
+  font: italic var(--font-weight-aguzzo-display) calc(var(--presentation-font-lead) * 49 / 36)/1.5 "Aguzzo Italic Preview", Georgia, serif;
+}
+
+.axm-presentation .axm-slide .axm-feedback-quote-track p {
+  margin: 0;
+  font-weight: var(--font-weight-aguzzo-display) !important;
+}
+
+.axm-feedback-quote-track p + p { margin-block-start: 173px !important; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .axm-presentation .axm-slide .axm-feedback-quote-track {
+    --axm-quote-start: calc(var(--axm-image-first-delay) + 3 * var(--axm-image-entrance-gap) + var(--axm-image-fade-duration) + 20ms);
+    --axm-quote-loop-duration: 30s;
+    top: calc(100% - 66px);
+    animation: axm-feedback-scroll var(--axm-quote-loop-duration) linear var(--axm-quote-start) infinite both;
+  }
+  .axm-feedback-quote-group { padding-block-end: 173px; }
+  .axm-feedback-quote-track > .axm-feedback-quote-repeat:first-child {
+    animation: axm-feedback-enable-wrap var(--axm-quote-loop-duration) steps(1, end) var(--axm-quote-start) both;
+  }
+}
+
+@keyframes axm-feedback-enable-wrap {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes axm-feedback-scroll {
+  from { transform: translateY(calc(-100% / 3)); }
+  to { transform: translateY(calc(-200% / 3)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .axm-feedback-quotes {
+    overflow: auto;
+    mask-image: none;
+    padding: var(--spacing-15) calc(70 / 1728 * 100%);
+  }
+  .axm-presentation .axm-slide .axm-feedback-quote-track {
+    position: static;
+    width: auto;
+  }
+  .axm-feedback-quote-track p + p { margin-block-start: var(--spacing-6) !important; }
+  .axm-feedback-quote-repeat { display: none; }
+}
+
+.axm-company-layout-content {
+  inset-block: 0 auto;
+  aspect-ratio: 1269 / 4096;
+}
+
+.axm-company-layout-content > .axm-fields-layer-316 {
+  object-position: top center;
+}
+
+.axm-task-type-demo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--color-background-pressed);
+}
+
+.axm-task-type-demo-recording {
+  width: calc(1380 / 1728 * 100%);
+  aspect-ratio: 2768 / 2028;
+  overflow: hidden;
+  border-radius: var(--presentation-radius-image);
+  box-shadow: var(--elevation-border-3);
+}
+
+.axm-task-type-demo-recording video {
+  display: block;
+  /* Exclude the 12 source pixels outside the modal overlay. */
+  width: calc(2780 / 2768 * 100%);
+  max-width: none;
+  height: 100%;
+  object-fit: contain;
+}

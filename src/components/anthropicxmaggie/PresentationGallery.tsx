@@ -1,13 +1,14 @@
 import { motion } from "motion/react";
 import PresentationArrow from "./PresentationArrow";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import HeadspaceHeroDemo from "../work/HeadspaceHeroDemo";
 import UberEPaletteDemo from "../work/UberEPaletteDemo";
 import UberVehicleDashboardDemo from "../work/UberVehicleDashboardDemo";
 
 export type PresentationGalleryItem = {
   src: string;
   label: string;
-  media?: "uber-dashboard" | "uber-epalette" | "video";
+  media?: "headspace" | "uber-dashboard" | "uber-epalette" | "video";
   elevation?: boolean;
   borderElevation?: boolean;
 };
@@ -18,7 +19,7 @@ type PresentationGalleryProps = {
 };
 
 const galleryTransition = { duration: 0.42, ease: [0.25, 0.1, 0.25, 1] as const };
-const galleryIntervalMs = 3000;
+const galleryIntervalMs = 6000;
 
 export default function PresentationGallery({ items, alignment = "center" }: PresentationGalleryProps) {
   const [active, setActive] = useState(0);
@@ -64,7 +65,7 @@ export default function PresentationGallery({ items, alignment = "center" }: Pre
   };
 
   return (
-    <div className="axm-gallery-component">
+    <div className="axm-gallery-component" style={{ "--presentation-gallery-timer-duration": `${galleryIntervalMs}ms` } as CSSProperties}>
       <div className="axm-gallery-viewport" ref={viewportRef} aria-live="polite">
         <motion.div
           className="axm-gallery-track"
@@ -74,12 +75,14 @@ export default function PresentationGallery({ items, alignment = "center" }: Pre
         >
           {items.map((galleryItem, index) => (
             <figure
-              className={`axm-gallery-item${index === active ? " axm-gallery-item--active" : ""}${galleryItem.media === "uber-dashboard" ? " axm-gallery-item--uber-dashboard" : ""}${galleryItem.media === "uber-epalette" ? " axm-gallery-item--uber-epalette" : ""}${galleryItem.elevation === false ? " axm-gallery-item--flat" : ""}${galleryItem.borderElevation === false ? " axm-gallery-item--no-border-elevation" : ""}`}
+              className={`axm-gallery-item${index === active ? " axm-gallery-item--active" : ""}${galleryItem.media === "headspace" ? " axm-gallery-item--headspace" : ""}${galleryItem.media === "uber-dashboard" ? " axm-gallery-item--uber-dashboard" : ""}${galleryItem.media === "uber-epalette" ? " axm-gallery-item--uber-epalette" : ""}${galleryItem.elevation === false ? " axm-gallery-item--flat" : ""}${galleryItem.borderElevation === false ? " axm-gallery-item--no-border-elevation" : ""}`}
               key={galleryItem.src}
               ref={(node) => { itemRefs.current[index] = node; }}
               aria-hidden={index !== active}
             >
-              {galleryItem.media === "uber-dashboard" ? (
+              {galleryItem.media === "headspace" ? (
+                <HeadspaceHeroDemo compactOnMobile={false} />
+              ) : galleryItem.media === "uber-dashboard" ? (
                 <UberVehicleDashboardDemo />
               ) : galleryItem.media === "uber-epalette" ? (
                 <UberEPaletteDemo autoPlay />

@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import HeadspaceReflectionDemo from "./HeadspaceReflectionDemo";
 import "./HeadspaceHeroDemo.css";
 
-import heroInitial from "../../assets/headspace-demo/hero-initial.png";
+import heroInitial from "../../assets/headspace-demo/weekend-visualisation.svg";
 import heroOutdoors from "../../assets/headspace-demo/hero-outdoors.png";
 import heroZoned from "../../assets/headspace-demo/hero-zoned.png";
 import backButton from "../../assets/headspace-demo/back-button.svg";
@@ -13,7 +13,6 @@ import iconHeart from "../../assets/headspace-demo/icon-heart.png";
 import fpTop from "../../assets/headspace-demo/fp-top.png";
 import fpCardHero from "../../assets/headspace-demo/fp-card-hero.png";
 import fpLowerBg from "../../assets/headspace-demo/fp-lower-bg.png";
-import fpGroup7 from "../../assets/headspace-demo/fp-group7.png";
 import fpDaily from "../../assets/headspace-demo/fp-daily.png";
 import fpLeft from "../../assets/headspace-demo/fp-left.png";
 import fpBottom from "../../assets/headspace-demo/fp-bottom.png";
@@ -86,7 +85,7 @@ function FormScreen({ step, typedCount }: { step: DemoStep; typedCount: number }
       <div className="hsd-hero">
         <img
           src={heroInitial.src}
-          className={hero === heroInitial ? "is-active" : ""}
+          className={`hsd-hero-initial${hero === heroInitial ? " is-active" : ""}`}
           alt=""
         />
         <img
@@ -181,7 +180,7 @@ function FrontPage({ revealed }: { revealed: boolean }) {
       <div className="hsd-fp-meta-mask" />
       <p className="hsd-fp-meta-activity">Mindful Activity</p>
       <p className="hsd-fp-meta-duration">1 min</p>
-      <img className="hsd-fp-group7" src={fpGroup7.src} alt="" />
+      <img className="hsd-fp-group7" src={heroInitial.src} alt="" />
       <img className="hsd-fp-daily" src={fpDaily.src} alt="" />
       <img className="hsd-fp-left" src={fpLeft.src} alt="" />
 
@@ -202,7 +201,8 @@ function FrontPage({ revealed }: { revealed: boolean }) {
   );
 }
 
-export default function HeadspaceHeroDemo() {
+export default function HeadspaceHeroDemo({ compactOnMobile = true }: { compactOnMobile?: boolean }) {
+  const faceFilterId = useId();
   const reducedMotion = usePrefersReducedMotion();
   const rootRef = useRef<HTMLDivElement>(null);
   const [running, setRunning] = useState(false);
@@ -272,10 +272,23 @@ export default function HeadspaceHeroDemo() {
   return (
     <div
       ref={rootRef}
-      className="headspace-hero-demo study-image"
+      className={`headspace-hero-demo study-image${compactOnMobile ? " is-compact-on-mobile" : ""}`}
+      style={{ "--hsd-character-face-filter": `url("#${faceFilterId}")` } as CSSProperties}
       role="img"
       aria-label="Headspace weekend visualisation flow: choosing to spend the weekend outdoors and zoned out, writing the note 'Finding my OM at Golden Gate Park', saving, and seeing the visualisation posted to the Headspace home feed"
     >
+      <svg width="0" height="0" className="hsd-artwork-filters" aria-hidden="true">
+        <defs>
+          <filter id={faceFilterId} primitiveUnits="objectBoundingBox" colorInterpolationFilters="sRGB">
+            {/* Both crops place the face in this region. Keep the mask away from the white corners. */}
+            <feColorMatrix in="SourceGraphic" x="30%" y="55%" width="40%" height="40%"
+              values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 24 0 0 -21.5" result="faceMask" />
+            <feFlood className="hsd-character-face-fill" result="faceColor" />
+            <feComposite in="faceColor" in2="faceMask" operator="in" result="face" />
+            <feComposite in="face" in2="SourceGraphic" operator="over" />
+          </filter>
+        </defs>
+      </svg>
       {/* Each phone scales in its own container so the pair can stack on narrow
           screens without SVG foreignObject (iOS Safari lays those out at 1:1 px). */}
       <div className="hsd-stage">

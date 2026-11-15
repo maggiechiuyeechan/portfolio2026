@@ -693,7 +693,7 @@
             "w": 568,
             "h": 390,
             "kind": "text",
-            "text": "Existing “agents” was hard to use and too closely tied to automations legacy UI.\n\nFunctionalities missing: Permissions were limited to lists not able to operate throughout the whole Workspace. No concept of connectors, multiple triggers, we now had chat.\n\nTime to start from scratch and reimagine Agents and Teammates: the technology had progressed to the point we could really transform users workflows and interact with agents like coworkers in their workspace.",
+            "text": "Existing “agents” was hard to use and too closely tied to automations legacy UI.\n\nFunctionalities missing:\nPermissions were limited to lists\nnot able to operate throughout the whole Workspace\nsingle triggers",
             "align": "LEFT",
             "segments": [
               {
@@ -737,7 +737,7 @@
                 "style": 2
               },
               {
-                "text": "Functionalities missing",
+                "text": "Functionalities missing:\n",
                 "size": 20,
                 "weight": 400,
                 "font": "SF Pro",
@@ -757,7 +757,7 @@
                 "style": 3
               },
               {
-                "text": ": Permissions were limited to lists not able to operate throughout the whole Workspace. No concept of connectors, multiple triggers, we now had chat.\n\n",
+                "text": "Permissions were limited to lists\nnot able to operate throughout the whole Workspace\nsingle triggers",
                 "size": 20,
                 "weight": 400,
                 "font": "SF Pro",
@@ -772,47 +772,7 @@
                 "color": "#838383",
                 "decoration": "NONE",
                 "list": {
-                  "type": "NONE"
-                },
-                "style": 2
-              },
-              {
-                "text": "Time to start from scratch and reimagine Agents and Teammates",
-                "size": 20,
-                "weight": 400,
-                "font": "SF Pro",
-                "line": {
-                  "unit": "PERCENT",
-                  "value": 150
-                },
-                "spacing": {
-                  "unit": "PERCENT",
-                  "value": 0
-                },
-                "color": "#202020",
-                "decoration": "NONE",
-                "list": {
-                  "type": "NONE"
-                },
-                "style": 3
-              },
-              {
-                "text": ": the technology had progressed to the point we could really transform users workflows and interact with agents like coworkers in their workspace.",
-                "size": 20,
-                "weight": 400,
-                "font": "SF Pro",
-                "line": {
-                  "unit": "PERCENT",
-                  "value": 150
-                },
-                "spacing": {
-                  "unit": "PERCENT",
-                  "value": 0
-                },
-                "color": "#838383",
-                "decoration": "NONE",
-                "list": {
-                  "type": "NONE"
+                  "type": "UNORDERED"
                 },
                 "style": 2
               }
@@ -1297,11 +1257,11 @@
         "w": 991,
         "h": 120,
         "kind": "text",
-        "text": "Working with the CEO and a designer on my team, we brainstormed ideas for how we’d want to improve discoverability, setup, agent management and chatting. Ideas we brainstormed were: Agent “Hub” for sharing agents, chatting to setup, having an agent profile, chatting with the agent directly since that was an existing ux pattern we had for users. ",
+        "text": "Brainstorming sessions were held, drawing inspiration from different apps or capabilities we wish we could have. This was done with CEO and an additional designer on the team. Defined an MVP user flow that combined a few user goals + some patterns and concepts that existed in our app.",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Working with the CEO and a designer on my team, we brainstormed ideas for how we’d want to improve discoverability, setup, agent management and chatting. Ideas we brainstormed were: Agent “Hub” for sharing agents, chatting to setup, having an agent profile, chatting with the agent directly since that was an existing ux pattern we had for users. ",
+            "text": "Brainstorming sessions were held, drawing inspiration from different apps or capabilities we wish we could have. This was done with CEO and an additional designer on the team. Defined an MVP user flow that combined a few user goals + some patterns and concepts that existed in our app.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -1327,14 +1287,15 @@
         "id": "269:148646",
         "name": "CleanShot 2026-09-19 at 07.05.46@2x 1",
         "x": 64,
-        "y": 236,
+        "y": 242,
         "w": 1600,
-        "h": 816,
+        "h": 826,
         "kind": "image",
-        "src": "/anthropicxmaggie/media/269-148646.png",
-        "preserveAspectRatio": true,
+        "src": "/anthropicxmaggie/media/agent-vision-flow-refreshed.png",
+        "preserveAspectRatio": false,
         "radius": 18.028,
-        "borderElevation": 1
+        "borderElevation": 1,
+        "fit": "contain"
       }
     ]
   },
@@ -1600,7 +1561,7 @@
         "id": "269:148658",
         "name": "Past work gallery",
         "x": -435,
-        "y": 302,
+        "y": 210,
         "w": 22292.1640625,
         "h": 508.1728820800781,
         "kind": "gallery",
@@ -1776,11 +1737,11 @@
         "w": 585,
         "h": 480,
         "kind": "text",
-        "text": "Priority was set by our CEO to start  Goal: Minimum Lovable Product, quick releases that are better than what’s current.  I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.\nMulti-player editing\nUsing existing components\nSimple versioning\nSimple permissioning (private, shareable to workspace or teams & individuals, public)",
+        "text": "The direction was ambiguous. But the scope was created with the goal of creating the minimum 'lovable' product. A larger effort would follow to improve the experience which gave clarity to the limits of where I should spend the time.  Led the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1. Focused on unblocking core functionality to enable a v1 of the user's workflow.",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Priority was set by our CEO to start  Goal: Minimum Lovable Product, quick releases that are better than what’s current.  I took the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1.",
+            "text": "The direction was ambiguous. But the scope was created with the ",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -1800,7 +1761,27 @@
             "style": 2
           },
           {
-            "text": "Multi-player editing\nUsing existing components\nSimple versioning\nSimple permissioning (private, shareable to workspace or teams & individuals, public)",
+            "text": "goal of creating the minimum 'lovable' product",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 3
+          },
+          {
+            "text": ". A larger effort would follow to improve the experience which gave clarity to the limits of where I should spend the time.  Led the discussion, met with the PM, 2 lead engineers to solidify what was reasonable to achieve as a v1. Focused on unblocking core functionality to enable a v1 of the user's workflow.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -1815,7 +1796,7 @@
             "color": "#838383",
             "decoration": "NONE",
             "list": {
-              "type": "UNORDERED"
+              "type": "NONE"
             },
             "style": 2
           }
@@ -2221,18 +2202,28 @@
         "kind": "text",
         "text": "Internal reviews & using agents to help launch test quickly",
         "align": "LEFT",
-        "segments": [{
-          "text": "Internal reviews & using agents to help launch test quickly",
-          "size": 34,
-          "weight": 510,
-          "font": "SF Pro",
-          "line": { "unit": "PERCENT", "value": 135.0000023841858 },
-          "spacing": { "unit": "PERCENT", "value": 0 },
-          "color": "#000000",
-          "decoration": "NONE",
-          "list": { "type": "NONE" },
-          "style": 0
-        }],
+        "segments": [
+          {
+            "text": "Internal reviews & using agents to help launch test quickly",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
         "textCase": "ORIGINAL"
       },
       {
@@ -2245,7 +2236,18 @@
         "kind": "image",
         "src": "/presentation-shared/slide-19-test-results.png",
         "radius": 12.705,
-        "cropTransform": [[0.513505, 0, 0.486495], [0, 0.9375, 0.0625]]
+        "cropTransform": [
+          [
+            0.513505,
+            0,
+            0.486495
+          ],
+          [
+            0,
+            0.9375,
+            0.0625
+          ]
+        ]
       },
       {
         "id": "359:143674",
@@ -2257,7 +2259,18 @@
         "kind": "image",
         "src": "/presentation-shared/slide-19-test-plan.png",
         "radius": 12,
-        "cropTransform": [[0.864976, 0, 0.0615], [0, 0.966277, 0.00029]]
+        "cropTransform": [
+          [
+            0.864976,
+            0,
+            0.0615
+          ],
+          [
+            0,
+            0.966277,
+            0.00029
+          ]
+        ]
       },
       {
         "id": "269:148711",
@@ -2269,18 +2282,28 @@
         "kind": "text",
         "text": "Test plan drafted w agent. approved by me",
         "align": "CENTER",
-        "segments": [{
-          "text": "Test plan drafted w agent. approved by me",
-          "size": 11,
-          "weight": 400,
-          "font": "Geist Mono",
-          "line": { "unit": "PERCENT", "value": 200 },
-          "spacing": { "unit": "PERCENT", "value": 20 },
-          "color": "#000000",
-          "decoration": "NONE",
-          "list": { "type": "NONE" },
-          "style": 4
-        }],
+        "segments": [
+          {
+            "text": "Test plan drafted w agent. approved by me",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 4
+          }
+        ],
         "textCase": "UPPER"
       },
       {
@@ -2293,18 +2316,28 @@
         "kind": "text",
         "text": "Launched and synthesized via usertesting.com MCp. Test is double checked by UXR",
         "align": "CENTER",
-        "segments": [{
-          "text": "Launched and synthesized via usertesting.com MCp. Test is double checked by UXR",
-          "size": 11,
-          "weight": 400,
-          "font": "Geist Mono",
-          "line": { "unit": "PERCENT", "value": 200 },
-          "spacing": { "unit": "PERCENT", "value": 20 },
-          "color": "#000000",
-          "decoration": "NONE",
-          "list": { "type": "NONE" },
-          "style": 4
-        }],
+        "segments": [
+          {
+            "text": "Launched and synthesized via usertesting.com MCp. Test is double checked by UXR",
+            "size": 11,
+            "weight": 400,
+            "font": "Geist Mono",
+            "line": {
+              "unit": "PERCENT",
+              "value": 200
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 20
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 4
+          }
+        ],
         "textCase": "UPPER"
       }
     ]
@@ -2312,7 +2345,7 @@
   {
     "id": "269:148713",
     "number": 36,
-    "name": "36 Project 2 Agent Launch",
+    "name": "Use cases emerge",
     "layers": [
       {
         "id": "269:148714",
@@ -2330,14 +2363,14 @@
         "name": "",
         "x": 64,
         "y": 64,
-        "w": 382,
+        "w": 600,
         "h": 46,
         "kind": "text",
-        "text": "Launch",
+        "text": "Use cases emerge",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Launch",
+            "text": "Use cases emerge",
             "size": 34,
             "weight": 510,
             "font": "SF Pro",
@@ -2584,16 +2617,16 @@
       {
         "id": "269:148726",
         "name": "",
-        "x": 473,
+        "x": 425,
         "y": 64,
-        "w": 1191,
+        "w": 1239,
         "h": 114,
         "kind": "text",
-        "text": "At and onsite, the CEO, head of product strategy and I took the design options and solidified it into final decisions. Many decisions were made with the main goal of simplifying the experience and the engineering of the v1. After this, I needed to lean on the lead product designer to take it to execution as I focused on other initiatives. A few decisions outlined that were made, these were continued to be user tested as implementation started:",
+        "text": "After about 2-3 weeks of daily iterations, brainstorming and discussions with engineering and PMs, we needed to narrow down a v1.\nWe organized an onsite so we could collaborate closely. Mostly by focusing on what would unblock the major elements of the UX we came with a first flow. Much was reusing parts of the app we already had.",
         "align": "LEFT",
         "segments": [
           {
-            "text": "At and onsite, the CEO, head of product strategy and I took the design options and solidified it into final decisions. Many decisions were made with the main goal of simplifying the experience and the engineering of the v1. After this, I needed to lean on the lead product designer to take it to execution as I focused on other initiatives. A few decisions outlined that were made, these were continued to be user tested as implementation started:",
+            "text": "After about 2-3 weeks of daily iterations, brainstorming and discussions with engineering and PMs, we needed to narrow down a v1.\nWe organized an onsite so we could collaborate closely. Mostly by focusing on what would unblock the major elements of the UX we came with a first flow. Much was reusing parts of the app we already had.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -2618,7 +2651,7 @@
         "id": "269:148727",
         "name": "Past work gallery",
         "x": 0.015625,
-        "y": 278,
+        "y": 440,
         "w": 22311.146484375,
         "h": 500.5533752441406,
         "kind": "gallery",
@@ -2644,6 +2677,278 @@
             "label": "Agent tools, knowledge, triggers and permissions"
           }
         ]
+      },
+      {
+        "id": "onsite-user-flow",
+        "name": "MVP user flow",
+        "kind": "image",
+        "x": 164,
+        "y": 190,
+        "w": 1400,
+        "h": 225.57993730407523,
+        "src": "/anthropicxmaggie/media/onsite-user-flow.png",
+        "radius": 0
+      }
+    ]
+  },
+  {
+    "id": "394:83828",
+    "number": 34.2,
+    "name": "Fine tuned agent permissions",
+    "layers": [
+      {
+        "id": "394:83829",
+        "name": "Colored panel",
+        "kind": "shape",
+        "x": 0,
+        "y": 0,
+        "w": 1728,
+        "h": 1117,
+        "fillToken": "--presentation-color-agent-panel",
+        "radius": 0
+      },
+      {
+        "id": "394:83830",
+        "kind": "text",
+        "name": "Fine tuned agent permissions",
+        "text": "Fine tuned agent permissions",
+        "x": 64,
+        "y": 64,
+        "w": 900,
+        "h": 46,
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Fine tuned agent permissions",
+            "style": 0,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "394:84156",
+        "name": "Agent setup 394:84156",
+        "kind": "image",
+        "src": "/anthropicxmaggie/setup-slides/permissions-profile-4x.png",
+        "x": 400,
+        "y": 150,
+        "w": 451.739872,
+        "h": 904.891668,
+        "radius": 16,
+        "elevation": 3
+      },
+      {
+        "id": "394:84210",
+        "name": "Agent setup 394:84210",
+        "kind": "image",
+        "src": "/anthropicxmaggie/setup-slides/permissions-tools-4x.png",
+        "x": 1000,
+        "y": 314,
+        "w": 408.3535575,
+        "h": 282.306255,
+        "radius": 16,
+        "elevation": 3
+      },
+      {
+        "id": "394:84213",
+        "name": "Agent setup 394:84213",
+        "kind": "image",
+        "src": "/anthropicxmaggie/setup-slides/permissions-knowledge-4x.png",
+        "x": 1000,
+        "y": 696,
+        "w": 409.1046225,
+        "h": 301.916055,
+        "radius": 16,
+        "elevation": 3
+      },
+      {
+        "id": "394:84211",
+        "kind": "text",
+        "name": "Progressive disclosure for those who needed\nFine tuned control on each tool",
+        "text": "Progressive disclosure for those who needed fine tuned control on each tool\nEdit/update access requires explicit inputs - start with least-privilege access",
+        "x": 1000,
+        "y": 150,
+        "w": 408.3535575,
+        "h": 100,
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Progressive disclosure for those who needed fine tuned control on each tool\nEdit/update access requires explicit inputs - start with least-privilege access",
+            "style": 17,
+            "list": {
+              "type": "UNORDERED"
+            }
+          }
+        ]
+      },
+      {
+        "id": "394:84212",
+        "kind": "text",
+        "name": "Workspace data sensitivity (e.g HR use cases)",
+        "text": "Workspace data sensitivity (e.g HR use cases)",
+        "x": 1000,
+        "y": 630,
+        "w": 409.1046225,
+        "h": 17,
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Workspace data sensitivity (e.g HR use cases)",
+            "style": 17,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "394:84464",
+    "number": 34.3,
+    "name": "Chat setup UX",
+    "layers": [
+      {
+        "id": "394:84465",
+        "name": "Colored panel",
+        "kind": "shape",
+        "x": 64,
+        "y": 233,
+        "w": 1600,
+        "h": 820,
+        "fillToken": "--presentation-color-agent-panel",
+        "radius": 16,
+        "borderElevation": 1
+      },
+      {
+        "id": "394:84466",
+        "kind": "text",
+        "name": "Chat setup UX",
+        "text": "Chat setup UX",
+        "x": 64,
+        "y": 64,
+        "w": 382,
+        "h": 46,
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Chat setup UX",
+            "style": 0,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "394:84944",
+        "name": "Agent setup 394:84944",
+        "kind": "image",
+        "src": "/anthropicxmaggie/setup-slides/394-84944.png",
+        "x": 326,
+        "y": 331,
+        "w": 526.08,
+        "h": 640,
+        "radius": 16,
+        "elevation": 3
+      },
+      {
+        "id": "394:85118",
+        "kind": "text",
+        "name": "While dogfooding internally we noticed setup was very tedius and required lots of back and forth. Our Engineer proposed this 3 phase conversation turn. One really important part was that after setup you can use chat to continue to refine the agent.",
+        "text": "While dogfooding internally we noticed setup was very tedius and required lots of back and forth. Our Engineer proposed this 3 phase conversation turn. One really important part was that after setup you can use chat to continue to refine the agent.",
+        "x": 673,
+        "y": 64,
+        "w": 991,
+        "h": 145,
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "While dogfooding internally we noticed setup was very tedius and required lots of back and forth. Our Engineer proposed this 3 phase conversation turn. One really important part was that after setup you can use chat to continue to refine the agent.",
+            "style": 2,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "394:85112",
+        "kind": "text",
+        "name": "Our prompt engineer proposed the UX here response:\n\nPhase 1 categorizes the user into low/medium/high opinion.\n\nPhase 2 is where the real iterative loop lives. The Builder calls a Draft Agent tool that writes a preliminary instruction set and simultaneously identifies placeholders for missing info.\n\nPhase 3 (Prompt Optimizer) runs as a sub-agent after creation to enrich the dry, logistical instructions with more human-like, integrative language for creative tasks.\n\nPost-creation, users can refine through DMs or @mentions per the Refine your Super Agent help article, and the agent updates its own config.",
+        "text": "Our prompt engineer proposed the UX here response:\n\nPhase 1 categorizes the user into low/medium/high opinion.\n\nPhase 2 is where the real iterative loop lives. The Builder calls a Draft Agent tool that writes a preliminary instruction set and simultaneously identifies placeholders for missing info.\n\nPhase 3 (Prompt Optimizer) runs as a sub-agent after creation to enrich the dry, logistical instructions with more human-like, integrative language for creative tasks.\n\nPost-creation, users can refine through DMs or @mentions per the Refine your Super Agent help article, and the agent updates its own config.",
+        "x": 940,
+        "y": 331,
+        "w": 600,
+        "h": 640,
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Our prompt engineer proposed the UX here response:\n\n",
+            "style": 18,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "Phase 1",
+            "style": 19,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": " categorizes the user into low/medium/high opinion.\n\n",
+            "style": 18,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "Phase 2",
+            "style": 19,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": " is where the real iterative loop lives. The Builder calls a Draft Agent tool that writes a preliminary instruction set and simultaneously identifies placeholders for missing info.\n\n",
+            "style": 18,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "Phase 3",
+            "style": 19,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": " (Prompt Optimizer) runs as a sub-agent after creation to enrich the dry, logistical instructions with more human-like, integrative language for creative tasks.\n\n",
+            "style": 18,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "Post-creation",
+            "style": 19,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": ", users can refine through DMs or @mentions per the Refine your Super Agent help article, and the agent updates its own config.",
+            "style": 18,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
       }
     ]
   },
@@ -2653,14 +2958,48 @@
     "name": "34 Project 2 SuperAgents Demo",
     "layers": [
       {
-        "id": "custom:superagents-trimmed-video",
-        "name": "SuperAgents trimmed demo",
+        "id": "custom:superagents-launch-title",
+        "name": "",
         "x": 64,
         "y": 64,
         "w": 1600,
-        "h": 989,
+        "h": 46,
+        "kind": "text",
+        "text": "Problem: customers found setting up an agent and knowing what agents to setup confusing",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Problem: customers found setting up an agent and knowing what agents to setup confusing",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "custom:superagents-trimmed-video",
+        "name": "SuperAgents trimmed demo",
+        "x": 64,
+        "y": 184,
+        "w": 1600,
+        "h": 869,
         "kind": "video",
-        "src": "/anthropicxmaggie/video/superagents-trimmed.mp4",
+        "src": "/anthropicxmaggie/video/superagents-launch-clean.mp4",
         "fit": "contain",
         "radius": 12,
         "playbackRate": 3
@@ -2670,7 +3009,7 @@
   {
     "id": "269:148728",
     "number": 37,
-    "name": "37 Project 2 Iterations Feedback",
+    "name": "Continuous feedback from customers",
     "layers": [
       {
         "id": "269:148729",
@@ -2692,11 +3031,11 @@
         "w": 382,
         "h": 46,
         "kind": "text",
-        "text": "Iterations and feedback",
+        "text": "Continuous feedback from customers",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Iterations and feedback",
+            "text": "Continuous feedback from customers",
             "size": 34,
             "weight": 510,
             "font": "SF Pro",
@@ -2731,305 +3070,158 @@
         "elevation": 5
       },
       {
-        "id": "269:148733",
-        "name": "Frame 2087328767",
+        "id": "269:148742",
+        "name": "",
         "x": 916,
-        "y": 438,
-        "w": 663,
-        "h": 400,
-        "kind": "group",
-        "fill": null,
-        "radius": 0,
-        "children": [
+        "y": 608,
+        "w": 576,
+        "h": 30,
+        "kind": "text",
+        "text": "“I would love to be able to have an easier set up process.”",
+        "align": "LEFT",
+        "segments": [
           {
-            "id": "269:148734",
-            "name": "Frame 2087328767",
-            "x": 916,
-            "y": 438,
-            "w": 663,
-            "h": 194,
-            "kind": "group",
-            "fill": null,
-            "radius": 0,
-            "children": [
-              {
-                "id": "269:148735",
-                "name": "",
-                "x": 916,
-                "y": 438,
-                "w": 663,
-                "h": 30,
-                "kind": "text",
-                "text": "Theme 1: Confusing credit system",
-                "align": "LEFT",
-                "segments": [
-                  {
-                    "text": "Theme 1: Confusing credit system",
-                    "size": 20,
-                    "weight": 400,
-                    "font": "SF Pro",
-                    "line": {
-                      "unit": "PERCENT",
-                      "value": 150
-                    },
-                    "spacing": {
-                      "unit": "PERCENT",
-                      "value": 0
-                    },
-                    "color": "#000000",
-                    "decoration": "NONE",
-                    "list": {
-                      "type": "NONE"
-                    },
-                    "style": 9
-                  }
-                ],
-                "textCase": "ORIGINAL"
-              },
-              {
-                "id": "269:148736",
-                "name": "Frame 2147237318",
-                "x": 916,
-                "y": 488,
-                "w": 663,
-                "h": 144,
-                "kind": "group",
-                "fill": null,
-                "radius": 0,
-                "children": [
-                  {
-                    "id": "269:148737",
-                    "name": "",
-                    "x": 916,
-                    "y": 480,
-                    "w": 601,
-                    "h": 90,
-                    "kind": "text",
-                    "text": "“the usage economics isn’t clear to me. I was sure the automation credits are the same the Brain credits, a very mixed delivery on the marketing side.”",
-                    "align": "LEFT",
-                    "segments": [
-                      {
-                        "text": "“the usage economics isn’t clear to me. I was sure the automation credits are the same the Brain credits, a very mixed delivery on the marketing side.”",
-                        "size": 20,
-                        "weight": 400,
-                        "font": "SF Pro",
-                        "line": {
-                          "unit": "PERCENT",
-                          "value": 150
-                        },
-                        "spacing": {
-                          "unit": "PERCENT",
-                          "value": 0
-                        },
-                        "color": "#838383",
-                        "decoration": "NONE",
-                        "list": {
-                          "type": "NONE"
-                        },
-                        "style": 2
-                      }
-                    ],
-                    "textCase": "ORIGINAL"
-                  },
-                  {
-                    "id": "269:148738",
-                    "name": "",
-                    "x": 916,
-                    "y": 594,
-                    "w": 663,
-                    "h": 30,
-                    "kind": "text",
-                    "text": "“Visualization of used credits by the Agents”",
-                    "align": "LEFT",
-                    "segments": [
-                      {
-                        "text": "“Visualization of used credits by the Agents”",
-                        "size": 20,
-                        "weight": 400,
-                        "font": "SF Pro",
-                        "line": {
-                          "unit": "PERCENT",
-                          "value": 150
-                        },
-                        "spacing": {
-                          "unit": "PERCENT",
-                          "value": 0
-                        },
-                        "color": "#838383",
-                        "decoration": "NONE",
-                        "list": {
-                          "type": "NONE"
-                        },
-                        "style": 2
-                      }
-                    ],
-                    "textCase": "ORIGINAL"
-                  }
-                ]
-              }
-            ]
-          },
+            "text": "“I would love to be able to have an easier set up process.”",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148743",
+        "name": "",
+        "x": 916,
+        "y": 653,
+        "w": 576,
+        "h": 30,
+        "kind": "text",
+        "text": "“I need more ideas on how to use them.”",
+        "align": "LEFT",
+        "segments": [
           {
-            "id": "269:148739",
-            "name": "Frame 2087328767",
-            "x": 916,
-            "y": 676,
-            "w": 576,
-            "h": 162,
-            "kind": "group",
-            "fill": null,
-            "radius": 0,
-            "children": [
-              {
-                "id": "269:148740",
-                "name": "",
-                "x": 916,
-                "y": 676,
-                "w": 576,
-                "h": 30,
-                "kind": "text",
-                "text": "Theme 2: Cold start, Setup difficulty",
-                "align": "LEFT",
-                "segments": [
-                  {
-                    "text": "Theme 2: Cold start, Setup difficulty",
-                    "size": 20,
-                    "weight": 400,
-                    "font": "SF Pro",
-                    "line": {
-                      "unit": "PERCENT",
-                      "value": 150
-                    },
-                    "spacing": {
-                      "unit": "PERCENT",
-                      "value": 0
-                    },
-                    "color": "#000000",
-                    "decoration": "NONE",
-                    "list": {
-                      "type": "NONE"
-                    },
-                    "style": 9
-                  }
-                ],
-                "textCase": "ORIGINAL"
-              },
-              {
-                "id": "269:148741",
-                "name": "Frame 2147237317",
-                "x": 916,
-                "y": 726,
-                "w": 576,
-                "h": 112,
-                "kind": "group",
-                "fill": null,
-                "radius": 0,
-                "children": [
-                  {
-                    "id": "269:148742",
-                    "name": "",
-                    "x": 916,
-                    "y": 718,
-                    "w": 576,
-                    "h": 30,
-                    "kind": "text",
-                    "text": "“I would love to be able to have an easier set up process.”",
-                    "align": "LEFT",
-                    "segments": [
-                      {
-                        "text": "“I would love to be able to have an easier set up process.”",
-                        "size": 20,
-                        "weight": 400,
-                        "font": "SF Pro",
-                        "line": {
-                          "unit": "PERCENT",
-                          "value": 150
-                        },
-                        "spacing": {
-                          "unit": "PERCENT",
-                          "value": 0
-                        },
-                        "color": "#838383",
-                        "decoration": "NONE",
-                        "list": {
-                          "type": "NONE"
-                        },
-                        "style": 2
-                      }
-                    ],
-                    "textCase": "ORIGINAL"
-                  },
-                  {
-                    "id": "269:148743",
-                    "name": "",
-                    "x": 916,
-                    "y": 759,
-                    "w": 576,
-                    "h": 30,
-                    "kind": "text",
-                    "text": "“I need more ideas on how to use them.”",
-                    "align": "LEFT",
-                    "segments": [
-                      {
-                        "text": "“I need more ideas on how to use them.”",
-                        "size": 20,
-                        "weight": 400,
-                        "font": "SF Pro",
-                        "line": {
-                          "unit": "PERCENT",
-                          "value": 150
-                        },
-                        "spacing": {
-                          "unit": "PERCENT",
-                          "value": 0
-                        },
-                        "color": "#838383",
-                        "decoration": "NONE",
-                        "list": {
-                          "type": "NONE"
-                        },
-                        "style": 2
-                      }
-                    ],
-                    "textCase": "ORIGINAL"
-                  },
-                  {
-                    "id": "269:148744",
-                    "name": "",
-                    "x": 916,
-                    "y": 796,
-                    "w": 576,
-                    "h": 30,
-                    "kind": "text",
-                    "text": "“more suggestions please”",
-                    "align": "LEFT",
-                    "segments": [
-                      {
-                        "text": "“more suggestions please”",
-                        "size": 20,
-                        "weight": 400,
-                        "font": "SF Pro",
-                        "line": {
-                          "unit": "PERCENT",
-                          "value": 150
-                        },
-                        "spacing": {
-                          "unit": "PERCENT",
-                          "value": 0
-                        },
-                        "color": "#838383",
-                        "decoration": "NONE",
-                        "list": {
-                          "type": "NONE"
-                        },
-                        "style": 2
-                      }
-                    ],
-                    "textCase": "ORIGINAL"
-                  }
-                ]
-              }
-            ]
+            "text": "“I need more ideas on how to use them.”",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148744",
+        "name": "",
+        "x": 916,
+        "y": 698,
+        "w": 576,
+        "h": 30,
+        "kind": "text",
+        "text": "“more suggestions please”",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "“more suggestions please”",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#838383",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 2
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:148740",
+        "name": "",
+        "x": 916,
+        "y": 558,
+        "w": 576,
+        "h": 30,
+        "kind": "text",
+        "text": "Cold start, setup difficulty",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Cold start, setup difficulty",
+            "size": 20,
+            "weight": 400,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 150
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#202020",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 3
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "customer-feedback-subtext",
+        "kind": "text",
+        "name": "Our user research team ran continuous surveys and interviews. We had empathy moments weekly. As we worked on continuous improvements some major themes surfaced.",
+        "text": "Our user research team ran continuous surveys and interviews. We had empathy moments weekly. As we worked on continuous improvements some major themes surfaced.",
+        "x": 473,
+        "y": 64,
+        "w": 1191,
+        "h": 90,
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Our user research team ran continuous surveys and interviews. We had empathy moments weekly. As we worked on continuous improvements some major themes surfaced.",
+            "style": 2,
+            "list": {
+              "type": "NONE"
+            }
           }
         ]
       }
@@ -3094,11 +3286,11 @@
         "w": 1191,
         "h": 60,
         "kind": "text",
-        "text": "Led our Growth Designer on creating AI credit usage dashboards. She took the lead here while I guided design reviews - information architecture, content, testing methods, consistency with rest of app.",
+        "text": "Led our Growth Designer on creating AI credit usage dashboards. She took the lead here while I guided design reviews - information architecture, content, testing methods, consistency with rest of app. We wanted to contextualize credit usage with value generated, or time saved. We created time benchmark formulas associated with tasks created.",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Led our Growth Designer on creating AI credit usage dashboards. She took the lead here while I guided design reviews - information architecture, content, testing methods, consistency with rest of app.",
+            "text": "Led our Growth Designer on creating AI credit usage dashboards. She took the lead here while I guided design reviews - information architecture, content, testing methods, consistency with rest of app. We wanted to contextualize credit usage with value generated, or time saved. We created time benchmark formulas associated with tasks created.",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -3165,13 +3357,14 @@
     "layers": [
       {
         "id": "269:148752",
-        "name": "Rectangle 1",
+        "name": "ClickUp sidebar showing a recommended agent and its tooltip",
         "x": 64,
         "y": 233,
         "w": 1600,
         "h": 820,
-        "kind": "shape",
-        "fill": "#828783",
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/agent-growth-sidebar.png",
+        "fit": "cover",
         "radius": 16,
         "borderElevation": 1
       },
@@ -3242,30 +3435,6 @@
           }
         ],
         "textCase": "ORIGINAL"
-      },
-      {
-        "id": "269:148755",
-        "name": "CleanShot 2026-09-18 at 17.35.58@2x 1",
-        "x": 664,
-        "y": 378,
-        "w": 935,
-        "h": 540,
-        "kind": "image",
-        "src": "/anthropicxmaggie/media/269-148755.png",
-        "radius": 16,
-        "elevation": 5
-      },
-      {
-        "id": "269:148756",
-        "name": "CleanShot 2026-09-18 at 17.36.21@2x 1",
-        "x": 129,
-        "y": 378,
-        "w": 520,
-        "h": 540,
-        "kind": "image",
-        "src": "/anthropicxmaggie/media/269-148756.png",
-        "radius": 16,
-        "elevation": 5
       }
     ]
   },
@@ -3711,7 +3880,7 @@
             "list": {
               "type": "NONE"
             },
-            "style": 0
+            "style": 20
           }
         ],
         "textCase": "ORIGINAL"
@@ -4827,11 +4996,11 @@
         "w": 356,
         "h": 150,
         "kind": "text",
-        "text": "One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.",
+        "text": "One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.\nInvestigate AHA moment for those already using agents",
         "align": "LEFT",
         "segments": [
           {
-            "text": "One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.",
+            "text": "One click setups via Agent templates. Aimed at different audiences Admins, power users, and regular workspace members.\nInvestigate AHA moment for those already using agents",
             "size": 20,
             "weight": 400,
             "font": "SF Pro",
@@ -4846,7 +5015,7 @@
             "color": "#838383",
             "decoration": "NONE",
             "list": {
-              "type": "NONE"
+              "type": "UNORDERED"
             },
             "style": 2
           }
@@ -4902,7 +5071,7 @@
         "w": 1600,
         "h": 869,
         "kind": "shape",
-        "fill": "#655d41",
+        "fill": "#dedbd7",
         "radius": 16,
         "borderElevation": 1
       },
@@ -4911,14 +5080,14 @@
         "name": "",
         "x": 64,
         "y": 64,
-        "w": 382,
+        "w": 1600,
         "h": 46,
         "kind": "text",
-        "text": "Launched internally",
+        "text": "Launched end of September after ~3 weeks of internal testing",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Launched internally",
+            "text": "Launched end of September after ~3 weeks of internal testing",
             "size": 34,
             "weight": 510,
             "font": "SF Pro",
@@ -4948,7 +5117,7 @@
         "w": 1306,
         "h": 819,
         "kind": "video",
-        "src": "/anthropicxmaggie/video/project-1-agentic-testing-figma.mp4",
+        "src": "/anthropicxmaggie/video/slide-19-artifact.mp4",
         "fit": "fill",
         "cropTransform": [
           [
@@ -4966,41 +5135,26 @@
         "loop": true,
         "muted": true,
         "radius": 16,
-        "playbackRate": 2
-      },
+        "playbackRate": 2.5
+      }
+    ]
+  },
+  {
+    "id": "269:149649-copy",
+    "number": 22.2,
+    "name": "When we build quickly and when we take more time",
+    "layers": [
       {
-        "id": "269:149653",
-        "name": "",
-        "x": 673,
+        "id": "murmur-product-plan",
+        "name": "Murmur product plan and timeline",
+        "x": 202.54,
         "y": 64,
-        "w": 991,
-        "h": 84,
-        "kind": "text",
-        "text": "Internally testing now. Working on an alternative layout where AI is side by side with the artifact, very rough form.",
-        "align": "LEFT",
-        "segments": [
-          {
-            "text": "Internally testing now. Working on an alternative layout where AI is side by side with the artifact, very rough form.",
-            "size": 20,
-            "weight": 400,
-            "font": "SF Pro",
-            "line": {
-              "unit": "PERCENT",
-              "value": 150
-            },
-            "spacing": {
-              "unit": "PERCENT",
-              "value": 0
-            },
-            "color": "#838383",
-            "decoration": "NONE",
-            "list": {
-              "type": "NONE"
-            },
-            "style": 2
-          }
-        ],
-        "textCase": "ORIGINAL"
+        "w": 1322.92,
+        "h": 989,
+        "kind": "image",
+        "src": "/anthropicxmaggie/media/murmur-product-plan.png",
+        "radius": 16,
+        "elevation": 5
       }
     ]
   },
@@ -5081,11 +5235,11 @@
         "w": 382,
         "h": 46,
         "kind": "text",
-        "text": "Rapid prototyping details",
+        "text": "Prototyping details",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Rapid prototyping details",
+            "text": "Prototyping details",
             "size": 34,
             "weight": 510,
             "font": "SF Pro",
@@ -5129,7 +5283,63 @@
             1,
             0
           ]
-        ]
+        ],
+        "startTime": 5
+      }
+    ]
+  },
+  {
+    "id": "269:149658-copy",
+    "number": 23.2,
+    "name": "Prototyping small delights",
+    "layers": [
+      {
+        "id": "269:149659-video-2-copy",
+        "name": "",
+        "x": 64,
+        "y": 64,
+        "w": 800,
+        "h": 46,
+        "kind": "text",
+        "text": "Prototyping small delights",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Prototyping small delights",
+            "size": 34,
+            "weight": 510,
+            "font": "SF Pro",
+            "line": {
+              "unit": "PERCENT",
+              "value": 135.0000023841858
+            },
+            "spacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "color": "#000000",
+            "decoration": "NONE",
+            "list": {
+              "type": "NONE"
+            },
+            "style": 0
+          }
+        ],
+        "textCase": "ORIGINAL"
+      },
+      {
+        "id": "269:149661-copy",
+        "name": "CleanShot 2026-09-19 at 10.33.32 AM 1",
+        "x": 410.9,
+        "y": 229,
+        "w": 906.2,
+        "h": 800,
+        "kind": "video",
+        "src": "/anthropicxmaggie/video/marketing-prototyping-oct13.mp4",
+        "radius": 0,
+        "playbackRate": 1,
+        "loop": true,
+        "fit": "contain"
       }
     ]
   },
@@ -5146,11 +5356,11 @@
         "w": 382,
         "h": 46,
         "kind": "text",
-        "text": "Rapid prototyping details",
+        "text": "Prototyping details",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Rapid prototyping details",
+            "text": "Prototyping details",
             "size": 34,
             "weight": 510,
             "font": "SF Pro",
@@ -5202,21 +5412,21 @@
   {
     "id": "269:149663",
     "number": 24,
-    "name": "24 Project 1 Marketing Prototyping",
+    "name": "Rapid prototyping variations",
     "layers": [
       {
         "id": "269:149664",
         "name": "",
         "x": 64,
         "y": 64,
-        "w": 382,
+        "w": 800,
         "h": 46,
         "kind": "text",
-        "text": "Rapid prototyping details",
+        "text": "Rapid prototyping variations",
         "align": "LEFT",
         "segments": [
           {
-            "text": "Rapid prototyping details",
+            "text": "Rapid prototyping variations",
             "size": 34,
             "weight": 510,
             "font": "SF Pro",
@@ -5239,40 +5449,6 @@
         "textCase": "ORIGINAL"
       },
       {
-        "id": "269:149665",
-        "name": "",
-        "x": 673,
-        "y": 64,
-        "w": 988,
-        "h": 84,
-        "kind": "text",
-        "text": "This is an example of using coding tools to quickly generate different options and templates for in-app product marketing announcements. Helping different stakeholders see the results of different designs quickly between marketing, PMM, leadership, product, design, engineering. ",
-        "align": "LEFT",
-        "segments": [
-          {
-            "text": "This is an example of using coding tools to quickly generate different options and templates for in-app product marketing announcements. Helping different stakeholders see the results of different designs quickly between marketing, PMM, leadership, product, design, engineering. ",
-            "size": 20,
-            "weight": 400,
-            "font": "SF Pro",
-            "line": {
-              "unit": "PERCENT",
-              "value": 150
-            },
-            "spacing": {
-              "unit": "PERCENT",
-              "value": 0
-            },
-            "color": "#838383",
-            "decoration": "NONE",
-            "list": {
-              "type": "NONE"
-            },
-            "style": 2
-          }
-        ],
-        "textCase": "ORIGINAL"
-      },
-      {
         "id": "269:149666",
         "name": "CleanShot 2026-09-19 at 10.42.15 AM 1",
         "x": 64,
@@ -5280,8 +5456,11 @@
         "w": 1597,
         "h": 837,
         "kind": "video",
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "radius": 16,
         "src": "/anthropicxmaggie/video/project-1-marketing-prototyping.mp4",
-        "fit": "fill",
         "cropTransform": [
           [
             1,
@@ -5294,10 +5473,8 @@
             0
           ]
         ],
-        "autoplay": true,
-        "loop": true,
-        "muted": true,
-        "radius": 16
+        "fit": "fill",
+        "playbackRate": 1.4
       }
     ]
   },
@@ -5353,58 +5530,12 @@
         "textCase": "ORIGINAL"
       },
       {
-        "id": "269:149670",
-        "name": "",
-        "x": 673,
-        "y": 64,
-        "w": 1004,
-        "h": 113,
-        "kind": "text",
-        "text": "For simple CSS based things, I’ve used coding agents to push code. I create a skill in ClickUp to evoke cursor cloud agents so I can run many agents at once and format the prompt appropriately. I contribute especially to any component updates that are required and work closely with our UI team & Design system lead.",
-        "align": "LEFT",
-        "segments": [
-          {
-            "text": "For simple CSS based things, I’ve used coding agents to push code. I create a skill in ClickUp to evoke cursor cloud agents so I can run many agents at once and format the prompt appropriately. I contribute especially to any component updates that are required and work closely with our UI team & Design system lead.",
-            "size": 20,
-            "weight": 400,
-            "font": "SF Pro",
-            "line": {
-              "unit": "PERCENT",
-              "value": 150
-            },
-            "spacing": {
-              "unit": "PERCENT",
-              "value": 0
-            },
-            "color": "#838383",
-            "decoration": "NONE",
-            "list": {
-              "type": "NONE"
-            },
-            "style": 2
-          }
-        ],
-        "textCase": "ORIGINAL"
-      },
-      {
-        "id": "269:149671",
-        "name": "CleanShot 2026-08-27 at 15.29.18@2x 1",
-        "x": 122,
-        "y": 324,
-        "w": 1012,
-        "h": 584,
-        "kind": "image",
-        "src": "/anthropicxmaggie/media/269-149671.png",
-        "radius": 16,
-        "elevation": 5
-      },
-      {
         "id": "269:149672",
         "name": "CleanShot 2026-08-27 at 15.29.39@2x 1",
-        "x": 1152,
-        "y": 324,
-        "w": 453,
-        "h": 584,
+        "x": 564.2,
+        "y": 232,
+        "w": 599.6,
+        "h": 773,
         "kind": "image",
         "src": "/anthropicxmaggie/media/269-149672.png",
         "radius": 16,
@@ -5560,13 +5691,1433 @@
         "id": "269:149681",
         "name": "CleanShot 2026-09-19 at 9.44.14 AM 1",
         "x": 64,
-        "y": 64,
+        "y": 24,
         "w": 1600,
         "h": 989,
         "kind": "video",
         "src": "/anthropicxmaggie/video/project-1-rapid-prototyping.mp4",
         "radius": 16,
-        "playbackRate": 2
+        "playbackRate": 1,
+        "controlsOnHover": true
+      },
+      {
+        "id": "scope-video-callout",
+        "kind": "text",
+        "name": "V1 scope callout",
+        "x": 64,
+        "y": 1033,
+        "w": 1600,
+        "h": 22,
+        "text": "Multi-player editing · Using existing components · Simple versioning · Simple permissioning (private, shareable to workspace or teams & individuals, public)",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "Multi-player editing · Using existing components · Simple versioning · Simple permissioning (private, shareable to workspace or teams & individuals, public)",
+            "style": 4,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ],
+        "textCase": "UPPER"
+      }
+    ]
+  },
+  {
+    "id": "408:36106",
+    "number": 60,
+    "name": "AI Epilogue",
+    "layers": [
+      {
+        "id": "408:36108",
+        "x": 775,
+        "y": 616,
+        "w": 177,
+        "h": 49,
+        "kind": "text",
+        "name": "AI Epilogue",
+        "text": "AI Epilogue",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "AI Epilogue",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "408:63218",
+        "x": 552,
+        "y": 695,
+        "w": 624,
+        "h": 90,
+        "kind": "text",
+        "name": "Spend the last 10 minutes discussing your unique point of view on AI and where y",
+        "text": "Spend the last 10 minutes discussing your unique point of view on AI and where you see things going in the future. Visuals and prototypes are not required, but bonus points if you’d like to share.",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "Spend the last 10 minutes discussing your unique point of view on AI and where you see things going in the future. Visuals and prototypes are not required, but bonus points if you’d like to share.",
+            "style": 3,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "408:36110",
+        "x": 651,
+        "y": 192,
+        "w": 425,
+        "h": 425,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/408-36110.png",
+        "radius": 0
+      }
+    ]
+  },
+  {
+    "id": "403:35841",
+    "number": 61,
+    "name": "Vision Assumptions",
+    "layers": [
+      {
+        "id": "408:63205",
+        "x": 101,
+        "y": 91,
+        "w": 309,
+        "h": 49,
+        "kind": "text",
+        "name": "Vision Assumptions",
+        "text": "Vision Assumptions",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Vision Assumptions",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "408:63209",
+        "x": 101,
+        "y": 442,
+        "w": 229,
+        "h": 49,
+        "kind": "text",
+        "name": "Intelligence",
+        "text": "Intelligence",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Intelligence",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "408:63210",
+        "x": 510,
+        "y": 442,
+        "w": 187,
+        "h": 49,
+        "kind": "text",
+        "name": "Autonomy",
+        "text": "Autonomy",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Autonomy",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "408:63211",
+        "x": 949,
+        "y": 442,
+        "w": 238,
+        "h": 49,
+        "kind": "text",
+        "name": "Multimodality",
+        "text": "Multimodality",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Multimodality",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "409:63228",
+        "x": 1318,
+        "y": 442,
+        "w": 238,
+        "h": 49,
+        "kind": "text",
+        "name": "Cost",
+        "text": "Cost",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Cost",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "408:63212",
+        "x": 101,
+        "y": 984,
+        "w": 1055,
+        "h": 49,
+        "kind": "text",
+        "name": "Risks have been managed to allow for this technological progression",
+        "text": "Risks have been managed to allow for this technological progression",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Risks have been managed to allow for this technological progression",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "408:63215",
+        "x": 101,
+        "y": 515,
+        "w": 346,
+        "h": 294,
+        "kind": "text",
+        "name": "“Country of geniuses” within next 10 years. Memory, Learning, Context retrieval,",
+        "text": "“Country of geniuses” within next 10 years. Memory, Learning, Context retrieval, reasoning continue to improve over time. \n\nUX implications: interacting with ai is an evolving journey of learning w/ Ai’s knowledge & behavior arguably already “better” in some respects to humans. ",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "“Country of geniuses” within next 10 years. Memory, Learning, Context retrieval, reasoning continue to improve over time. \n\nUX implications: interacting with ai is an evolving journey of learning w/ Ai’s knowledge & behavior arguably already “better” in some respects to humans. ",
+            "style": 2,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "408:63220",
+        "x": 510,
+        "y": 515,
+        "w": 346,
+        "h": 324,
+        "kind": "text",
+        "name": "Agents acquire capabilities to perform tasks more reliably overtime. Making it p",
+        "text": "Agents acquire capabilities to perform tasks more reliably overtime. Making it possible to have agents act according to original goals from days, weeks, to beyond. \n\nUX implications: goal alignment, steering of behavior, behavior predication, permissions, security, verification of actions allow for humans + agents to work together and agents to act autonomously with the right level of control. ",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Agents acquire capabilities to perform tasks more reliably overtime. Making it possible to have agents act according to original goals from days, weeks, to beyond. \n\nUX implications: goal alignment, steering of behavior, behavior predication, permissions, security, verification of actions allow for humans + agents to work together and agents to act autonomously with the right level of control. ",
+            "style": 2,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "409:63221",
+        "x": 949,
+        "y": 515,
+        "w": 346,
+        "h": 324,
+        "kind": "text",
+        "name": "2D modalities become completely accessible to design: sound, voice, 2D + 3D, UI,",
+        "text": "2D modalities become completely accessible to design: sound, voice, 2D + 3D, UI, motion.\n\nRobotics & other pervasive interfaces are also embedded with AI. ",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "2D modalities become completely accessible to design: sound, voice, 2D + 3D, UI, motion.\n\nRobotics & other pervasive interfaces are also embedded with AI. ",
+            "style": 2,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "409:63229",
+        "x": 1318,
+        "y": 515,
+        "w": 265,
+        "h": 324,
+        "kind": "text",
+        "name": "Cost of using AI is accessible for most people",
+        "text": "Cost of using AI is accessible for most people",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Cost of using AI is accessible for most people",
+            "style": 2,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:76",
+        "x": 86,
+        "y": 218,
+        "w": 208,
+        "h": 208,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/414-76.png",
+        "radius": 0
+      },
+      {
+        "id": "409:63223",
+        "x": 101,
+        "y": 1035,
+        "w": 1547,
+        "h": 56,
+        "kind": "text",
+        "name": "Political, environmental, capital, social",
+        "text": "Political, environmental, capital, social",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Political, environmental, capital, social",
+            "style": 2,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:29",
+        "x": 488,
+        "y": 260,
+        "w": 136,
+        "h": 137,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/414-29.png",
+        "radius": 0
+      },
+      {
+        "id": "414:32",
+        "x": 930,
+        "y": 241,
+        "w": 161,
+        "h": 161,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/414-32.png",
+        "radius": 0
+      }
+    ]
+  },
+  {
+    "id": "403:36020",
+    "number": 62,
+    "name": "Despite current capabilities...",
+    "layers": [
+      {
+        "id": "409:63225",
+        "x": 111,
+        "y": 91,
+        "w": 680,
+        "h": 49,
+        "kind": "text",
+        "name": "Despite current capabilities...",
+        "text": "Despite current capabilities...",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Despite current capabilities...",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "409:63240",
+        "x": 83,
+        "y": 974,
+        "w": 1500,
+        "h": 57,
+        "kind": "text",
+        "name": "Population from UN World Population Prospects. Academic counts from Stanford AI ",
+        "text": "Population from UN World Population Prospects. Academic counts from Stanford AI Index publication data and conference records. Commercial workforce from OECD/LinkedIn talent data and PwC AI Jobs Barometer. Consumer adoption from Microsoft AI Diffusion Report and platform disclosures.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Population from UN World Population Prospects. Academic counts from Stanford AI Index publication data and conference records. Commercial workforce from OECD/LinkedIn talent data and PwC AI Jobs Barometer. Consumer adoption from Microsoft AI Diffusion Report and platform disclosures.",
+            "style": 4,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ],
+        "textCase": "UPPER"
+      },
+      {
+        "id": "409:63250",
+        "x": 594,
+        "y": 209,
+        "w": 540,
+        "h": 651,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/409-63250.png",
+        "radius": 0
+      },
+      {
+        "id": "409:63241",
+        "x": 84,
+        "y": 938,
+        "w": 1500,
+        "h": 30,
+        "kind": "text",
+        "name": "https://global-ai-adoption.netlify.app/",
+        "text": "https://global-ai-adoption.netlify.app/",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "https://global-ai-adoption.netlify.app/",
+            "style": 4,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ],
+        "textCase": "UPPER"
+      }
+    ]
+  },
+  {
+    "id": "403:36024",
+    "number": 63,
+    "name": "Problem",
+    "layers": [
+      {
+        "id": "411:63270",
+        "x": 1238,
+        "y": 309,
+        "w": 301,
+        "h": 377,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/411-63270.png",
+        "radius": 134
+      },
+      {
+        "id": "409:63252",
+        "x": 109,
+        "y": 91,
+        "w": 134,
+        "h": 49,
+        "kind": "text",
+        "name": "Problem",
+        "text": "Problem",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Problem",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "410:63254",
+        "x": 1054.4999846573014,
+        "y": 233,
+        "w": 1,
+        "h": 702,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/410-63254.svg",
+        "radius": 0
+      },
+      {
+        "id": "411:63272",
+        "x": 154,
+        "y": 728,
+        "w": 238,
+        "h": 98,
+        "kind": "text",
+        "name": "Chloe, 14\nStudent",
+        "text": "Chloe, 14\nStudent",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "Chloe, 14\nStudent",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "411:63275",
+        "x": 589,
+        "y": 728,
+        "w": 238,
+        "h": 98,
+        "kind": "text",
+        "name": "Calvin\nDoctor",
+        "text": "Calvin\nDoctor",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "Calvin\nDoctor",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "411:63278",
+        "x": 1272,
+        "y": 728,
+        "w": 238,
+        "h": 49,
+        "kind": "text",
+        "name": "Me",
+        "text": "Me",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "Me",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "411:63273",
+        "x": 136,
+        "y": 857,
+        "w": 273,
+        "h": 324,
+        "kind": "text",
+        "name": "What is AI? I’m not allowed to use it at school",
+        "text": "What is AI? I’m not allowed to use it at school",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "What is AI? I’m not allowed to use it at school",
+            "style": 2,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "411:63276",
+        "x": 555,
+        "y": 857,
+        "w": 305,
+        "h": 324,
+        "kind": "text",
+        "name": "I want to use AI to improve all parts of my life, I want to learn to build apps ",
+        "text": "I want to use AI to improve all parts of my life, I want to learn to build apps too to make my medical adminstrative life easier. I need a tutor.",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "I want to use AI to improve all parts of my life, I want to learn to build apps too to make my medical adminstrative life easier. I need a tutor.",
+            "style": 2,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "411:63279",
+        "x": 1238,
+        "y": 792,
+        "w": 305,
+        "h": 324,
+        "kind": "text",
+        "name": "My AHA moment was learning that I can just ask Claude to learn how to use the te",
+        "text": "My AHA moment was learning that I can just ask Claude to learn how to use the terminal and set up my projects, commit PRs. ",
+        "align": "CENTER",
+        "segments": [
+          {
+            "text": "My AHA moment was learning that I can just ask Claude to learn how to use the terminal and set up my projects, commit PRs. ",
+            "style": 2,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "411:63268",
+        "x": 1283,
+        "y": 954,
+        "w": 211,
+        "h": 88,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/411-63268.png",
+        "radius": 24
+      },
+      {
+        "id": "411:63282",
+        "x": 768,
+        "y": 728,
+        "w": 36,
+        "h": 49,
+        "kind": "text",
+        "name": "🤔",
+        "text": "🤔",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "🤔",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "413:2",
+        "x": 1431,
+        "y": 728,
+        "w": 36,
+        "h": 49,
+        "kind": "text",
+        "name": "🤯",
+        "text": "🤯",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "🤯",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "411:63286",
+        "x": 356,
+        "y": 728,
+        "w": 36,
+        "h": 49,
+        "kind": "text",
+        "name": "😵‍💫",
+        "text": "😵‍💫",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "😵‍💫",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "410:63256",
+        "x": 112,
+        "y": 309,
+        "w": 303,
+        "h": 378,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/410-63256.png",
+        "radius": 134
+      },
+      {
+        "id": "410:63259",
+        "x": 556,
+        "y": 309,
+        "w": 303,
+        "h": 378,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/410-63259.png",
+        "radius": 134
+      }
+    ]
+  },
+  {
+    "id": "409:63231",
+    "number": 64,
+    "name": "Proposal/Vision",
+    "layers": [
+      {
+        "id": "411:63280",
+        "x": 149,
+        "y": 122,
+        "w": 248,
+        "h": 49,
+        "kind": "text",
+        "name": "Proposal/Vision",
+        "text": "Proposal/Vision",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Proposal/Vision",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "403:36042",
+        "x": 362,
+        "y": 483.421875,
+        "w": 1168,
+        "h": 380,
+        "kind": "text",
+        "name": "Result: People continually learn as AI capabilities develop, and are able to tak",
+        "text": "Goal: Enabling more to become capable creators with AI\n\nResult: People continually learn as AI capabilities develop, and are able to take advantage of new tools, expanding their own knowledge. Cheaper and more effortless execution allows people to make limitless solutions for their daily lives.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Goal: ",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "Enabling more to become capable creators with AI\n\n",
+            "style": 21,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "Result: ",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "People continually learn as AI capabilities develop, and are able to take advantage of new tools, expanding their own knowledge. Cheaper and more effortless execution allows people to make limitless solutions for their daily lives.",
+            "style": 21,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:5",
+        "x": 149,
+        "y": 293.421875,
+        "w": 222,
+        "h": 49,
+        "kind": "text",
+        "name": "AI as",
+        "text": "AI as...",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "AI as...",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:7",
+        "x": 362,
+        "y": 293.421875,
+        "w": 1110,
+        "h": 147,
+        "kind": "text",
+        "name": "assistant executes tasks and answers questions\ncoach guides and teaches expertis",
+        "text": "assistant executes tasks and answers questions\ncoach guides and teaches expertise or hard to understand domains\ninspirer sparks imagination along different parts of the interactions",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "assistant ",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "executes tasks and answers questions\n",
+            "style": 21,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "coach ",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "guides and teaches expertise or hard to understand domains\n",
+            "style": 21,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "inspirer ",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          },
+          {
+            "text": "sparks imagination along different parts of the interactions",
+            "style": 21,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "422:40009",
+        "x": 329,
+        "y": 306.421875,
+        "w": 28,
+        "h": 28,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/422-40009.svg",
+        "radius": 0
+      }
+    ]
+  },
+  {
+    "id": "403:36043",
+    "number": 65,
+    "name": "Scenario intro",
+    "layers": [
+      {
+        "id": "414:12",
+        "x": 940,
+        "y": 320,
+        "w": 680,
+        "h": 49,
+        "kind": "text",
+        "name": "Scenario intro",
+        "text": "Scenario intro",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Scenario intro",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:13",
+        "x": 940,
+        "y": 408,
+        "w": 680,
+        "h": 389,
+        "kind": "text",
+        "name": "Calvin scenario introduction",
+        "text": "Calvin is an owner of a small family physician office. He is drowning in administrative billing work, keeping on top of his medical knowledge, routine exams, clinical practice, staff schedules, and family time. AI has permissions to see his context and knows this about him, and proactively asks if he needs help.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Calvin is an owner of a small family physician office. He is drowning in administrative billing work, keeping on top of his medical knowledge, routine exams, clinical practice, staff schedules, and family time. AI has permissions to see his context and knows this about him, and proactively asks if he needs help.",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:73",
+        "x": 60,
+        "y": 158,
+        "w": 800,
+        "h": 800,
+        "kind": "image",
+        "name": "Colored-pencil storyboard: Scenario intro, Calvin and a physical hovering AI assistant",
+        "src": "/anthropicxmaggie/epilogue/pencil/crisp/42-scenario.png",
+        "radius": 400,
+        "fit": "contain",
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "414:10",
+    "number": 66,
+    "name": "Spark",
+    "layers": [
+      {
+        "id": "414:14",
+        "x": 940,
+        "y": 314,
+        "w": 680,
+        "h": 49,
+        "kind": "text",
+        "name": "Spark",
+        "text": "Spark",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Spark",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:15",
+        "x": 940,
+        "y": 403,
+        "w": 680,
+        "h": 195,
+        "kind": "text",
+        "name": "After intent honing, AI as inspirer can spark ideas of possibilities to solve th",
+        "text": "After intent honing, AI as inspirer can spark ideas of possibilities to solve the intent by providing discovery based experiences and showing alternative possibilities",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "After intent honing, AI as inspirer can spark ideas of possibilities to solve the intent by providing discovery based experiences and showing alternative possibilities",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:62",
+        "x": 940,
+        "y": 713,
+        "w": 680,
+        "h": 90,
+        "kind": "text",
+        "name": "He’s interested in some ideas, AI presents 12 different ways it can expedite his",
+        "text": "AI presents 12 different ways it can expedite his family medicine practice and proposes some personal lifestyle solutions too. Solutions span many modalities from physical solutions to video, audio, etc.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "AI presents 12 different ways it can expedite his family medicine practice and proposes some personal lifestyle solutions too. Solutions span many modalities from physical solutions to video, audio, etc.",
+            "style": 3,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "416:39975",
+        "x": 60,
+        "y": 158,
+        "w": 800,
+        "h": 800,
+        "kind": "image",
+        "name": "Colored-pencil storyboard: Spark, Calvin and a physical hovering AI assistant",
+        "src": "/anthropicxmaggie/epilogue/pencil/crisp/44-spark.png",
+        "radius": 400,
+        "fit": "contain",
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "426:40039",
+        "kind": "text",
+        "name": "Goal",
+        "x": 940,
+        "y": 625,
+        "w": 680,
+        "h": 60,
+        "text": "Goal: New discovery interfaces inspire ideas to create in multimodalities as capabilities to create in those modalities expand",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Goal: New discovery interfaces inspire ideas to create in multimodalities as capabilities to create in those modalities expand",
+            "style": 3,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "414:19",
+    "number": 67,
+    "name": "Personalized learning artifacts",
+    "layers": [
+      {
+        "id": "414:20",
+        "x": 940,
+        "y": 314,
+        "w": 680,
+        "h": 49,
+        "kind": "text",
+        "name": "Personalized learning artifacts",
+        "text": "Personalized learning artifacts",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Personalized learning artifacts",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:21",
+        "x": 940,
+        "y": 403,
+        "w": 680,
+        "h": 195,
+        "kind": "text",
+        "name": "AI as coach, can take advantage of its knowledge to provide personalized learnin",
+        "text": "AI as coach, can take advantage of its knowledge to provide personalized learning for multimodal educational content based on trustworthy sources.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "AI as coach, can take advantage of its knowledge to provide personalized learning for multimodal educational content based on trustworthy sources.",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:64",
+        "x": 940,
+        "y": 713,
+        "w": 680,
+        "h": 90,
+        "kind": "text",
+        "name": "“Listening to learning briefings” One of the ideas that AI suggested was creatin",
+        "text": "“Listening to learning briefings” One of the ideas that AI suggested was creating audio podcasts of the latest medical knowledge and cases so that he can listen to them while he works out.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "“Listening to learning briefings” One of the ideas that AI suggested was creating audio podcasts of the latest medical knowledge and cases so that he can listen to them while he works out.",
+            "style": 3,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "422:39982",
+        "x": 60,
+        "y": 158,
+        "w": 800,
+        "h": 800,
+        "kind": "image",
+        "name": "Calvin listens to a personalized learning podcast through earbuds while jogging",
+        "src": "/anthropicxmaggie/epilogue/pencil/crisp/45-podcast.png",
+        "radius": 400,
+        "fit": "contain",
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "426:40040",
+        "kind": "text",
+        "name": "Goal",
+        "x": 940,
+        "y": 625,
+        "w": 680,
+        "h": 60,
+        "text": "Goal: help people learn  the way that they can receive it best, make learning fun",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Goal: help people learn  the way that they can receive it best, make learning fun",
+            "style": 3,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "414:22",
+    "number": 68,
+    "name": "Make",
+    "layers": [
+      {
+        "id": "414:23",
+        "x": 940,
+        "y": 344,
+        "w": 680,
+        "h": 49,
+        "kind": "text",
+        "name": "Make",
+        "text": "Make",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Make",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:24",
+        "x": 940,
+        "y": 433,
+        "w": 680,
+        "h": 341,
+        "kind": "text",
+        "name": "AI executes autonomously over weeks and months,  coming up with new idea towards",
+        "text": "AI executes autonomously over weeks and months saving Calvin 10 hours a week,  coming up with new idea towards the goal, raising questions and decisions for approval when needed. People can dive deep into the details as they like to steer behavior or let the system run.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "AI executes autonomously over weeks and months saving Calvin 10 hours a week,  coming up with new idea towards the goal, raising questions and decisions for approval when needed. People can dive deep into the details as they like to steer behavior or let the system run.",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "422:40027",
+        "x": 60,
+        "y": 158,
+        "w": 800,
+        "h": 800,
+        "kind": "image",
+        "name": "Calvin reviews a weekly AI digest showing 10 hours saved, billing, visit notes, staff schedule and learning updates",
+        "src": "/anthropicxmaggie/epilogue/pencil/crisp/46-digest.png",
+        "radius": 400,
+        "fit": "contain",
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "414:16",
+    "number": 69,
+    "name": "Guide",
+    "layers": [
+      {
+        "id": "414:17",
+        "x": 127,
+        "y": 100,
+        "w": 96,
+        "h": 49,
+        "kind": "text",
+        "name": "Guide",
+        "text": "Guide",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Guide",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:18",
+        "x": 127,
+        "y": 828,
+        "w": 664,
+        "h": 196,
+        "kind": "text",
+        "name": "AI as coach, can speak to its capability limitations and guide people on alterna",
+        "text": "AI as coach, can speak to its capability limitations and guide people on alternatives. It can also prevent bad actors via intent guardrails. ",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "AI as coach, can speak to its capability limitations and guide people on alternatives. It can also prevent bad actors via intent guardrails. ",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "422:40032",
+        "x": 451,
+        "y": 182,
+        "w": 1164,
+        "h": 582,
+        "kind": "image",
+        "name": "AI epilogue artwork",
+        "src": "/anthropicxmaggie/epilogue/422-40032.png",
+        "radius": 0
+      }
+    ]
+  },
+  {
+    "id": "custom:robot-teacher",
+    "number": 67.1,
+    "name": "AI as teacher & inspirer",
+    "layers": [
+      {
+        "id": "robot-teacher-art",
+        "kind": "image",
+        "name": "Calvin imagining worlds of science, creativity and learning",
+        "src": "/anthropicxmaggie/epilogue/pencil/crisp/47-teacher.png",
+        "x": 60,
+        "y": 158,
+        "w": 800,
+        "h": 800,
+        "radius": 400,
+        "fit": "contain",
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "robot-teacher-heading",
+        "kind": "text",
+        "name": "UX concepts (AI as teacher & inspirer) extendable to natural language, self-learning intelligence.",
+        "text": "UX concepts (AI as teacher & inspirer) extendable to natural language, self-learning intelligence.",
+        "x": 940,
+        "y": 375.109375,
+        "w": 680,
+        "h": 145.78125,
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "UX concepts (AI as teacher & inspirer) extendable to natural language, self-learning intelligence.",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "robot-teacher-body",
+        "kind": "text",
+        "name": "It will be necessary to continually teach people about AI’s capabilities, because new developments may not be discoverable beyond release notes. The design and guardrails will be especially important, since AI’s role in inspiring ideas and co-creating intentions is contentious. Which ideas and intentions should it help shape, and how can it do so fairly? How can we prevent it from influencing people in harmful ways?",
+        "text": "It will be necessary to continually teach people about AI’s capabilities, because new developments may not be discoverable beyond release notes. The design and guardrails will be especially important, since AI’s role in inspiring ideas and co-creating intentions is contentious. Which ideas and intentions should it help shape, and how can it do so fairly? How can we prevent it from influencing people in harmful ways?",
+        "x": 940,
+        "y": 560.890625,
+        "w": 680,
+        "h": 180,
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "It will be necessary to continually teach people about AI’s capabilities, because new developments may not be discoverable beyond release notes. The design and guardrails will be especially important, since AI’s role in inspiring ideas and co-creating intentions is contentious. Which ideas and intentions should it help shape, and how can it do so fairly? How can we prevent it from influencing people in harmful ways?",
+            "style": 3,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "custom:intent-honing-copy",
+    "number": 65.1,
+    "name": "Intent honing",
+    "layers": [
+      {
+        "id": "414:12",
+        "x": 940,
+        "y": 324,
+        "w": 680,
+        "h": 49,
+        "kind": "text",
+        "name": "Intent honing",
+        "text": "Intent honing",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Intent honing",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:13",
+        "x": 940,
+        "y": 413,
+        "w": 680,
+        "h": 292,
+        "kind": "text",
+        "name": "AI as coach helps people co-create their intent as its capabilities increase so that people learn what it can do. Via proactivity or showing them as they can take on larger scopes of work from task → project → goals/outcomes",
+        "text": "AI as coach helps people co-create their intent as its capabilities increase so that people learn what it can do. Via proactivity or showing them as they can take on larger scopes of work from task → project → goals/outcomes",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "AI as coach helps people co-create their intent as its capabilities increase so that people learn what it can do. Via proactivity or showing them as they can take on larger scopes of work from task → project → goals/outcomes",
+            "style": 20,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "414:73",
+        "x": 60,
+        "y": 158,
+        "w": 800,
+        "h": 800,
+        "kind": "image",
+        "name": "Colored-pencil storyboard: Intent honing, Calvin and a physical hovering AI assistant",
+        "src": "/anthropicxmaggie/epilogue/pencil/crisp/43-intent.png",
+        "radius": 400,
+        "fit": "contain",
+        "cropTransform": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "intent-honing-scenario-description",
+        "x": 940,
+        "y": 733,
+        "w": 680,
+        "h": 60,
+        "kind": "text",
+        "name": "Calvin goal collaboration",
+        "text": "Calvin starts with asking AI to execute a tasks, and AI suggests they work on a goal together: save Calvin 10 hours a week.",
+        "align": "LEFT",
+        "segments": [
+          {
+            "text": "Calvin starts with asking AI to execute a tasks, and AI suggests they work on a goal together: save Calvin 10 hours a week.",
+            "style": 3,
+            "list": {
+              "type": "NONE"
+            }
+          }
+        ]
       }
     ]
   }

@@ -1,81 +1,43 @@
-import { AnimatePresence, motion } from "motion/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import PresentationGallery, { type PresentationGalleryItem } from "./PresentationGallery";
 import experienceGalleries from "./experience-galleries.json";
 import NativeSlide from "./NativeSlide";
 import PageNavigator from "./PageNavigator";
 import CareerSequence from "./CareerSequence";
+import LeadershipSlide from "./LeadershipSlide";
+import ProductScopeSlide from "./ProductScopeSlide";
+import ClickUpCaseStudySlide from "./ClickUpCaseStudySlide";
+import TaskTypeFieldsSlide from "./task-type-fields/TaskTypeFieldsSlide";
+import AgentSuggestionsSlide from "./AgentSuggestionsSlide";
+import SlideCredits from "./SlideCredits";
+import AgentExplorationCanvas from "./AgentExplorationCanvas";
+import HeadspaceHeroDemo from "../work/HeadspaceHeroDemo";
+import BlueDotHeroDemo from "../work/BlueDotHeroDemo";
 import usePresentationScale from "../usePresentationScale";
 
 type ExperienceCopy = {
-  primary: string;
-  secondary: string;
+  primary: ReactNode;
 };
+
+const yearDot = <span className="axm-year-dot">·</span>;
 
 const experienceCopy: Record<string, ExperienceCopy> = {
   "Nuffsaid Experience": {
-    primary: "2020 Nuffsaid Founding Designer (Acq. ClickUp)",
-    secondary: "Design challenge: Seed stage, 0-1, Finding PM fit, Design system",
+    primary: <>2020 {yearDot} Nuffsaid (Acq. ClickUp) {yearDot} Founding Designer</>,
   },
   "Uber Experience": {
-    primary: "2019 - ‘22 Uber Self Driving Cars Sr. Product Designer",
-    secondary: "Design challenge: Technical workflows, e2e research and design, roadmap definition",
+    primary: <>2019 {yearDot} Uber Self Driving Cars {yearDot} Sr. Product Designer</>,
   },
   "Headspace Experience": {
-    primary: "2019 Headspace Study during MHCI at Carnegie Mellon. Team of 5",
-    secondary: "Design challenge: Generative research, prototyping, consumer app",
+    primary: <>2018 {yearDot} Headspace Study during MHCI at Carnegie Mellon</>,
   },
   "User Research": {
     primary: "2019 Bloomberg Study during MHCI at Carnegie Mellon. Team of 5",
-    secondary: "Design challenge: Discovery research, data annotation, technical workflows",
   },
 };
 
-type Slide = { number: number; name: string; kind: "about" | "career" | "why-anthropic" | "overview" | "figma-frame" | "project-overview" | "divider" | "appendix" | "responsibilities" | "gallery" | "combined-study" | "placeholder"; previewNumber?: number; previewSrc?: string; videoSrc?: string; imageSrc?: string };
+import { slides, type Slide } from "./slides";
 
-const slides: Slide[] = [
-  { number: 1, name: "About Maggie", kind: "about" },
-  { number: 2, name: "Career Experience", kind: "career" },
-  { number: 3, name: "ClickUp Overview", kind: "overview" },
-  { number: 3.1, name: "ClickUp Editor Toolbar Exploration", kind: "figma-frame", imageSrc: "/anthropicxmaggie/slides/slide-after-03.png", previewSrc: "/anthropicxmaggie/slides/slide-after-03-preview.png" },
-  { number: 4, name: "Section Divider", kind: "divider" },
-  { number: 4.1, name: "ClickUp Overview", kind: "overview", previewNumber: 3, videoSrc: "/anthropicxmaggie/video/slide-05-clickup.mp4" },
-  { number: 6, name: "Nuffsaid Experience", kind: "gallery" },
-  { number: 7, name: "Uber Experience", kind: "gallery" },
-  { number: 7.1, name: "Headspace & Bloomberg Experience", kind: "combined-study" },
-  { number: 11, name: "Design Principles", kind: "placeholder" },
-  { number: 5.1, name: "Why Anthropic?", kind: "why-anthropic" },
-  { number: 12, name: "Project 1: ClickUp Multi-Player Artifacts", kind: "overview", previewNumber: 3, imageSrc: "/anthropicxmaggie/slides/slide-12-project-artifacts.png" },
-  ...[
-    [13, "Project 1 Artifact Direction"], [14, "Project 1 V1 Scope"],
-    [16, "Project 1 Annual Review"],
-    [18, "Project 1 EPD Collaboration"], [19, "Project 1 Agentic Testing"], [20, "Project 1 Publishing Test"],
-    [22, "Project 1 Internal Launch"], [23, "Project 1 UX Prototyping"],
-    [23.1, "Project 1 UX Prototyping · Video 2"],
-    [24, "Project 1 Marketing Prototyping"], [25, "Project 1 Coding Contributions"],
-    [27, "Project 2 Super agents as teammates Overview"], [28, "Project 2 Agent Direction"],
-    [30, "Project 2 Agent Vision"], [31, "Project 2 Design Explorations"], [32, "Project 2 Continued Explorations"],
-    [33, "Project 2 Avatar Exploration"], [34, "Project 2 Onsite Decisions"], [34.1, "Project 2 SuperAgents Demo"],
-    [36, "Project 2 Agent Launch"], [37, "Project 2 Iterations Feedback"], [38, "Project 2 Credit Clarifications"],
-    [39, "Project 2 Agent Growth"], [40, "Project 2 Onboarding Experiment"], [41, "Project 2 Sidebar Experiment"],
-    [42, "Project 2 SuperAgents Results"],
-    [42.1, "Appendix"],
-    [9, "Headspace Experience"], [10, "User Research"],
-    [15, "Project 1 Adapting an Existing UX and Making Improvements Along the Way"],
-    [17, "Project 1 Design Workflow"],
-    [26, "Project 1 AI Design Lessons"],
-    [5, "Leadership Responsibilities"],
-    [21, "Project 1 Generated Content"], [29, "Project 2 V1 Learnings"], [35, "Project 2 Chat Setup"],
-  ].map(([number, name]) => ({
-    number: number as number,
-    name: name as string,
-    kind: number === 27 ? "project-overview" as const : number === 42.1 ? "appendix" as const : number === 9 || number === 10 ? "gallery" as const : number === 5 ? "responsibilities" as const : "placeholder" as const,
-    previewNumber: number === 23.1 ? 23 : number === 34.1 ? 34 : undefined,
-    videoSrc: number === 27 ? "/anthropicxmaggie/video/super-agents-demo.mp4" : undefined,
-  })),
-];
-
-const slideTransition = { duration: 0.42, ease: [0.25, 0.1, 0.25, 1] as const };
 
 const responsibilityCards = [
   {
@@ -131,7 +93,6 @@ function GallerySlide({ title }: { title: string }) {
       <PresentationGallery items={galleryItems} alignment="center" />
       <div className="axm-gallery-title">
         <p className="axm-gallery-title-primary">{copy.primary}</p>
-        <p className="axm-gallery-title-secondary">{copy.secondary}</p>
       </div>
     </div>
   );
@@ -139,55 +100,135 @@ function GallerySlide({ title }: { title: string }) {
 
 function CombinedStudySlide() {
   return <div className="axm-combined-study" data-node-id="360:35185">
-    <video className="axm-combined-study-media axm-combined-study-media--headspace"
-      src="/anthropicxmaggie/video/headspace-study.mp4" aria-label="Headspace mindfulness app prototype"
-      autoPlay loop muted playsInline preload="auto" />
+    <div className="axm-combined-study-media axm-combined-study-media--headspace">
+      <HeadspaceHeroDemo compactOnMobile={false} />
+    </div>
     <video className="axm-combined-study-media axm-combined-study-media--bloomberg"
       src="/anthropicxmaggie/video/bloomberg.mp4" aria-label="Bloomberg machine learning platform prototype"
       autoPlay loop muted playsInline preload="auto" />
     <div className="axm-combined-study-caption">
       <p className="axm-combined-study-title">2019 Headspace &amp; Bloomberg during MHCI at Carnegie Mellon. Team of 5</p>
-      <p className="axm-combined-study-subtitle">Design challenge: Generative research, prototyping, consumer app</p>
     </div>
   </div>;
+}
+
+const useCaseImages = [
+  { src: "/anthropicxmaggie/use-cases/cadence-smart-scheduling.png", alt: "Cadence smart scheduling dashboard" },
+  { src: "/anthropicxmaggie/use-cases/q3-revenue-pipeline.png", alt: "Q3 revenue pipeline dashboard" },
+  { src: "/anthropicxmaggie/use-cases/halyard-executive-overview.png", alt: "Halyard executive overview dashboard" },
+  { src: "/anthropicxmaggie/use-cases/the-forge-plot-engine.png", alt: "The Forge plot engine dashboard" },
+] as const;
+
+function UseCasesSlide() {
+  return (
+    <div className="axm-use-cases" data-node-id="370:35455">
+      <h1 data-node-id="370:35457">Use cases</h1>
+      <div className="axm-use-cases-grid">
+        {useCaseImages.map(({ src, alt }, index) => (
+          <figure className="axm-use-case-card" key={src} data-card-index={index + 1}>
+            <img src={src} alt={alt} />
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AgentRoiSlide() {
+  return (
+    <div className="axm-agent-roi" data-node-id="380:35455">
+      <h1 data-node-id="380:35828">Agent ROI calculator</h1>
+      <div className="axm-agent-roi-panel" data-node-id="380:35456">
+        <img src="/presentation-shared/agent-roi/time-benchmark.png" alt="Agent time benchmark calculator" data-node-id="380:36281" />
+      </div>
+    </div>
+  );
 }
 
 function ClickUpOverviewCaption({ title, projectSubtitle = false }: { title?: string; projectSubtitle?: boolean }) {
   return (
     <>
-      <p className="axm-overview-headline">{title ? <span>{title}</span> : <><span>ClickUp is an all-in-one work OS, building all the primitives of work</span><span>(Project management, Chat, Calendar, Docs, Whiteboards, and more)</span></>}</p>
-      {projectSubtitle ? (
+      <p className="axm-overview-headline">{title ? <span>{title}</span> : <><span>2023 {yearDot} ClickUp is a multiplayer all-in-one work OS, building all the primitives of work.</span><span>(Project management, Chat, Calendar, Docs, Whiteboards, and more)</span></>}</p>
+      {projectSubtitle && (
         <p className="axm-overview-metrics axm-overview-project-subtitle">
           <span>A demonstration of how we use product design agentic workflows to ship 0-1 projects as quickly as possible.</span>
-          <span>Timeline for v1: ~1 week<span className="axm-overview-metrics-separator"> | </span>Team: CEO, 1 PM, 2 Eng leads<span className="axm-overview-metrics-separator"> | </span>Responsibility: IC Design, Rapid prototyping</span>
+          <span>Prototyped in June<span className="axm-overview-metrics-separator"> | </span>Team: CEO, 1 PM, 2 Eng leads<span className="axm-overview-metrics-separator"> | </span>Responsibility: IC Design, Rapid prototyping</span>
         </p>
-      ) : (
-        <>
-          <p className="axm-overview-role-subtitle">Joined as an IC - now player coach to 5 designers &amp; 2 researchers. Leading the team and shipping features myself.</p>
-        </>
       )}
     </>
   );
 }
 
 function ClickUpGrowthCaption() {
-  return <p className="axm-overview-growth-copy">Along with Core product features, I also oversaw growth with a lead product designer including: activation, onboarding, retention, monetization, and expansion. Launched over +150 in-app experiments over 3 years.</p>;
+  return <p className="axm-overview-growth-copy">Along with Core product features, I also oversaw growth including: activation, onboarding, retention, monetization, and expansion. Launched over +150 in-app experiments over 3 years.</p>;
 }
 
 function ClickUpDesignSystemCaption() {
-  return <p className="axm-overview-growth-copy">Led 1 designer, 1 design engineer to create our first ever design system Kora. With this team we created vibe coding prototype library for the whole org to prototype with, and rulesets to evaluate vibecoded PRs.</p>;
+  return <p className="axm-overview-growth-copy">Led team to create our first ever design system Kora. Invested in internal tool: vibe coding prototype library for the whole org</p>;
 }
 
-function SlideContent({ slide }: { slide: Slide }) {
+function SlideContent({ slide, onSlideKey }: { slide: Slide; onSlideKey: (event: KeyboardEvent) => void }) {
+  if (slide.number === 31) return <AgentExplorationCanvas />;
   if (slide.kind === "about") {
-    return <div className="axm-about"><div className="axm-about-photo"><img src="/anthropicxmaggie/maggie.png" alt="Maggie Chan" /></div><h1>Maggie Chan</h1><p>Latest: VP of Design and Research at ClickUp<br />Lives in Bay Area (San Ramon)<br />From Toronto, ON<br /><br /><span>Work Experience · 10 minutes<br />Project 1 · 10 minutes<br />Project 2 · 10 minutes</span></p></div>;
+    return (
+      <div className="axm-about" data-node-id="438:35459">
+        <h1 data-node-id="438:35461">Maggie Chan</h1>
+        <div className="axm-about-details" data-node-id="438:35462">
+          <p>Recently: VP of Design and Research at ClickUp<br />Lives in Bay Area (San Ramon)</p>
+          <p>Visual resume<br />Leadership Scope</p>
+          <p>Case Study 1: 4.0<br />Case Study 2: Custom Fields<br />Case Study 3: IC prototypes</p>
+        </div>
+      </div>
+    );
   }
   if (slide.kind === "career") return <CareerSequence />;
+  if (slide.kind === "leadership-heading") {
+    return (
+      <div className="axm-leadership-heading" data-node-id="448:134320">
+        <header data-node-id="448:134322">
+          <p>Section 2</p>
+          <h1>{slide.name}</h1>
+        </header>
+      </div>
+    );
+  }
+  if (slide.kind === "leadership") return <LeadershipSlide number={slide.number} />;
+  if (slide.kind === "product-scope") return <ProductScopeSlide number={slide.number} title={slide.name} />;
+  if (slide.kind === "clickup-case-study") return <ClickUpCaseStudySlide number={slide.number} title={slide.name} />;
+  if (slide.kind === "task-type-fields") return <TaskTypeFieldsSlide number={slide.number} />;
+  if (slide.kind === "agent-suggestions") return <AgentSuggestionsSlide number={slide.number} title={slide.name} />;
+  if (slide.kind === "agent-suggestions-demo") {
+    return (
+      <iframe
+        className="axm-agent-suggestions-demo"
+        src="/anthropicxmaggie/prototypes/agent-suggestions/demo.html"
+        title={slide.name}
+        onLoad={event => event.currentTarget.contentWindow?.addEventListener("keydown", onSlideKey)}
+      />
+    );
+  }
+  if (slide.kind === "typography-study") {
+    return (
+      <figure className="axm-typography-study" data-node-id="438:35464">
+        <img src={slide.imageSrc} alt="Annotated diagram of letterforms" data-node-id="438:35467" />
+        <figcaption>2013 {yearDot} Studied Graphic Design</figcaption>
+      </figure>
+    );
+  }
+  if (slide.kind === "bluedot") {
+    const [year, company, ...role] = slide.name.split(" ");
+    return (
+      <figure className="axm-bluedot-demo">
+        <BlueDotHeroDemo stackOnMobile={false} sparseChart />
+        <figcaption>{year} {yearDot} {company} {yearDot} {role.join(" ")}</figcaption>
+      </figure>
+    );
+  }
   if (slide.kind === "why-anthropic") {
     return <div className="axm-why-anthropic" data-node-id="357:143638">
       <div className="axm-why-anthropic-logo" data-node-id="357:143660"><img src="/anthropicxmaggie/slides/why-anthropic-logo.png" alt="Anthropic" /></div>
       <div className="axm-why-anthropic-copy" data-node-id="357:143656">
-        <p><strong>Why Anthropic?</strong><br /><span>Designing for good, a mission I can get behind<br />Massive change<br />Closer to model development, not just a layer on top<br />Builder first role<br />Claude is something I use</span></p>
+        <p><strong>Why Anthropic?</strong><br /><span>Designing for beneficial AI<br />Closer to model development, not just a layer on top<br />Builder first role<br />Talent dense environment<br />Claude is something I use<br />This area that really interests me<br />Going back to a hybrid work situation would be exciting</span></p>
       </div>
     </div>;
   }
@@ -208,16 +249,16 @@ function SlideContent({ slide }: { slide: Slide }) {
         <div className="axm-green-panel axm-green-panel--slide-27">
           <video className="axm-overview-video axm-overview-video--slide-27" src={slide.videoSrc} aria-label="Super agents as teammates" autoPlay loop muted playsInline preload="auto" />
         </div>
-        <p className="axm-overview-headline"><span>Project 2: Super agents as teammates</span></p>
+        <p className="axm-overview-headline"><span>Project 2: Super agents as "specialist" teammates</span></p>
         <p className="axm-overview-metrics axm-overview-tagline">Reconceptualizing Agents 0 to 1. Iterating via feedback and experiments.</p>
         <p className="axm-overview-metrics axm-overview-project-subtitle axm-overview-super-agents-subtitle">
-          <span>Timeline: Multiple projects over 8 months<span className="axm-overview-metrics-separator"> | </span>Team: CEO, Head of product strategy, 4 designers<span className="axm-overview-metrics-separator"> | </span>Role: Team Lead</span>
+          <span>Timeline: Multiple projects over 8 months, First launched Dec 2025<span className="axm-overview-metrics-separator"> | </span>Team: CEO, 4 designers<span className="axm-overview-metrics-separator"> | </span>Role: Team Lead</span>
         </p>
       </div>
     );
   }
   if (slide.kind === "overview") {
-    return <div className="axm-overview"><div className={`axm-green-panel${slide.videoSrc ? " axm-green-panel--slide-05" : ""}${slide.number === 12 ? " axm-green-panel--slide-12" : ""}`}>{slide.imageSrc ? <img className="axm-overview-video axm-overview-image" src={slide.imageSrc} alt="ClickUp Multi-Player Artifacts" /> : <video className={`axm-overview-video${slide.videoSrc ? " axm-overview-video--slide-05" : ""}`} src={slide.videoSrc ?? "/anthropicxmaggie/video/clickup-demo.mp4"} aria-label="ClickUp product demo" autoPlay loop muted playsInline preload="auto" onLoadedMetadata={event => { event.currentTarget.playbackRate = slide.videoSrc ? 3 : 1; }} />}</div>{slide.videoSrc ? <ClickUpDesignSystemCaption /> : <ClickUpOverviewCaption title={slide.number === 12 ? "Project 1: ClickUp Multi-Player Artifacts" : undefined} projectSubtitle={slide.number === 12} />}</div>;
+    return <div className="axm-overview"><div className={`axm-green-panel${slide.videoSrc ? " axm-green-panel--slide-05" : ""}${slide.number === 12 ? " axm-green-panel--slide-12" : ""}${slide.number === 3 ? " axm-green-panel--clickup-overview" : ""}`}>{slide.imageSrc ? <img className="axm-overview-video axm-overview-image" src={slide.imageSrc} alt="ClickUp Multi-Player Artifacts" /> : <video className={`axm-overview-video${slide.videoSrc ? " axm-overview-video--slide-05" : ""}`} src={slide.videoSrc ?? "/anthropicxmaggie/video/clickup-demo.mp4"} aria-label="ClickUp product demo" autoPlay loop muted playsInline preload="auto" onLoadedMetadata={event => { event.currentTarget.playbackRate = slide.videoSrc ? 1.25 : 1; }} />}</div>{slide.videoSrc ? <ClickUpDesignSystemCaption /> : <ClickUpOverviewCaption title={slide.number === 12 ? "Project 1: ClickUp Multi-Player Artifacts" : undefined} projectSubtitle={slide.number === 12} />}</div>;
   }
   if (slide.kind === "divider") {
     return (
@@ -264,6 +305,8 @@ function SlideContent({ slide }: { slide: Slide }) {
   }
   if (slide.kind === "gallery") return <GallerySlide title={slide.name} />;
   if (slide.kind === "combined-study") return <CombinedStudySlide />;
+  if (slide.kind === "use-cases") return <UseCasesSlide />;
+  if (slide.kind === "agent-roi") return <AgentRoiSlide />;
   return <NativeSlide number={slide.number} />;
 }
 
@@ -304,14 +347,18 @@ export default function AnthropicXMaggiePresentation() {
     };
   }, []);
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowLeft") { event.preventDefault(); go(-1); }
-      if (event.key === "ArrowRight") { event.preventDefault(); go(1); }
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+  const onSlideKey = useCallback((event: KeyboardEvent) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    const target = event.target as Element | null;
+    if (event.defaultPrevented || target?.closest?.("input, textarea, select, [contenteditable], dialog, [role='menu']")) return;
+    event.preventDefault();
+    go(event.key === "ArrowLeft" ? -1 : 1);
   }, [go]);
 
-  return <main ref={presentationRef} className="axm-presentation"><div className="axm-stage-viewport"><div className="axm-stage"><AnimatePresence mode="wait"><motion.section key={slide.number} className="axm-slide" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={slideTransition} aria-label={`Slide ${slide.number}: ${slide.name}`}><SlideContent slide={slide} /></motion.section></AnimatePresence></div><PageNavigator pages={slides} index={index} onSelect={setIndex} /></div></main>;
+  useEffect(() => {
+    window.addEventListener("keydown", onSlideKey);
+    return () => window.removeEventListener("keydown", onSlideKey);
+  }, [onSlideKey]);
+
+  return <main ref={presentationRef} className="axm-presentation"><div className="axm-stage-viewport"><div className="axm-stage"><section key={slide.number} className="axm-slide" aria-label={`Slide ${slide.number}: ${slide.name}`}><SlideContent slide={slide} onSlideKey={onSlideKey} />{slide.credits?.length ? <SlideCredits credits={slide.credits} /> : null}</section></div><PageNavigator pages={slides} index={index} onSelect={setIndex} /></div></main>;
 }

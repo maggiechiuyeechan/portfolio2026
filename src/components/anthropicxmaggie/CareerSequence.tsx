@@ -16,7 +16,7 @@ export default function CareerSequence() {
   useEffect(() => {
     if (reducedMotion) return;
     // The sixth position is a duplicate of the first, allowing a seamless reset.
-    const delay = step === 5 ? 850 : initialCycle.current ? 1100 : 2600;
+    const delay = step === 5 ? 850 : initialCycle.current ? 2200 : 5200;
     const timer = window.setTimeout(() => {
       initialCycle.current = false;
       setStep(step === 5 ? 0 : step + 1);
@@ -40,7 +40,7 @@ export default function CareerSequence() {
     <div className="axm-career-sequence-names" aria-hidden="true">
       {slots.map(slot => <motion.div key={slot} className="axm-career-sequence-name"
         initial={false} transition={transition}
-        animate={{ y: units((slot - step) * 42), opacity: slot < step || slot > step + 4 ? 0 : slot === step ? 1 : .4,
+        animate={{ y: `calc(var(--presentation-font-lead) * ${(slot - step) * 1.5})`, opacity: slot < step || slot > step + 4 ? 0 : slot === step ? 1 : .4,
           color: slot === step ? "var(--presentation-color-content-default)" : "var(--presentation-color-secondary)" }}>
         {companies[(slot + 5) % 5][1]}
       </motion.div>)}

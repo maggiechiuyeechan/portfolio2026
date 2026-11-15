@@ -19,7 +19,7 @@
   --presentation-paint-16: #30a46c;
   --presentation-paint-17: var(--color-gray-9);
   --presentation-paint-18: #f2fcf5;
-  --presentation-paint-19: #f76808;
+  --presentation-paint-19: var(--presentation-color-agent-metric);
   --presentation-paint-20: #655d41;
   --presentation-paint-21: #d3ccbf;
   --presentation-paint-22: #c5bfb9;

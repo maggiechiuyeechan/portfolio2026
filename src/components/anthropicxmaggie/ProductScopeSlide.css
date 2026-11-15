@@ -1,0 +1,63 @@
+.axm-product-scope {
+  position: absolute;
+  inset: 0;
+  color: var(--color-black);
+}
+
+.axm-presentation .axm-slide .axm-product-scope h1 {
+  position: absolute;
+  left: calc(64 / 1728 * 100%);
+  top: calc(64 / 1117 * 100%);
+  margin: 0;
+  font-family: var(--presentation-font-about-family);
+  font-size: var(--presentation-font-lead);
+  line-height: 1.35;
+  font-variation-settings: normal !important;
+}
+
+.axm-presentation .axm-slide .axm-product-scope h1[data-node-id="441:112513"] {
+  left: calc(66 / 1728 * 100%);
+}
+
+.axm-product-scope-video {
+  position: absolute;
+  left: calc(64 / 1728 * 100%);
+  top: calc(153 / 1117 * 100%);
+  width: calc(1600 / 1728 * 100%);
+  height: calc(900 / 1117 * 100%);
+  object-fit: cover;
+  border-radius: var(--presentation-radius-image);
+}
+
+.axm-product-scope-video[data-node-id="441:112511"] {
+  /* Equal space above and below the video between the heading and credit avatar. */
+  top: calc(127.3 / 1117 * 100%);
+}
+
+.axm-product-scope-video--growth {
+  /* The video has white margins. Align the visible panels with the heading and avatar. */
+  left: calc(56 / 1728 * 100%);
+  top: calc(143 / 1117 * 100%);
+  width: calc(1616 / 1728 * 100%);
+  height: calc(909 / 1117 * 100%);
+  object-fit: contain;
+}
+
+.axm-product-scope-innovation {
+  position: absolute;
+  inset-inline: calc(64 / 1728 * 100%);
+  top: calc(198 / 1117 * 100%);
+  height: calc(710 / 1117 * 100%);
+  display: grid;
+  grid-template-columns: 949fr 622fr;
+  gap: calc(29 / 1728 * 100cqw);
+}
+
+.axm-product-scope-innovation img {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: cover;
+  border-radius: var(--presentation-radius-image);
+}

@@ -113,15 +113,20 @@
   --font-weight-bagoss-light: 320; /* Standard Light — reference only */
   --font-weight-aguzzo-display: 300; /* Aguzzo VF Trial — hero h1 */
 
+  /* ------ Headspace demo ------ */
+  --headspace-color-character-face: #f6f3ee;
+
   /* ------ Open AI presentation / Figma deck ------ */
   --presentation-canvas-width: 1728px;
   --presentation-canvas-height: 1117px;
+  --presentation-credit-bottom-inset: 38px;
   --presentation-min-viewport-width: 1280px;
   --presentation-min-viewport-height: 720px;
   --presentation-arrow-size: 22px;
   --presentation-page-control-gap: 11px;
   --presentation-page-tick-spacing: 4px;
   --presentation-page-tick-expanded-spacing: 12px;
+  --presentation-page-tick-compact-expanded-spacing: 6px;
   --presentation-page-tick-spacing-duration: 350ms;
   --presentation-page-tick-spacing-ease: cubic-bezier(.22, 1, .36, 1);
   --presentation-page-tick-width: 1px;
@@ -129,6 +134,8 @@
   --presentation-page-tick-target-height: 32px;
   --presentation-viewport-padding-block: clamp(3rem, 7dvh, 5rem);
   --presentation-viewport-padding-inline: clamp(.75rem, 4vw, 4rem);
+  --presentation-experience-gallery-height: 750px;
+  --presentation-kora-caption-offset: -10px;
   --presentation-gallery-switcher-gap: 10px;
   --presentation-gallery-button-gap: 2px;
   --presentation-gallery-edge-fade-width: calc(96 / 1728 * 100cqw);
@@ -152,19 +159,57 @@
   --presentation-color-content-default: var(--color-gray-12);
   --presentation-color-content-secondary: var(--color-gray-11);
   --presentation-color-content-tertiary: #bbbbbb;
+  --presentation-color-tooltip-secondary: color-mix(in srgb, var(--color-white) 69%, transparent);
+  --presentation-color-tooltip-divider: color-mix(in srgb, var(--color-white) 10%, transparent);
+  --presentation-color-optional-ritual: #727272;
   --presentation-color-menu: var(--color-white);
   --presentation-color-pink: #ff375f;
+  --presentation-color-negative: #e5484d;
+  --presentation-color-positive: #299764;
+  --presentation-color-numbered-badge: #d93d42;
   --presentation-color-orange: #ff9230;
+  --presentation-color-agent-metric: #f76808;
   --presentation-color-green: #30d158;
   --presentation-color-brown: #b78a66;
   --presentation-color-blue: #0091ff;
   --presentation-color-indigo: #6d7cff;
-  --presentation-font-family: "SF Pro", var(--font-sans), sans-serif;
-  --presentation-font-lead: 34px;
+  --presentation-cursor-blue: #1470ef;
+  --presentation-cursor-green: #019855;
+  --presentation-cursor-orange: #dc6903;
+  --presentation-cursor-pink: #dd2690;
+  --font-season-preview: "Season VF Preview", Georgia, serif;
+  --presentation-trial-weight: 500;
+  --presentation-trial-serif: 10;
+  --presentation-font-original: "SF Pro", var(--font-sans), sans-serif;
+  --presentation-font-family: var(--presentation-font-original);
+  --presentation-font-lead: 36px;
+  --presentation-font-about-name: 40px;
+  --presentation-font-about-family: "Season Sans Medium Preview", var(--presentation-font-original);
+  --presentation-font-lead-regular-family: "Season Sans Regular Preview", var(--presentation-font-original);
+  --presentation-font-about-details: 34px;
+  --presentation-about-gap: 48px;
+  --presentation-demo-edge-fade: 16px;
+  --presentation-exploration-background: #e4e4e4;
+  --presentation-exploration-label-size: 20px;
+  --presentation-onsite-gallery-height: 480px;
+  --presentation-avatar-gallery-height: 780px;
+  --presentation-color-agent-panel: #cdd4d5;
+  --presentation-font-annotation: 14.30161px;
   --presentation-font-body: 20px;
+  --presentation-font-body-large: 28px;
+  --presentation-role-subtitle-max-width: 92%;
+  --presentation-font-body-family: "Inter", var(--font-sans), sans-serif;
+  --presentation-font-body-weight: 400;
+  --presentation-font-body-line-height: 1.5;
+  --presentation-font-body-style: var(--presentation-font-body-weight) calc(var(--presentation-font-body) / 1728px * 100cqw) / var(--presentation-font-body-line-height) var(--presentation-font-body-family);
   --presentation-font-card-title: 28px;
   --presentation-font-caption: 11px;
   --presentation-radius-card: 16px;
+  --presentation-radius-portrait: 134px;
+  --presentation-color-epilogue-muted: #a0a0a0;
+  --presentation-color-epilogue-note: #c100b6;
+  --presentation-color-original-header-caption: #ea00ff;
+  --presentation-color-updated-header-caption: #ff02f0;
   --presentation-radius-image: var(--radius-3);
   --presentation-radius-use-case: var(--radius-2);
   --presentation-color-survey-panel: #b9c0b8;

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 import { usePrefersReducedMotion } from "../../lib/motion";
 import chartCases from "../../assets/bluedot-demo/yellow-fever-cases.svg";
 import chartDeaths from "../../assets/bluedot-demo/yellow-fever-deaths.svg";
+import presentationChart from "../../assets/bluedot-demo/yellow-fever-presentation-chart.svg";
 import microbeVector from "../../assets/bluedot-demo/microbe-vector.svg";
 import microbeGroupA from "../../assets/bluedot-demo/microbe-group-a.svg";
 import microbeGroupB from "../../assets/bluedot-demo/microbe-group-b.svg";
@@ -21,6 +22,7 @@ const FINAL_VALUES = {
 
 const ENTRANCE_MS = 3600;
 const CHART_LINE_COUNT = 110;
+const PRESENTATION_CHART_LINE_COUNT = 62;
 
 function easeOut(t: number) {
   return 1 - (1 - t) ** 3;
@@ -66,7 +68,7 @@ function MicrobeIcon() {
   );
 }
 
-export default function BlueDotDiseaseReportDemo() {
+export default function BlueDotDiseaseReportDemo({ sparseChart = false }: { sparseChart?: boolean }) {
   const reducedMotion = usePrefersReducedMotion();
   const panelRef = useRef<HTMLDivElement>(null);
   const playedRef = useRef(false);
@@ -108,7 +110,8 @@ export default function BlueDotDiseaseReportDemo() {
   const detailsIn = phase(progress, 0.62, 0.86);
   const briefIn = phase(progress, 0.76, 1);
   const metricProgress = phase(progress, 0.18, 0.4);
-  const chartLineReveal = Math.floor(chartIn * CHART_LINE_COUNT) / CHART_LINE_COUNT;
+  const chartLineCount = sparseChart ? PRESENTATION_CHART_LINE_COUNT : CHART_LINE_COUNT;
+  const chartLineReveal = Math.floor(chartIn * chartLineCount) / chartLineCount;
 
   const cardStyle = {
     "--bluedot-card-opacity": cardIn,
@@ -136,8 +139,14 @@ export default function BlueDotDiseaseReportDemo() {
         </div>
 
         <div className="bluedot-report-chart" style={{ clipPath: `inset(0 ${(1 - chartLineReveal) * 100}% 0 0)` }}>
-          <img className="cases" src={chartCases.src} width="303.975" height="92.827" alt="" />
-          <img className="deaths" src={chartDeaths.src} width="303.975" height="29.945" alt="" />
+          {sparseChart ? (
+            <img className="cases" src={presentationChart.src} width="303.975" height="92.827" alt="" />
+          ) : (
+            <>
+              <img className="cases" src={chartCases.src} width="303.975" height="92.827" alt="" />
+              <img className="deaths" src={chartDeaths.src} width="303.975" height="29.945" alt="" />
+            </>
+          )}
         </div>
 
         <div className="bluedot-report-months" style={{ opacity: chartIn }}>

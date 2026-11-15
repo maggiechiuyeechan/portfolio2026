@@ -102,28 +102,28 @@
  * background above and below as it does left and right.
  */
 @media (max-width: 41.25rem) {
-  .headspace-hero-demo {
+  .headspace-hero-demo.is-compact-on-mobile {
     /* Height follows the one remaining phone rather than a fixed ratio. */
     aspect-ratio: auto;
     padding-block: 18.23%;
   }
 
-  .hsd-stage {
+  .headspace-hero-demo.is-compact-on-mobile .hsd-stage {
     width: auto;
     height: auto;
   }
 
-  .hsd-viewport {
+  .headspace-hero-demo.is-compact-on-mobile .hsd-viewport {
     width: 66cqw;
     height: auto;
   }
 
-  .hsd-viewport.is-left {
+  .headspace-hero-demo.is-compact-on-mobile .hsd-viewport.is-left {
     display: none;
   }
 
   /* Cancel the facing-edge bleed so the phone sits centred in the frame. */
-  .hsd-viewport.is-right {
+  .headspace-hero-demo.is-compact-on-mobile .hsd-viewport.is-right {
     transform: translateX(-1.86%);
   }
 }
@@ -205,6 +205,20 @@
 
 .hsd-hero img.is-active {
   opacity: 1;
+}
+
+.hsd-artwork-filters {
+  position: absolute;
+}
+
+.hsd-character-face-fill {
+  flood-color: var(--headspace-color-character-face);
+}
+
+.hsd-hero-initial,
+.hsd-fp-group7,
+.hsr-group7 {
+  filter: var(--hsd-character-face-filter);
 }
 
 .hsd-back {

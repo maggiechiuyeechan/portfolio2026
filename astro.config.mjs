@@ -10,6 +10,9 @@ import islandPreload from "./island-preload.mjs";
 // opt out with `export const prerender = false` and render on Vercel.
 export default defineConfig({
   site: "https://www.maggiechan.io",
+  redirects: {
+    "/anthropicxmaggie": { destination: "/notionxmaggie", status: 308 },
+  },
   devToolbar: {
     enabled: false,
   },
@@ -29,6 +32,11 @@ export default defineConfig({
     }),
   ],
   vite: {
+    server: {
+      fs: {
+        deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "**/.speaker-notes/**"],
+      },
+    },
     plugins: [tailwindcss()],
   },
 });

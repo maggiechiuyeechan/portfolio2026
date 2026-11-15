@@ -1,0 +1,38 @@
+.axm-slide-credits {
+  position: absolute;
+  right: calc(64 / 1728 * 100%);
+  bottom: calc(var(--presentation-credit-bottom-inset) / var(--presentation-canvas-height) * 100%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--spacing-2) var(--spacing-5);
+  max-width: calc(1600 / 1728 * 100%);
+  margin: 0;
+  padding: calc(10 / 1728 * 100cqw) 0;
+  list-style: none;
+  color: var(--color-black);
+  font-family: var(--font-mono);
+  font-size: calc(10 / 1728 * 100cqw);
+  line-height: 2;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.axm-slide-credits li {
+  display: flex;
+  align-items: center;
+  gap: calc(10 / 1728 * 100cqw);
+}
+
+.axm-presentation .axm-slide .axm-slide-credits span {
+  font-weight: var(--presentation-font-body-weight) !important;
+  font-variation-settings: normal !important;
+}
+
+.axm-slide-credits img {
+  flex: none;
+  width: calc(27 / 1728 * 100cqw);
+  aspect-ratio: 1;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}

@@ -55,12 +55,6 @@
       "elevation": false
     },
     {
-      "src": "/anthropicxmaggie/gallery/dashboard-spec.png",
-      "label": "Dashboard interaction specification",
-      "figmaNode": "I269:148559;172:34700;167:28979",
-      "elevation": false
-    },
-    {
       "src": "/anthropicxmaggie/gallery/survey-response.png",
       "label": "Survey response dashboard",
       "figmaNode": "I269:148559;172:34700;188:52848",
@@ -114,9 +108,9 @@
   ],
   "Headspace Experience": [
     {
-      "src": "/anthropicxmaggie/video/headspace-study.mp4",
+      "src": "/work#headspace",
       "label": "Mindfulness app weekend reflection flow",
-      "media": "video",
+      "media": "headspace",
       "figmaNode": "I269:148563;172:34700;269:77874",
       "elevation": false
     },

@@ -1,0 +1,7 @@
+<svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="360" height="360" rx="180" fill="#791BC2"/>
+<g fill="white" transform="translate(180 180) scale(0.88) translate(-180 -180)">
+  <path d="M180 180C124.772 180 80 224.772 80 280H280C280 224.772 235.228 180 180 180Z"/>
+  <path d="M280 80.0002H80C80 135.228 124.772 180 180 180C235.228 180 280 135.228 280 80.0002Z"/>
+</g>
+</svg>

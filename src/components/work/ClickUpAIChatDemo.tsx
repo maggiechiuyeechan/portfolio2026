@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { usePrefersReducedMotion } from "../../lib/motion";
 import ivan from "../../assets/clickup-ai-demo/chat-avatar-ivan.png";
 import sara from "../../assets/clickup-ai-demo/chat-avatar-sara.png";
@@ -28,6 +28,9 @@ import progressRing from "../../assets/clickup-ai-demo/chat-status-progress.svg"
 import progressDot from "../../assets/clickup-ai-demo/chat-status-dot.svg";
 import milestone from "../../assets/clickup-ai-demo/chat-status-milestone.svg";
 import statusAgent from "../../assets/clickup-ai-demo/chat-status-agent-purple-yellow-grey.webp";
+import originalCampaign from "../../assets/clickup-ai-demo/chat-avatar-campaign.png";
+import originalPrioritizer from "../../assets/clickup-ai-demo/chat-avatar-prioritizer.png";
+import originalStatusAgent from "../../assets/clickup-ai-demo/chat-status-agent.png";
 import "./ClickUpAIDemo.css";
 
 const PROMPT = "What are the top design priorities this week for the Agent status project?";
@@ -92,10 +95,10 @@ function Avatar({ src }: { src: string }) {
   return <img className={`cua-chat-avatar${isAgent ? " is-agent-avatar" : ""}`} src={src} alt="" />;
 }
 
-function ReplyAvatars({ replyCount }: { replyCount: number }) {
+function ReplyAvatars({ replyCount, prioritizerSrc }: { replyCount: number; prioritizerSrc: string }) {
   return (
     <div className="cua-chat-reply-avatars" aria-hidden="true">
-      <Avatar src={prioritizer.src} />
+      <Avatar src={prioritizerSrc} />
       {replyCount > 1 && <Avatar src={sara.src} />}
     </div>
   );
@@ -113,7 +116,7 @@ function Meta({ name, time }: { name: string; time: string }) {
 const SKELETON_WIDTHS = [85, 76, 93];
 const CHANNEL_WIDTHS = [52, 95, 83, 101];
 
-function Sidebar() {
+function Sidebar({ campaignSrc }: { campaignSrc: string }) {
   return (
     <aside className="cua-chat-sidebar">
       <div className="cua-chat-sidebar-top">
@@ -138,7 +141,7 @@ function Sidebar() {
         <Avatar src={jony.src} /><strong>Jony</strong><b>1</b>
       </div>
       <div className="cua-chat-person">
-        <Avatar src={campaign.src} /><strong>Campaign agent</strong><b>2</b>
+        <Avatar src={campaignSrc} /><strong>Campaign agent</strong><b>2</b>
       </div>
       <div className="cua-chat-skeleton-stack cua-chat-skeleton-stack--single">
         <div><i /><b style={{ width: 112 }} /></div>
@@ -184,7 +187,9 @@ function Header() {
   );
 }
 
-function MainMessageList({ posted, replied, replyCount }: { posted: boolean; replied: boolean; replyCount: number }) {
+function MainMessageList({ posted, replied, replyCount, prioritizerSrc }: {
+  posted: boolean; replied: boolean; replyCount: number; prioritizerSrc: string;
+}) {
   return (
     <section className="cua-chat-message-list">
       <article className="cua-chat-message-exact">
@@ -208,7 +213,7 @@ function MainMessageList({ posted, replied, replyCount }: { posted: boolean; rep
           {replied && (
             <div className="cua-chat-reply-exact">
               <img className="cua-chat-thread-line" src={threadLine.src} alt="" />
-              <ReplyAvatars replyCount={replyCount} />
+              <ReplyAvatars replyCount={replyCount} prioritizerSrc={prioritizerSrc} />
               <strong>{replyCount} {replyCount === 1 ? "reply" : "replies"}</strong><span>Just now</span>
             </div>
           )}
@@ -256,7 +261,7 @@ function BlockerIcon({ kind }: { kind: (typeof BLOCKERS)[number]["kind"] }) {
   return <span className={`cua-chat-blocker-icon cua-chat-blocker-icon--${kind}`} aria-hidden="true" />;
 }
 
-function ThreadPanel({ frame }: { frame: ChatFrame }) {
+function ThreadPanel({ frame, prioritizerSrc }: { frame: ChatFrame; prioritizerSrc: string }) {
   return (
     <aside className={`cua-chat-thread-exact${frame.posted ? " is-visible" : ""}`}>
       <header>Sara’s thread <span><img src={close.src} alt="" /></span></header>
@@ -269,7 +274,7 @@ function ThreadPanel({ frame }: { frame: ChatFrame }) {
           <>
             <div className="cua-chat-replies-exact"><span>{frame.calendar ? 2 : 1} {frame.calendar ? "replies" : "reply"}</span></div>
             <article className="cua-chat-message-exact cua-chat-prioritizer-message">
-              <Avatar src={prioritizer.src} />
+              <Avatar src={prioritizerSrc} />
               <div>
                 <Meta name="Design Prioritizer" time="10:34 am" />
                 {frame.thinking ? (
@@ -300,11 +305,11 @@ function ThreadPanel({ frame }: { frame: ChatFrame }) {
   );
 }
 
-function AgentStatus({ visible }: { visible: boolean }) {
+function AgentStatus({ visible, avatarSrc }: { visible: boolean; avatarSrc: string }) {
   return (
     <div className={`cua-chat-agent-status${visible ? " is-visible" : ""}`}>
       <span>
-        <img className="is-agent-avatar" src={statusAgent.src} alt="" />
+        <img className={avatarSrc === statusAgent.src ? "is-agent-avatar" : undefined} src={avatarSrc} alt="" />
         <span className="cua-chat-status-dots"><i /><i /><i /></span>
       </span>
       <p>Checking 3 calendars</p>
@@ -312,7 +317,13 @@ function AgentStatus({ visible }: { visible: boolean }) {
   );
 }
 
-export default function ClickUpAIChatDemo() {
+export default function ClickUpAIChatDemo({ useOriginalAgentAvatars = false, fixedWidth }: {
+  useOriginalAgentAvatars?: boolean;
+  fixedWidth?: number;
+}) {
+  const campaignSrc = (useOriginalAgentAvatars ? originalCampaign : campaign).src;
+  const prioritizerSrc = (useOriginalAgentAvatars ? originalPrioritizer : prioritizer).src;
+  const statusAgentSrc = (useOriginalAgentAvatars ? originalStatusAgent : statusAgent).src;
   const reducedMotion = usePrefersReducedMotion();
   const [frame, setFrame] = useState<ChatFrame>(reducedMotion ? FINAL_FRAME : frameAt(0));
 
@@ -329,19 +340,19 @@ export default function ClickUpAIChatDemo() {
   }, [reducedMotion]);
 
   return (
-    <div className="cua-chat-demo study-image" role="img" aria-label="ClickUp AI chat animation showing an agent prioritizing design blockers">
+    <div className={`cua-chat-demo study-image${fixedWidth === undefined ? "" : " cua-chat-demo--fixed"}`} role="img" aria-label="ClickUp AI chat animation showing an agent prioritizing design blockers">
       {/* --demo-scale arrives from initDemoScale before hydration; see src/lib/demoScale.ts */}
-      <div className="cua-chat-scaler" suppressHydrationWarning>
+      <div className="cua-chat-scaler" style={fixedWidth === undefined ? undefined : { "--demo-scale": fixedWidth / 936.667 } as CSSProperties} suppressHydrationWarning>
         <div className={`cua-chat-stage${frame.posted ? " is-thread-open" : ""}`}>
           <div className="cua-chat-app" />
           <div className="cua-chat-main-background" />
           <div className="cua-chat-noise" aria-hidden="true" />
-          <Sidebar />
+          <Sidebar campaignSrc={campaignSrc} />
           <Header />
-          <MainMessageList posted={frame.posted} replied={frame.replied} replyCount={frame.calendar ? 2 : 1} />
+          <MainMessageList posted={frame.posted} replied={frame.replied} replyCount={frame.calendar ? 2 : 1} prioritizerSrc={prioritizerSrc} />
           <Composer frame={frame} />
-          <ThreadPanel frame={frame} />
-          <AgentStatus visible={frame.agentChecking} />
+          <ThreadPanel frame={frame} prioritizerSrc={prioritizerSrc} />
+          <AgentStatus visible={frame.agentChecking} avatarSrc={statusAgentSrc} />
         </div>
       </div>
     </div>

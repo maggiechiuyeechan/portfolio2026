@@ -1,0 +1,47 @@
+/* Local trial: uses the installed Season variable font. */
+@font-face {
+  font-family: "Season VF Preview";
+  src: local("SeasonVF-Regular-TRIAL"), local("Season VF-TRIAL");
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+}
+.axm-presentation .axm-slide,
+.axm-presentation .axm-slide *:not(:where(.bluedot-hero-demo, .bluedot-hero-demo *, .headspace-hero-demo, .headspace-hero-demo *, .cua-chat-demo, .cua-chat-demo *)) {
+  font-weight: var(--presentation-trial-weight) !important;
+  font-variation-settings: "wght" var(--presentation-trial-weight), "SERF" var(--presentation-trial-serif), "slnt" 0 !important;
+}
+
+/* Original body typography for native slide types 2 and 3. */
+.axm-presentation .axm-slide .axm-native-type-17,
+.axm-presentation .axm-slide .axm-native-type-2,
+.axm-presentation .axm-slide .axm-native-type-3,
+.axm-presentation .axm-slide .axm-overview-metrics,
+.axm-presentation .axm-slide :is(.axm-native-type-2, .axm-native-type-3, .axm-overview-metrics) * {
+  font-weight: var(--presentation-font-body-weight) !important;
+  font-variation-settings: "wght" var(--presentation-font-body-weight), "wdth" 100, "opsz" 20 !important;
+}
+
+@font-face {
+  font-family: "Graphik Preview";
+  src: local("Graphik-Light"), local("Graphik Light");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Acumin Preview";
+  src: local("AcuminPro-Regular"), local("Acumin Pro");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maison Preview";
+  src: local("MaisonTRIAL"), local("Maison TRIAL");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}

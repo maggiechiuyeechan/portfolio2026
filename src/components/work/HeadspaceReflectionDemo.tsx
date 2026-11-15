@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import dayMon from "../../assets/headspace-demo/day-mon.png";
 import dayTue from "../../assets/headspace-demo/day-tue.png";
 import dayWed from "../../assets/headspace-demo/day-wed.png";
-import fpGroup7 from "../../assets/headspace-demo/fp-group7.png";
+import weekendVisualisation from "../../assets/headspace-demo/weekend-visualisation.svg";
 import rfTop from "../../assets/headspace-demo/rf-top.png";
 import rfLowerBg from "../../assets/headspace-demo/rf-lower-bg.png";
 import rfDaily from "../../assets/headspace-demo/rf-daily.png";
@@ -70,7 +70,7 @@ export default function HeadspaceReflectionDemo({ live }: { live: boolean }) {
         <img className="hsr-lower-bg" src={rfLowerBg.src} alt="" />
         <div className="hsr-list-pill" />
         <p className="hsr-list-title">Weekend visualisation</p>
-        <img className="hsr-group7" src={fpGroup7.src} alt="" />
+        <img className="hsr-group7" src={weekendVisualisation.src} alt="" />
         <img className="hsr-daily" src={rfDaily.src} alt="" />
       </div>
 
